@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openbox_menu xmlns="http://openbox.org/3.4/menu">
+	<menu id="root-menu" label="New Menu">
+		<item label="pwnd">
+			<action name="Execute">
+				<execute>
+					command
+				</execute>
+			</action>
+		</item>
+		<separator/>
+		<item label="reconfigure">
+			<action name="Execute">
+				<execute>
+					openbox --reconfigure
+				</execute>
+			</action>
+		</item>
+
+	</menu>
+	<menu id="root-system-menu" label="System">
+		<item label="Openbox Configuration Manager">
+			<action name="Execute">
+				<command>
+					obconf
+				</command>
+				<startupnotify>
+					<enabled>
+						yes
+					</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Reconfigure Openbox">
+			<action name="Reconfigure"/>
+		</item>
+		<item label="Exit Openbox">
+			<action name="Exit">
+				<prompt>
+					yes
+				</prompt>
+			</action>
+		</item>
+	</menu>
+</openbox_menu>
