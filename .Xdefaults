@@ -1,0 +1,156 @@
+!MOUSE CURZOR
+Xcursor*theme: jaguarx
+!Xcursor*size: 32
+
+URxvt.saveLines: 50000
+URxvt.cursorColor: #17B217
+!URxvt*background: #000000
+URxvt*foreground: gray80
+URxvt*scrollBar: false
+URxvt.keysym.Shift-Up: command:\033]720;1\007
+URxvt.keysym.Shift-Down: command:\033]721;1\007
+
+!URxvt settings
+!URxvt.urlLauncher: /usr/share/uzbl/examples/data/scripts/uzbltabopen.sh 
+URxvt.url-launcher: firefox
+URxvt.matcher.button: 1
+URxvt.perl-ext-common: default,matcher,clipboard
+URxvt.matcher.pattern: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+
+!URxvt.keysym.M-u: perl:mark-and-yank:activate_mark_url_mode
+!URxvt.keysym.M-y: perl:mark-and-yank:activate_mark_mode
+!URxvt.perl-lib: /home/siaw/.urxvt/
+!URxvt.perl-ext: mark-and-yank
+
+URxvt.transparent: false
+URxvt*depth: 24
+URxvt*background: rgba:0000/0000/0000/dddd
+URxvt.geometry: 84x24
+URxvt*font: xft:Termsyn:pixelsize=14:style=Regular
+!URxvt.borderColor: white
+URxvt.borderLess: false
+URxvt.fading: 40%
+URxvt.fadeColor: #222222
+!URxvt.depth: 24
+URxvt.tintcolor: #262626
+URxvt*internalBorder: 1
+URxvt*externalBorder: 0
+
+!!black
+URxvt*color0:  	#000000
+URxvt*color8:         #686868
+!!!red
+URxvt*color1:         #ff6565
+URxvt*color9:         #E4287C
+!!green
+URxvt*color2:         #17B217
+URxvt*color10:         #54FF54
+!!yellow
+URxvt*color3:         #FF8000
+URxvt*color11:         #FFFF54
+!!!blue
+URxvt*color4:         #163BDE
+URxvt*color12:         #5454FF
+!!!magenta
+URxvt*color5:         #D11BD1
+URxvt*color13:         #FF54FF
+!!cyan
+URxvt*color6:         #00DBDB
+URxvt*color14:         #54FFFF
+!!white
+URxvt*color7:         #F1F1F1
+URxvt*color15:         #FFFFFF
+!
+
+
+
+!URxvt.inheritPixmap: False
+!URxvt*boldFont: xft:Terminus:size=11
+!URxvt*italicFont: xft:Terminus:pixelsize=11
+!URxvt*bolditalicFont: xft:Terminus:size=11
+!URxvt*internalBorder: 1
+!
+!
+!!URxvt.termName: string
+!URxvt.perl-lib: /usr/lib/urxvt/perl/matcher
+!!URxvt.reverseVideo: boolean
+!!URxvt.loginShell: boolean
+!!URxvt.jumpScroll: boolean
+!!URxvt.skipScroll: boolean
+!!URxvt.pastableTabs: boolean
+!!URxvt.scrollstyle: mode
+!!URxvt.scrollBar_right: boolean
+!!URxvt.scrollBar_floating: boolean
+!!URxvt.scrollBar_align: mode
+!!URxvt.thickness: number
+!!URxvt.scrollTtyOutput: boolean
+!!URxvt.scrollTtyKeypress: boolean
+!!URxvt.scrollWithBuffer: boolean
+!URxvt.tintColor: gray40
+!URxvt.shading: 0
+!URxvt.fading: 0
+!URxvt.fadeColor: #222222
+!!URxvt.utmpInhibit: boolean
+!URxvt.urgentOnBell: true
+!!URxvt.visualBell: boolean
+!!URxvt.mapAlert: boolean
+!!URxvt.meta8: boolean
+!URxvt.mouseWheelScrollPage: True
+!!URxvt.tripleclickwords: boolean
+!!URxvt.insecure: boolean
+!!URxvt.cursorUnderline: boolean
+!URxvt.cursorBlink: true
+!!URxvt.pointerBlank: boolean
+!!URxvt.colorBD: color
+!!URxvt.colorIT: color
+!!URxvt.colorUL: color
+!!URxvt.colorRV: color
+!!URxvt.underlineColor: color
+!!URxvt.scrollColor: color
+!!URxvt.troughColor: color
+!!URxvt.highlightColor: color
+!URxvt.cursorColor: #ffffff
+!!URxvt.cursorColor2: color
+!URxvt.pointerColor: #afc81c
+!!URxvt.pointerColor2: color
+!!URxvt.intensityStyles: boolean
+!!URxvt.inputMethod: name
+!!URxvt.preeditType: style
+!!URxvt.imLocale: string
+!!URxvt.imFont: fontname
+!!URxvt.title: URxvt
+!!URxvt.iconName: string
+!!URxvt.saveLines: number
+!!URxvt.depth: number
+!!URxvt.transient-for: windowid
+!!URxvt.override-redirect: boolean
+!!URxvt.hold: boolean
+!!URxvt.externalBorder: number
+!!URxvt.internalBorder: number
+!!URxvt.skipBuiltinGlyphs: boolean
+!!URxvt.lineSpace: number
+!!URxvt.pointerBlankDelay: number
+!!URxvt.backspacekey: string
+!!URxvt.deletekey: string
+!!URxvt.selectstyle: mode
+!!URxvt.print-pipe: string
+!!URxvt.modifier: modifier
+!!URxvt.cutchars: string
+!!URxvt.answerbackString: string
+!!URxvt.secondaryScreen: boolean
+!!URxvt.secondaryScroll: boolean
+!!URxvt.perl-lib: string
+!!URxvt.perl-eval: perl-eval
+!!URxvt.perl-ext-common: string
+!!URxvt.perl-ext: string
+!!URxvt.iso14755_52: boolean
+!!URxvt*keysym.sym: keysym 
+
+
+
+!Xft settings
+Xft.dpi: 82
+Xft.hinting: 1
+Xft.hintstyle: hintslight
+Xft.antialias: 1
+Xft.rgba: rgb
