@@ -34,6 +34,9 @@ net_avg_samples 2
 use_spacer none
 double_buffer yes
 
+hddtemp_host 10.0.0.10
+hddtemp_port 7634
+
 #${rss http://www.vasabladet.fi/RSS/RSS_VBL_Nyheter.aspx 15 item_titles 10}
 #${rss http://feeds.idg.se/idg/vzzs 15 item_titles 10}
 #${color grey}CPU:${color white}$cpu%${color grey}${freq}MHz  
