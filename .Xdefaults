@@ -25,7 +25,7 @@ URxvt.matcher.pattern: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 URxvt.transparent: false
 URxvt*depth: 24
 URxvt*background: rgba:0000/0000/0000/dddd
-URxvt.geometry: 84x24
+URxvt.geometry: 112x32
 URxvt*font: xft:Termsyn:pixelsize=14:style=Regular
 !URxvt.borderColor: white
 URxvt.borderLess: false
