@@ -60,9 +60,11 @@ xset m 1 1
 xinput --set-prop "Logitech Gaming Mouse G400" "Device Accel Profile" -1 # remove acceleration
 xinput --set-prop "Logitech USB Gaming Mouse" "Device Accel Profile" -1 # remove acceleration
 
-nitrogen --restore &
+#nitrogen --restore &
 ( sleep 10 && conky -c ~/.conkyrc ) &
-stalonetray -bg "#000000" -t --geometry 5x1+1750+0 --window-layer bottom --sticky true -i 16 &
+( sleep 10 && nitrogen --restore ) &
+#stalonetray -bg "#000000" -t --geometry 5x1+1750+0 --window-layer bottom --sticky true -i 16 &
+tint2 &
 urxvtd &
 clipit -n &
 
