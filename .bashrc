@@ -21,10 +21,10 @@ WHITE='\e[1;37m'
 NC='\e[0m'              # No Color
 export EDITOR=vim
 
+set bell-style none
+
 alias ls='ls --color=auto --time-style="+%Y%m%d %H:%M:%S" '
-alias liz='sh /home/siaw/Documents/scripts/liz.sh'
 # TAIL
-alias tl='tail -n20 -f /var/log/httpd/access_log'
 alias tail='tail -n20'
 eval `dircolors -b`
 #PS1='[\u@\h \W]\$ '
@@ -49,24 +49,29 @@ alias l1='ls -1'
 alias la='ls -a'
 alias lc='ls -ltcr'
 alias lt='ls -tr'
-alias SSHFS='sh /home/siaw/Documents/scripts/sshfs.sh'
-#alias sshfso='sshfs siaw@x121.ip6.netikka.fi:/ ~/slerv'
+alias ..='cd ..'
 alias y='yaourt'
-alias p='sudo pacman'
+alias p='pacman'
+alias s='sudo '
 #alias pacman='pacman-color'
-alias spotify='wine ~/Documents/spotify.exe'
-alias calc='sh ~/Documents/scripts/calc.sh'
 alias wget='wget --limit-rate=990K'
-alias playss='mplayer -vf screenshot'
 alias w='w -f'
 alias urxvt='urxvt -e bash -c "cd ~;bash"'
 alias psc='ps auxf | sort -nr -k 3 | head -10'
 alias psm='ps auxf | sort -nr -k 4 | head -10'
 alias px='ps auxf'
 alias pxg='ps auxf|grep -i'
-alias 1080p='xrandr --output LVDS --off; xrandr -s 1920x1080; xset m 1/9 1'
+alias t='tmux'
+alias g='git '
+__git_complete g _git
+alias gs='git status'
+alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias glg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gln='git log --pretty=format:"%C(red)%h%C(reset) - %s %C(green)(%cr) %C(bold blue)<%an>%C(reset)" --name-only'
+alias gls='git show --pretty=format:"%C(red)%h%C(reset) - %s %C(green)(%cr) %C(bold blue)<%an>%C(reset)"'
 
 source /etc/profile
 source ~/gitdocs/private.sh
+source ~/git-completion.bash
 
 
