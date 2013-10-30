@@ -22,6 +22,7 @@ NC='\e[0m'              # No Color
 export EDITOR=vim
 
 set bell-style none
+HISTCONTROL=ignoreboth
 
 alias ls='ls --color=auto --time-style="+%Y%m%d %H:%M:%S" '
 # TAIL
