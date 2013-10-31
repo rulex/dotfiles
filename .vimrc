@@ -39,6 +39,9 @@ set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
 
+":command
+command Sw w !sudo tee %
+
 " fold
 set foldmethod=indent
 set foldnestmax=1
