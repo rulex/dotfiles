@@ -190,6 +190,9 @@
 		  <keybind key="c">
 			  <action name="MoveToCenter" />
 		  </keybind>
+		  <keybind key="a">
+			  <action name="ToggleOmnipresent" />
+		  </keybind>
 		  <keybind key="o">
 			  <action name="Lower" />
 		  </keybind>
@@ -215,9 +218,6 @@
 		  </keybind>
 		  <keybind key="t">
 			  <action name="ToggleAlwaysOnTop" />
-		  </keybind>
-		  <keybind key="f">
-			  <execute> xrandr --output DFP1 --auto --output DFP4 --auto --right-of DFP1 --output DFP3 --auto --right-of DFP4 </execute>
 		  </keybind>
 		  <keybind key="m">
 			  <action name="ResizeRelative">
