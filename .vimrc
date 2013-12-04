@@ -80,6 +80,8 @@ nnoremap <leader>s <Esc><C-w>s
 nnoremap <leader>n <Esc>:NERDTreeToggle<CR>
 nnoremap <leader>g <Esc>:GundoToggle<CR>
 nnoremap <leader>t <Esc>:tabnew<CR>
+nnoremap <leader>d <Esc>:diffthis<CR>
+nnoremap <leader>o <Esc>:diffoff<CR>
 
 
 " Gundo
