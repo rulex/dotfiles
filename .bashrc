@@ -34,7 +34,6 @@ export PS1="\[\][$(tput setaf 2)\u$(tput sgr0)@$(tput setaf 3)\h$(tput setaf 5) 
 #PS1='[\[\033[1;36m\]\w\[\033[0;00m\]] LL \[\033[1;31m\]$ \[\033[0;00m\]'
 #PS1='\[\033[0;32m\][\[\033[0m\033[0;36m\]\u\[\033[0;00m\]@\[\033[0m\033[0;36m\]\h\[\033[0;32m\]][\[\033[0m\033[0;36m\]\t\[\033[0;32m\]][\[\033[0m\033[0;36m\]\w\[\033[0;32m\]]\n\[\033[0;32m\]\033[0;36m\]\$\[\033[0m\] '
 #LC_ALL='sv_FI.ISO-8859-15'
-complete -cf sudo
 
 alias mplayer='mplayer -volume 7'
 alias grep='grep --color=auto'
@@ -55,6 +54,8 @@ alias ..='cd ..'
 alias y='yaourt'
 alias p='pacman'
 alias s='sudo '
+complete -cf sudo
+complete -cf s
 #alias pacman='pacman-color'
 alias wget='wget --limit-rate=990K'
 alias w='w -f'
