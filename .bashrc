@@ -24,7 +24,7 @@ export EDITOR=vim
 set bell-style none
 HISTCONTROL=ignoreboth
 
-alias ls='ls --color=auto --time-style="+%Y%m%d %H:%M:%S" '
+alias ls='ls -F --color=auto --time-style="+%Y-%m-%d %H:%M:%S" '
 # TAIL
 alias tail='tail -n20'
 eval `dircolors -b`
