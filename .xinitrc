@@ -35,30 +35,24 @@ export LC_CTYPE="sv_SE.iso-88591"
 export LC_MESSAGES="en_US.iso-88591"
 
 xrdb ~/.Xdefaults
-setxkbmap se
+
+# MOUSE
 # pointer = 1/left 2/middle 3/right 4/scrollup 5/scrolldown X X 8/back 9/forward 10/högstoppmitten?!
+xset m 1 1
 xmodmap -e "pointer = 1 9 3 4 5 6 7 2 8" # logitech g400 # back -> middlem, forward -> back
 # xmodmap -e "pointer = 1 9 3 4 5 6 7 2 8 10" # logitech g5 1st edition
-#xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+xinput --set-prop "Logitech Gaming Mouse G400" "Device Accel Profile" -1 # remove acceleration
+xinput --set-prop "Logitech USB Gaming Mouse" "Device Accel Profile" -1 # remove acceleration
 
-# NOPPOO CHOC MINI
-xmodmap -e 'clear Lock' -e 'keycode 0x42 = Control_R' -e 'add control = Control_R' # remap caps to left control
-xmodmap -e 'keycode 77 = Delete' # numlock to delete
-xmodmap -e 'keycode 78 = Insert' # scroll lock to insert
-xmodmap -e 'keycode 119 = End' # del to end
-xmodmap -e 'keycode 127 = Home' # pause to home
-xmodmap -e 'keycode  45 = k K k K less dead_ogonek less' # altgr k to <
-xmodmap -e 'keycode  46 = l L l L greater dead_abovedot greater' # altgr l to >
-xmodmap -e 'keycode  61 = minus underscore minus underscore bar dead_abovedot bar' # altgr - to |
-xmodmap -e 'keycode  31 = i I i I braceleft idotless braceleft' # altgr i to {
-xmodmap -e 'keycode  32 = o O o O braceright OE braceright' # altgr o to }
+# KEYBOARD
+setxkbmap se
 xset r 77  # delete key
 xset r 113
 xset r 116
 xset r rate 300 35
-xset m 1 1
-xinput --set-prop "Logitech Gaming Mouse G400" "Device Accel Profile" -1 # remove acceleration
-xinput --set-prop "Logitech USB Gaming Mouse" "Device Accel Profile" -1 # remove acceleration
+sh ~/.xmodmap_noppoo
+#sh ~/.xmodmap_keycool
+
 
 #nitrogen --restore &
 ( sleep 10 && conky -c ~/.conkyrc ) &
