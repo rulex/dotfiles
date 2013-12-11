@@ -50,8 +50,8 @@ xset r 77  # delete key
 xset r 113
 xset r 116
 xset r rate 300 35
-sh ~/.xmodmap_noppoo
-#sh ~/.xmodmap_keycool
+sh ~/.xmodmap_noppoo &
+#sh ~/.xmodmap_keycool &
 
 
 #nitrogen --restore &
