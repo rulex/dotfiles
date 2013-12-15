@@ -20,6 +20,7 @@ YELLOW='\e[1;33m'
 WHITE='\e[1;37m'
 NC='\e[0m'              # No Color
 export EDITOR=vim
+export PATH=${PATH}:${HOME}/gitdocs/bin
 
 set bell-style none
 HISTCONTROL=ignoreboth
