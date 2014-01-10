@@ -50,6 +50,8 @@ let mapleader = ','
 let g:yankring_history_dir = '~/.vim/'
 set pastetoggle=<leader>p
 set ts=2 sts=2 sw=2 noexpandtab
+set splitbelow
+set splitright
 " folding methods
 nnoremap <leader>f <Esc>:set fdm=indent<CR>
 nnoremap <leader>F <Esc>:set fdm=syntax<CR>
