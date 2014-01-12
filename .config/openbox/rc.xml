@@ -468,12 +468,12 @@
 	  </keybind>
 	  <keybind key="W-e">
 		  <action name="Execute">
-			  <command>sh -c 'rox'</command>
+			  <command>sh -c 'pcmanfm'</command>
 		  </action>
 	  </keybind>
 	  <keybind key="W-g">
 		  <action name="Execute">
-			  <command>sh -c 'firefox'</command>
+			  <command>sh -c 'chromium'</command>
 		  </action>
 	  </keybind>
 	  <keybind key="W-Return">
