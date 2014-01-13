@@ -19,7 +19,7 @@ menu.overlap.y: 0
 
 # Border colors
 window.active.border.color: #17B217
-window.inactive.border.color: #333333
+window.inactive.border.color: #505050
 menu.border.color: #17B217
 
 window.active.client.color: #999999
