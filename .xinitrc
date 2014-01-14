@@ -25,7 +25,7 @@ if [ -f "$usermodmap" ]; then
 fi
 
 # LOCALE
-export LANG="en_US.iso-88591"
+#export LANG="en_US.iso-88591"
 export LC_NUMERIC="sv_SE.iso-88591"
 export LC_COLLATE="C"
 export LC_TIME="sv_SE.iso-88591"
@@ -50,6 +50,7 @@ xset r 77  # delete key
 xset r 113
 xset r 116
 xset r rate 300 35
+xset -b # disable pc speaker
 #sh ~/.xmodmap_noppoo &
 sh ~/.xmodmap_keycool &
 
@@ -57,10 +58,12 @@ sh ~/.xmodmap_keycool &
 #nitrogen --restore &
 #( sleep 10 && conky -c ~/.conkyrc ) &
 #( sleep 10 && nitrogen --restore ) &
+( ( sleep 10 && /usr/bin/xscreensaver -no-splash -display :0.0 ) & )
 #stalonetray -bg "#000000" -t --geometry 5x1+1750+0 --window-layer bottom --sticky true -i 16 &
 #tint2 &
 urxvtd &
 clipit -n &
+nm-applet &
 
 exec startlxde
 #exec openbox-session
