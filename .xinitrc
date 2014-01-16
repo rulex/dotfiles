@@ -61,9 +61,9 @@ sh ~/.xmodmap_keycool &
 ( ( sleep 10 && /usr/bin/xscreensaver -no-splash -display :0.0 ) & )
 #stalonetray -bg "#000000" -t --geometry 5x1+1750+0 --window-layer bottom --sticky true -i 16 &
 #tint2 &
-urxvtd &
-clipit -n &
-nm-applet &
+( ( sleep 5 && urxvtd ) & )
+( ( sleep 10 && clipit -n ) & )
+#( ( sleep 10 && nm-applet ) & )
 
 exec startlxde
 #exec openbox-session
