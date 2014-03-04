@@ -48,11 +48,12 @@ sh ~/.xmodmap_noppoo &
 ( sleep 10 && conky -c ~/.conkyrc ) &
 ( sleep 10 && nitrogen --restore ) &
 #stalonetray -bg "#000000" -t --geometry 5x1+1750+0 --window-layer bottom --sticky true -i 16 &
-tint2 &
+#tint2 &
 urxvtd &
 clipit -n &
 
-exec openbox-session
+exec startlxde
+#exec openbox-session
 #exec openbox-kde-session
 #/usr/bin/xbmc --standalone
 #exec wmfs
