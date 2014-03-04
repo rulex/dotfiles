@@ -26,11 +26,11 @@ URxvt.transparent: false
 URxvt*depth: 24
 URxvt*background: rgba:0000/0000/0000/dddd
 URxvt.geometry: 112x32
-!URxvt*font: xft:Termsyn:pixelsize=16:style=Regular
+URxvt*font: xft:Termsyn:pixelsize=16:style=Regular
 !
 !URxvt*font: xft:DejaVu Sans Mono:pixelsize=13
 !
-URxvt.font: xft:ProggyCleanTT-14:style=Regular
+!URxvt.font: xft:ProggyCleanTT-14:style=Regular
 !URxvt.font: xft:ProggyCleanTT-14:style=Regular
 !URxvt*font:               -*-proggyclean-medium-r-normal-*-13-*-*-*-*-*-*-*
 !URxvt*font:               -*-proggyclean-medium-r-normal-*-14-*-*-*-*-*-*-*
@@ -49,7 +49,7 @@ URxvt.font: xft:ProggyCleanTT-14:style=Regular
 !URxvt*boldFont:           -*-proggyclean-*-*-*-*-*-*-*-*-*-*-iso8859-*
 !URxvt.borderColor: white
 URxvt.borderLess: false
-URxvt.fading: 40%
+URxvt.fading: 30%
 URxvt.fadeColor: #222222
 !URxvt.depth: 24
 URxvt.tintcolor: #262626
