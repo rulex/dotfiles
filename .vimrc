@@ -88,6 +88,7 @@ nnoremap <leader>d <Esc>:diffthis<CR>
 nnoremap <leader>o <Esc>:diffoff<CR>
 nnoremap <leader>q <Esc>:q<CR>
 nnoremap <leader>Q <Esc>:qa<CR>
+nnoremap <leader>D <Esc>::r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
 
 
 " Gundo
