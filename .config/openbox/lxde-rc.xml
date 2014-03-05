@@ -204,7 +204,7 @@
           <command>sh -c 'xscreensaver-command -lock'</command>
         </action>
       </keybind>
-      <keybind key="l">
+      <keybind key="g">
         <action name="Execute">
           <command>sh -c 'firefox'</command>
         </action>
