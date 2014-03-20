@@ -76,6 +76,7 @@ alias gls='git show --pretty=format:"%C(red)%h%C(reset) - %s %C(green)(%cr) %C(b
 #source /etc/profile
 source ~/gitdocs/private.sh
 source ~/git-completion.bash
+source ~/.oh-my-zsh/lib/aliases.zsh
 __git_complete g _git
 
 
