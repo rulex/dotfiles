@@ -25,31 +25,21 @@ if [ -f "$usermodmap" ]; then
 fi
 
 # LOCALE
-export LANG="en_US.iso-88591"
-export LC_NUMERIC="sv_SE.iso-88591"
+export LANG="en_US.UTF-8"
+export LC_NUMERIC="sv_SE.UTF-8"
 export LC_COLLATE="C"
-export LC_TIME="sv_SE.iso-88591"
-export LC_MONETARY="sv_SE.iso-88591"
-export LC_MEASUREMENT="sv_SE.iso-88591"
-export LC_CTYPE="sv_SE.iso-88591"
-export LC_MESSAGES="en_US.iso-88591"
+export LC_TIME="sv_SE.UTF-8"
+export LC_MONETARY="sv_SE.UTF-8"
+export LC_MEASUREMENT="sv_SE.UTF-8"
+export LC_CTYPE="sv_SE.UTF-8"
+export LC_MESSAGES="en_US.UTF-8"
 
 xrdb ~/.Xdefaults
 
 # MOUSE
-# pointer = 1/left 2/middle 3/right 4/scrollup 5/scrolldown X X 8/back 9/forward 10/högstoppmitten?!
-xset m 1 1
-xmodmap -e "pointer = 1 9 3 4 5 6 7 2 8" # logitech g400 # back -> middlem, forward -> back
-# xmodmap -e "pointer = 1 9 3 4 5 6 7 2 8 10" # logitech g5 1st edition
-xinput --set-prop "Logitech Gaming Mouse G400" "Device Accel Profile" -1 # remove acceleration
-xinput --set-prop "Logitech USB Gaming Mouse" "Device Accel Profile" -1 # remove acceleration
+sh ~/.mouse.sh &
 
 # KEYBOARD
-setxkbmap se
-xset r 77  # delete key
-xset r 113
-xset r 116
-xset r rate 300 35
 sh ~/.xmodmap_noppoo &
 #sh ~/.xmodmap_keycool &
 
@@ -58,11 +48,12 @@ sh ~/.xmodmap_noppoo &
 ( sleep 10 && conky -c ~/.conkyrc ) &
 ( sleep 10 && nitrogen --restore ) &
 #stalonetray -bg "#000000" -t --geometry 5x1+1750+0 --window-layer bottom --sticky true -i 16 &
-tint2 &
+#tint2 &
 urxvtd &
 clipit -n &
 
-exec openbox-session
+exec startlxde
+#exec openbox-session
 #exec openbox-kde-session
 #/usr/bin/xbmc --standalone
 #exec wmfs

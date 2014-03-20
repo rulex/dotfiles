@@ -1,6 +1,7 @@
 #!/bin/bash
 # NOPPOO CHOC MINI
 setxkbmap se
+xset r 51 # ' key
 xset r 77  # delete key
 xset r 113
 xset r 116

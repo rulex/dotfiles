@@ -1,125 +1,71 @@
-autoload -U compinit promptinit
-compinit
-promptinit
- 
-# This will set the default prompt to the walters theme
-prompt walters
-WORDCHARS='*?[]~=&;!#$%^(){}<>'
+# Path to your oh-my-zsh configuration.
+# https://github.com/rulex/oh-my-zsh.git
+#
+ZSH=$HOME/.oh-my-zsh
 
-bindkey -e
-bindkey "\e[1~" beginning-of-line
-bindkey "\e[4~" end-of-line
-bindkey "\e[5~" beginning-of-history
-bindkey "\e[6~" end-of-history
-bindkey "\e[3~" delete-char
-bindkey "\e[2~" quoted-insert
-bindkey "\e[5C" forward-word
-bindkey "\eOc" emacs-forward-word
-bindkey "\e[5D" backward-word
-bindkey "\eOd" emacs-backward-word
-bindkey "\e\e[C" forward-word
-bindkey "\e\e[D" backward-word
-bindkey "^[" delete-word
-# for rxvt
-bindkey "\e[8~" end-of-line
-bindkey "\e[7~" beginning-of-line
-####################################
-export PATH=${PATH}:${HOME}/gitdocs/bin
-export EDITOR=vim
-export HISTFILE=~/.zsh_history
-export HISTSIZE=50000
-export SAVEHIST=50000
-export HIST_IGNORE_SPACE
-eval `dircolors -b`
-autoload -U compinit compinit
-setopt autopushd pushdminus pushdsilent pushdtohome
-setopt autocd
-setopt cdablevars
-setopt ignoreeof
-setopt interactivecomments
-setopt hist_ignore_all_dups
-setopt hist_ignore_space
-setopt nobanghist
-setopt noclobber
-setopt HIST_REDUCE_BLANKS
-setopt HIST_IGNORE_SPACE
-setopt SH_WORD_SPLIT
-setopt nohup
-setopt NO_auto_remove_slash
-#setopt completealiases
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="rulex"
 
-# PS1 and PS2
-export PS1="$(print '%{\e[0m%}[%T] %{\e[0;36m%}$ %{\e[0m%}')"
-#export PS1="$(print '%{\e[1;36m%}%n'):$(print '%{\e[0;34m%}%{\e[0m%}')$ "
-export PS2="$(print '%{\e[0;34m%}>%{\e[0m%}')"
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
-##################################################################
-# Stuff to make my life easier
+# Set to this to use case-sensitive completion
+CASE_SENSITIVE="true"
 
-# allow approximate
-zstyle ':completion:*' completer _complete _match _approximate
-zstyle ':completion:*:match:*' original only
-zstyle ':completion:*:approximate:*' max-errors 1 numeric
+# Uncomment this to disable bi-weekly auto-update checks
+# DISABLE_AUTO_UPDATE="true"
 
-# cd not select parent dir
-zstyle ':completion:*:cd:*' ignore-parents parent pwd
+# Uncomment to change how often before auto-updates occur? (in days)
+# export UPDATE_ZSH_DAYS=13
 
-#typeset -g -A key
-##################################################################
-# My aliases
-alias ls='ls -F --color=auto --time-style="+%Y-%m-%d %H:%M:%S" '
+# Uncomment following line if you want to disable colors in ls
+# DISABLE_LS_COLORS="true"
 
-# Normal aliases
-alias lsd='ls -ld *(-/DN)'
-alias lsa='ls -ld .*'
-alias f='find |grep'
-alias dir='ls -1'
-alias ..='cd ..'
+# Uncomment following line if you want to disable autosetting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
-# command L equivalent to command |less
-alias -g L='|less' 
+# Uncomment following line if you want to disable command autocorrection
+# DISABLE_CORRECTION="true"
 
-# command S equivalent to command &> /dev/null &
-alias -g S='&> /dev/null &'
+# Uncomment following line if you want red dots to be displayed while waiting for completion
+COMPLETION_WAITING_DOTS="true"
 
-alias mplayer='mplayer -volume 60'
-alias grep='grep --color=auto'
-alias xterm='xterm -bg black -fg white'
-# lowres=1:fast:
-#alias play='mplayer -vo ql_nosw -volume 7' 
-alias play='mplayer -vo gl_nosw -cache 65536 -channels 2'
-alias plav='mplayer -vo vaapi:gl -va vaapi -cache 65536 -subfont-osd-scale 3 -subfont-text-scale 3'
-alias vlc='vlc --extraintf=http'
-alias mv='mv -i'
-#alias rm='rm -i'
-alias l='ls -l'
-alias ll='ls -l'
-alias l1='ls -1'
-alias la='ls -a'
-alias lc='ls -ltcr'
-alias lct='ls -ltcr $@|tail -n5'
-alias lt='ls -tr'
-alias p='pacman'
-alias P='packer'
-alias s='sudo '
-alias w='w -f'
-alias urxvt='urxvt -e bash -c "cd ~;bash"'
-alias px='ps auxf'
-alias pxg='ps auxf|grep -i'
-alias youtube-dl='youtube-dl --max-quality=MP4'
-alias t='tmux'
-alias screenon='xset s reset && xset dpms force on'
-alias externalip='curl http://dynamic.zoneedit.com/checkip.html'
-alias chromium='chromium --scroll-pixels=200 --disk-cache-dir=/tmp/siaw-chromium-cache/'
-alias ds='du --time --time-style="+%Y-%m-%d %H:%M:%S" -sh * | sort -k 1 -h'
-alias netlisteners='lsof -i -P | grep LISTEN'
-alias g='git'
-alias gs='git status'
-alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias gln='git log --pretty=format:"%C(red)%h%C(reset) - %s %C(green)(%cr) %C(bold blue)<%an>%C(reset)" --name-only'
-alias gls='git show --pretty=format:"%C(red)%h%C(reset) - %s %C(green)(%cr) %C(bold blue)<%an>%C(reset)"'
+# Uncomment following line if you want to disable marking untracked files under
+# VCS as dirty. This makes repository status check for large repositories much,
+# much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-source ~/gitdocs/private.sh
+# Uncomment following line if you want to  shown in the command execution time stamp 
+# in the history command output. The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|
+# yyyy-mm-dd
+HIST_STAMPS="yyyy-mm-dd"
 
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(cp git npm systemd archlinux )
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+export PATH=$HOME/bin:/usr/local/bin:$PATH:$HOME/gitdocs/bin
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# # Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
 
