@@ -38,6 +38,10 @@ set statusline+=%y\       "filetype
 set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
+set synmaxcol=128 " Syntax coloring slows
+set ttyfast
+set ttyscroll=3
+set lazyredraw " avoid scrolling problems
 
 ":command
 command Sw w !sudo tee %
