@@ -58,7 +58,7 @@ alias s='sudo '
 complete -cf sudo
 complete -cf s
 #alias pacman='pacman-color'
-alias wget='wget --limit-rate=990K'
+#alias wget='wget --limit-rate=990K'
 alias w='w -f'
 alias urxvt='urxvt -e bash -c "cd ~;bash"'
 alias psc='ps auxf | sort -nr -k 3 | head -10'
