@@ -37,7 +37,7 @@ export PS1="\[\][$(tput setaf 2)\u$(tput sgr0)@$(tput setaf 3)\h$(tput setaf 5) 
 #LC_ALL='sv_FI.ISO-8859-15'
 
 alias mplayer='mplayer -volume 7'
-alias grep='grep --color=auto'
+alias grep='grep -n --color=auto'
 alias xterm='xterm -bg black -fg white'
 # lowres=1:fast:
 alias play='mplayer -vo xv -ao alsa -cache 65536 -volume 7 -subfont-osd-scale 3 -subfont-text-scale 3'
