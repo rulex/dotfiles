@@ -1,0 +1,12 @@
+"1.0b6 (created: 2011/03/09 09:25:18)
+
+loadplugins '\.(js|penta)$'
+group user
+"set followhints=1
+map j <C-d>
+map k <C-u>
+set editor="urxvt -e vim -f"
+set hlfind
+set complete=bl
+
+" vim: set ft=pentadactyl:
