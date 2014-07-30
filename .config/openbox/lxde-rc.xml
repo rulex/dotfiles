@@ -209,6 +209,11 @@
           <command>sh -c 'firefox'</command>
         </action>
       </keybind>
+			<keybind key="Return">
+				<action name="Execute">
+					<command>sh -c 'urxvtc &amp; sleep .8s &amp;&amp; transset-df -a 0.85'</command>
+				</action>
+			</keybind>
       <keybind key="c">
         <action name="MoveToCenter"/>
       </keybind>
@@ -442,6 +447,9 @@
       <action name="Close"/>
     </keybind>
     <keybind key="W-BackSpace">
+      <action name="Close"/>
+    </keybind>
+    <keybind key="W-Escape">
       <action name="Close"/>
     </keybind>
     <keybind key="A-Escape">
