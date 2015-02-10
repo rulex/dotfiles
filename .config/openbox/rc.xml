@@ -439,6 +439,9 @@
     <keybind key="W-BackSpace">
       <action name="Close"/>
     </keybind>
+    <keybind key="W-Escape">
+      <action name="Close"/>
+    </keybind>
     <keybind key="A-Escape">
       <action name="Lower"/>
       <action name="FocusToBottom"/>
@@ -592,13 +595,13 @@
       </mousebind>
       <mousebind button="Up" action="Click">
         <action name="Shade"/>
-        <action name="FocusToBottom"/>
-        <action name="Unfocus"/>
-        <action name="Lower"/>
+        <action name="Raise"/>
+        <action name="Focus"/>
       </mousebind>
       <mousebind button="Down" action="Click">
         <action name="Unshade"/>
         <action name="Raise"/>
+        <action name="Focus"/>
       </mousebind>
       <mousebind button="Right" action="Press">
         <action name="Focus"/>
@@ -854,6 +857,7 @@
 		<application name="urxvtc"><decor>no</decor></application>
 		<application name="urxvt"><decor>no</decor></application>
 		<application class="MPlayer"><decor>no</decor></application>
+		<application class="mpv"><decor>no</decor></application>
 		<application name="uzbl-tabbed"><decor>no</decor></application>
 		<application name="bashrun"><decor>no</decor></application>
 		<application name="*irefox*"><decor>no</decor></application>
