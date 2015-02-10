@@ -24,24 +24,14 @@ if [ -f "$usermodmap" ]; then
 	xmodmap "$usermodmap"
 fi
 
-# LOCALE
-export LANG="en_US.UTF-8"
-export LC_NUMERIC="sv_SE.UTF-8"
-export LC_COLLATE="C"
-export LC_TIME="sv_SE.UTF-8"
-export LC_MONETARY="sv_SE.UTF-8"
-export LC_MEASUREMENT="sv_SE.UTF-8"
-export LC_CTYPE="sv_SE.UTF-8"
-export LC_MESSAGES="en_US.UTF-8"
-
 xrdb ~/.Xdefaults
 
 # MOUSE
 sh ~/.mouse.sh &
 
 # KEYBOARD
-sh ~/.xmodmap_noppoo &
-#sh ~/.xmodmap_keycool &
+#sh ~/.xmodmap_noppoo &
+( sleep 2 && sh ~/.xmodmap_keycool ) &
 
 
 #nitrogen --restore &
@@ -52,8 +42,10 @@ sh ~/.xmodmap_noppoo &
 urxvtd &
 clipit -n &
 
-exec startlxde
+#exec startlxde
+exec startlxqt
 #exec openbox-session
+
 #exec openbox-kde-session
 #/usr/bin/xbmc --standalone
 #exec wmfs

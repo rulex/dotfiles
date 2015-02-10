@@ -69,3 +69,18 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH:$HOME/gitdocs/bin
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
+# LOCALE
+export LANG="en_US.UTF-8"
+export LC_NUMERIC="sv_SE.UTF-8"
+export LC_COLLATE="C"
+export LC_TIME="sv_SE.UTF-8"
+export LC_MONETARY="sv_SE.UTF-8"
+export LC_MEASUREMENT="sv_SE.UTF-8"
+export LC_CTYPE="sv_SE.UTF-8"
+export LC_MESSAGES="en_US.UTF-8"
+
+export EDITOR="vim"
+export SUDO_EDITOR="vim"
+
+
+
