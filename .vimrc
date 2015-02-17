@@ -6,6 +6,7 @@ endif
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
+set modeline
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -66,6 +67,7 @@ nnoremap <leader><F3> <Esc>:set foldnestmax=3<CR>
 nnoremap <leader><F4> <Esc>:set foldnestmax=4<CR>
 nnoremap <leader><F5> <Esc>:set foldnestmax=5<CR>
 nnoremap <leader>r <Esc>:%s/\s\+$//<CR>
+nnoremap <leader>R <Esc>:g/^$/d<CR>
 " toggle list
 nnoremap <leader>k <Esc>:set list!<CR>
 
