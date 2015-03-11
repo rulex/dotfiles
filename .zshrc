@@ -2,6 +2,7 @@
 # https://github.com/rulex/oh-my-zsh.git
 #
 ZSH=$HOME/.oh-my-zsh
+unset TMOUT
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -47,6 +48,7 @@ alias la='ls -lA'
 alias lc='ls -ltrc'
 alias lca='ls -ltrca'
 alias sl=ls
+alias dt='date +"%Y-%m-%dT%H:%M:%S"'
 
 alias grep='grep --color=auto'
 
