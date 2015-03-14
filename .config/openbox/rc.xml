@@ -255,11 +255,6 @@
           <height>1080</height>
         </action>
       </keybind>
-      <keybind key="l">
-        <action name="Execute">
-          <command>sh -c 'luakit'</command>
-        </action>
-      </keybind>
       <keybind key="k">
         <action name="Execute">
           <command>sh -c 'pkill compton'</command>
