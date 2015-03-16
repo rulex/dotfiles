@@ -82,6 +82,8 @@ vnoremap <Space> za
 
 nnoremap j gj
 nnoremap k gk
+nnoremap gj j
+nnoremap gk k
 nnoremap / /\c
 
 nnoremap <leader>w <Esc><C-w>v<C-w>l
