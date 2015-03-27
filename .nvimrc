@@ -42,7 +42,7 @@ set statusline+=%y\       "filetype
 set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
-set synmaxcol=128 " Syntax coloring slows
+set synmaxcol=512 " Syntax coloring slows
 set ttyfast
 set lazyredraw " avoid scrolling problems
 
@@ -84,6 +84,8 @@ vnoremap <Space> za
 
 nnoremap j gj
 nnoremap k gk
+nnoremap gj j
+nnoremap gk k
 nnoremap / /\c
 
 nnoremap <leader>w <Esc><C-w>v<C-w>l
