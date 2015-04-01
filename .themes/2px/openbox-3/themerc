@@ -29,7 +29,7 @@ menu.title.text.font: shadow=n
 
 # Window title justification
 window.label.text.justify: center
-window.*.title.separator.color: #000000
+window.*.title.separator.color: #505050
 
 # window
 #window.active.title.bg: Flat
