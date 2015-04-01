@@ -34,11 +34,15 @@
     <!-- with Smart placement on a multi-monitor system, try to place new windows
 	   on: 'Any' - any monitor, 'Mouse' - where the mouse is, 'Active' - where
 	   the active window is -->
-    <primaryMonitor>3</primaryMonitor>
+    <primaryMonitor>1</primaryMonitor>
   </placement>
   <theme>
+		<!--
+    <name>MacOS-X</name>
     <name>elementary-ob</name>
-    <titleLayout>NLSIMC</titleLayout>
+		-->
+    <name>2px</name>
+    <titleLayout>NLDSIMC</titleLayout>
     <!--
 	  available characters are NDSLIMC, each can occur at most once.
 	  N: window icon
@@ -236,6 +240,9 @@
       <keybind key="t">
         <action name="ToggleAlwaysOnTop"/>
       </keybind>
+      <keybind key="s">
+				<action name="ToggleShade"/>
+      </keybind>
       <keybind key="m">
         <action name="ResizeRelative">
           <left>-48</left>
@@ -281,8 +288,17 @@
     <keybind key="W-f">
       <action name="ToggleMaximizeFull"/>
     </keybind>
-    <keybind key="A-F10">
+    <keybind key="W-F12">
+      <action name="ToggleMaximizeFull"/>
+    </keybind>
+    <keybind key="W-F11">
+      <action name="Iconify"/>
+    </keybind>
+    <keybind key="W-F10">
       <action name="ToggleShade"/>
+    </keybind>
+    <keybind key="W-F9">
+      <action name="ToggleOmnipresent"/>
     </keybind>
     <keybind key="W-Left">
       <action name="MoveRelative">
@@ -347,9 +363,6 @@
     </keybind>
     <keybind key="W-A-k">
       <action name="GrowToEdgeNorth"/>
-    </keybind>
-    <keybind key="A-F11">
-      <action name="Iconify"/>
     </keybind>
     <keybind key="C-A-x">
       <action name="DesktopNext">
