@@ -5,12 +5,13 @@
 # https://github.com/rulex
 
 # Window geometry
-padding.width: 0
-padding.height: 0
+padding.width: 3
+padding.height: 2
 border.width: 1
 window.client.padding.width: 0
 window.client.padding.height: 0
 window.handle.width: 0
+window.*.padding.width: 0
 
 # Menu geometry
 menu.border.width: 1
@@ -22,119 +23,44 @@ window.active.border.color: #17B217
 window.inactive.border.color: #505050
 menu.border.color: #17B217
 
-window.active.client.color: #999999
-window.inactive.client.color: #333333
-
 # Text shadows
-window.active.label.text.font: shadow=n
-window.inactive.label.text.font: shadow=n
 menu.items.font: shadow=n
 menu.title.text.font: shadow=n
 
 # Window title justification
-window.label.text.justify: Left
+window.label.text.justify: center
+window.*.title.separator.color: #000000
 
-# Active window
-window.active.title.bg: Flat
-window.active.title.bg.color: #999999
-window.active.title.bg.interlace.color: #999999
-
+# window
+#window.active.title.bg: Flat
+#window.active.title.bg.color: #999999
+#window.active.title.bg.interlace.color: #999999
 window.active.label.bg: Flat
-window.active.label.text.color: #999999
-
-window.active.handle.bg: Flat
-window.active.handle.bg.color: #999999
-
-window.active.grip.bg: Flat
-window.active.grip.bg.color: #999999
-
-window.active.button.unpressed.bg: Flat
-window.active.button.unpressed.bg.color: #101010
-window.active.button.unpressed.bg.border.color: #707070
-window.active.button.unpressed.image.color: #707070
-
-window.active.button.pressed.bg: Flat
-window.active.button.pressed.bg.color: #101010
-window.active.button.pressed.bg.border.color: #999999
-window.active.button.pressed.image.color: #999999
-
-window.active.button.disabled.bg: Flat
-window.active.button.disabled.bg.color: #101010
-window.active.button.disabled.bg.border.color: #707070
-window.active.button.disabled.image.color: #707070
-
-window.active.button.hover.bg: Flat
-window.active.button.hover.bg.color: #101010
-window.active.button.hover.bg.border.color: #999999
-window.active.button.hover.image.color: #999999
-
-window.active.button.toggled.unpressed.bg: Flat
-window.active.button.toggled.unpressed.bg.color: #101010
-window.active.button.toggled.unpressed.bg.border.color: #707070
-window.active.button.toggled.unpressed.image.color: #707070
-
-window.active.button.toggled.pressed.bg: Flat
-window.active.button.toggled.pressed.bg.color: #101010
-window.active.button.toggled.pressed.bg.border.color: #999999
-window.active.button.toggled.pressed.image.color: #999999
-
-window.active.button.toggled.hover.bg: Flat
-window.active.button.toggled.hover.bg.color: #101010
-window.active.button.toggled.hover.bg.border.color: #999999
-window.active.button.toggled.hover.image.color: #999999
-
-# Inactive windows
-window.inactive.title.bg: Flat 
-window.inactive.title.bg.color: #707070
-
-window.inactive.label.bg: Flat
+window.active.label.text.color: #17B217
 window.inactive.label.text.color: #707070
 
-window.inactive.handle.bg: Flat
-window.inactive.handle.bg.color: #707070
+# Window buttons
+window.*.button.unpressed.bg: flat border
+window.*.button.unpressed.bg.color: #000000
+window.*.button.unpressed.image.color: #707070
 
-window.inactive.grip.bg: Flat
-window.inactive.grip.bg.color: #707070
+window.*.button.pressed.bg: flat border
+window.*.button.pressed.bg.color: #000000
+window.*.button.pressed.image.color: #B22020
 
-window.inactive.button.unpressed.bg: Flat
-window.inactive.button.unpressed.bg.color: #333333
-window.inactive.button.unpressed.bg.border.color: #707070
-window.inactive.button.unpressed.image.color: #707070
+window.*.button.toggled.bg: flat border
+window.*.button.toggled.bg.color: #000000
+window.*.button.toggled.image.color: #17B217
 
-window.inactive.button.pressed.bg: Flat
-window.inactive.button.pressed.bg.color: #333333
-window.inactive.button.pressed.bg.border.color: #707070
-window.inactive.button.pressed.image.color: #707070
+window.*.button.hover.bg: flat border
+window.*.button.hover.bg.color: #000000
+window.*.button.hover.image.color: #ffffff
 
-window.inactive.button.disabled.bg: Flat
-window.inactive.button.disabled.bg.color: #333333
-window.inactive.button.disabled.bg.border.color: #707070
-window.inactive.button.disabled.image.color: #707070
+window.*.button.disabled.bg: flat border
+window.*.button.disabled.bg.color: #000000
+window.*.button.disabled.image.color: #202020
 
-window.inactive.button.toggled.bg: Flat
-window.inactive.button.toggled.bg.color: #333333
-window.inactive.button.toggled.bg.border.color: #707070
-window.inactive.button.toggled.image.color: #707070
-
-window.inactive.button.hover.bg: Flat
-window.inactive.button.hover.bg.color: #333333
-window.inactive.button.hover.bg.border.color: #707070
-window.inactive.button.hover.image.color: #707070
-
-window.inactive.button.toggled.unpressed.bg: Flat
-window.inactive.button.toggled.unpressed.bg.color: #333333
-window.inactive.button.toggled.unpressed.bg.border.color: #707070
-window.inactive.button.toggled.unpressed.image.color: #707070
-
-window.inactive.button.toggled.pressed.bg: Flat
-window.inactive.button.toggled.pressed.bg.color: #333333
-window.inactive.button.toggled.pressed.bg.border.color: #707070
-window.inactive.button.pressed.toggled.image.color: #707070
-
-window.inactive.button.toggled.hover.bg: Flat
-window.inactive.button.toggled.hover.bg.color: #333333
-window.inactive.button.toggled.hover.bg.border.color: #707070
-window.inactive.button.toggled.hover.image.color: #707070
+window.*.button.*.hover.image.color: #ffffff
 
 # Menus
 menu.title.bg: Flat
@@ -164,7 +90,7 @@ osd.border.color:  #999999
 osd.bg: Flat
 osd.bg.color: #101010
 osd.bg.border.color: #999999
-osd.label.bg: Parentrelative 
+osd.label.bg: Parentrelative
 osd.label.text.color: #999999
 
 osd.hilight.bg: Flat
@@ -172,3 +98,4 @@ osd.hilight.bg.color: #999999
 
 osd.unhilight.bg: Flat
 osd.unhilight.bg.color: #101010
+
