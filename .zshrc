@@ -94,10 +94,17 @@ export LC_MEASUREMENT="sv_SE.UTF-8"
 export LC_CTYPE="sv_SE.UTF-8"
 export LC_MESSAGES="en_US.UTF-8"
 
-export EDITOR="vim"
-export SUDO_EDITOR="vim"
-
-
+# set editor
+if hash nvim 2>/dev/null; then
+	export EDITOR="nvim"
+	export SUDO_EDITOR="nvim"
+elif hash vim 2>/dev/null; then
+	export EDITOR="vim"
+	export SUDO_EDITOR="vim"
+else
+	export EDITOR="vi"
+	export SUDO_EDITOR="vi"
+fi
 
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"
@@ -146,4 +153,13 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH:$HOME/gitdocs/bin
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
+
+bindkey "^[[1;3C" forward-word # Konsole alt-right
+bindkey "^[[1;3D" backward-word # Konsole alt-left
+
+bindkey "^[^[[C" forward-word # Urxvt alt-right
+bindkey "^[^[[D" backward-word # Urxvt alt-left
+
+bindkey "^[^[OC" forward-word # Urxvt mosh alt-right
+bindkey "^[^[OD" backward-word # Urxvt mosh alt-left
 
