@@ -4,27 +4,14 @@
 ZSH=$HOME/.oh-my-zsh
 unset TMOUT
 
+# aliases
+source ~/.aliases
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="rulex"
-
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias pu='pushd'
-alias po='popd'
-
-# Basic directory operations
-alias ...='cd ../..'
-alias -- -='cd -'
-
-# Super user
-alias please='sudo'
-alias rm='rm -I'
-
-#alias g='grep -in'
 
 # Show history
 if [ "$HIST_STAMPS" = "mm/dd/yyyy" ]
@@ -39,40 +26,6 @@ then
 else
     alias history='fc -l 1'
 fi
-# List direcory contents
-alias ls='ls -F --color=auto --time-style="+%Y-%m-%d %H:%M:%S" '
-alias lsa='ls -lah'
-alias l='ls -lah'
-alias ll='ls -l'
-alias la='ls -lA'
-alias lc='ls -lthrc'
-alias lca='ls -ltrca'
-alias sl=ls
-alias dt='date +"%Y-%m-%dT%H:%M:%S"'
-
-alias grep='grep --color=auto'
-
-alias afind='ack-grep -il'
-
-alias xterm='xterm -bg black -fg white'
-
-alias p='pacman'
-alias P='packer'
-alias s='sudo '
-alias w='w -f'
-alias px='ps auxf'
-alias pxg='ps auxf|grep -i'
-alias t='tmux'
-alias ds='du --time --time-style="+%Y-%m-%d %H:%M:%S" -shc * | sort -k 1 -h'
-alias netlisteners='lsof -i -P | grep LISTEN'
-alias g='git'
-alias gs='git status'
-alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glga="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all"
-alias gln='git log --pretty=format:"%C(red)%h%C(reset) - %s %C(green)(%cr) %C(bold blue)<%an>%C(reset)" --name-only'
-alias gls='git show --pretty=format:"%C(red)%h%C(reset) - %s %C(green)(%cr) %C(bold blue)<%an>%C(reset)"'
-alias glc='git shortlog --no-merges -nes'
 
 source ~/gitdocs/private.sh
 
