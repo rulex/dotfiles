@@ -7,12 +7,12 @@ hi clear
 let colors_name = "delek"
 
 " Normal should come first
-hi Normal     guifg=Black  guibg=White
+hi Normal     guifg=White  guibg=Black
 hi Cursor     guifg=bg     guibg=fg
 hi lCursor    guifg=NONE   guibg=Cyan
 
 " Note: we never set 'term' because the defaults for B&W terminals are OK
-hi MatchParen ctermbg=Blue guibg=blue
+hi MatchParen ctermbg=Blue				 guibg=blue
 hi DiffAdd    ctermbg=LightBlue    guibg=LightBlue
 hi DiffChange ctermbg=LightMagenta guibg=LightMagenta
 hi DiffDelete ctermfg=Blue         ctermbg=LightCyan	gui=bold		guifg=Blue	guibg=LightCyan
@@ -20,7 +20,7 @@ hi DiffText   ctermbg=Red          cterm=bold		gui=bold	guibg=Red
 hi Directory  ctermfg=DarkBlue     guifg=Blue
 hi ErrorMsg   ctermfg=White        ctermbg=DarkRed  guibg=Red                            	 guifg=White
 hi FoldColumn ctermfg=DarkBlue     ctermbg=Grey     guibg=Magenta                           	 guifg=DarkBlue
-hi Folded     ctermbg=Black		   cterm=bold	ctermfg=Red	guibg=Magenta	guifg=DarkBlue
+hi Folded     ctermbg=Black		     cterm=bold       ctermfg=Red guibg=Magenta guifg=DarkBlue
 hi IncSearch  cterm=reverse        gui=reverse
 hi LineNr     ctermfg=Brown        guifg=Brown
 hi ModeMsg    cterm=bold           gui=bold
