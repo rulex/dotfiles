@@ -110,6 +110,8 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH:$HOME/gitdocs/bin
 bindkey "^[[1;3C" forward-word # Konsole alt-right
 bindkey "^[[1;3D" backward-word # Konsole alt-left
 
+bindkey "^[[3;3~" kill-word # Konsole alt-delete
+
 bindkey "^[^[[C" forward-word # Urxvt alt-right
 bindkey "^[^[[D" backward-word # Urxvt alt-left
 
