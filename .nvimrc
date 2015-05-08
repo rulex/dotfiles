@@ -55,7 +55,7 @@ set foldnestmax=1
 set pastetoggle=<F12>
 let mapleader = ','
 let g:yankring_history_dir = '~/.nvim/'
-set pastetoggle=<leader>p
+set pastetoggle=<F10>
 set ts=2 sts=2 sw=2 noexpandtab
 set splitbelow
 set splitright
