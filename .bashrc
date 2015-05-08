@@ -47,7 +47,7 @@ export PS1="\[\][$(tput setaf 2)\u$(tput sgr0)@$(tput setaf 3)\h$(tput setaf 5) 
 complete -cf sudo
 complete -cf s
 
-source ~/.aliases
+source ~/dotfiles/.aliases
 
 #source /etc/profile
 source ~/gitdocs/private.sh

@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 unset TMOUT
 
 # aliases
-source ~/.aliases
+source ~/dotfiles/.aliases
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
