@@ -3,14 +3,17 @@ if v:progname =~? "evim"
 	finish
 endif
 
+colorscheme delek
 if has('nvim')
 	tnoremap <c-a> <c-\><c-n>
+	colorscheme base16-shapeshifter
 endif
 
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 set modeline
+set background=dark
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -141,9 +144,6 @@ endfunction " }}}
 set foldtext=CustomFoldText()
 
 let g:badwolf_html_link_underline = 0
-
-colorscheme delek
-
 
 if has("autocmd")
 	autocmd BufEnter *.ctp set syn=php
