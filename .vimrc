@@ -1,6 +1,10 @@
 ﻿
 if v:progname =~? "evim"
-  finish
+	finish
+endif
+
+if has('nvim')
+	tnoremap <c-a> <c-\><c-n>
 endif
 
 " Use Vim settings, rather then Vi settings (much better!).
@@ -41,7 +45,7 @@ set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
 set synmaxcol=512 " Syntax coloring slows
 set ttyfast
-set ttyscroll=3
+"set ttyscroll=3
 set lazyredraw " avoid scrolling problems
 
 ":command
@@ -50,14 +54,17 @@ command Sw w !sudo tee %
 " fold
 set foldmethod=indent
 set foldnestmax=1
-set pastetoggle=<F12>
 let mapleader = ','
 let g:yankring_history_dir = '~/.vim/'
-set pastetoggle=<leader>p
+set pastetoggle=<F10>
 set ts=2 sts=2 sw=2 noexpandtab
 set splitbelow
 set splitright
-" folding methods
+nnoremap <leader>cc O/*<Esc>
+nnoremap <leader>cv o*/<Esc>
+nnoremap <leader>ch O<!--<Esc>
+nnoremap <leader>cj o--><Esc>
+
 nnoremap <leader>f <Esc>:set fdm=indent<CR>
 nnoremap <leader>F <Esc>:set fdm=syntax<CR>
 nnoremap <leader><C-f> <Esc>:set fdm=manual<CR>
@@ -76,6 +83,7 @@ set listchars=tab:\.\ ,trail:.
 
 inoremap jk <Esc>
 inoremap kj <Esc>
+inoremap <C-a> <Esc>
 
 nnoremap <Space> za
 vnoremap <Space> za
@@ -86,14 +94,15 @@ nnoremap gj j
 nnoremap gk k
 nnoremap / /\c
 
-nnoremap <leader>w <Esc><C-w>v<C-w>l
-nnoremap <leader>s <Esc><C-w>s
+nnoremap <leader>sv <Esc><C-w>v<C-w>l
+nnoremap <leader>sh <Esc><C-w>s
 nnoremap <leader>n <Esc>:NERDTreeToggle<CR>
 nnoremap <leader>g <Esc>:GundoToggle<CR>
-nnoremap <leader>t <Esc>:tabnew %<CR>:NERDTreeToggle<CR>
-nnoremap <leader>T <Esc>:tabnew<CR>
-nnoremap <leader>d <Esc>:diffthis<CR>
-nnoremap <leader>o <Esc>:diffoff<CR>
+nnoremap <leader>tt <Esc>:tabnew<CR>
+nnoremap <leader>te <Esc>:tabnew<CR>:term<CR>
+nnoremap <leader>tf <Esc>:tabnew %<CR>
+nnoremap <leader>dd <Esc>:diffthis<CR>
+nnoremap <leader>do <Esc>:diffoff<CR>
 nnoremap <leader>q <Esc>:q<CR>
 nnoremap <leader>Q <Esc>:qa<CR>
 nnoremap <leader>D <Esc>::r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
@@ -117,16 +126,16 @@ noremap <C-l> <C-w>l
 
 "FOLDING
 function! MyFoldText() " {{{
-    let line = getline(v:foldstart)
-    let nucolwidth = &fdc + &number * &numberwidth
-    let windowwidth = winwidth(0) - nucolwidth - 3
-    let foldedlinecount = v:foldend - v:foldstart
-    " expand tabs into spaces
-    let onetab = strpart('          ', 0, &tabstop)
-    let line = substitute(line, '\t', onetab, 'g')
-    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-    return line . '?' . repeat(" ",fillcharcount) . foldedlinecount . '?' . ' '
+	let line = getline(v:foldstart)
+	let nucolwidth = &fdc + &number * &numberwidth
+	let windowwidth = winwidth(0) - nucolwidth - 3
+	let foldedlinecount = v:foldend - v:foldstart
+	" expand tabs into spaces
+	let onetab = strpart('          ', 0, &tabstop)
+	let line = substitute(line, '\t', onetab, 'g')
+	let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+	let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+	return line . '?' . repeat(" ",fillcharcount) . foldedlinecount . '?' . ' '
 endfunction " }}}
 "set foldtext=MyFoldText()
 set foldtext=CustomFoldText()
@@ -142,40 +151,40 @@ if has("autocmd")
 endif
 
 " code blocks comment auto
- au BufNewFile,BufRead *.c,*.cc,*.C,*.h imap } <Esc>:call CurlyBracket()<CR>a
+au BufNewFile,BufRead *.c,*.cc,*.C,*.h imap } <Esc>:call CurlyBracket()<CR>a
 
 fu! CustomFoldText()
-    "get first non-blank line
-    let fs = v:foldstart
-    while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
-    endwhile
-    if fs > v:foldend
-        let line = getline(v:foldstart)
-    else
-        let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
-    endif
+	"get first non-blank line
+	let fs = v:foldstart
+	while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
+	endwhile
+	if fs > v:foldend
+		let line = getline(v:foldstart)
+	else
+		let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
+	endif
 
-    let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
-    let foldSize = 1 + v:foldend - v:foldstart
-    let foldSizeStr = " " . foldSize . " lines "
-    let foldLevelStr = repeat("+--", v:foldlevel)
-    let lineCount = line("$")
-    let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
-    let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
-    return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
+	let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
+	let foldSize = 1 + v:foldend - v:foldstart
+	let foldSizeStr = " " . foldSize . " lines "
+	let foldLevelStr = repeat("+--", v:foldlevel)
+	let lineCount = line("$")
+	let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
+	let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
+	return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
 endf
 
 function CurlyBracket()
-  let l:my_linenum = line(".")
-  iunmap }
-  sil exe "normal i}"
-  imap } <Esc>:call CurlyBracket()<CR>
-  let l:result1 = searchpair('{', '', '}', 'bW')
-  if (result1 > 0)
-    let l:my_string = substitute(getline("."), '^\s*\(.*\){', '\1', "")
-    sil exe ":" . l:my_linenum
-    sil exe "normal a //" . l:my_string
-  endif
+	let l:my_linenum = line(".")
+	iunmap }
+	sil exe "normal i}"
+	imap } <Esc>:call CurlyBracket()<CR>
+	let l:result1 = searchpair('{', '', '}', 'bW')
+	if (result1 > 0)
+		let l:my_string = substitute(getline("."), '^\s*\(.*\){', '\1', "")
+		sil exe ":" . l:my_linenum
+		sil exe "normal a //" . l:my_string
+	endif
 endfunction
 
 
@@ -184,9 +193,9 @@ endfunction
 "set wildmode=list:longest "huge list
 
 if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
+	set nobackup		" do not keep a backup file, use versions instead
 else
-  set backup		" keep a backup file
+	set backup		" keep a backup file
 endif
 set history=100		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
@@ -206,47 +215,47 @@ inoremap <C-U> <C-G>u<C-U>
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
-  set mouse=a
+	set mouse=a
 endif
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
+	syntax on
+	set hlsearch
 endif
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
 
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
+	" Enable file type detection.
+	" Use the default filetype settings, so that mail gets 'tw' set to 72,
+	" 'cindent' is on in C files, etc.
+	" Also load indent files, to automatically do language-dependent indenting.
+	filetype plugin indent on
 
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
+	" Put these in an autocmd group, so that we can delete them easily.
+	augroup vimrcEx
+		au!
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+		" For all text files set 'textwidth' to 78 characters.
+		autocmd FileType text setlocal textwidth=78
 
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+		" When editing a file, always jump to the last known cursor position.
+		" Don't do it when the position is invalid or when inside an event handler
+		" (happens when dropping a file on gvim).
+		" Also don't do it when the mark is in the first line, that is the default
+		" position when opening a file.
+		autocmd BufReadPost *
+					\ if line("'\"") > 1 && line("'\"") <= line("$") |
+					\   exe "normal! g`\"" |
+					\ endif
 
-  augroup END
+	augroup END
 
 else
 
-  set autoindent		" always set autoindenting on
+	set autoindent		" always set autoindenting on
 
 endif " has("autocmd")
 
@@ -254,6 +263,7 @@ endif " has("autocmd")
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
 if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+	command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+				\ | wincmd p | diffthis
 endif
+
