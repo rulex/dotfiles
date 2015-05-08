@@ -52,14 +52,17 @@ command Sw w !sudo tee %
 " fold
 set foldmethod=indent
 set foldnestmax=1
-set pastetoggle=<F12>
 let mapleader = ','
 let g:yankring_history_dir = '~/.nvim/'
 set pastetoggle=<F10>
 set ts=2 sts=2 sw=2 noexpandtab
 set splitbelow
 set splitright
-" folding methods
+nnoremap <leader>c O/*<Esc>
+nnoremap <leader>v o*/<Esc>
+nnoremap <leader>C O<!--<Esc>
+nnoremap <leader>V o--><Esc>
+
 nnoremap <leader>f <Esc>:set fdm=indent<CR>
 nnoremap <leader>F <Esc>:set fdm=syntax<CR>
 nnoremap <leader><C-f> <Esc>:set fdm=manual<CR>
