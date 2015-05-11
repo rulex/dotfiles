@@ -63,26 +63,28 @@ set pastetoggle=<F10>
 set ts=2 sts=2 sw=2 noexpandtab
 set splitbelow
 set splitright
-nnoremap <leader>cc O/*<Esc>
-nnoremap <leader>cv o*/<Esc>
+nnoremap <leader>c O/*<Esc>
+nnoremap <leader>cc o*/<Esc>
 nnoremap <leader>ch O<!--<Esc>
-nnoremap <leader>cj o--><Esc>
+nnoremap <leader>chh o--><Esc>
 
 nnoremap <leader>f <Esc>:set fdm=indent<CR>
-nnoremap <leader>F <Esc>:set fdm=syntax<CR>
-nnoremap <leader><C-f> <Esc>:set fdm=manual<CR>
+nnoremap <leader>fi <Esc>:set fdm=indent<CR>
+nnoremap <leader>fs <Esc>:set fdm=syntax<CR>
+nnoremap <leader>fm <Esc>:set fdm=manual<CR>
 nnoremap <leader><F1> <Esc>:set foldnestmax=1<CR>
 nnoremap <leader><F2> <Esc>:set foldnestmax=2<CR>
 nnoremap <leader><F3> <Esc>:set foldnestmax=3<CR>
 nnoremap <leader><F4> <Esc>:set foldnestmax=4<CR>
 nnoremap <leader><F5> <Esc>:set foldnestmax=5<CR>
 nnoremap <leader>r <Esc>:%s/\s\+$//<CR>
-nnoremap <leader>R <Esc>:g/^$/d<CR>
+nnoremap <leader>re <Esc>:g/^$/d<CR>
+nnoremap <leader>rm <Esc>:%s///g<CR>
 " toggle list
 nnoremap <leader>k <Esc>:set list!<CR>
 
 set list
-set listchars=tab:\.\ ,trail:.
+set listchars=tab:\|\ ,trail:.
 
 inoremap jk <Esc>
 inoremap kj <Esc>
