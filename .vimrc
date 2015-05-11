@@ -103,6 +103,10 @@ nnoremap <leader>sv <Esc><C-w>v<C-w>l
 nnoremap <leader>sh <Esc><C-w>s
 nnoremap <leader>n <Esc>:NERDTreeToggle<CR>
 nnoremap <leader>g <Esc>:GundoToggle<CR>
+nnoremap <leader>e <Esc>:e<CR>
+nnoremap <leader>ee <Esc>:e!<CR>
+nnoremap <leader>e. <Esc>:e .<CR>
+nnoremap <leader>em <Esc>:e $MYVIMRC<CR>
 nnoremap <leader>tt <Esc>:tabnew<CR>
 nnoremap <leader>te <Esc>:tabnew<CR>:term<CR>
 nnoremap <leader>tf <Esc>:tabnew %<CR>
