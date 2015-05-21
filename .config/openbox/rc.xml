@@ -262,6 +262,13 @@
           <height>1080</height>
         </action>
       </keybind>
+      <keybind key="S-h">
+        <action name="UnmaximizeFull"/>
+        <action name="MoveResizeTo">
+          <width>960</width>
+          <height>541</height>
+        </action>
+      </keybind>
       <keybind key="k">
         <action name="Execute">
           <command>sh -c 'pkill compton'</command>
