@@ -118,3 +118,4 @@ bindkey "^[^[[D" backward-word # Urxvt alt-left
 bindkey "^[^[OC" forward-word # Urxvt mosh alt-right
 bindkey "^[^[OD" backward-word # Urxvt mosh alt-left
 
+unset GREP_OPTIONS

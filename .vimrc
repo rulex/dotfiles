@@ -6,7 +6,8 @@ endif
 colorscheme delek
 if has('nvim')
 	tnoremap <c-a> <c-\><c-n>
-	colorscheme base16-shapeshifter
+	"colorscheme base16-shapeshifter
+	colorscheme Revolution
 endif
 
 " Use Vim settings, rather then Vi settings (much better!).
@@ -59,15 +60,16 @@ set foldmethod=indent
 set foldnestmax=1
 let mapleader = ','
 let g:yankring_history_dir = '~/.vim/'
-set pastetoggle=<F10>
+"set pastetoggle=<F10>
 set ts=2 sts=2 sw=2 noexpandtab
 set splitbelow
 set splitright
+
+nnoremap <F10> <Esc>:set paste!<CR>
 nnoremap <leader>c O/*<Esc>
 nnoremap <leader>cc o*/<Esc>
 nnoremap <leader>ch O<!--<Esc>
 nnoremap <leader>chh o--><Esc>
-
 nnoremap <leader>f <Esc>:set fdm=indent<CR>
 nnoremap <leader>fi <Esc>:set fdm=indent<CR>
 nnoremap <leader>fs <Esc>:set fdm=syntax<CR>
@@ -80,8 +82,29 @@ nnoremap <leader><F5> <Esc>:set foldnestmax=5<CR>
 nnoremap <leader>r <Esc>:%s/\s\+$//<CR>
 nnoremap <leader>re <Esc>:g/^$/d<CR>
 nnoremap <leader>rm <Esc>:%s///g<CR>
-" toggle list
 nnoremap <leader>k <Esc>:set list!<CR>
+nnoremap <leader>sv <Esc><C-w>v<C-w>l
+nnoremap <leader>sh <Esc><C-w>s
+nnoremap <leader>n <Esc>:NERDTreeToggle<CR>
+nnoremap <leader>g <Esc>:GundoToggle<CR>
+nnoremap <leader>e <Esc>:e<CR>
+nnoremap <leader>et <Esc>:term<CR>
+nnoremap <leader>ee <Esc>:e!<CR>
+nnoremap <leader>e. <Esc>:e .<CR>
+nnoremap <leader>em <Esc>:e $MYVIMRC<CR>
+nnoremap <leader>tt <Esc>:tabnew<CR>
+nnoremap <leader>te <Esc>:tabnew<CR>:term<CR>
+nnoremap <leader>tf <Esc>:tabnew %<CR>
+nnoremap <leader>dd <Esc>:diffthis<CR>
+nnoremap <leader>ddd <Esc>:diffthis<CR><c-w><c-w>:diffthis<CR><c-w><c-w>
+nnoremap <leader>do <Esc>:diffoff<CR>
+nnoremap <leader>doo <Esc>:diffoff<CR><c-w><c-w>:diffoff<CR><c-w><c-w>
+nnoremap <leader>dn ]c
+nnoremap <leader>dN [c
+nnoremap <leader>q <Esc>:q<CR>
+nnoremap <leader>qq <Esc>:qa<CR>
+nnoremap <leader>qqq <Esc>:qa!<CR>
+nnoremap <leader>D <Esc>:r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
 
 set list
 set listchars=tab:\|\ ,trail:.
@@ -98,24 +121,6 @@ nnoremap k gk
 nnoremap gj j
 nnoremap gk k
 nnoremap / /\c
-
-nnoremap <leader>sv <Esc><C-w>v<C-w>l
-nnoremap <leader>sh <Esc><C-w>s
-nnoremap <leader>n <Esc>:NERDTreeToggle<CR>
-nnoremap <leader>g <Esc>:GundoToggle<CR>
-nnoremap <leader>e <Esc>:e<CR>
-nnoremap <leader>ee <Esc>:e!<CR>
-nnoremap <leader>e. <Esc>:e .<CR>
-nnoremap <leader>em <Esc>:e $MYVIMRC<CR>
-nnoremap <leader>tt <Esc>:tabnew<CR>
-nnoremap <leader>te <Esc>:tabnew<CR>:term<CR>
-nnoremap <leader>tf <Esc>:tabnew %<CR>
-nnoremap <leader>dd <Esc>:diffthis<CR>
-nnoremap <leader>do <Esc>:diffoff<CR>
-nnoremap <leader>q <Esc>:q<CR>
-nnoremap <leader>Q <Esc>:qa<CR>
-nnoremap <leader>D <Esc>::r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
-
 
 " Gundo
 nnoremap <F5> :GundoToggle<CR>
@@ -169,7 +174,6 @@ fu! CustomFoldText()
 	else
 		let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
 	endif
-
 	let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
 	let foldSize = 1 + v:foldend - v:foldstart
 	let foldSizeStr = " " . foldSize . " lines "
@@ -233,20 +237,16 @@ endif
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
-
 	" Enable file type detection.
 	" Use the default filetype settings, so that mail gets 'tw' set to 72,
 	" 'cindent' is on in C files, etc.
 	" Also load indent files, to automatically do language-dependent indenting.
 	filetype plugin indent on
-
 	" Put these in an autocmd group, so that we can delete them easily.
 	augroup vimrcEx
 		au!
-
 		" For all text files set 'textwidth' to 78 characters.
 		autocmd FileType text setlocal textwidth=78
-
 		" When editing a file, always jump to the last known cursor position.
 		" Don't do it when the position is invalid or when inside an event handler
 		" (happens when dropping a file on gvim).
@@ -256,13 +256,9 @@ if has("autocmd")
 					\ if line("'\"") > 1 && line("'\"") <= line("$") |
 					\   exe "normal! g`\"" |
 					\ endif
-
 	augroup END
-
 else
-
 	set autoindent		" always set autoindenting on
-
 endif " has("autocmd")
 
 " Convenient command to see the difference between the current buffer and the
