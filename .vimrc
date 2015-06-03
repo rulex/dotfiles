@@ -4,10 +4,17 @@ if v:progname =~? "evim"
 endif
 
 colorscheme delek
+
+set timeout
+set timeoutlen=750
+set ttimeoutlen=250
+
 if has('nvim')
 	tnoremap <c-a> <c-\><c-n>
 	"colorscheme base16-shapeshifter
 	colorscheme Revolution
+	set ttimeout
+	set ttimeoutlen=0
 endif
 
 " Use Vim settings, rather then Vi settings (much better!).
@@ -23,7 +30,7 @@ set undofile
 set undodir=~/.vim/undo/
 set backupdir=~/.vim/backups/
 set directory=~/.vim/swap/
-set nu
+set nu " line numbers
 set autochdir " switch to current file dir
 map <Tab> <Esc>:tabn<CR>
 map <S-Tab> <Esc>:tabp<CR>
@@ -48,24 +55,37 @@ set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
 set synmaxcol=512 " Syntax coloring slows
-set ttyfast
+"set ttyfast
 "set ttyscroll=3
-set lazyredraw " avoid scrolling problems
+"set lazyredraw " avoid scrolling problems
 
 ":command
-command Sw w !sudo tee %
+command! Sw :execute ':silent w !sudo tee % > /dev/null' | :edit!
+nmap <M-1> :tabnext 1<CR>
+nmap <M-2> :tabnext 2<CR>
+nmap <M-3> :tabnext 3<CR>
+nmap <M-4> :tabnext 4<CR>
+nmap <M-5> :tabnext 5<CR>
+nmap <M-6> :tabnext 6<CR>
+nmap <M-7> :tabnext 7<CR>
+nmap <M-8> :tabnext 8<CR>
+nmap <M-9> :tabnext 9<CR>
+nmap <M-0> :tabnext 10<CR>
 
 " fold
 set foldmethod=indent
 set foldnestmax=1
-let mapleader = ','
+nnoremap <Space> <NOP>
+let mapleader = "\<Space>"
 let g:yankring_history_dir = '~/.vim/'
 "set pastetoggle=<F10>
 set ts=2 sts=2 sw=2 noexpandtab
 set splitbelow
 set splitright
 
-nnoremap <F10> <Esc>:set paste!<CR>
+nnoremap ö <Esc>:
+nnoremap <F10> <Esc>:set paste!<CR>:set paste?<CR>
+nnoremap <leader>p <Esc>:set paste!<CR>:set paste?<CR>
 nnoremap <leader>c O/*<Esc>
 nnoremap <leader>cc o*/<Esc>
 nnoremap <leader>ch O<!--<Esc>
@@ -82,7 +102,7 @@ nnoremap <leader><F5> <Esc>:set foldnestmax=5<CR>
 nnoremap <leader>r <Esc>:%s/\s\+$//<CR>
 nnoremap <leader>re <Esc>:g/^$/d<CR>
 nnoremap <leader>rm <Esc>:%s///g<CR>
-nnoremap <leader>k <Esc>:set list!<CR>
+nnoremap <leader>k <Esc>:set list!<CR>:set list?<CR>
 nnoremap <leader>sv <Esc><C-w>v<C-w>l
 nnoremap <leader>sh <Esc><C-w>s
 nnoremap <leader>n <Esc>:NERDTreeToggle<CR>
@@ -113,8 +133,8 @@ inoremap jk <Esc>
 inoremap kj <Esc>
 inoremap <C-a> <Esc>
 
-nnoremap <Space> za
-vnoremap <Space> za
+nnoremap , za
+vnoremap , za
 
 nnoremap j gj
 nnoremap k gk
@@ -184,7 +204,7 @@ fu! CustomFoldText()
 	return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
 endf
 
-function CurlyBracket()
+function! CurlyBracket()
 	let l:my_linenum = line(".")
 	iunmap }
 	sil exe "normal i}"
