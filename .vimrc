@@ -221,6 +221,7 @@ endfunction
 "set clipboard+=unnamed " share X clipboard
 "set wildmenu "command line completion wild style
 "set wildmode=list:longest "huge list
+set wildmode=full
 
 if has("vms")
 	set nobackup		" do not keep a backup file, use versions instead
