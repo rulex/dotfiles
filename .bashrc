@@ -35,6 +35,7 @@ export PATH=${PATH}:${HOME}/gitdocs/bin
 
 set bell-style none
 HISTCONTROL=ignoreboth
+HISTSIZE=99999
 
 eval `dircolors -b`
 export PS1="\[\][$(tput setaf 2)\u$(tput sgr0)@$(tput setaf 3)\h$(tput setaf 5) \w$(tput sgr0)] $(tput setaf 6)\\$ \[\]\[$(tput sgr0)\]"
