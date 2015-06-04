@@ -6,7 +6,7 @@ endif
 colorscheme delek
 
 set timeout
-set timeoutlen=0
+set timeoutlen=250
 set ttimeoutlen=250
 
 if has('nvim')
