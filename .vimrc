@@ -35,7 +35,7 @@ set autochdir " switch to current file dir
 map <Tab> <Esc>:tabn<CR>
 map <S-Tab> <Esc>:tabp<CR>
 map <BS> <Esc>:noh<CR>
-set formatoptions=rq
+set formatoptions=q
 set ruler
 set cursorline
 set scrolljump=1 				" lines to scroll when cursor leaves screen
@@ -116,6 +116,7 @@ nnoremap <leader>tt <Esc>:tabnew<CR>
 nnoremap <leader>te <Esc>:tabnew<CR>:term<CR>
 nnoremap <leader>tf <Esc>:tabnew %<CR>
 nnoremap <leader>dd <Esc>:diffthis<CR>
+nnoremap <leader>du <Esc>:diffupdate<CR>
 nnoremap <leader>ddd <Esc>:diffthis<CR><c-w><c-w>:diffthis<CR><c-w><c-w>
 nnoremap <leader>do <Esc>:diffoff<CR>
 nnoremap <leader>doo <Esc>:diffoff<CR><c-w><c-w>:diffoff<CR><c-w><c-w>
