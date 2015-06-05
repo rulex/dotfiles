@@ -35,6 +35,7 @@ export PATH=${PATH}:${HOME}/gitdocs/bin
 
 set bell-style none
 HISTCONTROL=ignoreboth
+HISTSIZE=99999
 
 eval `dircolors -b`
 export PS1="\[\][$(tput setaf 2)\u$(tput sgr0)@$(tput setaf 3)\h$(tput setaf 5) \w$(tput sgr0)] $(tput setaf 6)\\$ \[\]\[$(tput sgr0)\]"
@@ -54,5 +55,20 @@ source ~/gitdocs/private.sh
 source ~/git-completion.bash
 source ~/.oh-my-zsh/lib/aliases.zsh
 __git_complete g _git
+
+export LANG="en_US.utf8"
+export LC_CTYPE="fi_FI.utf8"
+export LC_NUMERIC="fi_FI.utf8"
+export LC_TIME="fi_FI.utf8"
+export LC_COLLATE="fi_FI.utf8"
+export LC_MONETARY="fi_FI.utf8"
+export LC_MESSAGES="en_US.utf8"
+export LC_PAPER="fi_FI.utf8"
+export LC_NAME="en_US.utf8"
+export LC_ADDRESS="fi_FI.utf8"
+export LC_TELEPHONE="fi_FI.utf8"
+export LC_MEASUREMENT="fi_FI.utf8"
+export LC_IDENTIFICATION="fi_FI.utf8"
+export LC_ALL=
 
 
