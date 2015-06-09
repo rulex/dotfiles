@@ -6,7 +6,7 @@ endif
 colorscheme delek
 
 set timeout
-set timeoutlen=250
+set timeoutlen=450
 set ttimeoutlen=250
 
 if has('nvim')
@@ -101,7 +101,7 @@ nnoremap <leader><F4> <Esc>:set foldnestmax=4<CR>
 nnoremap <leader><F5> <Esc>:set foldnestmax=5<CR>
 nnoremap <leader>r <Esc>:%s/\s\+$//<CR>
 nnoremap <leader>re <Esc>:g/^$/d<CR>
-nnoremap <leader>rm <Esc>:%s///g<CR>
+nnoremap <leader>rm <Esc>:%s/$//g<CR>
 nnoremap <leader>k <Esc>:set list!<CR>:set list?<CR>
 nnoremap <leader>sv <Esc><C-w>v<C-w>l
 nnoremap <leader>sh <Esc><C-w>s
