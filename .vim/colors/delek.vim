@@ -39,8 +39,8 @@ hi TabLineSel ctermbg=Black
 hi clear CursorLine
 hi CursorLineNR cterm=underline
 hi CursorLine ctermfg=NONE ctermbg=NONE
-hi SpecialKey ctermfg=DarkGrey     guifg=Blue
-hi NonText    ctermfg=DarkGrey
+hi SpecialKey ctermfg=DarkGrey     cterm=NONE
+hi NonText    ctermfg=DarkGrey     cterm=NONE
 hi Title      ctermfg=DarkMagenta  ctermbg=Black gui=bold guifg=Magenta
 hi VertSplit  cterm=reverse        gui=reverse
 hi Visual     ctermbg=NONE         cterm=reverse gui=reverse guifg=Grey guibg=fg
@@ -60,8 +60,8 @@ hi Type       cterm=NONE ctermfg=Blue
 " for gitgutter
 hi clear SignColumn
 
-hi htmlTag ctermfg=Green
-hi htmlEndTag ctermfg=Green
+hi htmlTag ctermfg=Green ctermbg=NONE cterm=NONE
+hi htmlEndTag ctermfg=Green ctermbg=NONE cterm=NONE
 hi htmlTagName ctermfg=Magenta ctermbg=NONE cterm=NONE
 hi htmlSpecialTagName ctermfg=Red ctermbg=NONE cterm=NONE
 hi htmlSpecialChar ctermfg=LightCyan ctermbg=NONE cterm=NONE
@@ -80,11 +80,11 @@ hi phpDefine ctermfg=Magenta ctermbg=NONE cterm=NONE
 hi phpOperator ctermfg=Magenta ctermbg=NONE cterm=NONE
 hi phpRelation ctermfg=Magenta ctermbg=NONE cterm=NONE
 
-hi javaScriptBraces ctermfg=Cyan
-hi javaScriptParens ctermfg=Cyan
-hi javaScriptNumber ctermfg=Cyan
+hi javaScriptBraces ctermfg=Cyan ctermbg=NONE cterm=NONE
+hi javaScriptParens ctermfg=Cyan ctermbg=NONE cterm=NONE
+hi javaScriptNumber ctermfg=Cyan ctermbg=NONE cterm=NONE
 
-hi cssBraces ctermfg=Cyan
-hi cssClassName ctermfg=Cyan
-hi cssColor ctermfg=Cyan
+hi cssBraces ctermfg=Cyan ctermbg=NONE cterm=NONE
+hi cssClassName ctermfg=Cyan ctermbg=NONE cterm=NONE
+hi cssColor ctermfg=Cyan ctermbg=NONE cterm=NONE
 
