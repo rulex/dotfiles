@@ -3,19 +3,7 @@ if v:progname =~? "evim"
 	finish
 endif
 
-colorscheme delek
 
-set timeout
-set timeoutlen=450
-set ttimeoutlen=250
-
-if has('nvim')
-	tnoremap <c-a> <c-\><c-n>
-	"colorscheme base16-shapeshifter
-	colorscheme Revolution
-	set ttimeout
-	set ttimeoutlen=0
-endif
 
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
@@ -37,6 +25,7 @@ map <S-Tab> <Esc>:tabp<CR>
 map <BS> <Esc>:noh<CR>
 set formatoptions=q
 set ruler
+"set nocursorline
 set cursorline
 set scrolljump=1 				" lines to scroll when cursor leaves screen
 set scrolloff=5 				" minimum lines to keep above and below cursor
@@ -82,6 +71,10 @@ let g:yankring_history_dir = '~/.vim/'
 set ts=2 sts=2 sw=2 noexpandtab
 set splitbelow
 set splitright
+
+map <F9> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 nnoremap ö <Esc>:
 nnoremap <F10> <Esc>:set paste!<CR>:set paste?<CR>
@@ -225,14 +218,14 @@ endfunction
 set wildmode=full
 
 if has("vms")
-	set nobackup		" do not keep a backup file, use versions instead
+	set nobackup  " do not keep a backup file, use versions instead
 else
-	set backup		" keep a backup file
+	set backup  " keep a backup file
 endif
-set history=100		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
+set history=1000  " command line history
+set ruler  " show the cursor position all the time
+set showcmd  " display incomplete commands
+set incsearch  " do incremental searching
 set iskeyword+=\$   " $asdff <- one word
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
@@ -291,3 +284,15 @@ if !exists(":DiffOrig")
 				\ | wincmd p | diffthis
 endif
 
+if has('nvim')
+	tnoremap <c-a> <c-\><c-n>
+	"colorscheme base16-shapeshifter
+	colorscheme Revolution
+	set ttimeout
+	set ttimeoutlen=0
+else
+	colorscheme delek
+	set timeout
+	set timeoutlen=450
+	set ttimeoutlen=250
+endif
