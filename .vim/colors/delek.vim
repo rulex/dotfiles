@@ -27,6 +27,7 @@ hi LineNr     ctermfg=Brown        guifg=Brown
 hi ModeMsg    cterm=NONE
 hi MoreMsg    ctermfg=DarkGreen
 hi Pmenu      guibg=LightBlue
+hi Conditional ctermfg=Blue ctermbg=NONE cterm=bold
 hi PmenuSel   ctermfg=White        ctermbg=DarkBlue  guifg=White  guibg=DarkBlue
 hi Question   ctermfg=DarkGreen    gui=bold guifg=SeaGreen
 hi Search     ctermfg=grey         ctermbg=DarkBlue guibg=Yellow guifg=NONE
