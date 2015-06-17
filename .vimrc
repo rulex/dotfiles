@@ -3,8 +3,6 @@ if v:progname =~? "evim"
 	finish
 endif
 
-
-
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
@@ -121,7 +119,7 @@ nnoremap <leader>qqq <Esc>:qa!<CR>
 nnoremap <leader>D <Esc>:r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
 
 set list
-set listchars=tab:\|\ ,trail:.
+set listchars=tab:\»\ ,trail:·
 
 inoremap jk <Esc>
 inoremap kj <Esc>
