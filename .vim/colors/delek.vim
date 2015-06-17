@@ -11,6 +11,7 @@ hi Cursor     guifg=bg     guibg=fg
 hi lCursor    guifg=NONE   guibg=Cyan
 
 " Note: we never set 'term' because the defaults for B&W terminals are OK
+hi Include    ctermfg=Yellow       ctermbg=NONE cterm=NONE
 hi Delimiter  ctermfg=Red          ctermbg=NONE cterm=NONE
 hi MatchParen ctermbg=Blue         guibg=blue
 hi DiffAdd    ctermbg=LightBlue    guibg=LightBlue
@@ -67,9 +68,9 @@ hi htmlArg ctermfg=Cyan ctermbg=NONE cterm=NONE
 "hi htmlString ctermfg=SeaGreen ctermbg=NONE cterm=NONE
 hi htmlComment ctermfg=Red ctermbg=NONE cterm=NONE
 
-hi phpMemberSelector ctermfg=Red
-hi phpComparison ctermfg=LightMagenta
-hi phpParent ctermfg=Red
+hi phpMemberSelector ctermfg=Red ctermbg=NONE cterm=NONE
+hi phpComparison ctermfg=LightMagenta ctermbg=NONE cterm=NONE
+hi phpParent ctermfg=Red ctermbg=NONE cterm=NONE
 hi phpFunctions ctermfg=LightBlue ctermbg=NONE cterm=NONE
 hi phpSpecialFunction ctermfg=LightBlue ctermbg=NONE cterm=NONE
 hi phpVarSelector ctermfg=Cyan ctermbg=NONE cterm=NONE
