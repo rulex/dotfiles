@@ -6,7 +6,7 @@ hi clear
 let colors_name = "delek"
 
 " Normal should come first
-hi Normal     guifg=White  guibg=Black
+hi Normal     guifg=White  guibg=Black cterm=NONE
 hi Cursor     guifg=bg     guibg=fg
 hi lCursor    guifg=NONE   guibg=Cyan
 
@@ -68,6 +68,7 @@ hi htmlSpecialChar ctermfg=LightCyan ctermbg=NONE cterm=NONE
 hi htmlArg ctermfg=Cyan ctermbg=NONE cterm=NONE
 "hi htmlString ctermfg=SeaGreen ctermbg=NONE cterm=NONE
 hi htmlComment ctermfg=Red ctermbg=NONE cterm=NONE
+hi htmlCommentPart ctermfg=Red ctermbg=NONE cterm=NONE
 
 hi phpMemberSelector ctermfg=Red ctermbg=NONE cterm=NONE
 hi phpComparison ctermfg=LightMagenta ctermbg=NONE cterm=NONE
