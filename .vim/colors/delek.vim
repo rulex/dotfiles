@@ -6,7 +6,7 @@ hi clear
 let colors_name = "delek"
 
 " Normal should come first
-hi Normal     guifg=White  guibg=Black
+hi Normal     cterm=NONE
 hi Cursor     guifg=bg     guibg=fg
 hi lCursor    guifg=NONE   guibg=Cyan
 
@@ -38,9 +38,9 @@ hi TabLineFill ctermbg=Black
 hi TabLineSel ctermbg=Black
 hi clear CursorLine
 hi CursorLineNR cterm=underline
-hi CursorLine ctermfg=NONE ctermbg=NONE
-hi SpecialKey ctermfg=DarkGrey     cterm=NONE
-hi NonText    ctermfg=DarkGrey     cterm=NONE
+hi CursorLine ctermfg=NONE         ctermbg=NONE
+hi SpecialKey ctermfg=DarkGray     cterm=NONE
+hi NonText    ctermfg=DarkGray     cterm=NONE
 hi Title      ctermfg=DarkMagenta  ctermbg=Black gui=bold guifg=Magenta
 hi VertSplit  cterm=reverse        gui=reverse
 hi Visual     ctermbg=NONE         cterm=reverse gui=reverse guifg=Grey guibg=fg
@@ -66,23 +66,34 @@ hi htmlTagName ctermfg=Magenta ctermbg=NONE cterm=NONE
 hi htmlSpecialTagName ctermfg=Red ctermbg=NONE cterm=NONE
 hi htmlSpecialChar ctermfg=LightCyan ctermbg=NONE cterm=NONE
 hi htmlArg ctermfg=Cyan ctermbg=NONE cterm=NONE
-"hi htmlString ctermfg=SeaGreen ctermbg=NONE cterm=NONE
+hi htmlString ctermfg=LightRed ctermbg=NONE cterm=NONE
 hi htmlComment ctermfg=Red ctermbg=NONE cterm=NONE
 
 hi phpMemberSelector ctermfg=Red ctermbg=NONE cterm=NONE
-hi phpComparison ctermfg=LightMagenta ctermbg=NONE cterm=NONE
+hi phpComparison ctermfg=Magenta ctermbg=NONE cterm=NONE
 hi phpParent ctermfg=Red ctermbg=NONE cterm=NONE
-hi phpFunctions ctermfg=LightBlue ctermbg=NONE cterm=NONE
+hi phpFunctions ctermfg=Blue ctermbg=NONE cterm=NONE
 hi phpSpecialFunction ctermfg=LightBlue ctermbg=NONE cterm=NONE
-hi phpVarSelector ctermfg=Cyan ctermbg=NONE cterm=NONE
+hi phpVarSelector ctermfg=Blue ctermbg=NONE cterm=NONE
 hi phpStructure ctermfg=Magenta ctermbg=NONE cterm=NONE
 hi phpDefine ctermfg=Magenta ctermbg=NONE cterm=NONE
 hi phpOperator ctermfg=Magenta ctermbg=NONE cterm=NONE
 hi phpRelation ctermfg=Magenta ctermbg=NONE cterm=NONE
+hi phpConditional ctermfg=Blue ctermbg=NONE cterm=NONE
+hi phpStatement ctermfg=Yellow ctermbg=NONE cterm=NONE
+hi phpException ctermfg=Magenta ctermbg=NONE cterm=NONE
+hi phpAssignByRef ctermfg=Cyan ctermbg=NONE cterm=NONE
 
+hi javaScript ctermfg=NONE ctermbg=NONE cterm=NONE
 hi javaScriptBraces ctermfg=Cyan ctermbg=NONE cterm=NONE
 hi javaScriptParens ctermfg=Cyan ctermbg=NONE cterm=NONE
 hi javaScriptNumber ctermfg=Cyan ctermbg=NONE cterm=NONE
+hi javaScriptFunction ctermfg=Yellow ctermbg=NONE cterm=NONE
+hi javaScriptReserved ctermfg=Yellow ctermbg=NONE cterm=NONE
+hi javaScriptOperator ctermfg=Yellow ctermbg=NONE cterm=NONE
+hi javaScriptConditional ctermfg=Blue ctermbg=NONE cterm=NONE
+hi javaScriptGlobal ctermfg=Magenta ctermbg=NONE cterm=NONE
+hi javaScriptStatement ctermfg=Yellow ctermbg=NONE cterm=NONE
 
 hi cssBraces ctermfg=Cyan ctermbg=NONE cterm=NONE
 hi cssClassName ctermfg=Cyan ctermbg=NONE cterm=NONE
