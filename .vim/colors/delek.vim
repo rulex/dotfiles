@@ -68,6 +68,7 @@ hi htmlSpecialChar ctermfg=LightCyan ctermbg=NONE cterm=NONE
 hi htmlArg ctermfg=Cyan ctermbg=NONE cterm=NONE
 hi htmlString ctermfg=LightRed ctermbg=NONE cterm=NONE
 hi htmlComment ctermfg=Red ctermbg=NONE cterm=NONE
+hi htmlCommentPart ctermfg=Red ctermbg=NONE cterm=NONE
 
 hi phpMemberSelector ctermfg=Red ctermbg=NONE cterm=NONE
 hi phpComparison ctermfg=Magenta ctermbg=NONE cterm=NONE
