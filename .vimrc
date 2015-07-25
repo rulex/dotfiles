@@ -59,6 +59,10 @@ nmap <M-8> :tabnext 8<CR>
 nmap <M-9> :tabnext 9<CR>
 nmap <M-0> :tabnext 10<CR>
 
+nmap <M-Left> :tabmove -1<CR>
+nmap <M-Right> :tabmove +1<CR>
+nmap <M-Up> :tabmove 0<CR>
+
 " fold
 set foldmethod=indent
 set foldnestmax=1
