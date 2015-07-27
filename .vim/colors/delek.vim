@@ -6,7 +6,7 @@ hi clear
 let colors_name = "delek"
 
 " Normal should come first
-hi Normal     guifg=White  guibg=Black cterm=NONE
+hi Normal     cterm=NONE
 hi Cursor     guifg=bg     guibg=fg
 hi lCursor    guifg=NONE   guibg=Cyan
 

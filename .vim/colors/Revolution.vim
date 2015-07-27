@@ -111,13 +111,14 @@ hi htmlSpecialChar guifg=#80f0f0 guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermb
 hi htmlArg guifg=#00dbdb guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermbg=NONE cterm=NONE
 hi htmlString guifg=#50d050 guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermbg=NONE cterm=NONE
 hi htmlComment guifg=#ff5070 guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermbg=NONE cterm=NONE
+hi htmlLink guifg=#e0e0e0 guibg=NONE guisp=NONE gui=underline ctermfg=1 ctermbg=NONE cterm=NONE
 
-hi phpMemberSelector guifg=#ffb0b0
-hi phpComparison guifg=#dd22dd
-hi phpParent guifg=#ff5070
+hi phpMemberSelector guifg=#ff5070 guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermbg=NONE cterm=NONE
+hi phpComparison guifg=#dd22dd guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermbg=NONE cterm=NONE
+hi phpParent guifg=#ff5070 guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermbg=NONE cterm=NONE
 hi phpFunctions guifg=#2090ff guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermbg=NONE cterm=NONE
 hi phpSpecialFunction guifg=#2090ff guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermbg=NONE cterm=NONE
-hi phpVarSelector guifg=#20cbcb guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermbg=NONE cterm=NONE
+hi phpVarSelector guifg=#2070ff guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermbg=NONE cterm=NONE
 hi phpStructure guifg=#ad22dd guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermbg=NONE cterm=NONE
 hi phpDefine guifg=#fd42ed guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermbg=NONE cterm=NONE
 hi phpOperator guifg=#ff22ee guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermbg=NONE cterm=NONE
@@ -126,6 +127,7 @@ hi phpRelation guifg=#ff22ee guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermbg=NO
 hi javaScriptBraces guifg=#a0a0ff
 hi javaScriptParens guifg=#a0f0ff
 hi javaScriptNumber guifg=#c0a0f0
+hi javaScriptFunction guifg=#ff8000 guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermbg=NONE cterm=NONE
 
 hi cssBraces guifg=#c0f0c0
 hi cssClassName guifg=#c0f0c0
