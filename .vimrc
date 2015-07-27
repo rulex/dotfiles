@@ -60,6 +60,10 @@ nmap <M-8> :tabnext 8<CR>
 nmap <M-9> :tabnext 9<CR>
 nmap <M-0> :tabnext 10<CR>
 
+nmap <M-Left> :tabmove -1<CR>
+nmap <M-Right> :tabmove +1<CR>
+nmap <M-Up> :tabmove 0<CR>
+
 " fold
 set foldmethod=indent
 set foldnestmax=1
@@ -67,7 +71,19 @@ nnoremap <Space> <NOP>
 let mapleader = "\<Space>"
 let g:yankring_history_dir = '~/.vim/'
 "set pastetoggle=<F10>
-set ts=2 sts=2 sw=2 noexpandtab
+"set ts=2 sts=2 sw=2 noexpandtab
+"set ts=2 sts=0 sw=2 expandtab
+set tabstop=4 softtabstop=4 noexpandtab shiftwidth=4 smarttab
+
+"set tabstop=2       " The width of a TAB is set to 4.
+                    " Still it is a \t. It is just that
+                    " Vim will interpret it to be having
+                    " a width of 4.
+"set softtabstop=2   " Sets the number of columns for a TAB
+"set shiftwidth=2    " Indents will have a width of 4
+"set expandtab       " Expand TABs to spaces
+
+
 set splitbelow
 set splitright
 
@@ -82,15 +98,22 @@ nnoremap <leader>c O/*<Esc>
 nnoremap <leader>cc o*/<Esc>
 nnoremap <leader>ch O<!--<Esc>
 nnoremap <leader>chh o--><Esc>
-nnoremap <leader>f <Esc>:set fdm=indent<CR>
-nnoremap <leader>fi <Esc>:set fdm=indent<CR>
-nnoremap <leader>fs <Esc>:set fdm=syntax<CR>
-nnoremap <leader>fm <Esc>:set fdm=manual<CR>
-nnoremap <leader><F1> <Esc>:set foldnestmax=1<CR>
-nnoremap <leader><F2> <Esc>:set foldnestmax=2<CR>
-nnoremap <leader><F3> <Esc>:set foldnestmax=3<CR>
-nnoremap <leader><F4> <Esc>:set foldnestmax=4<CR>
-nnoremap <leader><F5> <Esc>:set foldnestmax=5<CR>
+nnoremap <leader>f <Esc>:set fdm=indent<CR>:set fdm?<CR>
+nnoremap <leader>fi <Esc>:set fdm=indent<CR>:set fdm?<CR>
+nnoremap <leader>fs <Esc>:set fdm=syntax<CR>:set fdm?<CR>
+nnoremap <leader>fm <Esc>:set fdm=manual<CR>:set fdm?<CR>
+nnoremap <leader><F1> <Esc>:set foldnestmax=1<CR>:set foldnestmax?<CR>
+nnoremap <leader><F2> <Esc>:set foldnestmax=2<CR>:set foldnestmax?<CR>
+nnoremap <leader><F3> <Esc>:set foldnestmax=3<CR>:set foldnestmax?<CR>
+nnoremap <leader><F4> <Esc>:set foldnestmax=4<CR>:set foldnestmax?<CR>
+nnoremap <leader><F5> <Esc>:set foldnestmax=5<CR>:set foldnestmax?<CR>
+nnoremap <leader><F6> <Esc>:set foldnestmax=6<CR>:set foldnestmax?<CR>
+nnoremap <leader>u <Esc>:set expandtab? tabstop? softtabstop? shiftwidth? smarttab?<CR>
+nnoremap <leader>uu <Esc>:set expandtab? tabstop? softtabstop? shiftwidth? smarttab?<CR>
+nnoremap <leader>ue <Esc>:setl expandtab!<CR>:set expandtab?<CR>
+nnoremap <leader>u2 <Esc>:setl tabstop=2 softtabstop=2 shiftwidth=2<CR>:set tabstop? softtabstop? shiftwidth?<CR>
+nnoremap <leader>u4 <Esc>:setl tabstop=4 softtabstop=4 shiftwidth=4<CR>:set tabstop? softtabstop? shiftwidth?<CR>
+nnoremap <leader>u8 <Esc>:setl tabstop=8 softtabstop=8 shiftwidth=8<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 nnoremap <leader>r <Esc>:%s/\s\+$//<CR>
 nnoremap <leader>re <Esc>:g/^$/d<CR>
 nnoremap <leader>rm <Esc>:%s/$//g<CR>
