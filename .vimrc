@@ -47,7 +47,8 @@ set synmaxcol=512 " Syntax coloring slows
 "set lazyredraw " avoid scrolling problems
 
 ":command
-command! Sw :execute ':silent w !sudo tee % > /dev/null' | :edit!
+command! Sw w !sudo tee > /dev/null %
+"command! Sw :execute ':silent w !sudo tee % > /dev/null' | :edit!
 nmap <M-1> :tabnext 1<CR>
 nmap <M-2> :tabnext 2<CR>
 nmap <M-3> :tabnext 3<CR>
