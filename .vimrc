@@ -17,6 +17,7 @@ set undodir=~/.vim/undo/
 set backupdir=~/.vim/backups/
 set directory=~/.vim/swap/
 set nu " line numbers
+set relativenumber
 set autochdir " switch to current file dir
 map <Tab> <Esc>:tabn<CR>
 map <S-Tab> <Esc>:tabp<CR>

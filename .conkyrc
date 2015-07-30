@@ -24,9 +24,9 @@ default_color white
 default_shade_color black
 default_outline_color black
 alignment top_left
-gap_x 3850
-#gap_x 20
-gap_y 5
+#gap_x 3850
+gap_x 20
+gap_y 25
 no_buffers yes
 uppercase no
 cpu_avg_samples 2
