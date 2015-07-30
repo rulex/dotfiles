@@ -37,7 +37,7 @@
     <primaryMonitor>1</primaryMonitor>
   </placement>
   <theme>
-		<!--
+    <!--
     <name>MacOS-X</name>
     <name>elementary-ob</name>
 		-->
@@ -203,6 +203,11 @@
       </action>
     </keybind>
     <keybind key="W-space">
+      <keybind key="Return">
+        <action name="Execute">
+          <command>sh -c 'konsole &amp; sleep .8s &amp;&amp; transset-df -a 0.85'</command>
+        </action>
+      </keybind>
       <keybind key="l">
         <action name="Execute">
           <command>sh -c 'xscreensaver-command -lock'</command>
@@ -241,7 +246,7 @@
         <action name="ToggleAlwaysOnTop"/>
       </keybind>
       <keybind key="s">
-				<action name="ToggleShade"/>
+        <action name="ToggleShade"/>
       </keybind>
       <keybind key="m">
         <action name="ResizeRelative">
@@ -867,16 +872,32 @@
     <manageDesktops>yes</manageDesktops>
     <!-- show the manage desktops section in the client-list-(combined-)menu -->
   </menu>
-	<applications>
-		<application name="*"><decor>yes</decor></application>
-		<application name="urxvtc"><decor>no</decor></application>
-		<application name="urxvt"><decor>no</decor></application>
-		<application class="MPlayer"><decor>no</decor></application>
-		<application class="mpv"><decor>no</decor></application>
-		<application name="uzbl-tabbed"><decor>no</decor></application>
-		<application name="bashrun"><decor>no</decor></application>
-		<application name="*irefox*"><decor>no</decor></application>
-<!--
+  <applications>
+    <application name="*">
+      <decor>yes</decor>
+    </application>
+    <application name="urxvtc">
+      <decor>no</decor>
+    </application>
+    <application name="urxvt">
+      <decor>no</decor>
+    </application>
+    <application class="MPlayer">
+      <decor>no</decor>
+    </application>
+    <application class="mpv">
+      <decor>no</decor>
+    </application>
+    <application name="uzbl-tabbed">
+      <decor>no</decor>
+    </application>
+    <application name="bashrun">
+      <decor>no</decor>
+    </application>
+    <application name="*irefox*">
+      <decor>no</decor>
+    </application>
+    <!--
   # this is an example with comments through out. use these to make your
   # own rules, but without the comments of course.
 
