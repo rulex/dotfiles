@@ -1,0 +1,64 @@
+[global_config]
+  handle_size = 0
+  custom_url_handler = /usr/bin/chromium
+  enabled_plugins = CustomCommandsMenu, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  use_custom_url_handler = True
+  geometry_hinting = False
+  title_use_system_font = False
+  tab_position = hidden
+  inactive_color_offset = 0.77
+[keybindings]
+  cycle_prev = None
+  close_window = None
+  resize_left = None
+  broadcast_all = None
+  rotate_ccw = None
+  go_right = None
+  line_up = <Shift>Up
+  resize_right = None
+  resize_down = None
+  cycle_next = None
+  broadcast_off = None
+  broadcast_group = None
+  go_up = None
+  go_prev = None
+  close_term = None
+  new_terminator = None
+  go_left = None
+  line_down = <Shift>Down
+  rotate_cw = None
+  resize_up = None
+  next_tab = None
+  go_down = None
+  edit_window_title = None
+  go_next = None
+[profiles]
+  [[default]]
+    palette = "#000000:#aa0000:#00aa00:#aa5500:#0000aa:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
+    font = ProggyCleanTT 14
+    mouse_autohide = False
+    urgent_bell = True
+    scrollbar_position = hidden
+    cursor_color = ""
+    cursor_blink = False
+    show_titlebar = False
+    use_system_font = False
+    copy_on_selection = True
+    scrollback_lines = 5000
+  [[asdf]]
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = default
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]
+  [[CustomCommandsMenu]]
+    [[[testy]]]
+      command = w
+      enabled = True
+      name = testy
+      position = 0
