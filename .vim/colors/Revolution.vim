@@ -14,7 +14,7 @@ let g:colors_name = "Revolution"
 hi Normal gui=NONE cterm=NONE
 hi IncSearch guifg=#bdae88 guibg=#492224 guisp=#492224 gui=NONE ctermfg=144 ctermbg=52 cterm=NONE
 hi WildMenu guifg=NONE guibg=#A1A6A8 guisp=#A1A6A8 gui=NONE ctermfg=NONE ctermbg=248 cterm=NONE
-hi SignColumn guifg=#192224 guibg=#536991 guisp=#536991 gui=NONE ctermfg=235 ctermbg=60 cterm=NONE
+hi SignColumn guifg=#192224 guibg=#000000 guisp=#536991 gui=NONE ctermfg=235 ctermbg=60 cterm=NONE
 hi SpecialComment guifg=#BD9800 guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermbg=NONE cterm=NONE
 hi Typedef guifg=#7379c1 guibg=NONE guisp=NONE gui=bold ctermfg=60 ctermbg=NONE cterm=bold
 hi Title guifg=#b5b5b5 guibg=#492224 guisp=#492224 gui=bold ctermfg=249 ctermbg=52 cterm=bold
@@ -103,6 +103,12 @@ hi TabLine guifg=#192224 guibg=#969693 guisp=#969693 gui=bold ctermfg=235 ctermb
 hi cursorim guifg=NONE guibg=#b5b5b5 guisp=#b5b5b5 gui=NONE ctermfg=235 ctermbg=52 cterm=NONE
 hi colorcolumn guifg=NONE guibg=#3a3c3e guisp=#3a3c3e gui=NONE ctermfg=NONE ctermbg=237 cterm=NONE
 "hi clear -- no settings --
+
+hi xmlTag guifg=#00ff00 guibg=#000000 guisp=#613830 gui=bold ctermfg=144 ctermbg=52 cterm=bold
+hi xmlEndTag guifg=#fd42ed guibg=#000000 guisp=#613830 gui=bold ctermfg=144 ctermbg=52 cterm=bold
+hi xmlTagName guifg=#fd42ed guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermbg=NONE cterm=NONE
+hi xmlAttrib guifg=#00dbdb guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermbg=NONE cterm=NONE
+hi xmlString guifg=#50d050 guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermbg=NONE cterm=NONE
 
 hi htmlTag guifg=#00ff00 guibg=#000000 guisp=#613830 gui=bold ctermfg=144 ctermbg=52 cterm=bold
 hi htmlEndTag guifg=#00ff00 guibg=#000000 guisp=#613830 gui=bold ctermfg=144 ctermbg=52 cterm=bold

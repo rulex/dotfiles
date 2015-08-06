@@ -205,7 +205,10 @@
     <keybind key="W-space">
       <keybind key="Return">
         <action name="Execute">
+          <!--
           <command>sh -c 'konsole &amp; sleep .8s &amp;&amp; transset-df -a 0.85'</command>
+          -->
+          <command>sh -c 'terminator --geometry=900x540 &amp; sleep .8s &amp;&amp; transset-df -a 0.85'</command>
         </action>
       </keybind>
       <keybind key="l">
@@ -508,7 +511,7 @@
     </keybind>
     <keybind key="W-e">
       <action name="Execute">
-        <command>sh -c 'pcmanfm'</command>
+        <command>sh -c 'dolphin'</command>
       </action>
     </keybind>
     <keybind key="W-g">
@@ -877,6 +880,9 @@
       <decor>yes</decor>
     </application>
     <application name="urxvtc">
+      <decor>no</decor>
+    </application>
+    <application name="terminator">
       <decor>no</decor>
     </application>
     <application name="urxvt">

@@ -31,7 +31,7 @@ sh ~/.mouse.sh &
 
 # KEYBOARD
 #sh ~/.xmodmap_noppoo &
-( sleep 2 && sh ~/.xmodmap_keycool ) &
+( sleep 2 && sh ~/.xmodmap ) &
 
 
 #nitrogen --restore &
