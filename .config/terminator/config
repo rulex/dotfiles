@@ -6,7 +6,7 @@
   geometry_hinting = False
   title_use_system_font = False
   tab_position = hidden
-  inactive_color_offset = 0.77
+  inactive_color_offset = 0.68
 [keybindings]
   cycle_prev = None
   close_window = None
@@ -34,17 +34,18 @@
   go_next = None
 [profiles]
   [[default]]
-    palette = "#000000:#aa0000:#00aa00:#aa5500:#0000aa:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
+    scrollbar_position = hidden
+    palette = "#000000:#ff6565:#17B217:#FF8000:#163BDE:#D11BD1:#00DBDB:#F1F1F1:#686868:#E4287C:#54FF54:#FFFF54:#5454FF:#FF54FF:#54ffff:#ffffff"
     font = ProggyCleanTT 14
     mouse_autohide = False
     urgent_bell = True
-    scrollbar_position = hidden
+    scrollback_lines = 5000
     cursor_color = ""
     cursor_blink = False
     show_titlebar = False
     use_system_font = False
     copy_on_selection = True
-    scrollback_lines = 5000
+    allow_bold = False
   [[asdf]]
 [layouts]
   [[default]]
