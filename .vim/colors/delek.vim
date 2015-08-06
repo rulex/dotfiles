@@ -66,7 +66,7 @@ hi htmlTagName ctermfg=Magenta ctermbg=NONE cterm=NONE
 hi htmlSpecialTagName ctermfg=Red ctermbg=NONE cterm=NONE
 hi htmlSpecialChar ctermfg=LightCyan ctermbg=NONE cterm=NONE
 hi htmlArg ctermfg=Cyan ctermbg=NONE cterm=NONE
-hi htmlString ctermfg=LightRed ctermbg=NONE cterm=NONE
+hi htmlString ctermfg=Green ctermbg=NONE cterm=NONE
 hi htmlComment ctermfg=Red ctermbg=NONE cterm=NONE
 hi htmlCommentPart ctermfg=DarkGrey ctermbg=NONE cterm=NONE
 
