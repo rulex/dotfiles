@@ -27,7 +27,7 @@ then
 
 fi
 
-keyb=$( lsusb | grep "Cypress USB Keyboard" )
+keyb=$( lsusb | grep "Cypress Semiconductor" )
 if [ $? -eq 0 ]
 then
 	echo "Keycool 84"
