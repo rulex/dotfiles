@@ -70,6 +70,7 @@ set foldmethod=indent
 set foldnestmax=1
 nnoremap <Space> <NOP>
 let mapleader = "\<Space>"
+let NERDTreeShowHidden=1
 let g:yankring_history_dir = '~/.vim/'
 "set pastetoggle=<F10>
 "set ts=2 sts=2 sw=2 noexpandtab
