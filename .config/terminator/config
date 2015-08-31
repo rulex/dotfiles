@@ -5,6 +5,7 @@
   use_custom_url_handler = True
   geometry_hinting = False
   title_use_system_font = False
+  title_font = ProggyClean.pcf 12
   tab_position = hidden
   inactive_color_offset = 0.68
 [keybindings]

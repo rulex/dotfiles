@@ -25,11 +25,12 @@ URxvt.transparent: false
 URxvt*depth: 24
 URxvt*background: rgba:0000/0000/0000/dddd
 URxvt.geometry: 112x32
-URxvt*font: xft:Termsyn:pixelsize=16:style=Regular
+!URxvt*font: xft:Termsyn:pixelsize=16:style=Regular
+URxvt.font: xft:ProggyCleanTT:style=Regular:size=12
+URxvt.letterSpace: -1
 !
 !URxvt*font: xft:DejaVu Sans Mono:pixelsize=13
 !
-!URxvt.font: xft:ProggyCleanTT-14:style=Regular
 !URxvt.font: xft:ProggyCleanTT-14:style=Regular
 !URxvt*font:               -*-proggyclean-medium-r-normal-*-13-*-*-*-*-*-*-*
 !URxvt*font:               -*-proggyclean-medium-r-normal-*-14-*-*-*-*-*-*-*
@@ -85,7 +86,7 @@ URxvt*externalBorder: 0
 !*color15: #ebdbb2
 
 !!black
-URxvt*color0:  	#000000
+URxvt*color0:         #000000
 URxvt*color8:         #686868
 !!!red
 URxvt*color1:         #ff6565
@@ -203,4 +204,4 @@ Xft.hintstyle: hintslight
 Xft.antialias: 1
 Xft.rgba: rgb
 
-Xcursor.theme: jaguarx
+Xcursor.theme: Adwaita
