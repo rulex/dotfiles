@@ -246,7 +246,7 @@ if has("vms")
 else
 	set backup  " keep a backup file
 endif
-set history=1000  " command line history
+set history=10000  " command line history
 set ruler  " show the cursor position all the time
 set showcmd  " display incomplete commands
 set incsearch  " do incremental searching
