@@ -1,5 +1,4 @@
 !MOUSE CURZOR
-Xcursor*theme: jaguarx
 !Xcursor*size: 32
 
 URxvt.saveLines: 50000
@@ -56,6 +55,35 @@ URxvt.tintcolor: #262626
 URxvt*internalBorder: 1
 URxvt*externalBorder: 0
 
+!hard contrast: *background: #1d2021
+!*background: #282828
+!! soft contrast: *background: #32302f
+!*foreground: #ebdbb2
+!! Black + DarkGrey
+!*color0:  #282828
+!*color8:  #928374
+!! DarkRed + Red
+!*color1:  #cc241d
+!*color9:  #fb4934
+!! DarkGreen + Green
+!*color2:  #98971a
+!*color10: #b8bb26
+!! DarkYellow + Yellow
+!*color3:  #d79921
+!*color11: #fabd2f
+!! DarkBlue + Blue
+!*color4:  #458588
+!*color12: #83a598
+!! DarkMagenta + Magenta
+!*color5:  #b16286
+!*color13: #d3869b
+!! DarkCyan + Cyan
+!*color6:  #689d6a
+!*color14: #8ec07c
+!! LightGrey + White
+!*color7:  #a89984
+!*color15: #ebdbb2
+
 !!black
 URxvt*color0:  	#000000
 URxvt*color8:         #686868
@@ -80,7 +108,7 @@ URxvt*color14:         #54FFFF
 !!white
 URxvt*color7:         #F1F1F1
 URxvt*color15:         #FFFFFF
-!
+
 
 
 
@@ -174,3 +202,5 @@ Xft.hinting: 1
 Xft.hintstyle: hintslight
 Xft.antialias: 1
 Xft.rgba: rgb
+
+Xcursor.theme: jaguarx
