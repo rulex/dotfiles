@@ -120,7 +120,7 @@
 	   by other applications, or saved in your session
 	   use obconf if you want to change these without having to log out
 	   and back in -->
-    <number>6</number>
+    <number>10</number>
     <firstdesk>1</firstdesk>
     <names>
       <name>one</name>
@@ -129,6 +129,10 @@
       <name>four</name>
       <name>five</name>
       <name>six</name>
+      <name>seven</name>
+      <name>eight</name>
+      <name>nine</name>
+      <name>ten</name>
     </names>
     <popupTime>0</popupTime>
     <!-- The number of milliseconds to show the popup for when switching
@@ -450,6 +454,26 @@
     <keybind key="W-6">
       <action name="Desktop">
         <desktop>6</desktop>
+      </action>
+    </keybind>
+    <keybind key="W-7">
+      <action name="Desktop">
+        <desktop>7</desktop>
+      </action>
+    </keybind>
+    <keybind key="W-8">
+      <action name="Desktop">
+        <desktop>8</desktop>
+      </action>
+    </keybind>
+    <keybind key="W-9">
+      <action name="Desktop">
+        <desktop>9</desktop>
+      </action>
+    </keybind>
+    <keybind key="W-0">
+      <action name="Desktop">
+        <desktop>10</desktop>
       </action>
     </keybind>
     <keybind key="W-d">
