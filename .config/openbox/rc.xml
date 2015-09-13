@@ -312,6 +312,9 @@
     <keybind key="W-F10">
       <action name="ToggleShade"/>
     </keybind>
+    <keybind key="W-m">
+      <action name="ToggleShade"/>
+    </keybind>
     <keybind key="W-F9">
       <action name="ToggleOmnipresent"/>
     </keybind>
