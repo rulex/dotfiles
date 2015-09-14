@@ -34,7 +34,7 @@
     <!-- with Smart placement on a multi-monitor system, try to place new windows
 	   on: 'Any' - any monitor, 'Mouse' - where the mouse is, 'Active' - where
 	   the active window is -->
-    <primaryMonitor>1</primaryMonitor>
+    <primaryMonitor>2</primaryMonitor>
   </placement>
   <theme>
     <!--
@@ -904,7 +904,11 @@
   </menu>
   <applications>
     <application name="*">
-      <decor>yes</decor>
+        <decor>yes</decor>
+        <position force="no">
+            <x>center</x>
+            <y>center</y>
+        </position>
     </application>
     <application name="urxvtc">
       <decor>no</decor>
