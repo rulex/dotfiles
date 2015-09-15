@@ -538,7 +538,7 @@
     </keybind>
     <keybind key="W-e">
       <action name="Execute">
-        <command>sh -c 'dolphin'</command>
+        <command>sh -c 'pcmanfm'</command>
       </action>
     </keybind>
     <keybind key="W-g">
