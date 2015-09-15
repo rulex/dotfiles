@@ -94,6 +94,7 @@ map <F9> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 nnoremap ö <Esc>:
+nnoremap ä <Esc>"
 nnoremap <F10> <Esc>:set paste!<CR>:set paste?<CR>
 nnoremap <leader>p <Esc>:set paste!<CR>:set paste?<CR>
 nnoremap <leader>c O/*<Esc>
