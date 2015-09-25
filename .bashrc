@@ -38,8 +38,11 @@ HISTCONTROL=ignoreboth
 HISTSIZE=99999
 
 eval `dircolors -b`
-export PS1="\[\][$(tput setaf 2)\u$(tput sgr0)@$(tput setaf 3)\h$(tput setaf 5) \w$(tput sgr0)] $(tput setaf 6)\\$ \[\]\[$(tput sgr0)\]"
-#PS1='[\u@\h \W]\$ '
+#export PS1="\[\][$(tput setaf 2)\u$(tput sgr0)@$(tput setaf 3)\h$(tput setaf 5) \w$(tput sgr0)] $(tput setaf 6)\\$ \[\]\[$(tput sgr0)\]"
+export PS1="[\\[$(tput setaf 2)\\]\t \u\\[$(tput sgr0)\\]@\\[$(tput setaf 2)\\]\h:\\[$(tput setaf 2)\\]\w \\[$(tput sgr0)\\]] \\[$(tput setaf 6)\\]$ \\[$(tput sgr0)\\]"
+#export PS1="PS1='\\[\e[0;32m\u@\w/:\[\e[m '"
+#export PS1='\\[\e[0;32m\u@\w/:\[\e[m '
+#export PS1='[\u@\h \W]\$ '
 #PS1='\[\033[1;32m\]\u\[\033[0;00m\]@\[\033[1;35m\]\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[31m\]\n\$ \[\033[0;00m\]'
 #PS1='[\[\033[1;36m\]\w\[\033[0;00m\]] LL \[\033[1;31m\]$ \[\033[0;00m\]'
 #PS1='\[\033[0;32m\][\[\033[0m\033[0;36m\]\u\[\033[0;00m\]@\[\033[0m\033[0;36m\]\h\[\033[0;32m\]][\[\033[0m\033[0;36m\]\t\[\033[0;32m\]][\[\033[0m\033[0;36m\]\w\[\033[0;32m\]]\n\[\033[0;32m\]\033[0;36m\]\$\[\033[0m\] '
