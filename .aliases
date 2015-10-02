@@ -50,6 +50,23 @@ alias glc='git shortlog --no-merges -nes'
 alias grup='git remote update'
 alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
 
-alias A='notify-send -t 10000 -a A'
+#alias A='notify-send -t 10000 -a A'
 alias mysql='mysql --auto-rehash'
+
+A() {
+	#echo args $#
+	if [ $# -eq 0 ];then
+		txt="Done"
+	else
+		txt="$*"
+	fi
+	notify-send -t 10000 -a A-Notice $txt
+}
+
+AA() {
+	notify-send -t 10000 -a A "$*"
+	if type pushover 2 > /dev/null; then
+		pushover "$*"
+	fi
+}
 
