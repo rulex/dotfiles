@@ -19,6 +19,7 @@ alias sl=ls
 alias dt='date +"%Y-%m-%dT%H:%M:%S"'
 
 alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
 
 alias afind='ack-grep -il'
 
