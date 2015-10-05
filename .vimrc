@@ -111,6 +111,7 @@ nnoremap <leader><F3> <Esc>:set foldnestmax=3<CR>:set foldnestmax?<CR>
 nnoremap <leader><F4> <Esc>:set foldnestmax=4<CR>:set foldnestmax?<CR>
 nnoremap <leader><F5> <Esc>:set foldnestmax=5<CR>:set foldnestmax?<CR>
 nnoremap <leader><F6> <Esc>:set foldnestmax=6<CR>:set foldnestmax?<CR>
+nnoremap <leader>C <Esc>:set fileencoding? fileformat? encoding? bomb?<CR>
 nnoremap <leader>u <Esc>:set expandtab? tabstop? softtabstop? shiftwidth? smarttab?<CR>
 nnoremap <leader>uu <Esc>:set expandtab? tabstop? softtabstop? shiftwidth? smarttab?<CR>
 nnoremap <leader>ue <Esc>:setl expandtab!<CR>:set expandtab?<CR>
