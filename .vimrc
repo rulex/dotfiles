@@ -99,8 +99,12 @@ nnoremap <F10> <Esc>:set paste!<CR>:set paste?<CR>
 nnoremap <leader>p <Esc>:set paste!<CR>:set paste?<CR>
 nnoremap <leader>c O/*<Esc>
 nnoremap <leader>cc o*/<Esc>
+nnoremap <leader>ccc {o/*<Esc>}O*/<Esc>
 nnoremap <leader>ch O<!--<Esc>
 nnoremap <leader>chh o--><Esc>
+nnoremap <leader>cp O"""<Esc>
+nnoremap <leader>cpp o"""-<Esc>
+nnoremap <leader>cppp {o"""<Esc>}O"""<Esc>
 nnoremap <leader>f <Esc>:set fdm=indent<CR>:set fdm?<CR>
 nnoremap <leader>fi <Esc>:set fdm=indent<CR>:set fdm?<CR>
 nnoremap <leader>fs <Esc>:set fdm=syntax<CR>:set fdm?<CR>
@@ -118,12 +122,14 @@ nnoremap <leader>ue <Esc>:setl expandtab!<CR>:set expandtab?<CR>
 nnoremap <leader>u2 <Esc>:setl tabstop=2 softtabstop=2 shiftwidth=2<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 nnoremap <leader>u4 <Esc>:setl tabstop=4 softtabstop=4 shiftwidth=4<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 nnoremap <leader>u8 <Esc>:setl tabstop=8 softtabstop=8 shiftwidth=8<CR>:set tabstop? softtabstop? shiftwidth?<CR>
-nnoremap <leader>r <Esc>:%s/\s\+$//<CR>
-nnoremap <leader>re <Esc>:g/^$/d<CR>
-nnoremap <leader>rm <Esc>:%s/$//g<CR>
+nnoremap <leader>r <Esc>:%s/\s\+$//<CR> " remove extra spaces from line end
+nnoremap <leader>re <Esc>:g/^$/d<CR> " remove empty lines
+nnoremap <leader>rm <Esc>:%s/\r$//g<CR> " remove lines ending with ^M
 nnoremap <leader>k <Esc>:set list!<CR>:set list?<CR>
-nnoremap <leader>sv <Esc><C-w>v<C-w>l
-nnoremap <leader>sh <Esc><C-w>s
+nnoremap <leader>% <Esc><C-w>v<C-w>l
+nnoremap <leader>" <Esc><C-w>s
+nnoremap <c-w>% <Esc><C-w>v<C-w>l
+nnoremap <c-w>" <Esc><C-w>s
 nnoremap <leader>n <Esc>:NERDTreeToggle<CR>
 nnoremap <leader>g <Esc>:GundoToggle<CR>
 nnoremap <leader>e <Esc>:e<CR>
@@ -132,6 +138,7 @@ nnoremap <leader>ee <Esc>:e!<CR>
 nnoremap <leader>e. <Esc>:e .<CR>
 nnoremap <leader>em <Esc>:e $MYVIMRC<CR>
 nnoremap <leader>tt <Esc>:tabnew<CR>
+nnoremap <leader>t. <Esc>:tabnew .<CR>
 nnoremap <leader>te <Esc>:tabnew<CR>:term<CR>
 nnoremap <leader>tf <Esc>:tabnew %<CR>
 nnoremap <leader>dd <Esc>:diffthis<CR>
@@ -144,7 +151,8 @@ nnoremap <leader>dN [c
 nnoremap <leader>q <Esc>:q<CR>
 nnoremap <leader>qq <Esc>:qa<CR>
 nnoremap <leader>qqq <Esc>:qa!<CR>
-nnoremap <leader>D <Esc>:r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
+nnoremap <leader>D <Esc>:r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR> " insert date time
+nnoremap <leader>mm <Esc>:%s///gn<CR> " count search matches
 
 set list
 set listchars=tab:\»\ ,trail:·
