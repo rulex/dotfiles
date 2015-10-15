@@ -53,4 +53,5 @@ alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
 
 alias A='notify-send -t 10000 -a A'
 alias mysql='mysql --auto-rehash'
+alias cv='progress'
 
