@@ -62,13 +62,63 @@ A() {
 	else
 		txt="$*"
 	fi
-	notify-send -t 10000 -a A-Notice $txt
+	notify-send -t 10000 -a A-Notice ${txt}
 }
 
 AA() {
-	notify-send -t 10000 -a A "$*"
+	if [ $# -eq 0 ];then
+		txt="Done"
+	else
+		txt="$*"
+	fi
+	notify-send -t 10000 -a A-Notice ${txt}
 	if type pushover 2 > /dev/null; then
 		pushover "$*"
 	fi
 }
 
+# pretty-time function
+function pretty_time() {
+	if (( $# == 0 )); then
+		echo 'Input required'
+		exit 1
+	fi
+	local human total_seconds=$1
+	local days=$(( total_seconds / 60 / 60 / 24 ))
+	local hours=$(( total_seconds / 60 / 60 % 24 ))
+	local minutes=$(( total_seconds / 60 % 60 ))
+	local seconds=$(( total_seconds % 60 ))
+	(( days > 0 )) && human+="${days}d "
+	(( hours > 0 )) && human+="${hours}h "
+	(( minutes > 0 )) && human+="${minutes}m "
+	human+="${seconds}s"
+	echo "$human"
+}
+
+#
+if [[ -x $( which notify-send ) ]]; then
+	notify-preexec-hook() {
+		zsh_notifier_cmd="$1"
+		zsh_notifier_time="`date +%s`"
+	}
+	notify-precmd-hook() {
+		local time_taken
+		if [[ "${zsh_notifier_cmd}" != "" ]]; then
+			time_taken=$(( `date +%s` - ${zsh_notifier_time} ))
+			local str="cmd: $zsh_notifier_cmd<br>code: $(echo $?) <br>start: $(date -d @$(date +%s) +"%Y-%m-%dT%H:%M:%S")<br>time: $(pretty_time $time_taken)"
+			if (( $time_taken > $REPORTTIME_AA )); then
+				str="$USER@$HOST <br>$str"
+				AA $str
+			elif (( $time_taken > $REPORTTIME_A )); then
+				A $str
+			fi
+		fi
+		zsh_notifier_cmd=
+	}
+fi
+
+[[ -z $preexec_functions ]] && preexec_functions=()
+preexec_functions=( $preexec_functions notify-preexec-hook )
+
+[[ -z $precmd_functions ]] && precmd_functions=()
+precmd_functions=( $precmd_functions notify-precmd-hook )

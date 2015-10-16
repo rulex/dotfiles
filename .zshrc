@@ -1,6 +1,10 @@
 # Path to your oh-my-zsh configuration.
 # https://github.com/rulex/oh-my-zsh.git
 #
+
+# timer
+integer t0=$(date '+%s')
+
 ZSH=$HOME/.oh-my-zsh
 unset TMOUT
 
@@ -30,7 +34,7 @@ fi
 source ~/gitdocs/private.sh
 
 # Set to this to use case-sensitive completion
-CASE_SENSITIVE="true"
+#CASE_SENSITIVE="true"
 
 # Uncomment this to disable bi-weekly auto-update checks
 # DISABLE_AUTO_UPDATE="true"
@@ -119,3 +123,16 @@ bindkey "^[^[OC" forward-word # Urxvt mosh alt-right
 bindkey "^[^[OD" backward-word # Urxvt mosh alt-left
 
 unset GREP_OPTIONS
+
+export REPORTTIME=3 # display time for cpu heavy cmds
+export REPORTTIME_A=3 # do a notify-send
+export REPORTTIME_AA=60
+
+function {
+	local -i t1 startup
+	t1=$( date '+%s' )
+	startup=$(( t1 - t0 ))
+	[[ $startup -gt 1 ]] && print "Hmm, poor shell startup time: $startup"
+}
+unset t0
+
