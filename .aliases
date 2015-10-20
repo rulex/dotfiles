@@ -108,7 +108,7 @@ if [[ -x $( which notify-send ) ]]; then
 			local str="cmd: $zsh_notifier_cmd<br>code: $(echo $?) <br>start: $(date -d @$(date +%s) +"%Y-%m-%dT%H:%M:%S")<br>time: $(pretty_time $time_taken)"
 			if (( $time_taken > $REPORTTIME_AA )); then
 				str="$USER@$HOST <br>$str"
-				str=$(str/<br>/\\n)
+				str=$( echo $str | sed "s|<br>|\n|g" )
 				AA $str
 			elif (( $time_taken > $REPORTTIME_A )); then
 				A $str
