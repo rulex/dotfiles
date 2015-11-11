@@ -8,6 +8,10 @@ endif
 set nocompatible
 set modeline
 set background=dark
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -72,6 +76,32 @@ nnoremap <Space> <NOP>
 let mapleader = "\<Space>"
 let NERDTreeShowHidden=1
 let g:yankring_history_dir = '~/.vim/'
+let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+\   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+\   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+\   'operators': '_,_',
+\   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+\   'separately': {
+\       '*': {},
+\       'tex': {
+\           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+\       },
+\       'lisp': {
+\           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+\       },
+\       'vim': {
+\           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+\       },
+\       'html': {
+\           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+\       },
+\       'css': 0,
+\   }
+\}
+
+
 "set pastetoggle=<F10>
 "set ts=2 sts=2 sw=2 noexpandtab
 "set ts=2 sts=0 sw=2 expandtab
@@ -96,7 +126,9 @@ map <F9> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<
 nnoremap ö <Esc>:
 nnoremap ä <Esc>"
 nnoremap <F10> <Esc>:set paste!<CR>:set paste?<CR>
-nnoremap <leader>p <Esc>:set paste!<CR>:set paste?<CR>
+nnoremap <leader>p <Esc>"*p
+vmap <leader>y "*y
+nnoremap <leader>y <Esc>:w !xclip<CR>
 nnoremap <leader>c O/*<Esc>
 nnoremap <leader>cc o*/<Esc>
 nnoremap <leader>ccc {o/*<Esc>}O*/<Esc>
@@ -185,6 +217,7 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+
 
 "FOLDING
 function! MyFoldText() " {{{
@@ -330,3 +363,20 @@ else
 	set timeoutlen=450
 	set ttimeoutlen=250
 endif
+
+call plug#begin('~/.vim/plugged')
+" plugins
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'marcweber/vim-addon-mw-utils' " for snipmate
+Plug 'tomtom/tlib_vim' " for snipmate
+Plug 'garbas/vim-snipmate'
+Plug 'ervandew/supertab'
+Plug 'luochen1990/rainbow'
+Plug 'junegunn/vim-easy-align'
+Plug 'vim-scripts/Gundo' ", { 'on': 'GundoToggle' }
+
+" syntax
+Plug 'vim-scripts/httplog'
+Plug 'vim-scripts/css_color'
+call plug#end()
+
