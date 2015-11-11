@@ -320,8 +320,8 @@ endif
 
 if has('nvim')
 	tnoremap <c-a> <c-\><c-n>
-	"colorscheme base16-shapeshifter
-	colorscheme Revolution
+	"colorscheme Revolution
+	colorscheme delek
 	set ttimeout
 	set ttimeoutlen=0
 else
