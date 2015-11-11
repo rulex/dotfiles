@@ -128,6 +128,8 @@ export REPORTTIME=3 # display time for cpu heavy cmds
 export REPORTTIME_A=3 # do a notify-send
 export REPORTTIME_AA=60
 
+export ZLE_REMOVE_SUFFIX_CHARS=""
+
 function {
 	local -i t1 startup
 	t1=$( date '+%s' )
@@ -135,4 +137,5 @@ function {
 	[[ $startup -gt 1 ]] && print "Hmm, poor shell startup time: $startup"
 }
 unset t0
+
 
