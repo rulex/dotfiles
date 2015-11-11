@@ -184,7 +184,7 @@ nnoremap <leader>q <Esc>:q<CR>
 nnoremap <leader>qq <Esc>:qa<CR>
 nnoremap <leader>qqq <Esc>:qa!<CR>
 nnoremap <leader>D <Esc>:r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR> " insert date time
-nnoremap <leader>mm <Esc>:%s///gn<CR> " count search matches
+nnoremap <leader>mc <Esc>:%s///gn<CR> " count search matches
 
 set list
 set listchars=tab:\»\ ,trail:·
@@ -374,6 +374,7 @@ Plug 'ervandew/supertab'
 Plug 'luochen1990/rainbow'
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-scripts/Gundo' ", { 'on': 'GundoToggle' }
+Plug 'kshenoy/vim-signature'
 
 " syntax
 Plug 'vim-scripts/httplog'
