@@ -72,7 +72,7 @@ hi htmlCommentPart ctermfg=DarkGrey ctermbg=NONE cterm=NONE
 
 hi phpMemberSelector ctermfg=Red ctermbg=NONE cterm=NONE
 hi phpComparison ctermfg=Magenta ctermbg=NONE cterm=NONE
-hi phpParent ctermfg=Red ctermbg=NONE cterm=NONE
+hi phpParent ctermfg=Yellow ctermbg=NONE cterm=NONE
 hi phpFunctions ctermfg=Blue ctermbg=NONE cterm=NONE
 hi phpSpecialFunction ctermfg=LightBlue ctermbg=NONE cterm=NONE
 hi phpVarSelector ctermfg=Blue ctermbg=NONE cterm=NONE
@@ -87,8 +87,8 @@ hi phpAssignByRef ctermfg=Cyan ctermbg=NONE cterm=NONE
 
 hi javaScript ctermfg=NONE ctermbg=NONE cterm=NONE
 hi javaScriptBraces ctermfg=Cyan ctermbg=NONE cterm=NONE
-hi javaScriptParens ctermfg=Cyan ctermbg=NONE cterm=NONE
-hi javaScriptNumber ctermfg=Cyan ctermbg=NONE cterm=NONE
+hi javaScriptParens ctermfg=Yellow ctermbg=NONE cterm=NONE
+hi javaScriptNumber ctermfg=DarkGreen ctermbg=NONE cterm=NONE
 hi javaScriptFunction ctermfg=Yellow ctermbg=NONE cterm=NONE
 hi javaScriptReserved ctermfg=Yellow ctermbg=NONE cterm=NONE
 hi javaScriptOperator ctermfg=Yellow ctermbg=NONE cterm=NONE

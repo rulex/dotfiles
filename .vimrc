@@ -81,7 +81,7 @@ let g:rainbow_active = 1
 "\   'ctermfgs': [ '1', '2', '3', '5', '6', '7', '9', '10', '11' ,'12', '13', '14', '15' ],
 let g:rainbow_conf = {
 \   'guifgs': [ 'royalblue3', 'darkorange3', 'seagreen3', 'firebrick' ],
-\   'ctermfgs': [ '11', '10', '14' ],
+\   'ctermfgs': [ '11', '14', '3', '13' ],
 \   'operators': '_,_',
 \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
 \   'separately': {
