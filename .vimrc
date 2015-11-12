@@ -78,9 +78,10 @@ let NERDTreeShowHidden=1
 let g:yankring_history_dir = '~/.vim/'
 let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:rainbow_active = 1
+"\   'ctermfgs': [ '1', '2', '3', '5', '6', '7', '9', '10', '11' ,'12', '13', '14', '15' ],
 let g:rainbow_conf = {
-\   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-\   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+\   'guifgs': [ 'royalblue3', 'darkorange3', 'seagreen3', 'firebrick' ],
+\   'ctermfgs': [ '11', '10', '14' ],
 \   'operators': '_,_',
 \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
 \   'separately': {
@@ -371,6 +372,9 @@ Plug 'marcweber/vim-addon-mw-utils' " for snipmate
 Plug 'tomtom/tlib_vim' " for snipmate
 Plug 'garbas/vim-snipmate'
 Plug 'ervandew/supertab'
+"Plug 'Shougo/deoplete.nvim'
+"Plug 'davidhalter/jedi-vim' " python
+"Plug 'ternjs/tern_for_vim' " JS
 Plug 'luochen1990/rainbow'
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-scripts/Gundo' ", { 'on': 'GundoToggle' }
@@ -380,4 +384,6 @@ Plug 'kshenoy/vim-signature'
 Plug 'vim-scripts/httplog'
 Plug 'vim-scripts/css_color'
 call plug#end()
+
+
 
