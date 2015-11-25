@@ -13,7 +13,7 @@ let g:colors_name = "Revolution"
 "hi Normal guifg=#f1f1f1 guibg=#000000 guisp=#000000 gui=NONE ctermfg=144 ctermbg=235 cterm=NONE
 hi Normal gui=NONE cterm=NONE
 hi IncSearch guifg=#bdae88 guibg=#492224 guisp=#492224 gui=NONE ctermfg=144 ctermbg=52 cterm=NONE
-hi WildMenu guifg=NONE guibg=#A1A6A8 guisp=#A1A6A8 gui=NONE ctermfg=NONE ctermbg=248 cterm=NONE
+hi WildMenu guifg=#000000 guibg=#A1A6A8 guisp=#A1A6A8 gui=NONE ctermfg=NONE ctermbg=248 cterm=NONE
 hi SignColumn guifg=#192224 guibg=#000000 guisp=#536991 gui=NONE ctermfg=235 ctermbg=60 cterm=NONE
 hi SpecialComment guifg=#BD9800 guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermbg=NONE cterm=NONE
 hi Typedef guifg=#7379c1 guibg=NONE guisp=NONE gui=bold ctermfg=60 ctermbg=NONE cterm=bold
