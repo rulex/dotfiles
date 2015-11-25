@@ -5,7 +5,7 @@ endif
 
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
-set nocompatible
+"set nocompatible
 set modeline
 set background=dark
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -49,7 +49,7 @@ set statusline+=\ %P    "percent through file
 set synmaxcol=512 " Syntax coloring slows
 "set ttyfast
 "set ttyscroll=3
-"set lazyredraw " avoid scrolling problems
+set lazyredraw " avoid scrolling problems
 
 ":command
 command! Sw w !sudo tee > /dev/null %
@@ -69,18 +69,55 @@ nmap <M-Left> :tabmove -1<CR>
 nmap <M-Right> :tabmove +1<CR>
 nmap <M-Up> :tabmove 0<CR>
 
+nmap <F8> :TagbarToggle<CR>
+
 " fold
 set foldmethod=indent
 set foldnestmax=1
 nnoremap <Space> <NOP>
+
+let g:terminal_color_0="#000000" " #000000
+let g:terminal_color_8="#686868"
+" red
+let g:terminal_color_1="#ff6565"
+let g:terminal_color_9="#E4287C"
+" green
+let g:terminal_color_2="#17B217"
+let g:terminal_color_10="#54FF54"
+" yellow
+let g:terminal_color_3="#FF8000"
+let g:terminal_color_11="#FFFF54"
+" blue
+let g:terminal_color_4="#163BDE"
+let g:terminal_color_12="#54FF54"
+" magenta
+let g:terminal_color_5="#D11BD1"
+let g:terminal_color_13="#FF54FF"
+" cyan
+let g:terminal_color_6="#00DBDB"
+let g:terminal_color_14="#54FFFF"
+" white
+let g:terminal_color_7="#F1F1F1"
+let g:terminal_color_15="#FFFFFF"
+
+"let g:easytags_async
+set tags=./tags;
+let g:easytags_dynamic_files = 2
+let g:easytags_file = '~/.vim/tags'
+"let g:easytags_by_filetype
+let g:easytags_auto_update = 0
+"let g:easytags_auto_highlight = 0
+"unlet b:easytags_auto_highlight
+let g:easytags_syntax_keyword = 'always'
+
 let mapleader = "\<Space>"
 let NERDTreeShowHidden=1
 let g:yankring_history_dir = '~/.vim/'
 let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:rainbow_active = 1
-"\   'ctermfgs': [ '1', '2', '3', '5', '6', '7', '9', '10', '11' ,'12', '13', '14', '15' ],
+"\   'guifgs': [ '#ffff00', '#00ffff', '#D11BD1' ],
 let g:rainbow_conf = {
-\   'guifgs': [ 'royalblue3', 'darkorange3', 'seagreen3', 'firebrick' ],
+\   'guifgs': [ '#ffff00', '#00ffff', '#8601AF' ],
 \   'ctermfgs': [ '11', '14', '3', '13' ],
 \   'operators': '_,_',
 \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
@@ -115,7 +152,6 @@ set tabstop=4 softtabstop=4 noexpandtab shiftwidth=4 smarttab
 "set softtabstop=2   " Sets the number of columns for a TAB
 "set shiftwidth=2    " Indents will have a width of 4
 "set expandtab       " Expand TABs to spaces
-
 
 set splitbelow
 set splitright
@@ -354,8 +390,8 @@ endif
 
 if has('nvim')
 	tnoremap <c-a> <c-\><c-n>
-	"colorscheme Revolution
-	colorscheme delek
+	colorscheme Revolution
+	"colorscheme delek
 	set ttimeout
 	set ttimeoutlen=0
 else
@@ -379,6 +415,13 @@ Plug 'luochen1990/rainbow'
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-scripts/Gundo' ", { 'on': 'GundoToggle' }
 Plug 'kshenoy/vim-signature'
+
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-easytags'
+
+"Plug 'trapd00r/vim-highlight-default-highlight-groups'
 
 " syntax
 Plug 'vim-scripts/httplog'
