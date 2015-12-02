@@ -222,6 +222,7 @@ nnoremap <leader>qq <Esc>:qa<CR>
 nnoremap <leader>qqq <Esc>:qa!<CR>
 nnoremap <leader>D <Esc>:r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR> " insert date time
 nnoremap <leader>mc <Esc>:%s///gn<CR> " count search matches
+nnoremap <leader>/ <Esc>/\c^<<<<<<<\\|^=======\\|^>>>>>>><CR>
 
 set list
 set listchars=tab:\»\ ,trail:·
