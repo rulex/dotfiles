@@ -221,6 +221,7 @@ nnoremap <leader>mc <Esc>:%s///gn<CR> " count search matches
 nnoremap <leader><Left> :tabmove -1<CR>
 nnoremap <leader><Right> :tabmove +1<CR>
 nnoremap <leader><Up> :tabmove 0<CR>
+nnoremap <leader>/ <Esc>/\c^<<<<<<<\\|^=======\\|^>>>>>>><CR>
 
 set list
 set listchars=tab:\»\ ,trail:·
