@@ -65,10 +65,6 @@ nmap <M-8> :tabnext 8<CR>
 nmap <M-9> :tabnext 9<CR>
 nmap <M-0> :tabnext 10<CR>
 
-nmap <M-Left> :tabmove -1<CR>
-nmap <M-Right> :tabmove +1<CR>
-nmap <M-Up> :tabmove 0<CR>
-
 nmap <F8> :TagbarToggle<CR>
 
 " fold
@@ -222,6 +218,9 @@ nnoremap <leader>qq <Esc>:qa<CR>
 nnoremap <leader>qqq <Esc>:qa!<CR>
 nnoremap <leader>D <Esc>:r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR> " insert date time
 nnoremap <leader>mc <Esc>:%s///gn<CR> " count search matches
+nnoremap <leader><Left> :tabmove -1<CR>
+nnoremap <leader><Right> :tabmove +1<CR>
+nnoremap <leader><Up> :tabmove 0<CR>
 
 set list
 set listchars=tab:\»\ ,trail:·
@@ -254,7 +253,6 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
-
 
 "FOLDING
 function! MyFoldText() " {{{
@@ -314,7 +312,6 @@ function! CurlyBracket()
 		sil exe "normal a //" . l:my_string
 	endif
 endfunction
-
 
 "set clipboard+=unnamed " share X clipboard
 "set wildmenu "command line completion wild style
@@ -414,7 +411,7 @@ Plug 'ervandew/supertab'
 Plug 'luochen1990/rainbow'
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-scripts/Gundo' ", { 'on': 'GundoToggle' }
-Plug 'kshenoy/vim-signature'
+Plug 'kshenoy/vim-signature' " vim marks
 
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
@@ -427,6 +424,5 @@ Plug 'xolox/vim-easytags'
 Plug 'vim-scripts/httplog'
 Plug 'vim-scripts/css_color'
 call plug#end()
-
 
 
