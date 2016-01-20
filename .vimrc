@@ -111,9 +111,9 @@ let NERDTreeShowHidden=1
 let g:yankring_history_dir = '~/.vim/'
 let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:rainbow_active = 1
-"\   'guifgs': [ '#ffff00', '#00ffff', '#D11BD1' ],
+"\   'guifgs': [ '#ffff00', '#00ffff', '#FF00FF' ],
 let g:rainbow_conf = {
-\   'guifgs': [ '#ffff00', '#00ffff', '#8601AF' ],
+\   'guifgs': [ '#ffff00', '#00ffff', '#FF00FF' ],
 \   'ctermfgs': [ '11', '14', '3', '13' ],
 \   'operators': '_,_',
 \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],

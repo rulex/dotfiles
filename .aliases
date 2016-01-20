@@ -16,7 +16,28 @@ alias la='ls -lA'
 alias lc='ls -lthrc'
 alias lca='ls -ltrca'
 alias sl=ls
-alias dt='date +"%Y-%m-%dT%H:%M:%S"'
+#alias dt='date +"%Y-%m-%dT%H:%M:%S"'
+function dt() {
+	if [[ $# == 0 ]]; then
+		# pretty print now
+		date +"%Y-%m-%dT%H:%M:%S"
+	elif [[ $# == 1 ]] && [[ $1 != "p" ]]; then
+		# pretty print input unix ts
+		date +"%Y-%m-%dT%H:%M:%S" --date @"$1"
+	elif [[ $# == 2 ]] && [[ $1 == "p" ]]; then
+		# pretty print input diff seconds
+		local human total_seconds=$2
+		local days=$(( total_seconds / 60 / 60 / 24 ))
+		local hours=$(( total_seconds / 60 / 60 % 24 ))
+		local minutes=$(( total_seconds / 60 % 60 ))
+		local seconds=$(( total_seconds % 60 ))
+		(( days > 0 )) && human+="${days}d "
+		(( hours > 0 )) && human+="${hours}h "
+		(( minutes > 0 )) && human+="${minutes}m "
+		human+="${seconds}s"
+		echo "$human"
+	fi
+}
 
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
