@@ -88,7 +88,8 @@ HIST_STAMPS="yyyy-mm-dd"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=( cp git npm systemd archlinux docker mosh rsync )
+plugins=( cp systemd archlinux docker mosh )
+#plugins=()
 
 source $ZSH/oh-my-zsh.sh
 
@@ -96,13 +97,6 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH:$HOME/gitdocs/bin
 # export MANPATH="/usr/local/man:$MANPATH"
-
-# # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -126,7 +120,7 @@ unset GREP_OPTIONS
 
 export REPORTTIME=3 # display time for cpu heavy cmds
 export REPORTTIME_A=3 # do a notify-send
-export REPORTTIME_AA=60
+export REPORTTIME_AA=60 # do a notify-send and pushover
 
 export ZLE_REMOVE_SUFFIX_CHARS=""
 

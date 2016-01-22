@@ -30,23 +30,23 @@ set formatoptions=q
 set ruler
 "set nocursorline
 set cursorline
-set scrolljump=1 				" lines to scroll when cursor leaves screen
-set scrolloff=5 				" minimum lines to keep above and below cursor
-set laststatus=2 "show statusline allways
-set statusline=%F       "tail of the filename
-set statusline+=%m      "modified flag
-set statusline+=%=      "left/right separator
-set statusline+=[0x%B]    "show ASCII value of char under cursor
+set scrolljump=1        " lines to scroll when cursor leaves screen
+set scrolloff=5         " minimum lines to keep above and below cursor
+set laststatus=2        " show statusline allways
+set statusline=%F       " tail of the filename
+set statusline+=%m      " modified flag
+set statusline+=%=      " left/right separator
+set statusline+=[U+%B]  " show ASCII value of char under cursor
 "set statusline+=[%F]
 set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
-set statusline+=%{&ff}] "file format
-set statusline+=%h      "help file flag
-set statusline+=%r      "read only flag
-set statusline+=%y\       "filetype
-set statusline+=%c,     "cursor column
-set statusline+=%l/%L   "cursor line/total lines
-set statusline+=\ %P    "percent through file
-set synmaxcol=512 " Syntax coloring slows
+set statusline+=%{&ff}] " file format
+set statusline+=%h      " help file flag
+set statusline+=%r      " read only flag
+set statusline+=%y\     " filetype
+set statusline+=%c,     " cursor column
+set statusline+=%l/%L   " cursor line/total lines
+set statusline+=\ %P    " percent through file
+set synmaxcol=512       " Syntax coloring slows
 "set ttyfast
 "set ttyscroll=3
 set lazyredraw " avoid scrolling problems
