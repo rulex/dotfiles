@@ -24,7 +24,9 @@ set nu " line numbers
 set norelativenumber
 set autochdir " switch to current file dir
 map <Tab> <Esc>:tabn<CR>
+map <Right> <Esc>:tabn<CR>
 map <S-Tab> <Esc>:tabp<CR>
+map <Left> <Esc>:tabp<CR>
 map <BS> <Esc>:noh<CR>
 set formatoptions=q
 set ruler
