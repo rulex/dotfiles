@@ -119,13 +119,14 @@ function pretty_time() {
 if [[ -x $( which notify-send ) ]]; then
 	notify-preexec-hook() {
 		zsh_notifier_cmd="$1"
-		zsh_notifier_time="`date +%s`"
+		zsh_notifier_time="$(date +%s)"
 	}
 	notify-precmd-hook() {
+		returncode=$(echo $?)
 		local time_taken
 		if [[ "${zsh_notifier_cmd}" != "" ]]; then
 			time_taken=$(( `date +%s` - ${zsh_notifier_time} ))
-			local str="cmd: $zsh_notifier_cmd<br>code: $(echo $?) <br>start: $(date -d @$(date +%s) +"%Y-%m-%dT%H:%M:%S")<br>time: $(pretty_time $time_taken)"
+			local str="cmd: $zsh_notifier_cmd<br>code: ${returncode} <br>start: $(date -d @${zsh_notifier_time} +"%Y-%m-%dT%H:%M:%S")<br>time: $(pretty_time $time_taken)<br>end: $(date +"%Y-%m-%dT%H:%M:%S")"
 			if (( $time_taken > $REPORTTIME_AA )); then
 				str="$USER@$HOST <br>$str"
 				str=$( echo $str | sed "s|<br>|\n|g" )

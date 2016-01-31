@@ -69,7 +69,7 @@ nmap <F8> :TagbarToggle<CR>
 
 " fold
 set foldmethod=indent
-set foldnestmax=1
+set foldnestmax=2
 nnoremap <Space> <NOP>
 
 let g:terminal_color_0="#000000" " #000000
