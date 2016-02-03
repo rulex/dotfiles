@@ -115,6 +115,14 @@ function pretty_time() {
 	echo "$human"
 }
 
+function pretty_size() {
+	if [[ $# == 2 ]] && [[ $1 == "i" ]]; then
+		echo $2 | numfmt --to=iec-i
+	else
+		echo $1 | numfmt --to=iec
+	fi
+}
+
 #
 if [[ -x $( which notify-send ) ]]; then
 	notify-preexec-hook() {
