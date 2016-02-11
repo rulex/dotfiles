@@ -40,6 +40,7 @@ sh ~/.mouse.sh &
 #stalonetray -bg "#000000" -t --geometry 5x1+1750+0 --window-layer bottom --sticky true -i 16 &
 #tint2 &
 urxvtd &
+#pasystray &
 clipit -n &
 
 #exec startlxde
