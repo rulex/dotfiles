@@ -123,6 +123,28 @@ function pretty_size() {
 	fi
 }
 
+function calc() {
+	str="$*"
+	result=$( echo "${str}" | bc -l )
+	echo ${str} = ${result}
+}
+
+function pushover() {
+	_config=~/.pushoverrc
+	if [ ! -f ${_config} ]; then
+		echo "File ${_config} does not exist."
+		exit
+	fi
+	source ${_config}
+	msg="empty msg"
+	if [ $# -gt 0 ]; then
+		msg=$*
+	fi
+	ts=$(date +%s)
+	#echo ${ts} >> ~/rtorrent-pushover/rtorrent-pushover.log
+	curl https://api.pushover.net/1/messages.json -d "token=${pushover_apitoken}&user=${pushover_userkey}&message=${msg}&timestamp=${ts}"
+}
+
 #
 if [[ -x $( which notify-send ) ]]; then
 	notify-preexec-hook() {
