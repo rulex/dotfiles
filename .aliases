@@ -134,7 +134,6 @@ function pushover() {
 	_config=~/.pushoverrc
 	if [ ! -f ${_config} ]; then
 		echo "File ${_config} does not exist."
-		exit
 	fi
 	source ${_config}
 	msg="empty msg"
