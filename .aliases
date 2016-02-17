@@ -78,7 +78,6 @@ alias mysql='mysql --auto-rehash'
 alias cv='progress'
 
 A() {
-	#echo args $#
 	if [ $# -eq 0 ];then
 		txt="Done"
 	else
@@ -95,7 +94,8 @@ AA() {
 	fi
 	notify-send -t 10000 -a A-Notice ${txt}
 	if type pushover 2 > /dev/null; then
-		pushover "$*"
+		str=$( echo "${txt}" | sed "s|<br>|\n|g" )
+		pushover "${str}"
 	fi
 }
 
@@ -132,16 +132,22 @@ function calc() {
 
 function pushover() {
 	_config=~/.pushoverrc
+	# check if config exists
 	if [ ! -f ${_config} ]; then
 		echo "File ${_config} does not exist."
 	fi
+	# source config
 	source ${_config}
+	# check if vars are present
+	if [ -z ${pushover_userkey} ] || [ -z ${pushover_apitoken} ]; then
+		echo "pushover_userkey or pushover_apitoken is not set"
+		return
+	fi
 	msg="empty msg"
 	if [ $# -gt 0 ]; then
 		msg=$*
 	fi
 	ts=$(date +%s)
-	#echo ${ts} >> ~/rtorrent-pushover/rtorrent-pushover.log
 	curl https://api.pushover.net/1/messages.json -d "token=${pushover_apitoken}&user=${pushover_userkey}&message=${msg}&timestamp=${ts}"
 }
 
@@ -152,17 +158,20 @@ if [[ -x $( which notify-send ) ]]; then
 		zsh_notifier_time="$(date +%s)"
 	}
 	notify-precmd-hook() {
-		returncode=$(echo $?)
+		local returncode=$(echo $?)
 		local time_taken
 		if [[ "${zsh_notifier_cmd}" != "" ]]; then
 			time_taken=$(( `date +%s` - ${zsh_notifier_time} ))
-			local str="cmd: $zsh_notifier_cmd<br>code: ${returncode} <br>dir: ${PWD} <br>start: $(date -d @${zsh_notifier_time} +"%Y-%m-%dT%H:%M:%S")<br>time: $(pretty_time $time_taken)<br>end: $(date +"%Y-%m-%dT%H:%M:%S")"
-			if (( $time_taken > $REPORTTIME_AA )); then
-				str="$USER@$HOST <br>$str"
-				str=$( echo $str | sed "s|<br>|\n|g" )
-				AA $str
-			elif (( $time_taken > $REPORTTIME_A )); then
-				A $str
+			local str="cmd: ${zsh_notifier_cmd}<br>code: ${returncode} <br>dir: ${PWD} <br>start: $(date -d @${zsh_notifier_time} +"%Y-%m-%dT%H:%M:%S")<br>time: $( pretty_time ${time_taken} )<br>end: $( date +"%Y-%m-%dT%H:%M:%S" )"
+			if (( ${time_taken} > ${REPORTTIME_AA} )); then
+				str="${USER}@${HOST} <br>${str}"
+				local notify_timeout=10
+				# XXX read with timeout
+				echo "Ctrl+C to cancel, Enter to continue or wait ${notify_timeout}"
+				read -t ${notify_timeout} input_str
+				AA ${str}
+			elif (( ${time_taken} > ${REPORTTIME_A} )); then
+				A ${str}
 			fi
 		fi
 		zsh_notifier_cmd=
@@ -174,3 +183,4 @@ preexec_functions=( $preexec_functions notify-preexec-hook )
 
 [[ -z $precmd_functions ]] && precmd_functions=()
 precmd_functions=( $precmd_functions notify-precmd-hook )
+
