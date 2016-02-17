@@ -135,6 +135,7 @@ function pushover() {
 	# check if config exists
 	if [ ! -f ${_config} ]; then
 		echo "File ${_config} does not exist."
+		return
 	fi
 	# source config
 	source ${_config}
