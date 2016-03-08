@@ -135,14 +135,14 @@ function pushover() {
 	# check if config exists
 	if [ ! -f ${_config} ]; then
 		echo "File ${_config} does not exist."
-		return
+		return 1
 	fi
 	# source config
 	source ${_config}
 	# check if vars are present
 	if [ -z ${pushover_userkey} ] || [ -z ${pushover_apitoken} ]; then
 		echo "pushover_userkey or pushover_apitoken is not set"
-		return
+		return 2
 	fi
 	msg="empty msg"
 	if [ $# -gt 0 ]; then
@@ -179,9 +179,9 @@ if [[ -x $( which notify-send ) ]]; then
 	}
 fi
 
-[[ -z $preexec_functions ]] && preexec_functions=()
-preexec_functions=( $preexec_functions notify-preexec-hook )
+[[ -z ${preexec_functions} ]] && preexec_functions=()
+preexec_functions=( ${preexec_functions} notify-preexec-hook )
 
-[[ -z $precmd_functions ]] && precmd_functions=()
-precmd_functions=( $precmd_functions notify-precmd-hook )
+[[ -z ${precmd_functions} ]] && precmd_functions=()
+precmd_functions=( ${precmd_functions} notify-precmd-hook )
 

@@ -270,15 +270,15 @@
       <keybind key="h">
         <action name="UnmaximizeFull"/>
         <action name="MoveResizeTo">
-          <width>960</width>
-          <height>1080</height>
+          <width>50%</width>
+          <height>100%</height>
         </action>
       </keybind>
       <keybind key="S-h">
         <action name="UnmaximizeFull"/>
         <action name="MoveResizeTo">
-          <width>960</width>
-          <height>541</height>
+          <width>50%</width>
+          <height>50%</height>
         </action>
       </keybind>
       <keybind key="k">
