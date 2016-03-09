@@ -30,21 +30,16 @@ xrdb ~/.Xdefaults
 sh ~/.mouse.sh &
 
 # KEYBOARD
-#sh ~/.xmodmap_noppoo &
-( sleep 2 && sh ~/.xmodmap ) &
-
-
-#nitrogen --restore &
-( sleep 10 && conky -c ~/.conkyrc ) &
-( sleep 10 && nitrogen --restore ) &
-#stalonetray -bg "#000000" -t --geometry 5x1+1750+0 --window-layer bottom --sticky true -i 16 &
-#tint2 &
+( sleep 2 && sh ~/dotfiles/.xmodmap ) &
+( sleep 10 && conky -c ~/dotfiles/.conkyrc ) &
+#( sleep 10 && nitrogen --restore ) &
+( sleep 10 && nm-applet ) &
 urxvtd &
-#pasystray &
 clipit -n &
 
 #exec startlxde
-exec startlxqt
+exec i3
+#exec startlxqt
 #exec openbox-session
 
 #exec openbox-kde-session
