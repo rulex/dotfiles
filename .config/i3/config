@@ -60,7 +60,7 @@ set $archblue           #33B5E5
 
 #class                  border      backgr.     text        split
 client.focused          $green      $green      $black      $green
-client.focused_inactive $grey       $grey       $lightgrey  $grey
+client.focused_inactive $grey       $lightgrey  $white      $grey
 client.unfocused        $grey       $grey       $lightgrey  $grey
 client.urgent           $red        $red        $black      $grey
 client.background $back
@@ -116,6 +116,7 @@ bindsym $mod+Shift+Right move right
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
+
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -192,6 +193,11 @@ bindsym XF86AudioRaiseVolume exec "amixer set Master 1%+ unmute"
 bindsym XF86AudioLowerVolume exec "amixer set Master 1%- unmute"
 bindsym XF86AudioMute exec "amixer set Master toggle"
 
+# transset-df
+bindsym $mod+minus exec --no-startup-id "transset-df -a 0.1 --dec"
+bindsym $mod+plus exec --no-startup-id "transset-df -a 0.1 --inc"
+#bindsym --release --whole-window $mod+button9 exec --no-startup-id "transset-df -a 0.1 --inc"
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -209,23 +215,29 @@ mode "resize" {
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape
+        bindsym l exec "scrot /tmp/screen_locked.png; mogrify -scale 10% -scale 1000% /tmp/screen_locked.png; i3lock -i /tmp/screen_locked.png" ; mode "default"
+        #bindsym l exec "scrot /tmp/screen_locked.png; convert /tmp/screen_locked.png -level 0%,100%,0.6 -filter Gaussian -resize 20% -define filter:sigma=1.5 -resize 500.5% -font Liberation-Sans -pointsize 26 -fill black -gravity center -annotate +0+160 'Type password to unlock' $HOME/dotfiles/.config/i3/lock.png -gravity center -composite /tmp/screen_locked.png; i3lock -i /tmp/screen_locked.png" ; mode "default"
+        #
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym q mode "default"
 }
 
 mode "spacejam" {
-        bindsym r mode "resize"
+        bindsym e exec "pcmanfm" ; mode "default"
+        #bindsym r mode "resize"
         bindsym v split v; mode "default"
         bindsym h split h; mode "default"
+        # composition
+        bindsym j exec "compton -CGb" ; mode "default"
+        bindsym k exec "pkill compton" ; mode "default"
+        bindsym minus exec --no-startup-id "transset-df -a 0.5" ; mode "default"
         # lock screen
         bindsym l exec "scrot /tmp/screen_locked.png; mogrify -scale 10% -scale 1000% /tmp/screen_locked.png; i3lock -i /tmp/screen_locked.png" ; mode "default"
-        #bindsym l exec "scrot /tmp/screen_locked.png; convert /tmp/screen_locked.png -level 0%,100%,0.6 -filter Gaussian -resize 20% -define filter:sigma=1.5 -resize 500.5% -font Liberation-Sans -pointsize 26 -fill black -gravity center -annotate +0+160 'Type password to unlock' $HOME/dotfiles/.config/i3/lock.png -gravity center -composite /tmp/screen_locked.png; i3lock -i /tmp/screen_locked.png" ; mode "default"
-        #
-        bindsym Return mode "default"
+#bindsym l exec "scrot /tmp/screen_locked.png; convert /tmp/screen_locked.png -level 0%,100%,0.6 -filter Gaussian -resize 20% -define filter:sigma=1.5 -resize 500.5% -font Liberation-Sans -pointsize 26 -fill black -gravity center -annotate +0+160 'Type password to unlock' $HOME/dotfiles/.config/i3/lock.png -gravity center -composite /tmp/screen_locked.png; i3lock -i /tmp/screen_locked.png" ; mode "default"
+#
+        bindsym Return exec "terminator --geometry=900x540" ; mode "default"
+        bindsym BackSpace mode "default"
         bindsym Escape mode "default"
         bindsym q mode "default"
 }
@@ -236,7 +248,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+        status_command i3status -c ~/.config/i3/i3status.conf
         tray_output LVDS
 }
 
