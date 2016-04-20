@@ -160,18 +160,22 @@ map <F9> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<
 
 nnoremap ö <Esc>:
 nnoremap ä <Esc>"
+"nnoremap å [
+"nnoremap ¨ ]
 nnoremap <F10> <Esc>:set paste!<CR>:set paste?<CR>
 nnoremap <leader>p <Esc>"*p
 vmap <leader>y "*y
 nnoremap <leader>y <Esc>:w !xclip<CR>
+" comments
 nnoremap <leader>c O/*<Esc>
 nnoremap <leader>cc o*/<Esc>
 nnoremap <leader>ccc {o/*<Esc>}O*/<Esc>
 nnoremap <leader>ch O<!--<Esc>
 nnoremap <leader>chh o--><Esc>
 nnoremap <leader>cp O"""<Esc>
-nnoremap <leader>cpp o"""-<Esc>
+nnoremap <leader>cpp o"""<Esc>
 nnoremap <leader>cppp {o"""<Esc>}O"""<Esc>
+" indentation
 nnoremap <leader>f <Esc>:set fdm=indent<CR>:set fdm?<CR>
 nnoremap <leader>fi <Esc>:set fdm=indent<CR>:set fdm?<CR>
 nnoremap <leader>fs <Esc>:set fdm=syntax<CR>:set fdm?<CR>
@@ -182,17 +186,20 @@ nnoremap <leader><F3> <Esc>:set foldnestmax=3<CR>:set foldnestmax?<CR>
 nnoremap <leader><F4> <Esc>:set foldnestmax=4<CR>:set foldnestmax?<CR>
 nnoremap <leader><F5> <Esc>:set foldnestmax=5<CR>:set foldnestmax?<CR>
 nnoremap <leader><F6> <Esc>:set foldnestmax=6<CR>:set foldnestmax?<CR>
-nnoremap <leader>C <Esc>:set fileencoding? fileformat? encoding? bomb?<CR>
 nnoremap <leader>u <Esc>:set expandtab? tabstop? softtabstop? shiftwidth? smarttab?<CR>
 nnoremap <leader>uu <Esc>:set expandtab? tabstop? softtabstop? shiftwidth? smarttab?<CR>
 nnoremap <leader>ue <Esc>:setl expandtab!<CR>:set expandtab?<CR>
 nnoremap <leader>u2 <Esc>:setl tabstop=2 softtabstop=2 shiftwidth=2<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 nnoremap <leader>u4 <Esc>:setl tabstop=4 softtabstop=4 shiftwidth=4<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 nnoremap <leader>u8 <Esc>:setl tabstop=8 softtabstop=8 shiftwidth=8<CR>:set tabstop? softtabstop? shiftwidth?<CR>
+" encoding
+nnoremap <leader>C <Esc>:set fileencoding? fileformat? encoding? bomb?<CR>
+" remove stuff
 nnoremap <leader>r <Esc>:%s/\s\+$//<CR> " remove extra spaces from line end
 nnoremap <leader>re <Esc>:g/^$/d<CR> " remove empty lines
 nnoremap <leader>rm <Esc>:%s/\r$//g<CR> " remove lines ending with ^M
 nnoremap <leader>k <Esc>:set list!<CR>:set list?<CR>
+" splits
 nnoremap <leader>% <Esc><C-w>v<C-w>l
 nnoremap <leader>" <Esc><C-w>s
 nnoremap <c-w>% <Esc><C-w>v<C-w>l
@@ -208,6 +215,7 @@ nnoremap <leader>tt <Esc>:tabnew<CR>
 nnoremap <leader>t. <Esc>:tabnew .<CR>
 nnoremap <leader>te <Esc>:tabnew<CR>:term<CR>
 nnoremap <leader>tf <Esc>:tabnew %<CR>
+" diff
 nnoremap <leader>dd <Esc>:diffthis<CR>
 nnoremap <leader>du <Esc>:diffupdate<CR>
 nnoremap <leader>ddd <Esc>:diffthis<CR><c-w><c-w>:diffthis<CR><c-w><c-w>
@@ -223,7 +231,7 @@ nnoremap <leader>mc <Esc>:%s///gn<CR> " count search matches
 nnoremap <leader><Left> :tabmove -1<CR>
 nnoremap <leader><Right> :tabmove +1<CR>
 nnoremap <leader><Up> :tabmove 0<CR>
-nnoremap <leader>/ <Esc>/\c^<<<<<<<\\|^=======\\|^>>>>>>><CR>
+nnoremap <leader>/ <Esc>/\c^<<<<<<<\\|^=======\\|^>>>>>>><CR> " highlight git merge stuff
 
 set list
 set listchars=tab:\»\ ,trail:·
@@ -415,6 +423,7 @@ Plug 'luochen1990/rainbow'
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-scripts/Gundo' ", { 'on': 'GundoToggle' }
 Plug 'kshenoy/vim-signature' " vim marks
+Plug 'tpope/vim-surround'
 
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
