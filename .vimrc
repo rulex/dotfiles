@@ -162,10 +162,15 @@ nnoremap ö <Esc>:
 nnoremap ä <Esc>"
 "nnoremap å [
 "nnoremap ¨ ]
+" clipboard/paste stuff
 nnoremap <F10> <Esc>:set paste!<CR>:set paste?<CR>
 nnoremap <leader>p <Esc>"*p
 vmap <leader>y "*y
 nnoremap <leader>y <Esc>:w !xclip<CR>
+" quick calc stuff
+map gbc yypkA =<Esc>jOscale=2<Esc>:.,+1!bc<CR>kJ
+"vmap gbc ypko=<Esc>jOscale=2<Esc>:.,+1!bc<CR>kJ
+"vmap gs y'>p:'[,']-1s/$/+/\|'[,']+1j!<CR>'[0"wy$:.s§.*§\=w§<CR>'[yyP:.s/./=/g<CR>_j
 " comments
 nnoremap <leader>c O/*<Esc>
 nnoremap <leader>cc o*/<Esc>
