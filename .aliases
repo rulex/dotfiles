@@ -83,8 +83,10 @@ A() {
 	else
 		txt="$*"
 	fi
-	str=$( echo "${txt}" | sed 's|<br>|\n|g' )
-	notify-send -t 10000 -a A-Notice ${str}
+	# log errything to file
+	logstr=$( echo "${txt}" | tr '\n' ' ' )
+	echo "$(dt) ${logstr}" >> ~/.a.log
+	notify-send -t 10000 -a A-Notice ${txt}
 }
 
 AA() {
@@ -93,10 +95,12 @@ AA() {
 	else
 		txt="$*"
 	fi
+	# log errything to file
+	logstr=$( echo "${txt}" | tr '\n' ' ' )
+	echo "$(dt) ${logstr}" >> ~/.a.log
 	notify-send -t 10000 -a A-Notice ${txt}
 	if type pushover 2 > /dev/null; then
-		str=$( echo "${txt}" | sed 's|<br>|\n|g' )
-		pushover "${str}"
+		pushover "${txt}"
 	fi
 }
 
@@ -164,9 +168,9 @@ if [[ -x $( which notify-send ) ]]; then
 		local time_taken
 		if [[ "${zsh_notifier_cmd}" != "" ]]; then
 			time_taken=$(( `date +%s` - ${zsh_notifier_time} ))
-			local str="cmd: ${zsh_notifier_cmd}<br>code: ${returncode}<br>dir: ${PWD}<br>start: $(date -d @${zsh_notifier_time} +"%Y-%m-%dT%H:%M:%S")<br>time: $( pretty_time ${time_taken} )<br>end: $( date +"%Y-%m-%dT%H:%M:%S" )"
+			local str="cmd: ${zsh_notifier_cmd}\ncode: ${returncode}\ndir: ${PWD}\nstart: $(date -d @${zsh_notifier_time} +"%Y-%m-%dT%H:%M:%S")\ntime: $( pretty_time ${time_taken} )\nend: $( date +"%Y-%m-%dT%H:%M:%S" )"
 			if (( ${time_taken} > ${REPORTTIME_AA} )); then
-				str="${USER}@${HOST}<br>${str}"
+				str="${USER}@${HOST}\n${str}"
 				local notify_timeout=10
 				# XXX read with timeout
 				echo "Ctrl+C to cancel, Enter to continue or wait ${notify_timeout}"
