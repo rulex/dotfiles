@@ -13,6 +13,8 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+filetype plugin on
+
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 set iskeyword+=$
@@ -162,24 +164,36 @@ nnoremap ö <Esc>:
 nnoremap ä <Esc>"
 "nnoremap å [
 "nnoremap ¨ ]
+
 " clipboard/paste stuff
 nnoremap <F10> <Esc>:set paste!<CR>:set paste?<CR>
 nnoremap <leader>p <Esc>"*p
 vmap <leader>y "*y
 nnoremap <leader>y <Esc>:w !xclip<CR>
+
+" insert date time
+nnoremap <leader>D <Esc>:r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
+" cursor over timestamp to %Y-%m-%d %H:%M:%S
+map gD yiw:r!date +"\%Y-\%m-\%d \%H:\%M:\%S" --date @"<C-R>""<CR>
+
+" yank full filepath
+nmap cp <Esc>:let @" = expand("%:p")<CR>
+
 " quick calc stuff
 map gbc yypkA =<Esc>jOscale=2<Esc>:.,+1!bc<CR>kJ
 "vmap gbc ypko=<Esc>jOscale=2<Esc>:.,+1!bc<CR>kJ
 "vmap gs y'>p:'[,']-1s/$/+/\|'[,']+1j!<CR>'[0"wy$:.s§.*§\=w§<CR>'[yyP:.s/./=/g<CR>_j
+
 " comments
-nnoremap <leader>c O/*<Esc>
-nnoremap <leader>cc o*/<Esc>
-nnoremap <leader>ccc {o/*<Esc>}O*/<Esc>
-nnoremap <leader>ch O<!--<Esc>
-nnoremap <leader>chh o--><Esc>
-nnoremap <leader>cp O"""<Esc>
-nnoremap <leader>cpp o"""<Esc>
-nnoremap <leader>cppp {o"""<Esc>}O"""<Esc>
+"nnoremap <leader>c O/*<Esc>
+"nnoremap <leader>cc o*/<Esc>
+"nnoremap <leader>ccc {o/*<Esc>}O*/<Esc>
+"nnoremap <leader>ch O<!--<Esc>
+"nnoremap <leader>chh o--><Esc>
+"nnoremap <leader>cp O"""<Esc>
+"nnoremap <leader>cpp o"""<Esc>
+"nnoremap <leader>cppp {o"""<Esc>}O"""<Esc>
+
 " indentation
 nnoremap <leader>f <Esc>:set fdm=indent<CR>:set fdm?<CR>
 nnoremap <leader>fi <Esc>:set fdm=indent<CR>:set fdm?<CR>
@@ -197,20 +211,22 @@ nnoremap <leader>ue <Esc>:setl expandtab!<CR>:set expandtab?<CR>
 nnoremap <leader>u2 <Esc>:setl tabstop=2 softtabstop=2 shiftwidth=2<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 nnoremap <leader>u4 <Esc>:setl tabstop=4 softtabstop=4 shiftwidth=4<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 nnoremap <leader>u8 <Esc>:setl tabstop=8 softtabstop=8 shiftwidth=8<CR>:set tabstop? softtabstop? shiftwidth?<CR>
+
 " encoding
 nnoremap <leader>C <Esc>:set fileencoding? fileformat? encoding? bomb?<CR>
+
 " remove stuff
 nnoremap <leader>r <Esc>:%s/\s\+$//<CR> " remove extra spaces from line end
 nnoremap <leader>re <Esc>:g/^$/d<CR> " remove empty lines
 nnoremap <leader>rm <Esc>:%s/\r$//g<CR> " remove lines ending with ^M
 nnoremap <leader>k <Esc>:set list!<CR>:set list?<CR>
-" splits
+
+" splits tabs
 nnoremap <leader>% <Esc><C-w>v<C-w>l
 nnoremap <leader>" <Esc><C-w>s
 nnoremap <c-w>% <Esc><C-w>v<C-w>l
 nnoremap <c-w>" <Esc><C-w>s
 nnoremap <leader>n <Esc>:NERDTreeToggle<CR>
-nnoremap <leader>g <Esc>:GundoToggle<CR>
 nnoremap <leader>e <Esc>:e<CR>
 nnoremap <leader>et <Esc>:term<CR>
 nnoremap <leader>ee <Esc>:e!<CR>
@@ -220,6 +236,7 @@ nnoremap <leader>tt <Esc>:tabnew<CR>
 nnoremap <leader>t. <Esc>:tabnew .<CR>
 nnoremap <leader>te <Esc>:tabnew<CR>:term<CR>
 nnoremap <leader>tf <Esc>:tabnew %<CR>
+
 " diff
 nnoremap <leader>dd <Esc>:diffthis<CR>
 nnoremap <leader>du <Esc>:diffupdate<CR>
@@ -231,8 +248,7 @@ nnoremap <leader>dN [c
 nnoremap <leader>q <Esc>:q<CR>
 nnoremap <leader>qq <Esc>:qa<CR>
 nnoremap <leader>qqq <Esc>:qa!<CR>
-nnoremap <leader>D <Esc>:r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR> " insert date time
-nnoremap <leader>mc <Esc>:%s///gn<CR> " count search matches
+
 nnoremap <leader><Left> :tabmove -1<CR>
 nnoremap <leader><Right> :tabmove +1<CR>
 nnoremap <leader><Up> :tabmove 0<CR>
@@ -254,8 +270,9 @@ nnoremap gj j
 nnoremap gk k
 nnoremap / /\c
 
-" Gundo
-nnoremap <F5> :GundoToggle<CR>
+" Mundo
+"nnoremap <F5> :MundoToggle<CR>
+"nnoremap <leader>g <Esc>:MundoToggle<CR>
 
 " visual shifting (does not exit Visual mode)
 vnoremap < <gv
@@ -269,6 +286,20 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" Better :sign interface symbols
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '!'
+
 
 "FOLDING
 function! MyFoldText() " {{{
@@ -416,7 +447,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 " plugins
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree' ", { 'on':  'NERDTreeToggle' }
 Plug 'marcweber/vim-addon-mw-utils' " for snipmate
 Plug 'tomtom/tlib_vim' " for snipmate
 Plug 'garbas/vim-snipmate'
@@ -426,11 +457,15 @@ Plug 'ervandew/supertab'
 "Plug 'ternjs/tern_for_vim' " JS
 Plug 'luochen1990/rainbow'
 Plug 'junegunn/vim-easy-align'
-Plug 'vim-scripts/Gundo' ", { 'on': 'GundoToggle' }
+Plug 'simnalamburt/vim-mundo'
 Plug 'kshenoy/vim-signature' " vim marks
-Plug 'tpope/vim-surround'
+Plug 'tpope/vim-surround' " change surrounding stuff: csXY
 
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+
+Plug 'scrooloose/syntastic' " syntax/lint stuff
+
+Plug 'scrooloose/nerdcommenter' " comments
 
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
