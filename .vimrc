@@ -269,6 +269,7 @@ nnoremap k gk
 nnoremap gj j
 nnoremap gk k
 nnoremap / /\c
+nnoremap // /
 
 " Mundo
 "nnoremap <F5> :MundoToggle<CR>

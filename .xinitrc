@@ -35,6 +35,7 @@ sh ~/.mouse.sh &
 #( sleep 10 && nitrogen --restore ) &
 ( sleep 10 && nm-applet ) &
 urxvtd &
+dunst &
 clipit -n &
 
 #exec startlxde
