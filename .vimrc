@@ -252,7 +252,8 @@ nnoremap <leader>qqq <Esc>:qa!<CR>
 nnoremap <leader><Left> :tabmove -1<CR>
 nnoremap <leader><Right> :tabmove +1<CR>
 nnoremap <leader><Up> :tabmove 0<CR>
-nnoremap <leader>/ <Esc>/\c^<<<<<<<\\|^=======\\|^>>>>>>><CR> " highlight git merge stuff
+" highlight git merge stuff
+nnoremap <leader>/ <Esc>/^<<<<<<<\\|^=======\\|^>>>>>>><CR>
 
 set list
 set listchars=tab:\»\ ,trail:·
@@ -300,6 +301,7 @@ let g:syntastic_check_on_wq = 0
 " Better :sign interface symbols
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '!'
+let g:syntastic_python_flake8_args='--ignore=E501,E265'
 
 
 "FOLDING

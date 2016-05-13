@@ -34,8 +34,8 @@ sh ~/.mouse.sh &
 ( sleep 10 && conky -c ~/dotfiles/.conkyrc ) &
 #( sleep 10 && nitrogen --restore ) &
 ( sleep 10 && nm-applet ) &
+( sleep 10 && dunst -config ~/dotfiles/.config/dunst/dunstrc ) &
 urxvtd &
-dunst &
 clipit -n &
 
 #exec startlxde
