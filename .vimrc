@@ -301,7 +301,8 @@ let g:syntastic_check_on_wq = 0
 " Better :sign interface symbols
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '!'
-let g:syntastic_python_flake8_args='--ignore=E501,E265'
+"let g:syntastic_python_python_exec = '/usr/bin/python2'
+let g:syntastic_python_flake8_args = '--ignore=E501,E265'
 
 
 "FOLDING
