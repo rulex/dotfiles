@@ -70,6 +70,7 @@ nmap <M-9> :tabnext 9<CR>
 nmap <M-0> :tabnext 10<CR>
 
 nmap <F8> :TagbarToggle<CR>
+nmap <F7> :SyntasticToggleMode<CR>
 
 " fold
 set foldmethod=indent
@@ -143,7 +144,7 @@ let g:rainbow_conf = {
 "set pastetoggle=<F10>
 "set ts=2 sts=2 sw=2 noexpandtab
 "set ts=2 sts=0 sw=2 expandtab
-set tabstop=4 softtabstop=4 noexpandtab shiftwidth=4 smarttab
+set tabstop=4 softtabstop=4 expandtab shiftwidth=4 smarttab
 
 "set tabstop=2       " The width of a TAB is set to 4.
                     " Still it is a \t. It is just that
@@ -302,6 +303,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '!'
 let g:syntastic_python_flake8_args='--ignore=E501,E265'
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
 
 
 "FOLDING
