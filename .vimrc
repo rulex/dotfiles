@@ -440,8 +440,8 @@ endif
 
 if has('nvim')
 	tnoremap <c-a> <c-\><c-n>
-	colorscheme Revolution
-	"colorscheme delek
+	"colorscheme Revolution
+	colorscheme delek
 	set ttimeout
 	set ttimeoutlen=0
 else
