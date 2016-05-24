@@ -155,7 +155,7 @@ function pushover() {
 		msg=$*
 	fi
 	ts=$(date +%s)
-	curl https://api.pushover.net/1/messages.json -d "token=${pushover_apitoken}&user=${pushover_userkey}&message=${msg}&timestamp=${ts}"
+	curl https://api.pushover.net/1/messages.json -d "token=${pushover_apitoken}&user=${pushover_userkey}&message=${msg}&timestamp=${ts}&html=1"
 }
 
 #
@@ -169,9 +169,16 @@ if [[ -x $( which notify-send ) ]]; then
 		local time_taken
 		if [[ "${zsh_notifier_cmd}" != "" ]]; then
 			time_taken=$(( `date +%s` - ${zsh_notifier_time} ))
-			local str="cmd: ${zsh_notifier_cmd}\ncode: ${returncode}\ndir: ${PWD}\nstart: $(date -d @${zsh_notifier_time} +"%Y-%m-%dT%H:%M:%S")\ntime: $( pretty_time ${time_taken} )\nend: $( date +"%Y-%m-%dT%H:%M:%S" )\ntty: ${TTY}"
+			local str="cmd: ${zsh_notifier_cmd}
+code: ${returncode}
+dir: ${PWD}
+start: $(date -d @${zsh_notifier_time} +"%Y-%m-%dT%H:%M:%S")
+time: $( pretty_time ${time_taken} )
+end: $( date +"%Y-%m-%dT%H:%M:%S" )
+tty: ${TTY}"
 			if (( ${time_taken} > ${REPORTTIME_AA} )); then
-				str="${USER}@${HOST}\n${str}"
+				str="${USER}@${HOST}
+${str}"
 				local notify_timeout=10
 				# XXX read with timeout
 				echo "Ctrl+C to cancel, Enter to continue or wait ${notify_timeout}"
