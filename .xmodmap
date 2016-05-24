@@ -1,6 +1,14 @@
 #!/bin/bash
 # NOPPOO CHOC MINI
 
+# xmodmap -e 'keycode [XX] = 1 2 3 4 5 6'
+# 1. Key
+# 2. Shift+Key
+# 3. mode_switch+Key
+# 4. mode_switch+Shift+Key
+# 5. AltGr+Key
+# 6. AltGr+Shift+Key
+
 if [ $# -eq 0 ]
 then
 
@@ -21,6 +29,10 @@ then
 		xmodmap -e 'keycode 78 = Insert' # scroll lock to insert
 		xmodmap -e 'keycode 119 = End' # del to end
 		xmodmap -e 'keycode 127 = Home' # pause to home
+		# 2016-04-20 13:04:58 test new stuff
+		#xmodmap -e 'keycode 49 = grave asciitilde grave asciitilde paragraph threequarters paragraph threequarters section onehalf paragraph threequarters' # consolebtn to grave/tilde (us)
+		#xmodmap -e 'keycode 34 = bracketleft braceleft NoSymbol NoSymbol dead_diaeresis dead_abovering dead_diaeresis dead_abovering aring Aring dead_diaeresis dead_abovering' # å to [
+		#xmodmap -e 'keycode 35 = bracketright braceright NoSymbol NoSymbol dead_tilde dead_caron dead_tilde dead_caron dead_diaeresis dead_circumflex dead_tilde dead_caron' # 'right-of-å' to [
 
 	fi
 
