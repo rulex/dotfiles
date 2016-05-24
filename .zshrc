@@ -51,6 +51,9 @@ export LC_MEASUREMENT="sv_SE.UTF-8"
 export LC_CTYPE="sv_SE.UTF-8"
 export LC_MESSAGES="en_US.UTF-8"
 
+# set terminal for i3
+export TERMINAL="urxvtc"
+
 # set editor
 if hash nvim 2>/dev/null; then
 	export EDITOR="nvim"
