@@ -178,9 +178,9 @@ if [[ -x $( which notify-send ) ]]; then
 			local str="cmd:   ${zsh_notifier_cmd}
 code:  ${returncode}
 dir:   ${PWD}
-start: $(date -d @${zsh_notifier_time} +"%Y-%m-%dT%H:%M:%S")
+start: $(date -d @${zsh_notifier_time} +"%Y-%m-%d %H:%M:%S")
 time:  $( pretty_time ${time_taken} )
-end:   $( date +"%Y-%m-%dT%H:%M:%S" )
+end:   $( date +"%Y-%m-%d %H:%M:%S" )
 tty:   ${TTY}"
 			if (( ${time_taken} > ${REPORTTIME_AA} )); then
 				str="${USER}@${HOST}
