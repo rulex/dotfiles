@@ -20,10 +20,10 @@ alias sl=ls
 function dt() {
 	if [[ $# == 0 ]]; then
 		# pretty print now
-		date +"%Y-%m-%dT%H:%M:%S"
+		date +"%Y-%m-%d %H:%M:%S"
 	elif [[ $# == 1 ]] && [[ $1 != "p" ]]; then
 		# pretty print input unix ts
-		date +"%Y-%m-%dT%H:%M:%S" --date @"$1"
+		date +"%Y-%m-%d %H:%M:%S" --date @"$1"
 	elif [[ $# == 2 ]] && [[ $1 == "p" ]]; then
 		# pretty print input diff seconds
 		local human total_seconds=$2
@@ -78,6 +78,14 @@ alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
 alias mysql='mysql --auto-rehash'
 alias cv='progress'
 
+logstr() {
+    # replace newline with newline+tab for extra fancy indented text
+    logstr=$( echo "${1//
+/
+    }" )
+    echo "$(dt) ${logstr}" >> ~/.a.log
+}
+
 A() {
 	if [ $# -eq 0 ];then
 		txt="Done"
@@ -85,8 +93,7 @@ A() {
 		txt="$*"
 	fi
 	# log errything to file
-	logstr=$( echo "${txt}" | tr '\n' ' ' )
-	echo "$(dt) ${logstr}" >> ~/.a.log
+    logstr ${txt}
 	notify-send -t 10000 -a A-Notice ${txt}
 }
 
@@ -97,8 +104,7 @@ AA() {
 		txt="$*"
 	fi
 	# log errything to file
-	logstr=$( echo "${txt}" | tr '\n' ' ' )
-	echo "$(dt) ${logstr}" >> ~/.a.log
+    logstr ${txt}
 	notify-send -t 10000 -a A-Notice ${txt}
 	if type pushover 2 > /dev/null; then
 		pushover "${txt}"
