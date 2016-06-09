@@ -210,18 +210,16 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 5 px or 5 ppt
+        bindsym j resize grow height 5 px or 5 ppt
+        bindsym k resize shrink height 5 px or 5 ppt
+        bindsym l resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym l exec "scrot /tmp/screen_locked.png; mogrify -scale 10% -scale 1000% /tmp/screen_locked.png; i3lock -i /tmp/screen_locked.png" ; mode "default"
-        #bindsym l exec "scrot /tmp/screen_locked.png; convert /tmp/screen_locked.png -level 0%,100%,0.6 -filter Gaussian -resize 20% -define filter:sigma=1.5 -resize 500.5% -font Liberation-Sans -pointsize 26 -fill black -gravity center -annotate +0+160 'Type password to unlock' $HOME/dotfiles/.config/i3/lock.png -gravity center -composite /tmp/screen_locked.png; i3lock -i /tmp/screen_locked.png" ; mode "default"
-        #
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym q mode "default"
@@ -238,7 +236,6 @@ mode "spacejam" {
         bindsym minus exec --no-startup-id "transset-df -a 0.5" ; mode "default"
         # lock screen
         bindsym l exec "scrot /tmp/screen_locked.png; mogrify -scale 10% -scale 1000% /tmp/screen_locked.png; i3lock -i /tmp/screen_locked.png" ; mode "default"
-#bindsym l exec "scrot /tmp/screen_locked.png; convert /tmp/screen_locked.png -level 0%,100%,0.6 -filter Gaussian -resize 20% -define filter:sigma=1.5 -resize 500.5% -font Liberation-Sans -pointsize 26 -fill black -gravity center -annotate +0+160 'Type password to unlock' $HOME/dotfiles/.config/i3/lock.png -gravity center -composite /tmp/screen_locked.png; i3lock -i /tmp/screen_locked.png" ; mode "default"
 #
         bindsym Return exec "terminator --geometry=900x540" ; mode "default"
         bindsym BackSpace mode "default"
