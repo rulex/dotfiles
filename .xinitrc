@@ -33,7 +33,9 @@ sh ~/.mouse.sh &
 ( sleep 2 && sh ~/dotfiles/.xmodmap ) &
 ( sleep 10 && conky -c ~/dotfiles/.conkyrc ) &
 #( sleep 10 && nitrogen --restore ) &
+( sleep 5 && xrandr --output $(xrandr | grep " connected [0-9]" | head -n1 | cut -d' ' -f1) --primary) &
 ( sleep 10 && nm-applet ) &
+( sleep 10 && pasystray ) &
 ( sleep 10 && dunst -config ~/dotfiles/.config/dunst/dunstrc ) &
 urxvtd &
 clipit -n &

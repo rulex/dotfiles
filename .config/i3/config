@@ -166,10 +166,10 @@ bindsym $mod+Shift+Left move workspace to output left
 bindsym $mod+Shift+Right move workspace to output right
 
 # resize win+alt [hjkl]
-bindsym Mod4+Mod1+h resize shrink width 10 px or 10 ppt
-bindsym Mod4+Mod1+j resize grow height 10 px or 10 ppt
-bindsym Mod4+Mod1+k resize shrink height 10 px or 10 ppt
-bindsym Mod4+Mod1+l resize grow width 10 px or 10 ppt
+bindsym Mod4+Mod1+h resize shrink width 3 px or 3 ppt
+bindsym Mod4+Mod1+j resize grow height 3 px or 3 ppt
+bindsym Mod4+Mod1+k resize shrink height 3 px or 3 ppt
+bindsym Mod4+Mod1+l resize grow width 7 px or 7 ppt
 
 bindsym Mod4+Mod1+Left resize shrink width 10 px or 10 ppt
 bindsym Mod4+Mod1+Down resize grow height 10 px or 10 ppt
@@ -250,7 +250,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
     status_command i3status -c ~/.config/i3/i3status.conf
-    tray_output LVDS
+    tray_output primary
 }
 
 # vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4 smarttab :

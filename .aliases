@@ -115,6 +115,7 @@ AA() {
 function pretty_time() {
 	if (( $# == 0 )); then
 		echo 'Input required'
+        exit
 	fi
 	local human total_seconds=$1
 	local days=$(( total_seconds / 60 / 60 / 24 ))
