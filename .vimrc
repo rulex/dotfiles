@@ -266,6 +266,12 @@ inoremap <C-a> <Esc>
 nnoremap , za
 vnoremap , za
 
+vnoremap qq <Esc>`>a'<Esc>`<i'<Esc>
+" pretty json
+nnoremap <leader>js <Esc>:%!python -m json.tool<CR>
+nnoremap gjs <Esc>dd:r!echo '<C-R>"' \| python -m json.tool<CR>
+vnoremap gjs d:r!echo '<C-R>"' \| python -m json.tool<CR>
+
 nnoremap j gj
 nnoremap k gk
 nnoremap gj j
