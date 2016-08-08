@@ -40,6 +40,9 @@ function dt() {
 }
 
 alias new_uuid='cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 32 | head -n 1'
+random-string() {
+    cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${1:-32} | head -n 1
+}
 
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
