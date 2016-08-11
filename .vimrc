@@ -213,6 +213,12 @@ nnoremap <leader>u2 <Esc>:setl tabstop=2 softtabstop=2 shiftwidth=2<CR>:set tabs
 nnoremap <leader>u4 <Esc>:setl tabstop=4 softtabstop=4 shiftwidth=4<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 nnoremap <leader>u8 <Esc>:setl tabstop=8 softtabstop=8 shiftwidth=8<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 
+" switch syntastic phpcs standards
+nnoremap <leader>sz <Esc>:let g:syntastic_php_phpcs_args = "--report=csv --standard=Zend"<CR>:SyntasticCheck<CR>:echo "phpcs standard Zend"<CR>
+nnoremap <leader>sp <Esc>:let g:syntastic_php_phpcs_args = "--report=csv --standard=PEAR"<CR>:SyntasticCheck<CR>:echo "phpcs standard PEAR"<CR>
+nnoremap <leader>sp1 <Esc>:let g:syntastic_php_phpcs_args = "--report=csv --standard=PSR1"<CR>:SyntasticCheck<CR>:echo "phpcs standard PSR1"<CR>
+nnoremap <leader>sp2 <Esc>:let g:syntastic_php_phpcs_args = "--report=csv --standard=PSR2"<CR>:SyntasticCheck<CR>:echo "phpcs standard PSR2"<CR>
+
 " encoding
 nnoremap <leader>C <Esc>:set fileencoding? fileformat? encoding? bomb?<CR>
 
@@ -311,6 +317,12 @@ let g:syntastic_warning_symbol = '!'
 "let g:syntastic_python_python_exec = '/usr/bin/python2'
 let g:syntastic_python_flake8_args = '--ignore=E501,E265'
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+"let g:syntastic_php_phpcs_args = "--report=csv --standard=Zend"
+let g:syntastic_php_phpcs_args = "--report=csv --standard=PSR1"
+"let g:syntastic_php_phpcs_args = "--report=csv --standard=PSR2"
+"let g:syntastic_php_phpcs_args = "--report=csv --standard=PEAR"
+"let g:syntastic_php_phpcs_args = "--report=csv --standard=".expand('<sfile>:p:h')."~/.vim/misc/phpcs-psr2-excl-linelenght.xml"
+"let g:syntastic_php_phpmd_post_args = expand('<sfile>:p:h')."/.vim/misc/phpmd-ruleset.xml"
 
 
 "FOLDING
