@@ -218,6 +218,10 @@ nnoremap <leader>sz <Esc>:let g:syntastic_php_phpcs_args = "--report=csv --stand
 nnoremap <leader>sp <Esc>:let g:syntastic_php_phpcs_args = "--report=csv --standard=PEAR"<CR>:SyntasticCheck<CR>:echo "phpcs standard PEAR"<CR>
 nnoremap <leader>sp1 <Esc>:let g:syntastic_php_phpcs_args = "--report=csv --standard=PSR1"<CR>:SyntasticCheck<CR>:echo "phpcs standard PSR1"<CR>
 nnoremap <leader>sp2 <Esc>:let g:syntastic_php_phpcs_args = "--report=csv --standard=PSR2"<CR>:SyntasticCheck<CR>:echo "phpcs standard PSR2"<CR>
+nnoremap <leader>spy2 <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python2"<CR>:SyntasticCheck<CR>:echo "syntastic python2"<CR>
+nnoremap <leader>spy <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python"<CR>:SyntasticCheck<CR>:echo "syntastic python3"<CR>
+nnoremap <leader>spy3 <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python"<CR>:SyntasticCheck<CR>:echo "syntastic python3"<CR>
+"let g:syntastic_python_python_exec = '/usr/bin/python2'
 
 " encoding
 nnoremap <leader>C <Esc>:set fileencoding? fileformat? encoding? bomb?<CR>
