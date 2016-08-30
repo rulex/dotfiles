@@ -104,8 +104,8 @@ bindsym $mod+l move right
 
 # alternatively, you can use the cursor keys:
 #bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
+#bindsym $mod+Shift+Down move down
+#bindsym $mod+Shift+Up move up
 #bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
@@ -164,6 +164,8 @@ bindsym $mod+Shift+0 move container to workspace 10
 # move workspace
 bindsym $mod+Shift+Left move workspace to output left
 bindsym $mod+Shift+Right move workspace to output right
+bindsym $mod+Shift+Up move workspace to output up
+bindsym $mod+Shift+Down move workspace to output down
 
 # resize win+alt [hjkl]
 bindsym Mod4+Mod1+h resize shrink width 3 px or 3 ppt
