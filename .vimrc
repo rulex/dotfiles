@@ -327,6 +327,9 @@ let g:syntastic_php_phpcs_args = "--report=csv --standard=PSR1"
 "let g:syntastic_php_phpcs_args = "--report=csv --standard=PEAR"
 "let g:syntastic_php_phpcs_args = "--report=csv --standard=".expand('<sfile>:p:h')."~/.vim/misc/phpcs-psr2-excl-linelenght.xml"
 "let g:syntastic_php_phpmd_post_args = expand('<sfile>:p:h')."/.vim/misc/phpmd-ruleset.xml"
+"let g:syntastic_javascript_jscs_checker = 1
+let g:syntastic_javascript_checkers = ['jshint'] " jshint + jsxhint
+"let g:syntastic_javascript_jsxhint_exec = 'jsxhint'
 
 
 "FOLDING
