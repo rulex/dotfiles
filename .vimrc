@@ -213,7 +213,8 @@ nnoremap <leader>u2 <Esc>:setl tabstop=2 softtabstop=2 shiftwidth=2<CR>:set tabs
 nnoremap <leader>u4 <Esc>:setl tabstop=4 softtabstop=4 shiftwidth=4<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 nnoremap <leader>u8 <Esc>:setl tabstop=8 softtabstop=8 shiftwidth=8<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 
-" switch syntastic phpcs standards
+" switch syntastic standards
+nnoremap <leader>s <Esc>:echo "sz phpcs standard Zend\nsp phpcs standard PEAR\nsp1 phpcs standard PSR1\nsp2 phpcs standard PSR2\nspy python3\nspy2 python2\nspy3 python3"<CR>
 nnoremap <leader>sz <Esc>:let g:syntastic_php_phpcs_args = "--report=csv --standard=Zend"<CR>:SyntasticCheck<CR>:echo "phpcs standard Zend"<CR>
 nnoremap <leader>sp <Esc>:let g:syntastic_php_phpcs_args = "--report=csv --standard=PEAR"<CR>:SyntasticCheck<CR>:echo "phpcs standard PEAR"<CR>
 nnoremap <leader>sp1 <Esc>:let g:syntastic_php_phpcs_args = "--report=csv --standard=PSR1"<CR>:SyntasticCheck<CR>:echo "phpcs standard PSR1"<CR>
