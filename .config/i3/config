@@ -39,6 +39,7 @@ popup_during_fullscreen smart
 new_window normal
 #for_window [class="^.*"] border pixel 1
 for_window [title="^floatme$"] floating enable
+for_window [title="^sxiv"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [class="urxvt*"] border pixel 1
 

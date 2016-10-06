@@ -214,11 +214,11 @@ nnoremap <leader>u4 <Esc>:setl tabstop=4 softtabstop=4 shiftwidth=4<CR>:set tabs
 nnoremap <leader>u8 <Esc>:setl tabstop=8 softtabstop=8 shiftwidth=8<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 
 " switch syntastic standards
-nnoremap <leader>s <Esc>:echo "sz phpcs standard Zend\nsp phpcs standard PEAR\nsp1 phpcs standard PSR1\nsp2 phpcs standard PSR2\nspy python3\nspy2 python2\nspy3 python3"<CR>
-nnoremap <leader>sz <Esc>:let g:syntastic_php_phpcs_args = "--report=csv --standard=Zend"<CR>:SyntasticCheck<CR>:echo "phpcs standard Zend"<CR>
-nnoremap <leader>sp <Esc>:let g:syntastic_php_phpcs_args = "--report=csv --standard=PEAR"<CR>:SyntasticCheck<CR>:echo "phpcs standard PEAR"<CR>
-nnoremap <leader>sp1 <Esc>:let g:syntastic_php_phpcs_args = "--report=csv --standard=PSR1"<CR>:SyntasticCheck<CR>:echo "phpcs standard PSR1"<CR>
-nnoremap <leader>sp2 <Esc>:let g:syntastic_php_phpcs_args = "--report=csv --standard=PSR2"<CR>:SyntasticCheck<CR>:echo "phpcs standard PSR2"<CR>
+nnoremap <leader>s <Esc>:echo "sz phpcs standard Zend\nsp phpcs standard PEAR\nsp1 phpcs standard PSR1\nsp2 phpcs standard PSR2\nspy python3\nspy2 python2\nspy3 python3\n\nF7 SyntasticToggleMode"<CR>
+nnoremap <leader>sz <Esc>:let g:syntastic_php_phpcs_args = "--encoding=utf-8 --report=csv --exclude=Generic.Files.LineLength --standard=Zend"<CR>:SyntasticCheck<CR>:echo "phpcs standard Zend"<CR>
+nnoremap <leader>sp <Esc>:let g:syntastic_php_phpcs_args = "--encoding=utf-8 --report=csv --exclude=Generic.Files.LineLength --standard=PEAR"<CR>:SyntasticCheck<CR>:echo "phpcs standard PEAR"<CR>
+nnoremap <leader>sp1 <Esc>:let g:syntastic_php_phpcs_args = "--encoding=utf-8 --report=csv --standard=PSR1"<CR>:SyntasticCheck<CR>:echo "phpcs standard PSR1"<CR>
+nnoremap <leader>sp2 <Esc>:let g:syntastic_php_phpcs_args = "--encoding=utf-8 --report=csv --exclude=Generic.Files.LineLength --standard=PSR2"<CR>:SyntasticCheck<CR>:echo "phpcs standard PSR2"<CR>
 nnoremap <leader>spy2 <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python2"<CR>:SyntasticCheck<CR>:echo "syntastic python2"<CR>
 nnoremap <leader>spy <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python"<CR>:SyntasticCheck<CR>:echo "syntastic python3"<CR>
 nnoremap <leader>spy3 <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python"<CR>:SyntasticCheck<CR>:echo "syntastic python3"<CR>
@@ -323,7 +323,7 @@ let g:syntastic_warning_symbol = '!'
 let g:syntastic_python_flake8_args = '--ignore=E501,E265'
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
 "let g:syntastic_php_phpcs_args = "--report=csv --standard=Zend"
-let g:syntastic_php_phpcs_args = "--report=csv --standard=PSR1"
+let g:syntastic_php_phpcs_args = "--report=csv --exclude=Generic.Files.LineLength --standard=PSR1"
 "let g:syntastic_php_phpcs_args = "--report=csv --standard=PSR2"
 "let g:syntastic_php_phpcs_args = "--report=csv --standard=PEAR"
 "let g:syntastic_php_phpcs_args = "--report=csv --standard=".expand('<sfile>:p:h')."~/.vim/misc/phpcs-psr2-excl-linelenght.xml"
