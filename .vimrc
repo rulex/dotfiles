@@ -507,6 +507,7 @@ Plug 'xolox/vim-easytags'
 " syntax
 Plug 'vim-scripts/httplog'
 Plug 'vim-scripts/css_color'
+"Plug 'coala/coala-vim'
 call plug#end()
 
 

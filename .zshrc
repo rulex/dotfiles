@@ -8,7 +8,7 @@ integer t0=$(date '+%s')
 ZSH=$HOME/.oh-my-zsh
 unset TMOUT
 
-PATH=$PATH:$HOME/bin
+PATH=$PATH:$HOME/bin:$HOME/.composer/vendor/bin
 
 # aliases
 source ~/dotfiles/.aliases
