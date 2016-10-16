@@ -319,8 +319,12 @@ let g:syntastic_check_on_wq = 0
 " Better :sign interface symbols
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '!'
+
 "let g:syntastic_python_python_exec = '/usr/bin/python2'
-let g:syntastic_python_flake8_args = '--ignore=E501,E265'
+let g:syntastic_python_checkers = ['pylint'] " 'python', 'flake8'
+"let g:syntastic_python_pylint_args = '--ignore=E501,E265'
+"let g:syntastic_python_flake8_args = '--ignore=E501,E265'
+
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
 "let g:syntastic_php_phpcs_args = "--report=csv --standard=Zend"
 let g:syntastic_php_phpcs_args = "--report=csv --exclude=Generic.Files.LineLength --standard=PSR1"
