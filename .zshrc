@@ -10,9 +10,6 @@ unset TMOUT
 
 PATH=$PATH:$HOME/bin:$HOME/.composer/vendor/bin
 
-# aliases
-source ~/dotfiles/.aliases
-
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -97,6 +94,9 @@ plugins=(cp systemd archlinux docker mosh nmap redis-cli rsync battery docker-co
 #plugins=()
 
 source $ZSH/oh-my-zsh.sh
+
+# aliases
+source ~/dotfiles/.aliases
 
 # User configuration
 

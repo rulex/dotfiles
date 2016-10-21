@@ -257,6 +257,7 @@ nnoremap <leader>do <Esc>:diffoff<CR>
 nnoremap <leader>doo <Esc>:diffoff<CR><c-w><c-w>:diffoff<CR><c-w><c-w>
 nnoremap <leader>dn ]c
 nnoremap <leader>dN [c
+
 nnoremap <leader>q <Esc>:q<CR>
 nnoremap <leader>qq <Esc>:qa<CR>
 nnoremap <leader>qqq <Esc>:qa!<CR>
@@ -264,6 +265,7 @@ nnoremap <leader>qqq <Esc>:qa!<CR>
 nnoremap <leader><Left> :tabmove -1<CR>
 nnoremap <leader><Right> :tabmove +1<CR>
 nnoremap <leader><Up> :tabmove 0<CR>
+
 " highlight git merge stuff
 nnoremap <leader>/ <Esc>/^<<<<<<<\\|^=======\\|^>>>>>>><CR>
 
@@ -278,6 +280,7 @@ nnoremap , za
 vnoremap , za
 
 vnoremap qq <Esc>`>a'<Esc>`<i'<Esc>
+
 " pretty json
 nnoremap <leader>js <Esc>:%!python -m json.tool<CR>
 nnoremap gjs <Esc>:.!python -m json.tool<CR>
@@ -321,9 +324,10 @@ let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '!'
 
 "let g:syntastic_python_python_exec = '/usr/bin/python2'
-let g:syntastic_python_checkers = ['pylint'] " 'python', 'flake8'
+"let g:syntastic_python_checkers = ['pylint'] " 'python', 'flake8'
+let g:syntastic_python_checkers = ['flake8'] " 'python', 'flake8'
 "let g:syntastic_python_pylint_args = '--ignore=E501,E265'
-"let g:syntastic_python_flake8_args = '--ignore=E501,E265'
+let g:syntastic_python_flake8_args = '--ignore=E501,E265'
 
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
 "let g:syntastic_php_phpcs_args = "--report=csv --standard=Zend"
@@ -332,6 +336,7 @@ let g:syntastic_php_phpcs_args = "--report=csv --exclude=Generic.Files.LineLengt
 "let g:syntastic_php_phpcs_args = "--report=csv --standard=PEAR"
 "let g:syntastic_php_phpcs_args = "--report=csv --standard=".expand('<sfile>:p:h')."~/.vim/misc/phpcs-psr2-excl-linelenght.xml"
 "let g:syntastic_php_phpmd_post_args = expand('<sfile>:p:h')."/.vim/misc/phpmd-ruleset.xml"
+
 "let g:syntastic_javascript_jscs_checker = 1
 let g:syntastic_javascript_checkers = ['jshint'] " jshint + jsxhint
 "let g:syntastic_javascript_jsxhint_exec = 'jsxhint'
@@ -411,9 +416,6 @@ set ruler  " show the cursor position all the time
 set showcmd  " display incomplete commands
 set incsearch  " do incremental searching
 set iskeyword+=\$   " $asdff <- one word
-
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
