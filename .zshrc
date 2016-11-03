@@ -3,7 +3,7 @@
 #
 
 # timer
-integer t0=$(date '+%s')  
+integer t0=$(date '+%s')
 
 ZSH=$HOME/.oh-my-zsh
 unset TMOUT
@@ -42,12 +42,12 @@ CASE_SENSITIVE="true"
 # export UPDATE_ZSH_DAYS=13
 # LOCALE
 export LANG="en_US.UTF-8"
-export LC_NUMERIC="sv_SE.UTF-8"
+export LC_NUMERIC="sv_FI.UTF-8"
 export LC_COLLATE="C"
-export LC_TIME="sv_SE.UTF-8"
-export LC_MONETARY="sv_SE.UTF-8"
-export LC_MEASUREMENT="sv_SE.UTF-8"
-export LC_CTYPE="sv_SE.UTF-8"
+export LC_TIME="sv_FI.UTF-8"
+export LC_MONETARY="sv_FI.UTF-8"
+export LC_MEASUREMENT="sv_FI.UTF-8"
+export LC_CTYPE="sv_FI.UTF-8"
 export LC_MESSAGES="en_US.UTF-8"
 
 # set terminal for i3
