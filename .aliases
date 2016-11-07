@@ -39,6 +39,14 @@ function dt() {
 	fi
 }
 
+function ds() {
+    if [[ $# == 0 ]]; then
+        du --time --time-style="+%Y-%m-%d %H:%M:%S" -shc * | sort -k 1 -h
+    else
+        du --time --time-style="+%Y-%m-%d %H:%M:%S" -shc $* | sort -k 1 -h
+    fi
+}
+
 alias new_uuid='cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 32 | head -n 1'
 random-string() {
     cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${1:-32} | head -n 1
@@ -60,7 +68,7 @@ alias px='ps auxf'
 alias pxg='ps auxf|grep -i'
 #alias t='TERM=screen-256color-bce tmux'
 alias t='tmux'
-alias ds='du --time --time-style="+%Y-%m-%d %H:%M:%S" -shc * | sort -k 1 -h'
+#alias ds='du --time --time-style="+%Y-%m-%d %H:%M:%S" -shc * | sort -k 1 -h'
 alias netlisteners='lsof -i -P | grep LISTEN'
 alias g='git'
 alias gs='git status'
