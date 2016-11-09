@@ -113,8 +113,9 @@ A() {
 	# log errything to file
     logstr ${txt}
 	notify-send -t 10000 -a A-Notice ${txt}
-    # tmux display-message # TODO better format for tmux display-message
-    tmux display-message "A(): ${txt}"
+    # tmux display-message
+    tmux_txt=$(echo ${txt} | tr '\n' ' ' | sed "s| \+| |g")
+    tmux display-message "A(): ${tmux_txt}"
     # if we want pushover
     if [ ${PUSHOVER} -eq 1 ];then
         if type pushover 2 > /dev/null; then
