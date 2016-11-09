@@ -101,16 +101,31 @@ logstr() {
 }
 
 A() {
+    local PUSHOVER=0
 	if [ $# -eq 0 ];then
 		txt="Done"
+    elif [ $# -gt 1 ] && ( [[ "$1" == "p" ]] || [[ "$1" == "P" ]] );then
+        txt="${@:2}"
+        PUSHOVER=1
 	else
 		txt="$*"
 	fi
 	# log errything to file
     logstr ${txt}
 	notify-send -t 10000 -a A-Notice ${txt}
-    # tmux display-message
+    # tmux display-message # TODO better format for tmux display-message
     tmux display-message "A(): ${txt}"
+    # if we want pushover
+    if [ ${PUSHOVER} -eq 1 ];then
+        if type pushover 2 > /dev/null; then
+            if [[ "$1" == "P" ]];then
+                local notify_timeout=10
+                echo "Ctrl+C to cancel, Enter to continue or wait ${notify_timeout}s"
+                read -t ${notify_timeout} input_str
+            fi
+            ( pushover "${txt}" 2>&1 > /dev/null )
+        fi
+    fi
 }
 
 AA() {
@@ -119,21 +134,14 @@ AA() {
 	else
 		txt="$*"
 	fi
-	# log errything to file
-    logstr ${txt}
-	notify-send -t 10000 -a A-Notice ${txt}
-	if type pushover 2 > /dev/null; then
-		pushover "${txt}"
-	fi
-    # tmux display-message
-    tmux display-message "AA(): ${txt}"
+    A p ${txt}
 }
 
 # pretty-time function
 function pretty_time() {
 	if (( $# == 0 )); then
 		echo 'Input required'
-        exit
+        return 1
 	fi
 	local human total_seconds=$1
 	local days=$(( total_seconds / 60 / 60 / 24 ))
@@ -145,6 +153,7 @@ function pretty_time() {
 	(( minutes > 0 )) && human+="${minutes}m "
 	human+="${seconds}s"
 	echo "$human"
+    return
 }
 
 function pretty_size() {
@@ -182,7 +191,7 @@ function pushover() {
 	ts=$(date +%s)
     post_data="token=${pushover_apitoken}&user=${pushover_userkey}&message=${msg}&timestamp=${ts}&html=1"
     #echo ${post_data}
-	curl https://api.pushover.net/1/messages.json -d "${post_data}"
+    response=$(curl -s https://api.pushover.net/1/messages.json -d "${post_data}")
     # TODO parse json response
 	if [ $? -eq 0 ]; then
         return 0
@@ -212,11 +221,7 @@ tty:   ${TTY}"
 			if (( ${time_taken} > ${REPORTTIME_AA} )); then
 				str="${USER}@${HOST}
 ${str}"
-				local notify_timeout=10
-				# XXX read with timeout
-				echo "Ctrl+C to cancel, Enter to continue or wait ${notify_timeout}"
-				read -t ${notify_timeout} input_str
-				AA ${str}
+				A P ${str}
 			elif (( ${time_taken} > ${REPORTTIME_A} )); then
 				A ${str}
 			fi
@@ -233,7 +238,7 @@ strlen () {
 }
 
 # show right prompt with date ONLY when command is executed
-date-preexec () {
+timestamp-preexec () {
     DATE=$( date +"[%H:%M:%S]" )
     local len_right=$( strlen "$DATE" )
     len_right=$(( $len_right+1 ))
@@ -252,7 +257,7 @@ date-preexec () {
 }
 
 [[ -z ${preexec_functions} ]] && preexec_functions=()
-preexec_functions=( ${preexec_functions} notify-preexec-hook date-preexec )
+preexec_functions=( ${preexec_functions} notify-preexec-hook timestamp-preexec )
 
 [[ -z ${precmd_functions} ]] && precmd_functions=()
 precmd_functions=( ${precmd_functions} notify-precmd-hook )
