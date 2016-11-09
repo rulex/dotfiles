@@ -109,6 +109,8 @@ A() {
 	# log errything to file
     logstr ${txt}
 	notify-send -t 10000 -a A-Notice ${txt}
+    # tmux display-message
+    tmux display-message "A(): ${txt}"
 }
 
 AA() {
@@ -123,6 +125,8 @@ AA() {
 	if type pushover 2 > /dev/null; then
 		pushover "${txt}"
 	fi
+    # tmux display-message
+    tmux display-message "AA(): ${txt}"
 }
 
 # pretty-time function
