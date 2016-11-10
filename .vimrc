@@ -58,7 +58,7 @@ set lazyredraw " avoid scrolling problems
 ":command
 command! Sw w !sudo tee > /dev/null %
 "command! Sw :execute ':silent w !sudo tee % > /dev/null' | :edit!
-nmap <M-1> :tabnext 1<CR>
+nmap <M-1> :tabfirst<CR>
 nmap <M-2> :tabnext 2<CR>
 nmap <M-3> :tabnext 3<CR>
 nmap <M-4> :tabnext 4<CR>
@@ -66,8 +66,7 @@ nmap <M-5> :tabnext 5<CR>
 nmap <M-6> :tabnext 6<CR>
 nmap <M-7> :tabnext 7<CR>
 nmap <M-8> :tabnext 8<CR>
-nmap <M-9> :tabnext 9<CR>
-nmap <M-0> :tabnext 10<CR>
+nmap <M-9> :tablast<CR>
 
 nmap <F8> :TagbarToggle<CR>
 nmap <F7> :SyntasticToggleMode<CR>
