@@ -52,6 +52,14 @@ random-string() {
     cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${1:-32} | head -n 1
 }
 
+function px() {
+    if [[ $# == 0 ]]; then
+        ps auxf
+    elif [[ $# -ge 1 ]]; then
+        ps auxf | grep -i $*
+    fi
+}
+
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 
@@ -64,8 +72,8 @@ alias P='packer'
 alias s='sudo '
 alias w='w -f'
 alias fig='docker-compose'
-alias px='ps auxf'
-alias pxg='ps auxf|grep -i'
+#alias px='ps auxf'
+alias pxg='px'
 #alias t='TERM=screen-256color-bce tmux'
 alias t='tmux'
 #alias ds='du --time --time-style="+%Y-%m-%d %H:%M:%S" -shc * | sort -k 1 -h'
