@@ -56,9 +56,11 @@ export TERMINAL="urxvtc"
 # set editor
 if hash nvim 2>/dev/null; then
 	export EDITOR="nvim"
+	export VISUAL="nvim"
 	export SUDO_EDITOR="nvim"
 elif hash vim 2>/dev/null; then
 	export EDITOR="vim"
+	export VISUAL="vim"
 	export SUDO_EDITOR="vim"
 else
 	export EDITOR="vi"
