@@ -127,7 +127,7 @@ bindkey "^[^[OD" backward-word # Urxvt mosh alt-left
 unset GREP_OPTIONS
 
 export REPORTTIME=3 # display time for cpu heavy cmds
-export REPORTTIME_A=3 # do a notify-send
+export REPORTTIME_A=5 # do a notify-send
 export REPORTTIME_AA=60 # do a notify-send and pushover
 
 export ZLE_REMOVE_SUFFIX_CHARS=""

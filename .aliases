@@ -97,7 +97,6 @@ alias glc='git shortlog --no-merges -nes'
 alias grup='git remote update'
 alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
 
-#alias A='notify-send -t 10000 -a A'
 alias mysql='mysql --auto-rehash'
 alias cv='progress'
 
@@ -111,30 +110,53 @@ logstr() {
 
 A() {
     local PUSHOVER=0
-	if [ $# -eq 0 ];then
-		txt="Done"
+    if [ $# -eq 0 ];then
+        txt="Done"
     elif [ $# -gt 1 ] && ( [[ "$1" == "p" ]] || [[ "$1" == "P" ]] );then
         txt="${@:2}"
         PUSHOVER=1
-	else
-		txt="$*"
-	fi
-	# log errything to file
+    else
+        txt="$*"
+    fi
+    # log errything to file
     logstr ${txt}
-	notify-send -t 10000 -a A-Notice ${txt}
+    notify-send -t 10000 -a A-Notice ${txt}
     # tmux display-message
     tmux_txt=$(echo ${txt} | tr '\n' ' ' | sed "s| \+| |g")
     tmux display-message "A(): ${tmux_txt}"
     # if we want pushover
     if [ ${PUSHOVER} -eq 1 ];then
-        if type pushover 2 > /dev/null; then
-            if [[ "$1" == "P" ]];then
-                local notify_timeout=10
-                echo "Ctrl+C to cancel, Enter to continue or wait ${notify_timeout}s"
-                read -t ${notify_timeout} input_str
-            fi
-            ( pushover "${txt}" 2>&1 > /dev/null )
+        local _config=~/.pushoverrc
+        # check if config exists
+        if [ ! -f ${_config} ]; then
+            echo "A(): Config file ${_config} does not exist."
+            return 1
         fi
+        # source config
+        source ${_config}
+        # check if vars are present
+        if [ -z ${pushover_userkey} ] || [ -z ${pushover_apitoken} ]; then
+            echo "A(): pushover_userkey or pushover_apitoken is not set"
+            return 2
+        fi
+        if [[ "$1" == "P" ]];then
+            local notify_timeout=10
+            echo "A(): Ctrl+C to cancel, Enter to continue or wait ${notify_timeout}s"
+            read -t ${notify_timeout} input_str
+        fi
+        # make post data and post to pushover
+        ts=$(date +%s)
+        post_data="token=${pushover_apitoken}&user=${pushover_userkey}&message=${txt}&timestamp=${ts}&html=1"
+        #echo ${post_data}
+        response=$(curl -s https://api.pushover.net/1/messages.json -d "${post_data}")
+        # TODO parse json response?
+        if [ $? -eq 0 ]; then
+            return 0
+        else
+            echo "A(): Failed to deliver message to pushover.net"
+            return 3
+        fi
+        #( pushover "${txt}" 2>&1 > /dev/null )
     fi
 }
 
@@ -181,33 +203,7 @@ function calc() {
 }
 
 function pushover() {
-	_config=~/.pushoverrc
-	# check if config exists
-	if [ ! -f ${_config} ]; then
-		echo "File ${_config} does not exist."
-		return 1
-	fi
-	# source config
-	source ${_config}
-	# check if vars are present
-	if [ -z ${pushover_userkey} ] || [ -z ${pushover_apitoken} ]; then
-		echo "pushover_userkey or pushover_apitoken is not set"
-		return 2
-	fi
-	msg="empty msg"
-	if [ $# -gt 0 ]; then
-		msg=$*
-	fi
-	ts=$(date +%s)
-    post_data="token=${pushover_apitoken}&user=${pushover_userkey}&message=${msg}&timestamp=${ts}&html=1"
-    #echo ${post_data}
-    response=$(curl -s https://api.pushover.net/1/messages.json -d "${post_data}")
-    # TODO parse json response
-	if [ $? -eq 0 ]; then
-        return 0
-    else
-        return 3
-    fi
+    A p $*
 }
 
 #
