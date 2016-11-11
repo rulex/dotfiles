@@ -340,6 +340,16 @@ let g:syntastic_php_phpcs_args = "--report=csv --exclude=Generic.Files.LineLengt
 let g:syntastic_javascript_checkers = ['jshint'] " jshint + jsxhint
 "let g:syntastic_javascript_jsxhint_exec = 'jsxhint'
 
+" Append modeline after last line in buffer.
+" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
+" files.
+function! AppendModeline()
+    let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set :",
+                \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+    let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+    call append(line("$"), l:modeline)
+endfunction
+nnoremap <Leader>Ml :call AppendModeline()<CR>
 
 "FOLDING
 function! MyFoldText() " {{{
