@@ -21,9 +21,13 @@ function dt() {
 	if [[ $# == 0 ]]; then
 		# pretty print now
 		date +"%Y-%m-%d %H:%M:%S"
-	elif [[ $# == 1 ]] && [[ $1 != "p" ]]; then
-		# pretty print input unix ts
-		date +"%Y-%m-%d %H:%M:%S" --date @"$1"
+	elif [[ $# == 1 ]]; then
+        if [[ $1 == "w" ]]; then
+            date +"%Y-%m-%d %H:%M:%S W%V"
+        else
+            # pretty print input unix ts
+            date +"%Y-%m-%d %H:%M:%S" --date @"$1"
+        fi
 	elif [[ $# == 2 ]] && [[ $1 == "p" ]]; then
 		# pretty print input diff seconds
 		local human total_seconds=$2
