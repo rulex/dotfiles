@@ -37,9 +37,33 @@ set cursorline
 set scrolljump=1        " lines to scroll when cursor leaves screen
 set scrolloff=5         " minimum lines to keep above and below cursor
 set laststatus=2        " show statusline allways
+
+" Get Neomake Jobs count for statusline
+function! Neomake_statusline()
+    "let bufnr = bufnr('%')
+    let neomake_status_str = ''
+    if exists('*neomake#GetJobs')
+        if getbufvar(bufnr('%'), 'neomake_disabled', 0)
+            let neomake_status_str .= ' b- '
+        elseif get(g:, 'neomake_disabled', 0)
+            let neomake_status_str .= ' g- '
+        endif
+        let neomake_jobs_count = len(neomake#GetJobs())
+        if neomake_jobs_count > 0
+            let neomake_status_str .= neomake_jobs_count
+        endif
+        "let neomake_status_str .= '%('.StatuslineNeomakeStatus(bufnr('%'), '…', '✓')
+        "            \ . (a:active ? '%#StatColorHi2#' : '%*')
+        "            \ . '%)'
+    endif
+    return neomake_status_str
+endfunction
+
+" statusline
 set statusline=%F       " tail of the filename
 set statusline+=%m      " modified flag
 set statusline+=%=      " left/right separator
+set statusline+=%{Neomake_statusline()} " show pending neomake jobs
 set statusline+=%#ErrorMsg#%{neomake#statusline#QflistStatus('\ qf:\ ')}%#StatusLine#
 set statusline+=%#ErrorMsg#%{neomake#statusline#LoclistStatus('\ ll:\ ')}%#StatusLine#
 set statusline+=[U+%B]  " show ASCII value of char under cursor
@@ -48,6 +72,7 @@ set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
 set statusline+=%{&ff}] " file format
 set statusline+=%h      " help file flag
 set statusline+=%r      " read only flag
+set statusline+=%w      " Preview window flag
 set statusline+=%y\     " filetype
 set statusline+=%c,     " cursor column
 set statusline+=%l/%L   " cursor line/total lines
