@@ -42,6 +42,9 @@ for_window [title="^floatme$"] floating enable
 for_window [title="^sxiv"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [class="urxvt*"] border pixel 1
+for_window [title="^Sky$"] floating enable
+
+for_window [title="^xxx.*"] floating enable
 
 #gaps inner 5
 #gaps outer 15

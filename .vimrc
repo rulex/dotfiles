@@ -40,6 +40,8 @@ set laststatus=2        " show statusline allways
 set statusline=%F       " tail of the filename
 set statusline+=%m      " modified flag
 set statusline+=%=      " left/right separator
+set statusline+=%#ErrorMsg#%{neomake#statusline#QflistStatus('\ qf:\ ')}%#StatusLine#
+set statusline+=%#ErrorMsg#%{neomake#statusline#LoclistStatus('\ ll:\ ')}%#StatusLine#
 set statusline+=[U+%B]  " show ASCII value of char under cursor
 "set statusline+=[%F]
 set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
@@ -311,7 +313,7 @@ noremap <C-l> <C-w>l
 
 " syntastic
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
@@ -339,6 +341,36 @@ let g:syntastic_php_phpcs_args = "--report=csv --exclude=Generic.Files.LineLengt
 "let g:syntastic_javascript_jscs_checker = 1
 let g:syntastic_javascript_checkers = ['jshint'] " jshint + jsxhint
 "let g:syntastic_javascript_jsxhint_exec = 'jsxhint'
+
+" XXX neomake
+" on write
+autocmd! BufWritePost,BufEnter * Neomake
+" on insert
+"autocmd InsertChange,TextChanged * update | Neomake
+
+"let g:neomake_logfile='/tmp/error.log'
+"let g:neomake_verbose = 3
+"let g:neomake_open_list = 1
+"let g:neomake_php_enabled_makers = ['php', 'phpcs', 'phpmd']
+"let g:neomake_echo_current_error = 1
+let g:neomake_place_signs = 1
+let g:neomake_serialize = 1 " Setting this to 1 tells Neomake to run each enabled maker one after the other.
+let g:neomake_serialize_abort_on_error = 1
+"let g:neomake_error_sign
+"let g:neomake_warning_sign
+"let g:neomake_info_sign
+"let g:neomake_message_sign
+let g:neomake_highlight_columns = 1
+"let g:neomake_highlight_lines = 1
+
+let g:neomake_php_phpcs_args_standard = 'PSR1'
+
+" location list
+map gN :Neomake<CR>
+map gl :lopen<CR>
+map gc :lclose<CR>
+map gn :lnext<CR>
+map gN :lprevious<CR>
 
 " Append modeline after last line in buffer.
 " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
@@ -502,7 +534,7 @@ Plug 'ervandew/supertab'
 "Plug 'Shougo/deoplete.nvim'
 "Plug 'davidhalter/jedi-vim' " python
 "Plug 'ternjs/tern_for_vim' " JS
-Plug 'luochen1990/rainbow'
+"Plug 'luochen1990/rainbow'
 Plug 'junegunn/vim-easy-align'
 Plug 'simnalamburt/vim-mundo'
 Plug 'kshenoy/vim-signature' " vim marks
@@ -510,7 +542,8 @@ Plug 'tpope/vim-surround' " change surrounding stuff: csXY
 
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
-Plug 'scrooloose/syntastic' " syntax/lint stuff
+"Plug 'scrooloose/syntastic' " syntax/lint stuff
+Plug 'neomake/neomake'
 
 Plug 'scrooloose/nerdcommenter' " comments
 

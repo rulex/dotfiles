@@ -57,6 +57,9 @@ hi Special    cterm=NONE ctermfg=LightRed
 hi Statement  cterm=NONE ctermfg=Blue
 hi Type       cterm=NONE ctermfg=Blue
 
+hi SpellBad   cterm=NONE ctermfg=Blue ctermbg=Blue guibg=blue
+hi SpellCap   cterm=NONE ctermfg=Blue ctermbg=Blue guibg=blue
+
 " for gitgutter
 hi clear SignColumn
 
