@@ -60,6 +60,10 @@ hi Type       cterm=NONE ctermfg=Blue
 hi SpellBad   cterm=NONE ctermfg=Blue ctermbg=Blue guibg=blue
 hi SpellCap   cterm=NONE ctermfg=Blue ctermbg=Blue guibg=blue
 
+" Neomake highlighting
+hi NeomakeError     cterm=underline ctermfg=NONE ctermbg=NONE guibg=NONE
+hi NeomakeWarning   cterm=underline ctermfg=NONE ctermbg=NONE guibg=NONE
+
 " for gitgutter
 hi clear SignColumn
 

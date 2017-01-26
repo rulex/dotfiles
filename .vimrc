@@ -50,6 +50,7 @@ function! Neomake_statusline()
         endif
         let neomake_jobs_count = len(neomake#GetJobs())
         if neomake_jobs_count > 0
+            let neomake_status_str .= ';'
             let neomake_status_str .= neomake_jobs_count
         endif
         "let neomake_status_str .= '%('.StatuslineNeomakeStatus(bufnr('%'), '…', '✓')
@@ -63,9 +64,6 @@ endfunction
 set statusline=%F       " tail of the filename
 set statusline+=%m      " modified flag
 set statusline+=%=      " left/right separator
-set statusline+=%{Neomake_statusline()} " show pending neomake jobs
-set statusline+=%#ErrorMsg#%{neomake#statusline#QflistStatus('\ qf:\ ')}%#StatusLine#
-set statusline+=%#ErrorMsg#%{neomake#statusline#LoclistStatus('\ ll:\ ')}%#StatusLine#
 set statusline+=[U+%B]  " show ASCII value of char under cursor
 "set statusline+=[%F]
 set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
@@ -77,6 +75,9 @@ set statusline+=%y\     " filetype
 set statusline+=%c,     " cursor column
 set statusline+=%l/%L   " cursor line/total lines
 set statusline+=\ %P    " percent through file
+set statusline+=%#ErrorMsg#%{neomake#statusline#QflistStatus('\ qf:\ ')}%#StatusLine#
+set statusline+=%#ErrorMsg#%{neomake#statusline#LoclistStatus('\ ll:\ ')}%#StatusLine#
+set statusline+=%#StatusLine#%{Neomake_statusline()} " show pending neomake jobs
 set synmaxcol=512       " Syntax coloring slows
 "set ttyfast
 "set ttyscroll=3
@@ -369,7 +370,8 @@ let g:syntastic_javascript_checkers = ['jshint'] " jshint + jsxhint
 
 " XXX neomake
 " on write
-autocmd! BufWritePost,BufEnter * Neomake
+autocmd! BufReadPost,BufWritePost * Neomake
+"autocmd! BufWritePost,BufEnter * Neomake
 " on insert
 "autocmd InsertChange,TextChanged * update | Neomake
 
@@ -386,9 +388,19 @@ let g:neomake_serialize_abort_on_error = 1
 "let g:neomake_info_sign
 "let g:neomake_message_sign
 let g:neomake_highlight_columns = 1
-"let g:neomake_highlight_lines = 1
+let g:neomake_highlight_lines = 0
 
 let g:neomake_php_phpcs_args_standard = 'PSR1'
+
+" neomake syntax highlights
+"if has("autocmd")
+"    augroup my_neomake_highlights
+"        au!
+"        autocmd ColorScheme *
+"          \ hi link NeomakeError SpellBad
+"          \ hi link NeomakeWarning SpellCap
+"    augroup END
+"endif
 
 " location list
 map gN :Neomake<CR>
