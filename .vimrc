@@ -240,15 +240,43 @@ nnoremap <leader>u2 <Esc>:setl tabstop=2 softtabstop=2 shiftwidth=2<CR>:set tabs
 nnoremap <leader>u4 <Esc>:setl tabstop=4 softtabstop=4 shiftwidth=4<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 nnoremap <leader>u8 <Esc>:setl tabstop=8 softtabstop=8 shiftwidth=8<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 
-" switch syntastic standards
-nnoremap <leader>s <Esc>:echo "sz phpcs standard Zend\nsp phpcs standard PEAR\nsp1 phpcs standard PSR1\nsp2 phpcs standard PSR2\nspy python3\nspy2 python2\nspy3 python3\n\nF7 SyntasticToggleMode"<CR>
-nnoremap <leader>sz <Esc>:let g:syntastic_php_phpcs_args = "--encoding=utf-8 --report=csv --exclude=Generic.Files.LineLength --standard=Zend"<CR>:SyntasticCheck<CR>:echo "phpcs standard Zend"<CR>
-nnoremap <leader>sp <Esc>:let g:syntastic_php_phpcs_args = "--encoding=utf-8 --report=csv --exclude=Generic.Files.LineLength --standard=PEAR"<CR>:SyntasticCheck<CR>:echo "phpcs standard PEAR"<CR>
-nnoremap <leader>sp1 <Esc>:let g:syntastic_php_phpcs_args = "--encoding=utf-8 --report=csv --standard=PSR1"<CR>:SyntasticCheck<CR>:echo "phpcs standard PSR1"<CR>
-nnoremap <leader>sp2 <Esc>:let g:syntastic_php_phpcs_args = "--encoding=utf-8 --report=csv --exclude=Generic.Files.LineLength --standard=PSR2"<CR>:SyntasticCheck<CR>:echo "phpcs standard PSR2"<CR>
-nnoremap <leader>spy2 <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python2"<CR>:SyntasticCheck<CR>:echo "syntastic python2"<CR>
-nnoremap <leader>spy <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python"<CR>:SyntasticCheck<CR>:echo "syntastic python3"<CR>
-nnoremap <leader>spy3 <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python"<CR>:SyntasticCheck<CR>:echo "syntastic python3"<CR>
+" switch syntastic/Neomake standards
+nnoremap <leader>s <Esc>:echo "sz phpcs standard Zend\n
+            \ sp phpcs standard PEAR\n
+            \ sp1 phpcs standard PSR1\n
+            \ sp2 phpcs standard PSR2\n
+            \ spy python3\n
+            \ spy2 python2\nspy3 python3\n\n
+            \ F7 SyntasticToggleMode"<CR>
+" let g:neomake_php_phpcs_args_standard = 'PSR2'
+nnoremap <leader>sz <Esc>:let g:syntastic_php_phpcs_args = "--encoding=utf-8 --report=csv --exclude=Generic.Files.LineLength --standard=Zend"<CR>
+            \ :SyntasticCheck<CR>
+            \ :let g:neomake_php_phpcs_args_standard = 'Zend'<CR>
+            \ :Neomake<CR>
+            \ :echo "phpcs standard Zend"<CR>
+nnoremap <leader>sp <Esc>:let g:syntastic_php_phpcs_args = "--encoding=utf-8 --report=csv --exclude=Generic.Files.LineLength --standard=PEAR"<CR>
+            \ :SyntasticCheck<CR>
+            \ :let g:neomake_php_phpcs_args_standard = 'PEAR'<CR>
+            \ :echo "phpcs standard PEAR"<CR>
+nnoremap <leader>sp1 <Esc>:let g:syntastic_php_phpcs_args = "--encoding=utf-8 --report=csv --standard=PSR1"<CR>
+            \ :SyntasticCheck<CR>
+            \ :let g:neomake_php_phpcs_args_standard = 'PSR1'<CR>
+            \ :Neomake<CR>
+            \ :echo "phpcs standard PSR1"<CR>
+nnoremap <leader>sp2 <Esc>:let g:syntastic_php_phpcs_args = "--encoding=utf-8 --report=csv --exclude=Generic.Files.LineLength --standard=PSR2"<CR>
+            \ :SyntasticCheck<CR>
+            \ :let g:neomake_php_phpcs_args_standard = 'PSR2'<CR>
+            \ :Neomake<CR>
+            \ :echo "phpcs standard PSR2"<CR>
+nnoremap <leader>spy2 <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python2"<CR>
+            \ :SyntasticCheck<CR>
+            \ :echo "syntastic python2"<CR>
+nnoremap <leader>spy <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python"<CR>
+            \ :SyntasticCheck<CR>
+            \ :echo "syntastic python3"<CR>
+nnoremap <leader>spy3 <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python"<CR>
+            \ :SyntasticCheck<CR>
+            \ :echo "syntastic python3"<CR>
 "let g:syntastic_python_python_exec = '/usr/bin/python2'
 
 " encoding
@@ -257,7 +285,7 @@ nnoremap <leader>C <Esc>:set fileencoding? fileformat? encoding? bomb?<CR>
 " remove stuff
 nnoremap <leader>r <Esc>:%s/\s\+$//<CR> " remove extra spaces from line end
 nnoremap <leader>re <Esc>:g/^$/d<CR> " remove empty lines
-nnoremap <leader>rm <Esc>:%s/\r$//g<CR> " remove lines ending with ^M
+nnoremap <leader>rm <Esc>:%s/\r$//g<CR> " remove line-endings with ^M
 nnoremap <leader>k <Esc>:set list!<CR>:set list?<CR>
 
 " splits tabs
@@ -383,10 +411,10 @@ autocmd! BufReadPost,BufWritePost * Neomake
 let g:neomake_place_signs = 1
 let g:neomake_serialize = 1 " Setting this to 1 tells Neomake to run each enabled maker one after the other.
 let g:neomake_serialize_abort_on_error = 1
-"let g:neomake_error_sign
-"let g:neomake_warning_sign
-"let g:neomake_info_sign
-"let g:neomake_message_sign
+"let g:neomake_error_sign = '✗'
+"let g:neomake_warning_sign = '⚠'
+"let g:neomake_info_sign = 'ĩ'
+"let g:neomake_message_sign = 'm'
 let g:neomake_highlight_columns = 1
 let g:neomake_highlight_lines = 0
 
