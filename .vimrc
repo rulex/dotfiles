@@ -241,42 +241,57 @@ nnoremap <leader>u4 <Esc>:setl tabstop=4 softtabstop=4 shiftwidth=4<CR>:set tabs
 nnoremap <leader>u8 <Esc>:setl tabstop=8 softtabstop=8 shiftwidth=8<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 
 " switch syntastic/Neomake standards
-nnoremap <leader>s <Esc>:echo "sz phpcs standard Zend\n
-            \ sp phpcs standard PEAR\n
-            \ sp1 phpcs standard PSR1\n
-            \ sp2 phpcs standard PSR2\n
-            \ spy python3\n
-            \ spy2 python2\nspy3 python3\n\n
-            \ F7 SyntasticToggleMode"<CR>
+nnoremap <leader>s <Esc>:echo "
+            \sz   phpcs standard Zend\n
+            \sp   phpcs standard PEAR\n
+            \sp1  phpcs standard PSR1\n
+            \sp2  phpcs standard PSR2\n
+            \spy  python3\n
+            \spy2 python2\n
+            \spy3 python3\n
+            \\n
+            \F7 SyntasticToggleMode"<CR>
 " let g:neomake_php_phpcs_args_standard = 'PSR2'
 nnoremap <leader>sz <Esc>:let g:syntastic_php_phpcs_args = "--encoding=utf-8 --report=csv --exclude=Generic.Files.LineLength --standard=Zend"<CR>
-            \ :SyntasticCheck<CR>
-            \ :let g:neomake_php_phpcs_args_standard = 'Zend'<CR>
-            \ :Neomake<CR>
-            \ :echo "phpcs standard Zend"<CR>
+            \:SyntasticCheck<CR>
+            \:let g:neomake_php_phpcs_args_standard = 'Zend'<CR>
+            \:Neomake<CR>
+            \:echo "phpcs standard Zend"<CR>
 nnoremap <leader>sp <Esc>:let g:syntastic_php_phpcs_args = "--encoding=utf-8 --report=csv --exclude=Generic.Files.LineLength --standard=PEAR"<CR>
-            \ :SyntasticCheck<CR>
-            \ :let g:neomake_php_phpcs_args_standard = 'PEAR'<CR>
-            \ :echo "phpcs standard PEAR"<CR>
+            \:SyntasticCheck<CR>
+            \:let g:neomake_php_phpcs_args_standard = 'PEAR'<CR>
+            \:echo "phpcs standard PEAR"<CR>
 nnoremap <leader>sp1 <Esc>:let g:syntastic_php_phpcs_args = "--encoding=utf-8 --report=csv --standard=PSR1"<CR>
-            \ :SyntasticCheck<CR>
-            \ :let g:neomake_php_phpcs_args_standard = 'PSR1'<CR>
-            \ :Neomake<CR>
-            \ :echo "phpcs standard PSR1"<CR>
+            \:SyntasticCheck<CR>
+            \:let g:neomake_php_phpcs_args_standard = 'PSR1'<CR>
+            \:Neomake<CR>
+            \:echo "phpcs standard PSR1"<CR>
 nnoremap <leader>sp2 <Esc>:let g:syntastic_php_phpcs_args = "--encoding=utf-8 --report=csv --exclude=Generic.Files.LineLength --standard=PSR2"<CR>
-            \ :SyntasticCheck<CR>
-            \ :let g:neomake_php_phpcs_args_standard = 'PSR2'<CR>
-            \ :Neomake<CR>
-            \ :echo "phpcs standard PSR2"<CR>
+            \:SyntasticCheck<CR>
+            \:let g:neomake_php_phpcs_args_standard = 'PSR2'<CR>
+            \:Neomake<CR>
+            \:echo "phpcs standard PSR2"<CR>
+"\:SyntasticCheck<CR>
 nnoremap <leader>spy2 <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python2"<CR>
-            \ :SyntasticCheck<CR>
-            \ :echo "syntastic python2"<CR>
+            \:let g:neomake_python_python_exe = 'python2'<CR>
+            \:let g:neomake_python_flake8_exe = 'python2'<CR>
+            \:let g:neomake_python_flake8_args = '-m flake8'<CR>
+            \:let g:neomake_python_pylint_exe = 'pylint2'<CR>
+            \:Neomake<CR>
+            \:echo "syntastic python2"<CR>
 nnoremap <leader>spy <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python"<CR>
-            \ :SyntasticCheck<CR>
-            \ :echo "syntastic python3"<CR>
+            \:let g:neomake_python_python_exe = 'python'<CR>
+            \:let g:neomake_python_flake8_exe = 'flake8'<CR>
+            \:let g:neomake_python_flake8_args = '--format=default'<CR>
+            \:let g:neomake_python_pylint_exe = 'pylint'<CR>
+            \:Neomake<CR>
+            \:echo "syntastic python3"<CR>
+
 nnoremap <leader>spy3 <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python"<CR>
-            \ :SyntasticCheck<CR>
-            \ :echo "syntastic python3"<CR>
+            \:let g:neomake_python_python_exe = 'python'
+            \:Neomake<CR>
+            \:echo "syntastic python3"<CR>
+
 "let g:syntastic_python_python_exec = '/usr/bin/python2'
 
 " encoding
@@ -348,9 +363,9 @@ nnoremap gk k
 nnoremap / /\c
 nnoremap // /
 
-" Mundo
-"nnoremap <F5> :MundoToggle<CR>
-"nnoremap <leader>g <Esc>:MundoToggle<CR>
+" Mundo/Gundo
+nnoremap <F5> <Esc>:MundoToggle<CR>
+nnoremap <leader>g <Esc>:MundoToggle<CR>
 
 " visual shifting (does not exit Visual mode)
 vnoremap < <gv
@@ -595,11 +610,13 @@ Plug 'scrooloose/nerdtree' ", { 'on':  'NERDTreeToggle' }
 Plug 'marcweber/vim-addon-mw-utils' " for snipmate
 Plug 'tomtom/tlib_vim' " for snipmate
 Plug 'garbas/vim-snipmate'
+" auto complete
 Plug 'ervandew/supertab'
 "Plug 'Shougo/deoplete.nvim'
 "Plug 'davidhalter/jedi-vim' " python
 "Plug 'ternjs/tern_for_vim' " JS
 "Plug 'luochen1990/rainbow'
+
 Plug 'junegunn/vim-easy-align'
 Plug 'simnalamburt/vim-mundo'
 Plug 'kshenoy/vim-signature' " vim marks
@@ -607,7 +624,8 @@ Plug 'tpope/vim-surround' " change surrounding stuff: csXY
 
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
-"Plug 'scrooloose/syntastic' " syntax/lint stuff
+" syntax/lint stuff
+"Plug 'scrooloose/syntastic'
 Plug 'neomake/neomake'
 
 Plug 'scrooloose/nerdcommenter' " comments
