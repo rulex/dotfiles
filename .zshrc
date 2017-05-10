@@ -140,4 +140,8 @@ function {
 }
 unset t0
 
+# node nvm
+if [ -f /usr/share/nvm/init-nvm.sh ];then
+    source /usr/share/nvm/init-nvm.sh
+fi
 
