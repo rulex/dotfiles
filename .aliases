@@ -121,7 +121,7 @@ alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
 alias mysql='mysql --auto-rehash'
 alias cv='progress'
 
-logstr() {
+function logstr() {
     # replace newline with newline+tab for extra fancy indented text
     logstr=$( echo "${1//
 /
@@ -129,7 +129,7 @@ logstr() {
     echo "$(dt) ${logstr}" >> ~/.a.log
 }
 
-A() {
+function A() {
     local PUSHOVER=0
     if [ $# -eq 0 ];then
         txt="Done"
@@ -182,7 +182,7 @@ A() {
     fi
 }
 
-AA() {
+function AA() {
 	if [ $# -eq 0 ];then
 		txt="Done"
 	else
