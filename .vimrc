@@ -14,6 +14,8 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 filetype plugin on
+"set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20
+set guicursor=n-v-c-sm:block,i-ci-ve:block,r-cr-o:block
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -240,6 +242,19 @@ nnoremap <leader>u2 <Esc>:setl tabstop=2 softtabstop=2 shiftwidth=2<CR>:set tabs
 nnoremap <leader>u4 <Esc>:setl tabstop=4 softtabstop=4 shiftwidth=4<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 nnoremap <leader>u8 <Esc>:setl tabstop=8 softtabstop=8 shiftwidth=8<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 
+" buffers
+nnoremap <leader>b <Esc>:ls<CR>
+nnoremap <leader>1 <Esc>:b 1<CR>:echo "asdf"<CR>
+nnoremap <leader>2 <Esc>:b 2<CR>
+nnoremap <leader>3 <Esc>:b 3<CR>
+nnoremap <leader>4 <Esc>:b 4<CR>
+nnoremap <leader>5 <Esc>:b 5<CR>
+nnoremap <leader>6 <Esc>:b 6<CR>
+nnoremap <leader>7 <Esc>:b 7<CR>
+nnoremap <leader>8 <Esc>:b 8<CR>
+nnoremap <leader>9 <Esc>:b 9<CR>
+nnoremap <leader>0 <Esc>:b
+
 " switch syntastic/Neomake standards
 nnoremap <leader>s <Esc>:echo "
             \sz   phpcs standard Zend\n
@@ -329,8 +344,8 @@ nnoremap <leader>dn ]c
 nnoremap <leader>dN [c
 
 nnoremap <leader>q <Esc>:q<CR>
-nnoremap <leader>qq <Esc>:qa<CR>
-nnoremap <leader>qqq <Esc>:qa!<CR>
+"nnoremap <leader>qq <Esc>:qa<CR>
+"nnoremap <leader>qqq <Esc>:qa!<CR>
 
 nnoremap <leader><Left> :tabmove -1<CR>
 nnoremap <leader><Right> :tabmove +1<CR>
@@ -379,6 +394,10 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+nnoremap - <Esc><C-w>-
+nnoremap + <Esc><C-w>+
+nnoremap <S-Left> <Esc><C-w><
+nnoremap <S-Right> <Esc><C-w>>
 
 " syntastic
 set statusline+=%#warningmsg#
@@ -425,7 +444,7 @@ autocmd! BufReadPost,BufWritePost * Neomake
 "let g:neomake_echo_current_error = 1
 let g:neomake_place_signs = 1
 let g:neomake_serialize = 1 " Setting this to 1 tells Neomake to run each enabled maker one after the other.
-let g:neomake_serialize_abort_on_error = 1
+let g:neomake_serialize_abort_on_error = 0
 "let g:neomake_error_sign = '✗'
 "let g:neomake_warning_sign = '⚠'
 "let g:neomake_info_sign = 'ĩ'
