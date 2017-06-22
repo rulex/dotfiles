@@ -27,17 +27,17 @@ fi
 xrdb ~/.Xdefaults
 
 # MOUSE
-sh ~/.mouse.sh &
+#sh ~/.mouse.sh &
 
 # KEYBOARD
-( sleep 2 && sh ~/dotfiles/.xmodmap ) &
-( sleep 10 && conky -c ~/dotfiles/.conkyrc ) &
+#( sleep 2 && sh ~/dotfiles/.xmodmap ) &
+#( sleep 10 && conky -c ~/dotfiles/.conkyrc ) &
 #( sleep 10 && nitrogen --restore ) &
-( sleep 5 && xrandr --output $(xrandr | grep " connected [0-9]" | head -n1 | cut -d' ' -f1) --primary) &
-LAPTOP_MONITOR=$(xrandr | grep LVDS)
-if [ $? -eq 0 ]; then
-    ( sleep 6 && xrandr --output LVDS --primary) &
-fi
+#( sleep 5 && xrandr --output $(xrandr | grep " connected [0-9]" | head -n1 | cut -d' ' -f1) --primary) &
+#LAPTOP_MONITOR=$(xrandr | grep LVDS)
+#if [ $? -eq 0 ]; then
+#    ( sleep 6 && xrandr --output LVDS --primary) &
+#fi
 #( sleep 10 && nm-applet ) &
 #( sleep 10 && pasystray ) &
 #( sleep 10 && dunst -config ~/dotfiles/.config/dunst/dunstrc ) &
