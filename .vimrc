@@ -32,7 +32,7 @@ map <Right> <Esc>:tabn<CR>
 map <S-Tab> <Esc>:tabp<CR>
 map <Left> <Esc>:tabp<CR>
 map <BS> <Esc>:noh<CR>
-set formatoptions=q
+set formatoptions=qj
 set ruler
 "set nocursorline
 set cursorline
@@ -144,6 +144,7 @@ let mapleader = "\<Space>"
 let NERDTreeShowHidden=1
 let g:yankring_history_dir = '~/.vim/'
 let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:deoplete#enable_at_startup = 1
 let g:rainbow_active = 1
 "\   'guifgs': [ '#ffff00', '#00ffff', '#FF00FF' ],
 let g:rainbow_conf = {
@@ -187,8 +188,8 @@ set splitbelow
 set splitright
 
 map <F9> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+            \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+            \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 nnoremap ö <Esc>:
 nnoremap ä <Esc>"
@@ -235,6 +236,9 @@ nnoremap <leader><F3> <Esc>:set foldnestmax=3<CR>:set foldnestmax?<CR>
 nnoremap <leader><F4> <Esc>:set foldnestmax=4<CR>:set foldnestmax?<CR>
 nnoremap <leader><F5> <Esc>:set foldnestmax=5<CR>:set foldnestmax?<CR>
 nnoremap <leader><F6> <Esc>:set foldnestmax=6<CR>:set foldnestmax?<CR>
+nnoremap <leader><F7> <Esc>:set foldnestmax=7<CR>:set foldnestmax?<CR>
+nnoremap <leader><F8> <Esc>:set foldnestmax=8<CR>:set foldnestmax?<CR>
+nnoremap <leader><F9> <Esc>:set foldnestmax=9<CR>:set foldnestmax?<CR>
 nnoremap <leader>u <Esc>:set expandtab? tabstop? softtabstop? shiftwidth? smarttab?<CR>
 nnoremap <leader>uu <Esc>:set expandtab? tabstop? softtabstop? shiftwidth? smarttab?<CR>
 nnoremap <leader>ue <Esc>:setl expandtab!<CR>:set expandtab?<CR>
@@ -389,6 +393,9 @@ vnoremap > >gv
 " Resize splits when the window is resized
 au VimResized * :wincmd =
 
+" resize terminal XXX https://github.com/neovim/neovim/issues/4997
+"au TermOpen * au <buffer> BufEnter,WinEnter redraw!
+
 " Easy buffer navigation
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
@@ -454,6 +461,8 @@ let g:neomake_highlight_lines = 0
 
 let g:neomake_php_phpcs_args_standard = 'PSR1'
 
+"let g:neomake_javascript_enabled_makers = ['eslint']
+
 " neomake syntax highlights
 "if has("autocmd")
 "    augroup my_neomake_highlights
@@ -465,7 +474,7 @@ let g:neomake_php_phpcs_args_standard = 'PSR1'
 "endif
 
 " location list
-map gN :Neomake<CR>
+"map gN :Neomake<CR>
 map gl :lopen<CR>
 map gc :lclose<CR>
 map gn :lnext<CR>
@@ -632,6 +641,8 @@ Plug 'garbas/vim-snipmate'
 " auto complete
 Plug 'ervandew/supertab'
 "Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 "Plug 'davidhalter/jedi-vim' " python
 "Plug 'ternjs/tern_for_vim' " JS
 "Plug 'luochen1990/rainbow'

@@ -80,6 +80,23 @@ alias fig='docker-compose'
 alias pxg='px'
 #alias t='TERM=screen-256color-bce tmux'
 alias t='tmux'
+alias tmuxeey='new -d -s "default" \
+    new-window   \; \
+    new-window   \; \
+    new-window   \; \
+    new-window   "htop" \; \
+    split-window -h "nmon" \; \
+    split-window -v "watch sensors" \; \
+    select-pane -L \; \
+    split-window -v "journalctl -alf" \; \
+    attach \;'
+alias tmuxmon='tmux \
+    new-window   "htop" \; \
+    split-window -h "NMON=ld nmon" \; \
+    split-window -v "watch sensors" \; \
+    select-pane -L \; \
+    split-window -v "journalctl -alf" \;'
+
 #alias ds='du --time --time-style="+%Y-%m-%d %H:%M:%S" -shc * | sort -k 1 -h'
 alias netlisteners='lsof -i -P | grep LISTEN'
 alias g='git'
@@ -126,8 +143,9 @@ A() {
     logstr ${txt}
     notify-send -t 10000 -a A-Notice ${txt}
     # tmux display-message
-    tmux_txt=$(echo ${txt} | tr '\n' ' ' | sed "s| \+| |g")
-    tmux display-message "A(): ${tmux_txt}"
+    # TODO some tmux check if we are @localhost or remote
+    #tmux_txt=$(echo ${txt} | tr '\n' ' ' | sed "s| \+| |g")
+    #tmux display-message "A(): ${tmux_txt}"
     # if we want pushover
     if [ ${PUSHOVER} -eq 1 ];then
         local _config=~/.pushoverrc

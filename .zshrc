@@ -32,6 +32,8 @@ fi
 
 source ~/gitdocs/private.sh
 
+#setopt completealiases
+
 # Set to this to use case-sensitive completion
 CASE_SENSITIVE="true"
 
@@ -66,8 +68,11 @@ elif hash vim 2>/dev/null; then
 	export SUDO_EDITOR="vim"
 else
 	export EDITOR="vi"
+	export GIT_EDITOR="vi"
+	export VISUAL="vi"
 	export SUDO_EDITOR="vi"
 fi
+export PAGER="vimpager"
 
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"
@@ -130,6 +135,8 @@ export REPORTTIME=3 # display time for cpu heavy cmds
 export REPORTTIME_A=5 # do a notify-send
 export REPORTTIME_AA=60 # do a notify-send and pushover
 
+export NMON="ld"
+
 export ZLE_REMOVE_SUFFIX_CHARS=""
 
 function {
@@ -144,4 +151,12 @@ unset t0
 if [ -f /usr/share/nvm/init-nvm.sh ];then
     source /usr/share/nvm/init-nvm.sh
 fi
+
+# grunt Zsh completion
+#if hash grunt; then
+#    eval "$(grunt --completion=zsh)"
+#fi
+
+#
+CDPATH=:..:~:~/sandbox
 

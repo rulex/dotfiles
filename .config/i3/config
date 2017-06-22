@@ -232,7 +232,7 @@ mode "resize" {
 }
 
 mode "spacejam" {
-    bindsym e exec "pcmanfm" ; mode "default"
+    bindsym e exec "pcmanfm || thunar" ; mode "default"
     #bindsym r mode "resize"
     bindsym v split v; mode "default"
     bindsym h split h; mode "default"
@@ -243,7 +243,7 @@ mode "spacejam" {
     # lock screen
     bindsym l exec "scrot /tmp/screen_locked.png; mogrify -scale 10% -scale 1000% /tmp/screen_locked.png; i3lock -i /tmp/screen_locked.png" ; mode "default"
 #
-    bindsym Return exec "terminator --geometry=900x540" ; mode "default"
+    bindsym Return exec "terminator --geometry=900x540 || xfce4-terminal" ; mode "default"
     bindsym BackSpace mode "default"
     bindsym Escape mode "default"
     bindsym q mode "default"
@@ -298,8 +298,17 @@ mode "$mode_display" {
 # toggle status bar
 bindsym $mod+m bar mode toggle
 #exec --no-startup-id xfce4-panel --disable-wm-check
-#exec --no-startup-id clipit -n
-#exec --no-startup-id urxvtd
+exec --no-startup-id dunst -config ~/dotfiles/.config/dunst/dunstrc
+exec --no-startup-id pasystray
+exec --no-startup-id clipit
+exec --no-startup-id urxvtd
+exec --no-startup-id nm-applet
+exec --no-startup-id sh ~/dotfiles/.xmodmap
+exec --no-startup-id sh ~/dotfiles/.mouse.sh
+exec --no-startup-id xrdb ~/.Xdefaults
+#exec --no-startup-id conky -c ~/dotfiles/.conkyrc
+
+# screensaver
+exec --no-startup-id xautolock -time 10 -locker "scrot /tmp/screen_locked.png; mogrify -scale 10% -scale 1000% /tmp/screen_locked.png; i3lock -i /tmp/screen_locked.png"
 #xrdb ~/.Xdefaults
-#sh ~/.mouse.sh &
 

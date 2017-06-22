@@ -38,11 +38,11 @@ LAPTOP_MONITOR=$(xrandr | grep LVDS)
 if [ $? -eq 0 ]; then
     ( sleep 6 && xrandr --output LVDS --primary) &
 fi
-( sleep 10 && nm-applet ) &
-( sleep 10 && pasystray ) &
-( sleep 10 && dunst -config ~/dotfiles/.config/dunst/dunstrc ) &
-urxvtd &
-clipit -n &
+#( sleep 10 && nm-applet ) &
+#( sleep 10 && pasystray ) &
+#( sleep 10 && dunst -config ~/dotfiles/.config/dunst/dunstrc ) &
+#urxvtd &
+#clipit -n &
 
 #exec startlxde
 exec i3
