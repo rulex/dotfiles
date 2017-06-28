@@ -205,7 +205,9 @@ nnoremap <leader>y <Esc>:w !xclip<CR>
 " insert date time
 nnoremap <leader>D <Esc>:r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
 " cursor over timestamp to %Y-%m-%d %H:%M:%S
-map gD yiw:r!date +"\%Y-\%m-\%d \%H:\%M:\%S" --date @"<C-R>""<CR>
+"map gD yiw:echo !date +"\%Y-\%m-\%d \%H:\%M:\%S" --date @"<C-R>""<CR>
+map gD yiw:!date +"\%Y-\%m-\%d \%H:\%M:\%S" --date @"<C-R>""<CR>
+map gDD yiw:r!date +"\%Y-\%m-\%d \%H:\%M:\%S" --date @"<C-R>""<CR>
 
 " yank full filepath
 nmap cp <Esc>:let @" = expand("%:p")<CR>
