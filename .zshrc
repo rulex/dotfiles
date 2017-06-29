@@ -99,7 +99,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(cp systemd archlinux docker mosh nmap redis-cli rsync battery docker-compose mosh nmap pip urltools)
+plugins=(cp systemd archlinux docker mosh nmap redis-cli rsync battery docker-compose mosh nmap pip urltools git)
 #plugins=()
 
 source $ZSH/oh-my-zsh.sh

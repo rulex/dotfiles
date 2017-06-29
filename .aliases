@@ -64,6 +64,16 @@ function px() {
     fi
 }
 
+function pwatch() {
+    local re='^[0-9]+$'
+    echo "${1}"
+    if ! [[ ${1} =~ $re ]] ; then
+        watch -g pgrep ${1}; A
+    else
+        watch -g ps -opid -p ${1}; A
+    fi
+}
+
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 
@@ -130,6 +140,7 @@ logstr() {
 }
 
 A() {
+    # TODO write howto text
     local PUSHOVER=0
     if [ $# -eq 0 ];then
         txt="Done"
@@ -151,19 +162,21 @@ A() {
         local _config=~/.pushoverrc
         # check if config exists
         if [ ! -f ${_config} ]; then
-            echo "A(): Config file ${_config} does not exist."
+            echo "  A(): Config file ${_config} does not exist."
             return 1
         fi
         # source config
         source ${_config}
         # check if vars are present
         if [ -z ${pushover_userkey} ] || [ -z ${pushover_apitoken} ]; then
-            echo "A(): pushover_userkey or pushover_apitoken is not set"
+            echo "  A(): pushover_userkey or pushover_apitoken is not set"
             return 2
         fi
         if [[ "$1" == "P" ]];then
             local notify_timeout=10
-            echo "A(): Ctrl+C to cancel, Enter to continue or wait ${notify_timeout}s"
+            # clear the cmd
+            zsh_notifier_cmd=
+            echo "  A(): Ctrl+C to cancel, Enter to continue or wait ${notify_timeout}s"
             read -t ${notify_timeout} input_str
         fi
         # make post data and post to pushover
@@ -175,10 +188,9 @@ A() {
         if [ $? -eq 0 ]; then
             return 0
         else
-            echo "A(): Failed to deliver message to pushover.net"
+            echo "  A(): Failed to deliver message to pushover.net"
             return 3
         fi
-        #( pushover "${txt}" 2>&1 > /dev/null )
     fi
 }
 
@@ -268,14 +280,14 @@ strlen () {
 # show right prompt with date ONLY when command is executed
 timestamp-preexec () {
     DATE=$( date +"[%H:%M:%S]" )
-    local len_right=$( strlen "$DATE" )
-    len_right=$(( $len_right+1 ))
-    local right_start=$(($COLUMNS - $len_right))
+    local len_right=$( strlen "${DATE}" )
+    len_right=$(( ${len_right}+1 ))
+    local right_start=$((${COLUMNS} - ${len_right}))
     local len_cmd=$( strlen "$@" )
-    local len_prompt=$(strlen "$PROMPT" )
-    local len_left=$(($len_cmd+$len_prompt))
+    local len_prompt=$(strlen "${PROMPT}" )
+    local len_left=$((${len_cmd}+${len_prompt}))
     RDATE="\033[${right_start}C ${DATE}"
-    if [ $len_left -lt $right_start ]; then
+    if [ ${len_left} -lt ${right_start} ]; then
         # command does not overwrite right prompt
         # ok to move up one line
         echo -e "\033[1A${RDATE}"
