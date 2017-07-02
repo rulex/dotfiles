@@ -3,6 +3,7 @@
 loadplugins '\.(js|penta)$'
 group user
 "set followhints=1
+set hintkeys=ASDFGHJKL
 map j <C-d>
 map k <C-u>
 set editor="urxvt -e vim -f"

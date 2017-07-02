@@ -8,7 +8,18 @@ integer t0=$(date '+%s')
 ZSH=$HOME/.oh-my-zsh
 unset TMOUT
 
-PATH=$PATH:$HOME/bin:$HOME/.composer/vendor/bin
+#
+PATH="$PATH:$HOME/bin"
+
+# ruby gems
+if [ -f /usr/bin/ruby ]; then
+    PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
+fi
+
+# php composer
+if [ -f /usr/bin/composer ]; then
+    PATH="$PATH:$HOME/.composer/vendor/bin"
+fi
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/

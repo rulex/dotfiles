@@ -14,5 +14,6 @@ xmodmap -e "pointer = 1 9 3 4 5 6 7 2 8" # logitech g400 # back -> middlem, forw
 xinput --set-prop "Logitech G400s Optical Gaming Mouse" "Device Accel Profile" -1 # remove acceleration
 
 # logitech T650
-xinput set-ptr-feedback "Logitech Unifying Device. Wireless PID:4101" 10 10 4
+#xinput set-ptr-feedback "Logitech Unifying Device. Wireless PID:4101" 10 10 4
+xinput set-ptr-feedback "Logitech Rechargeable Touchpad T650" 10 10 4
 
