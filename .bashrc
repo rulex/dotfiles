@@ -39,7 +39,7 @@ HISTSIZE=99999
 
 eval `dircolors -b`
 #export PS1="\[\][$(tput setaf 2)\u$(tput sgr0)@$(tput setaf 3)\h$(tput setaf 5) \w$(tput sgr0)] $(tput setaf 6)\\$ \[\]\[$(tput sgr0)\]"
-export PS1="[\\[$(tput setaf 2)\\]\t \u\\[$(tput sgr0)\\]@\\[$(tput setaf 2)\\]\h:\\[$(tput setaf 2)\\]\w \\[$(tput sgr0)\\]] \\[$(tput setaf 6)\\]$ \\[$(tput sgr0)\\]"
+export PS1="[\\[$(tput setaf 2)\\]\t \u\\[$(tput sgr0)\\]@\\[$(tput setaf 2)\\]\h \\[$(tput setaf 5)\\]\w \\[$(tput sgr0)\\]] \\[$(tput setaf 6)\\]$ \\[$(tput sgr0)\\]"
 #export PS1="PS1='\\[\e[0;32m\u@\w/:\[\e[m '"
 #export PS1='\\[\e[0;32m\u@\w/:\[\e[m '
 #export PS1='[\u@\h \W]\$ '
