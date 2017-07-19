@@ -145,6 +145,23 @@ let NERDTreeShowHidden=1
 let g:yankring_history_dir = '~/.vim/'
 let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_ignore_case = 1
+"let g:deoplete#auto_complete_start_length = 2 " default 2
+"let g:deoplete#max_list
+"let g:deoplete#max_menu_width
+"let g:deoplete#auto_complete_delay
+
+"let g:deoplete#keyword_patterns = {} " TODO
+let g:deoplete#sources = {}
+let g:deoplete#sources._ = ['buffer', 'file']
+"let g:deoplete#sources.cpp = ['buffer', 'tag']
+"let g:deoplete#member#prefix_patterns " Note: It is Python3 regexp.TODO
+"let g:deoplete#file#enable_buffer_path = 1
+let g:deoplete#buffer#require_same_filetype = 0
+let g:deoplete#keyword_patterns = {}
+let g:deoplete#keyword_patterns._ = '\\?[a-zA-Z_]\w*'
+let g:deoplete#keyword_patterns.php = '\\?[\$a-zA-Z_]\w*'
+
 let g:rainbow_active = 1
 "\   'guifgs': [ '#ffff00', '#00ffff', '#FF00FF' ],
 let g:rainbow_conf = {

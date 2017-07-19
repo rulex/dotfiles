@@ -242,6 +242,10 @@ mode "resize" {
     bindsym q mode "default"
 }
 
+#set $Locker i3lock && sleep 1
+# ; sleep 1
+set $Locker scrot /tmp/screen_locked.png && mogrify -scale 10% -scale 1000% /tmp/screen_locked.png && i3lock -i /tmp/screen_locked.png && i3-msg mode default
+
 mode "spacejam" {
     bindsym e exec "pcmanfm || thunar" ; mode "default"
     #bindsym r mode "resize"
@@ -252,7 +256,7 @@ mode "spacejam" {
     bindsym k exec "pkill compton" ; mode "default"
     bindsym minus exec --no-startup-id "transset-df -a 0.5" ; mode "default"
     # lock screen
-    bindsym l exec "scrot /tmp/screen_locked.png; mogrify -scale 10% -scale 1000% /tmp/screen_locked.png; i3lock -i /tmp/screen_locked.png" ; mode "default"
+    bindsym l exec $Locker
 #
     bindsym Return exec "terminator --geometry=900x540 || xfce4-terminal" ; mode "default"
     bindsym BackSpace mode "default"
@@ -273,15 +277,14 @@ bar {
 # vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4 smarttab :
 
 # power management
-set $Locker i3lock && sleep 1
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym l exec --no-startup-id $Locker
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
     bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
     bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -320,6 +323,7 @@ exec --no-startup-id xrdb ~/.Xdefaults
 #exec --no-startup-id conky -c ~/dotfiles/.conkyrc
 
 # screensaver
-exec --no-startup-id xautolock -time 10 -locker "scrot /tmp/screen_locked.png; mogrify -scale 10% -scale 1000% /tmp/screen_locked.png; i3lock -i /tmp/screen_locked.png"
+#exec --no-startup-id xautolock -time 10 -locker "scrot /tmp/screen_locked.png; mogrify -scale 10% -scale 1000% /tmp/screen_locked.png; i3lock -i /tmp/screen_locked.png"
+exec --no-startup-id xautolock -time 10 -locker $Locker
 #xrdb ~/.Xdefaults
 
