@@ -336,7 +336,12 @@ nnoremap <leader>spy3 <Esc>:let g:syntastic_python_python_exec = "/usr/bin/pytho
 nnoremap <leader>C <Esc>:set fileencoding? fileformat? encoding? bomb?<CR>
 
 " remove stuff
-nnoremap <leader>r <Esc>:%s/\s\+$//<CR> " remove extra spaces from line end
+"\sz   phpcs standard Zend\n
+nnoremap <leader>r <Esc>:echo "
+            \r - remove extra spaces from line end\n
+            \e - remove empty lines\n
+            \m - remove ^M line endings\n"<CR>
+nnoremap <leader>rr <Esc>:%s/\s\+$//<CR> " remove extra spaces from line end
 nnoremap <leader>re <Esc>:g/^$/d<CR> " remove empty lines
 nnoremap <leader>rm <Esc>:%s/\r$//g<CR> " remove line-endings with ^M
 nnoremap <leader>k <Esc>:set list!<CR>:set list?<CR>
@@ -410,7 +415,9 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Resize splits when the window is resized
-au VimResized * :wincmd =
+"au VimResized * :wincmd =
+" dont autoresize splits
+set noequalalways
 
 " resize terminal XXX https://github.com/neovim/neovim/issues/4997
 "au TermOpen * au <buffer> BufEnter,WinEnter redraw!
