@@ -289,29 +289,36 @@ nnoremap <leader>s <Esc>:echo "
             \spy  python3\n
             \spy2 python2\n
             \spy3 python3\n
+            \sjm  javascript_makers eslint\n
+            \sjM  javascript_makers default\n
             \\n
             \F7 SyntasticToggleMode"<CR>
+
 " let g:neomake_php_phpcs_args_standard = 'PSR2'
 nnoremap <leader>sz <Esc>:let g:syntastic_php_phpcs_args = "--encoding=utf-8 --report=csv --exclude=Generic.Files.LineLength --standard=Zend"<CR>
             \:SyntasticCheck<CR>
             \:let g:neomake_php_phpcs_args_standard = 'Zend'<CR>
             \:Neomake<CR>
             \:echo "phpcs standard Zend"<CR>
+
 nnoremap <leader>sp <Esc>:let g:syntastic_php_phpcs_args = "--encoding=utf-8 --report=csv --exclude=Generic.Files.LineLength --standard=PEAR"<CR>
             \:SyntasticCheck<CR>
             \:let g:neomake_php_phpcs_args_standard = 'PEAR'<CR>
             \:echo "phpcs standard PEAR"<CR>
+
 nnoremap <leader>sp1 <Esc>:let g:syntastic_php_phpcs_args = "--encoding=utf-8 --report=csv --standard=PSR1"<CR>
             \:SyntasticCheck<CR>
             \:let g:neomake_php_phpcs_args_standard = 'PSR1'<CR>
             \:Neomake<CR>
             \:echo "phpcs standard PSR1"<CR>
+
 nnoremap <leader>sp2 <Esc>:let g:syntastic_php_phpcs_args = "--encoding=utf-8 --report=csv --exclude=Generic.Files.LineLength --standard=PSR2"<CR>
             \:SyntasticCheck<CR>
             \:let g:neomake_php_phpcs_args_standard = 'PSR2'<CR>
             \:Neomake<CR>
             \:echo "phpcs standard PSR2"<CR>
 "\:SyntasticCheck<CR>
+
 nnoremap <leader>spy2 <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python2"<CR>
             \:let g:neomake_python_python_exe = 'python2'<CR>
             \:let g:neomake_python_flake8_exe = 'python2'<CR>
@@ -319,6 +326,7 @@ nnoremap <leader>spy2 <Esc>:let g:syntastic_python_python_exec = "/usr/bin/pytho
             \:let g:neomake_python_pylint_exe = 'pylint2'<CR>
             \:Neomake<CR>
             \:echo "syntastic python2"<CR>
+
 nnoremap <leader>spy <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python"<CR>
             \:let g:neomake_python_python_exe = 'python'<CR>
             \:let g:neomake_python_flake8_exe = 'flake8'<CR>
@@ -326,6 +334,15 @@ nnoremap <leader>spy <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python
             \:let g:neomake_python_pylint_exe = 'pylint'<CR>
             \:Neomake<CR>
             \:echo "syntastic python3"<CR>
+
+"let g:neomake_javascript_enabled_makers = ['eslint']
+nnoremap <leader>sjm <Esc>:let g:neomake_javascript_enabled_makers = ['eslint']<CR>
+            \:Neomake<CR>
+            \:echo "let g:neomake_javascript_enabled_makers = ['eslint']"<CR>
+
+nnoremap <leader>sjM <Esc>:unlet g:neomake_javascript_enabled_makers<CR>
+            \:Neomake<CR>
+            \:echo "unlet g:neomake_javascript_enabled_makers"<CR>
 
 nnoremap <leader>spy3 <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python"<CR>
             \:let g:neomake_python_python_exe = 'python'
@@ -696,7 +713,10 @@ Plug 'xolox/vim-easytags'
 " syntax
 Plug 'vim-scripts/httplog'
 Plug 'vim-scripts/css_color'
+Plug 'leafgarland/typescript-vim'
+Plug 'mfukar/robotframework-vim'
 "Plug 'coala/coala-vim'
+"
 call plug#end()
 
 
