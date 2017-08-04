@@ -1,0 +1,32 @@
+[user]
+    #email =
+    #name =
+[push]
+    default = simple
+[diff]
+    tool = vimdiff
+
+[core]
+    pager = less
+    excludesfile = ~/.gitignore
+#    autocrlf = false
+
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red
+    new = cyan
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+[alias]
+    mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -

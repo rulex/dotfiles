@@ -223,10 +223,22 @@ nnoremap <leader>y <Esc>:w !xclip<CR>
 
 " insert date time
 nnoremap <leader>D <Esc>:r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
+
 " cursor over timestamp to %Y-%m-%d %H:%M:%S
 "map gD yiw:echo !date +"\%Y-\%m-\%d \%H:\%M:\%S" --date @"<C-R>""<CR>
 map gD yiw:!date +"\%Y-\%m-\%d \%H:\%M:\%S" --date @"<C-R>""<CR>
+vmap gD y:!date +"\%Y-\%m-\%d \%H:\%M:\%S" --date @"<C-R>""<CR>
 map gDD yiw:r!date +"\%Y-\%m-\%d \%H:\%M:\%S" --date @"<C-R>""<CR>
+vmap gDD y:r!date +"\%Y-\%m-\%d \%H:\%M:\%S" --date @"<C-R>""<CR>
+
+" cursor over date string to get timestamp
+map gDs yiW:!date +"\%s" --date="<C-R>""<CR>
+map gDS yiW:r!date +"\%s" --date="<C-R>""<CR>
+vmap gDs y:!date +"\%s" --date="<C-R>""<CR>
+vmap gDS y:r!date +"\%s" --date="<C-R>""<CR>
+
+" timestamp: 1501828053
+" datestrin: 2017-08-04 09:29:09 | 2017-08-04T09:29:09
 
 " yank full filepath
 nmap cp <Esc>:let @" = expand("%:p")<CR>
@@ -260,7 +272,18 @@ nnoremap <leader><F6> <Esc>:set foldnestmax=6<CR>:set foldnestmax?<CR>
 nnoremap <leader><F7> <Esc>:set foldnestmax=7<CR>:set foldnestmax?<CR>
 nnoremap <leader><F8> <Esc>:set foldnestmax=8<CR>:set foldnestmax?<CR>
 nnoremap <leader><F9> <Esc>:set foldnestmax=9<CR>:set foldnestmax?<CR>
-nnoremap <leader>u <Esc>:set expandtab? tabstop? softtabstop? shiftwidth? smarttab?<CR>
+"nnoremap <leader>u <Esc>:set expandtab? tabstop? softtabstop? shiftwidth? smarttab?<CR>
+nnoremap <leader>u <Esc>:echo join(["
+            \expandtab   = ", &expandtab, "\n
+            \tabstop     = ", &tabstop, "\n
+            \softtabstop = ", &softtabstop, "\n
+            \shiftwidth  = ", &shiftwidth, "\n
+            \smarttab    = ", &smarttab, "\n
+            \\n
+            \ue setl expandtab!\n
+            \u2 setl tab opts=2\n
+            \u4 setl tab opts=4\n
+            \u8 setl tab opts=8"], '')<CR>
 nnoremap <leader>uu <Esc>:set expandtab? tabstop? softtabstop? shiftwidth? smarttab?<CR>
 nnoremap <leader>ue <Esc>:setl expandtab!<CR>:set expandtab?<CR>
 nnoremap <leader>u2 <Esc>:setl tabstop=2 softtabstop=2 shiftwidth=2<CR>:set tabstop? softtabstop? shiftwidth?<CR>
@@ -281,6 +304,7 @@ nnoremap <leader>9 <Esc>:b 9<CR>
 nnoremap <leader>0 <Esc>:b
 
 " switch syntastic/Neomake standards
+" TODO echo current values
 nnoremap <leader>s <Esc>:echo "
             \sz   phpcs standard Zend\n
             \sp   phpcs standard PEAR\n
