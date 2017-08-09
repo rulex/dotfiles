@@ -76,6 +76,7 @@ function pwatch() {
 
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
+alias -g align='column -t -s : -o " | "'
 
 alias afind='ack-grep -il'
 

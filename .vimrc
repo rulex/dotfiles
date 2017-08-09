@@ -259,7 +259,12 @@ map gbc yypkA =<Esc>jOscale=2<Esc>:.,+1!bc<CR>kJ
 "nnoremap <leader>cppp {o"""<Esc>}O"""<Esc>
 
 " indentation
-nnoremap <leader>f <Esc>:set fdm=indent<CR>:set fdm?<CR>
+nnoremap <leader>f <Esc>:echo join(["
+            \foldmethod=", &foldmethod, "\n
+            \\n
+            \fi fdm=indent\n
+            \fs fdm=syntax\n
+            \fm fdm=manual\n"], '')<CR>
 nnoremap <leader>fi <Esc>:set fdm=indent<CR>:set fdm?<CR>
 nnoremap <leader>fs <Esc>:set fdm=syntax<CR>:set fdm?<CR>
 nnoremap <leader>fm <Esc>:set fdm=manual<CR>:set fdm?<CR>
@@ -584,7 +589,7 @@ if has("autocmd")
 endif
 
 " code blocks comment auto
-au BufNewFile,BufRead *.c,*.cc,*.C,*.h imap } <Esc>:call CurlyBracket()<CR>a
+"au BufNewFile,BufRead *.c,*.cc,*.C,*.h imap } <Esc>:call CurlyBracket()<CR>a
 
 fu! CustomFoldText()
 	"get first non-blank line
@@ -704,9 +709,10 @@ endif
 call plug#begin('~/.vim/plugged')
 " plugins
 Plug 'scrooloose/nerdtree' ", { 'on':  'NERDTreeToggle' }
-Plug 'marcweber/vim-addon-mw-utils' " for snipmate
-Plug 'tomtom/tlib_vim' " for snipmate
-Plug 'garbas/vim-snipmate'
+"Plug 'marcweber/vim-addon-mw-utils' " for snipmate
+"Plug 'tomtom/tlib_vim' " for snipmate
+"Plug 'garbas/vim-snipmate'
+
 " auto complete
 Plug 'ervandew/supertab'
 "Plug 'Shougo/deoplete.nvim'
