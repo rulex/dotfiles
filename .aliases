@@ -74,9 +74,14 @@ function pwatch() {
     fi
 }
 
+function agrep() {
+    # align grep
+    grep -Hni "${1}" ${@} | sed -e "s#:#¤#" -e "s#:#¤#" | column -t -s "¤" -o " | " -N file,line,content | grep -i "${1}"
+}
+
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
-alias -g align='column -t -s : -o " | "'
+alias -g align='sed -e "s#¤#|#" -e "s#:#¤#" | column -t -s "¤" -o " | "'
 
 alias afind='ack-grep -il'
 

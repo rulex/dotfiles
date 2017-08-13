@@ -212,8 +212,8 @@ map <F9> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<
 
 nnoremap ö <Esc>:
 nnoremap ä <Esc>"
-"nnoremap å [
-"nnoremap ¨ ]
+nnoremap Å [
+nnoremap å ]
 
 " clipboard/paste stuff
 nnoremap <F10> <Esc>:set paste!<CR>:set paste?<CR>
