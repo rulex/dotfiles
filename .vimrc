@@ -70,16 +70,22 @@ set statusline+=[U+%B]  " show ASCII value of char under cursor
 "set statusline+=[%F]
 set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
 set statusline+=%{&ff}] " file format
-set statusline+=%h      " help file flag
+"set statusline+=%h      " help file flag
 set statusline+=%r      " read only flag
 set statusline+=%w      " Preview window flag
 set statusline+=%y\     " filetype
 set statusline+=%c,     " cursor column
 set statusline+=%l/%L   " cursor line/total lines
 set statusline+=\ %P    " percent through file
+" neomake
 set statusline+=%#ErrorMsg#%{neomake#statusline#QflistStatus('\ qf:\ ')}%#StatusLine#
 set statusline+=%#ErrorMsg#%{neomake#statusline#LoclistStatus('\ ll:\ ')}%#StatusLine#
 set statusline+=%#StatusLine#%{Neomake_statusline()} " show pending neomake jobs
+" syntastic
+set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
 set synmaxcol=512       " Syntax coloring slows
 "set ttyfast
 "set ttyscroll=3
@@ -308,6 +314,9 @@ nnoremap <leader>8 <Esc>:b 8<CR>
 nnoremap <leader>9 <Esc>:b 9<CR>
 nnoremap <leader>0 <Esc>:b
 
+nnoremap <leader><CR> <Esc>:Neomake<CR>
+nnoremap <leader>m <Esc>:Neomake<CR>
+"nnoremap <leader>m <Esc>:echo printf("todo")
 " switch syntastic/Neomake standards
 " TODO echo current values
 nnoremap <leader>s <Esc>:echo "
@@ -410,6 +419,15 @@ nnoremap <leader>t. <Esc>:tabnew .<CR>
 nnoremap <leader>te <Esc>:tabnew<CR>:term<CR>
 nnoremap <leader>tf <Esc>:tabnew %<CR>
 
+" github.com/octol/vim-cpp-enhanced-highlight
+let g:cpp_class_scope_highlight                  = 1 " Highlighting of class scope is disabled by default. To enable set
+let g:cpp_member_variable_highlight              = 1 " Highlighting of member variables is disabled by default. To enable set
+let g:cpp_class_decl_highlight                   = 1 " Highlighting of class names in declarations is disabled by default. To enable set
+let g:cpp_experimental_simple_template_highlight = 1 " There are two ways to hightlight template functions. Either
+let g:cpp_experimental_template_highlight        = 1 " which works in most cases, but can be a little slow on large files. Alternatively set
+let g:cpp_concepts_highlight                     = 1 " Highlighting of library concepts is enabled by
+let g:cpp_no_function_highlight                  = 1 " Highlighting of user defined functions can be disabled by
+
 " diff
 nnoremap <leader>dd <Esc>:diffthis<CR>
 nnoremap <leader>du <Esc>:diffupdate<CR>
@@ -440,7 +458,13 @@ inoremap <C-a> <Esc>
 nnoremap , za
 vnoremap , za
 
+" surrounding visual
 vnoremap qq <Esc>`>a'<Esc>`<i'<Esc>
+vnoremap qq' <Esc>`>a'<Esc>`<i'<Esc>
+vnoremap qq" <Esc>`>a"<Esc>`<i"<Esc>
+vnoremap qq( <Esc>`>a)<Esc>`<i(<Esc>
+vnoremap qq[ <Esc>`>a]<Esc>`<i[<Esc>
+vnoremap qq{ <Esc>`>a}<Esc>`<i{<Esc>
 
 " pretty json
 nnoremap <leader>js <Esc>:%!python -m json.tool<CR>
@@ -479,11 +503,6 @@ nnoremap - <Esc><C-w>-
 nnoremap + <Esc><C-w>+
 nnoremap <S-Left> <Esc><C-w><
 nnoremap <S-Right> <Esc><C-w>>
-
-" syntastic
-set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -745,6 +764,7 @@ Plug 'vim-scripts/httplog'
 Plug 'vim-scripts/css_color'
 Plug 'leafgarland/typescript-vim'
 Plug 'mfukar/robotframework-vim'
+Plug 'octol/vim-cpp-enhanced-highlight'
 "Plug 'coala/coala-vim'
 "
 call plug#end()
