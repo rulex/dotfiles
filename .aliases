@@ -157,7 +157,11 @@ function A() {
     fi
     # log errything to file
     logstr ${txt}
-    notify-send -t 10000 -a A-Notice ${txt}
+    if dbus-send --session --dest=org.freedesktop.DBus --type=method_call --print-reply /org/freedesktop/DBus org.freedesktop.DBus.ListNames | grep -q org.freedesktop.Notifications;then
+        notify-send -t 10000 -a A-Notice ${txt}
+    else
+        echo "  A(): no org.freedesktop.DBus"
+    fi
     # tmux display-message
     # TODO some tmux check if we are @localhost or remote
     #tmux_txt=$(echo ${txt} | tr '\n' ' ' | sed "s| \+| |g")
