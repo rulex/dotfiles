@@ -68,20 +68,20 @@ export TERMINAL="urxvtc"
 
 # set editor
 if hash nvim 2>/dev/null; then
-	export EDITOR="nvim"
-	export GIT_EDITOR="nvim"
-	export VISUAL="nvim"
-	export SUDO_EDITOR="nvim"
+    export EDITOR="nvim"
+    export GIT_EDITOR="nvim"
+    export VISUAL="nvim"
+    export SUDO_EDITOR="nvim"
 elif hash vim 2>/dev/null; then
-	export EDITOR="vim"
-	export GIT_EDITOR="vim"
-	export VISUAL="vim"
-	export SUDO_EDITOR="vim"
+    export EDITOR="vim"
+    export GIT_EDITOR="vim"
+    export VISUAL="vim"
+    export SUDO_EDITOR="vim"
 else
-	export EDITOR="vi"
-	export GIT_EDITOR="vi"
-	export VISUAL="vi"
-	export SUDO_EDITOR="vi"
+    export EDITOR="vi"
+    export GIT_EDITOR="vi"
+    export VISUAL="vi"
+    export SUDO_EDITOR="vi"
 fi
 export PAGER="vimpager"
 
@@ -151,10 +151,10 @@ export NMON="ld"
 export ZLE_REMOVE_SUFFIX_CHARS=""
 
 function {
-	local -i t1 startup
-	t1=$( date '+%s' )
-	startup=$(( t1 - t0 ))
-	[[ $startup -gt 1 ]] && print "Hmm, poor shell startup time: $startup"
+    local -i t1 startup
+    t1=$( date '+%s' )
+    startup=$(( t1 - t0 ))
+    [[ $startup -gt 1 ]] && print "Hmm, poor shell startup time: $startup"
 }
 unset t0
 
