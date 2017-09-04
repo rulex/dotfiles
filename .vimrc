@@ -27,6 +27,8 @@ set directory=~/.vim/swap/
 set nu " line numbers
 set norelativenumber
 set autochdir " switch to current file dir
+nnoremap <C-n> <Esc>:tabn<CR>
+nnoremap <C-p> <Esc>:tabp<CR>
 map <Tab> <Esc>:tabn<CR>
 map <Right> <Esc>:tabn<CR>
 map <S-Tab> <Esc>:tabp<CR>
@@ -37,7 +39,7 @@ set ruler
 "set nocursorline
 set cursorline
 set scrolljump=1        " lines to scroll when cursor leaves screen
-set scrolloff=5         " minimum lines to keep above and below cursor
+set scrolloff=3         " minimum lines to keep above and below cursor
 set laststatus=2        " show statusline allways
 
 " Get Neomake Jobs count for statusline
