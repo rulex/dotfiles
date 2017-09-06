@@ -767,6 +767,7 @@ Plug 'vim-scripts/css_color'
 Plug 'leafgarland/typescript-vim'
 Plug 'mfukar/robotframework-vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'plasticboy/vim-markdown'
 "Plug 'coala/coala-vim'
 "
 call plug#end()
