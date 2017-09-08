@@ -14,10 +14,18 @@ hi lCursor    guifg=NONE   guibg=Cyan
 hi Include     ctermfg=Yellow    ctermbg=NONE     cterm=NONE
 hi Delimiter   ctermfg=Red       ctermbg=NONE     cterm=NONE
 hi MatchParen  ctermbg=Blue      guibg=blue
-hi DiffAdd     ctermbg=Blue      guibg=LightBlue
-hi DiffChange  ctermbg=Magenta   guibg=LightMagenta
-hi DiffDelete  ctermfg=Blue      ctermbg=Red
-hi DiffText    ctermbg=Red       cterm=bold
+
+" filetype=diff
+hi DiffFile    ctermfg=Blue      guibg=NONE
+hi DiffAdded   ctermfg=Green     guibg=NONE
+hi DiffRemoved ctermfg=Red       ctermbg=NONE
+
+" vimdiff
+hi DiffAdd     ctermbg=Green     guibg=Green
+hi DiffChange  ctermbg=Magenta   guibg=Magenta
+hi DiffDelete  ctermbg=Red       ctermfg=NONE
+hi DiffText    ctermbg=White     ctermfg=NONE     cterm=bold
+
 hi Directory   ctermfg=DarkBlue  guifg=Blue
 hi ErrorMsg    ctermfg=White     ctermbg=DarkRed
 hi FoldColumn  ctermfg=DarkBlue  ctermbg=Grey
