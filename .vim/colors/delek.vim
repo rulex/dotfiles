@@ -21,10 +21,10 @@ hi DiffAdded   ctermfg=Green     guibg=NONE
 hi DiffRemoved ctermfg=Red       ctermbg=NONE
 
 " vimdiff
-hi DiffAdd     ctermbg=Green     guibg=Green
-hi DiffChange  ctermbg=Magenta   guibg=Magenta
+hi DiffAdd     ctermbg=NONE      guibg=Green
+hi DiffChange  ctermbg=NONE      guibg=Magenta    cterm=bold
 hi DiffDelete  ctermbg=Red       ctermfg=NONE
-hi DiffText    ctermbg=White     ctermfg=NONE     cterm=bold
+hi DiffText    ctermbg=NONE      ctermfg=NONE     cterm=reverse
 
 hi Directory   ctermfg=DarkBlue  guifg=Blue
 hi ErrorMsg    ctermfg=White     ctermbg=DarkRed
