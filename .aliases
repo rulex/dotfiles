@@ -190,6 +190,7 @@ function A() {
         fi
         # make post data and post to pushover
         ts=$(date +%s)
+        txt="$(urlencode "${txt}")"
         post_data="token=${pushover_apitoken}&user=${pushover_userkey}&message=${txt}&timestamp=${ts}&html=1"
         #echo ${post_data}
         response=$(curl -s https://api.pushover.net/1/messages.json -d "${post_data}")
