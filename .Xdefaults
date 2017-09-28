@@ -39,7 +39,7 @@ URxvt.geometry: 112x32
 !URxvt.font: xft:ProggyCleanTT:style=Regular:size=12
 !URxvt.font: xft:ProggyCleanTT-14:style=Regular
 URxvt*font: xft:DejaVu Sans Mono:pixelsize=12
-URxvt.letterSpace: -2
+URxvt.letterSpace: -1
 
 !URxvt*font:               -*-proggyclean-medium-r-normal-*-13-*-*-*-*-*-*-*
 !URxvt*font:               -*-proggyclean-medium-r-normal-*-14-*-*-*-*-*-*-*

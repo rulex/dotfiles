@@ -607,6 +607,7 @@ let g:badwolf_html_link_underline = 0
 if has("autocmd")
 	autocmd BufEnter *.ctp set syn=php
 	autocmd BufEnter *.phtml set syn=php
+	autocmd BufEnter h.txt set syn=htxt
 endif
 
 " code blocks comment auto
