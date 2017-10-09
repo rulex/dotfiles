@@ -33,7 +33,7 @@ map <Tab> <Esc>:tabn<CR>
 map <Right> <Esc>:tabn<CR>
 map <S-Tab> <Esc>:tabp<CR>
 map <Left> <Esc>:tabp<CR>
-map <BS> <Esc>:noh<CR>
+map <BS> <Esc>:syntax sync fromstart<CR>:noh<CR>
 set formatoptions=qj
 set ruler
 "set nocursorline
