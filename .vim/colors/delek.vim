@@ -16,7 +16,7 @@ hi Delimiter   ctermfg=Red       ctermbg=NONE     cterm=NONE
 hi MatchParen  ctermbg=Blue      guibg=blue
 
 " filetype=diff
-hi DiffFile    ctermfg=Blue      guibg=NONE
+hi DiffFile    ctermfg=Yellow    guibg=NONE
 hi DiffAdded   ctermfg=Green     guibg=NONE
 hi DiffRemoved ctermfg=Red       ctermbg=NONE
 
