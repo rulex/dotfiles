@@ -64,9 +64,14 @@ function! Neomake_statusline()
     return neomake_status_str
 endfunction
 
+let whoami=$USER
+
 " statusline
 set statusline=%F       " tail of the filename
 set statusline+=%m      " modified flag
+if whoami == 'root'
+    set statusline+=\ \ \ %#ErrorMsg#%{whoami}%#StatusLine#  " whoami root
+endif
 set statusline+=%=      " left/right separator
 set statusline+=[U+%B]  " show ASCII value of char under cursor
 "set statusline+=[%F]
