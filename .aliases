@@ -18,29 +18,29 @@ alias lca='ls -ltrca'
 alias sl=ls
 #alias dt='date +"%Y-%m-%dT%H:%M:%S"'
 function dt() {
-	if [[ $# == 0 ]]; then
-		# pretty print now
-		date +"%Y-%m-%d %H:%M:%S"
-	elif [[ $# == 1 ]]; then
+    if [[ $# == 0 ]]; then
+        # pretty print now
+        date +"%Y-%m-%d %H:%M:%S"
+    elif [[ $# == 1 ]]; then
         if [[ $1 == "w" ]]; then
             date +"%Y-%m-%d %H:%M:%S W%V"
         else
             # pretty print input unix ts
             date +"%Y-%m-%d %H:%M:%S" --date @"$1"
         fi
-	elif [[ $# == 2 ]] && [[ $1 == "p" ]]; then
-		# pretty print input diff seconds
-		local human total_seconds=$2
-		local days=$(( total_seconds / 60 / 60 / 24 ))
-		local hours=$(( total_seconds / 60 / 60 % 24 ))
-		local minutes=$(( total_seconds / 60 % 60 ))
-		local seconds=$(( total_seconds % 60 ))
-		(( days > 0 )) && human+="${days}d "
-		(( hours > 0 )) && human+="${hours}h "
-		(( minutes > 0 )) && human+="${minutes}m "
-		human+="${seconds}s"
-		echo "$human"
-	fi
+    elif [[ $# == 2 ]] && [[ $1 == "p" ]]; then
+        # pretty print input diff seconds
+        local human total_seconds=$2
+        local days=$(( total_seconds / 60 / 60 / 24 ))
+        local hours=$(( total_seconds / 60 / 60 % 24 ))
+        local minutes=$(( total_seconds / 60 % 60 ))
+        local seconds=$(( total_seconds % 60 ))
+        (( days > 0 )) && human+="${days}d "
+        (( hours > 0 )) && human+="${hours}h "
+        (( minutes > 0 )) && human+="${minutes}m "
+        human+="${seconds}s"
+        echo "$human"
+    fi
 }
 
 function ds() {
@@ -205,45 +205,45 @@ function A() {
 }
 
 function AA() {
-	if [ $# -eq 0 ];then
-		txt="Done"
-	else
-		txt="$*"
-	fi
+    if [ $# -eq 0 ];then
+        txt="Done"
+    else
+        txt="$*"
+    fi
     A p ${txt}
 }
 
 # pretty-time function
 function pretty_time() {
-	if (( $# == 0 )); then
-		echo 'Input required'
+    if (( $# == 0 )); then
+        echo 'Input required'
         return 1
-	fi
-	local human total_seconds=$1
-	local days=$(( total_seconds / 60 / 60 / 24 ))
-	local hours=$(( total_seconds / 60 / 60 % 24 ))
-	local minutes=$(( total_seconds / 60 % 60 ))
-	local seconds=$(( total_seconds % 60 ))
-	(( days > 0 )) && human+="${days}d "
-	(( hours > 0 )) && human+="${hours}h "
-	(( minutes > 0 )) && human+="${minutes}m "
-	human+="${seconds}s"
-	echo "$human"
+    fi
+    local human total_seconds=$1
+    local days=$(( total_seconds / 60 / 60 / 24 ))
+    local hours=$(( total_seconds / 60 / 60 % 24 ))
+    local minutes=$(( total_seconds / 60 % 60 ))
+    local seconds=$(( total_seconds % 60 ))
+    (( days > 0 )) && human+="${days}d "
+    (( hours > 0 )) && human+="${hours}h "
+    (( minutes > 0 )) && human+="${minutes}m "
+    human+="${seconds}s"
+    echo "$human"
     return
 }
 
 function pretty_size() {
-	if [[ $# == 2 ]] && [[ $1 == "i" ]]; then
-		echo $2 | numfmt --to=iec-i
-	else
-		echo $1 | numfmt --to=iec
-	fi
+    if [[ $# == 2 ]] && [[ $1 == "i" ]]; then
+        echo $2 | numfmt --to=iec-i
+    else
+        echo $1 | numfmt --to=iec
+    fi
 }
 
 function calc() {
-	str="$*"
-	result=$( echo "${str}" | bc -l )
-	echo ${str} = ${result}
+    str="$*"
+    result=$( echo "${str}" | bc -l )
+    echo ${str} = ${result}
 }
 
 function pushover() {
@@ -252,32 +252,32 @@ function pushover() {
 
 #
 if [[ -x $( which notify-send ) ]]; then
-	notify-preexec-hook() {
-		zsh_notifier_cmd="$1"
-		zsh_notifier_time="$(date +%s)"
-	}
-	notify-precmd-hook() {
-		local returncode=$(echo $?)
-		local time_taken
-		if [[ "${zsh_notifier_cmd}" != "" ]]; then
-			time_taken=$(( `date +%s` - ${zsh_notifier_time} ))
-			local str="cmd:   ${zsh_notifier_cmd}
+    notify-preexec-hook() {
+        zsh_notifier_cmd="$1"
+        zsh_notifier_time="$(date +%s)"
+    }
+    notify-precmd-hook() {
+        local returncode=$(echo $?)
+        local time_taken
+        if [[ "${zsh_notifier_cmd}" != "" ]]; then
+            time_taken=$(( `date +%s` - ${zsh_notifier_time} ))
+            local str="cmd:   ${zsh_notifier_cmd}
 code:  ${returncode}
 dir:   ${PWD}
 start: $(date -d @${zsh_notifier_time} +"%Y-%m-%d %H:%M:%S")
 time:  $( pretty_time ${time_taken} )
 end:   $( date +"%Y-%m-%d %H:%M:%S" )
 tty:   ${TTY}"
-			if (( ${time_taken} > ${REPORTTIME_AA} )); then
-				str="${USER}@${HOST}
+            if (( ${time_taken} > ${REPORTTIME_AA} )); then
+                str="${USER}@${HOST}
 ${str}"
-				A P ${str}
-			elif (( ${time_taken} > ${REPORTTIME_A} )); then
-				A ${str}
-			fi
-		fi
-		zsh_notifier_cmd=
-	}
+                A P ${str}
+            elif (( ${time_taken} > ${REPORTTIME_A} )); then
+                A ${str}
+            fi
+        fi
+        zsh_notifier_cmd=
+    }
 fi
 
 strlen () {
