@@ -107,10 +107,52 @@ export PAGER="vimpager"
 # yyyy-mm-dd
 HIST_STAMPS="yyyy-mm-dd"
 
+#zmodload zsh/datetime || { print "can't load zsh/datetime"; return }
+#function pretty_time() {
+#    if (( $# == 0 )); then
+#        echo 'Input required'
+#        return 1
+#    fi
+#    # TODO: allow parameter to be both int & float
+#    if [[ "${1}" =~ "."$ ]];then
+#        local human total_seconds=${1%.*}
+#    else
+#        local human total_seconds=${1}
+#    fi
+#    #local human total_seconds=${1}
+#    local days=$(( total_seconds / 60 / 60 / 24 ))
+#    local hours=$(( total_seconds / 60 / 60 % 24 ))
+#    local minutes=$(( total_seconds / 60 % 60 ))
+#    local seconds=$(( total_seconds % 60 ))
+#    (( days > 0 )) && human+="${days}d "
+#    (( hours > 0 )) && human+="${hours}h "
+#    (( minutes > 0 )) && human+="${minutes}m "
+#    human+="${seconds}s"
+#    echo "$human"
+#    return
+#}
+#
+#bgnotify_threshold=1
+## args: (exit_status, command, elapsed_seconds)
+#bgnotify_formatted () {
+#    local exit_status=$1
+#    local cmd="${2}"
+#    local elapsed_seconds=$3
+#    local str="cmd:   ${cmd}
+#code:  ${exit_status}
+#dir:   ${PWD}
+#start: $(strftime "%Y-%m-%d %H:%M:%S" ${bgnotify_timestamp%.*}).${bgnotify_realtime#*.}
+#time:  $( pretty_time ${elapsed_seconds} )
+#end:   $(strftime "%Y-%m-%d %H:%M:%S" ${EPOCHSECONDS}).${EPOCHREALTIME#*.}
+#tty:   ${TTY}"
+#    bgnotify "${str}"
+#}
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(cp systemd archlinux docker mosh nmap redis-cli rsync battery docker-compose mosh nmap pip urltools git)
+# NOTE custom plugin: bgnotify
 #plugins=()
 
 source $ZSH/oh-my-zsh.sh

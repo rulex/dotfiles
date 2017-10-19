@@ -228,6 +228,10 @@ nnoremap ä <Esc>"
 nnoremap Å [
 nnoremap å ]
 
+" fzf fuzzy finder
+nnoremap <C-t> <Esc>:Files<CR>
+nnoremap Ö <Esc>:Buffers<CR>
+
 " clipboard/paste stuff
 nnoremap <F10> <Esc>:set paste!<CR>:set paste?<CR>
 nnoremap <leader>p <Esc>"*p
@@ -309,7 +313,7 @@ nnoremap <leader>u4 <Esc>:setl tabstop=4 softtabstop=4 shiftwidth=4<CR>:set tabs
 nnoremap <leader>u8 <Esc>:setl tabstop=8 softtabstop=8 shiftwidth=8<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 
 " buffers
-nnoremap <leader>b <Esc>:ls<CR>
+nnoremap <leader>b <Esc>:Buffers<CR>
 nnoremap <leader>1 <Esc>:b 1<CR>:echo "asdf"<CR>
 nnoremap <leader>2 <Esc>:b 2<CR>
 nnoremap <leader>3 <Esc>:b 3<CR>
@@ -765,6 +769,12 @@ Plug 'scrooloose/nerdcommenter' " comments
 
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
+
+" Plug 'mhinz/vim-startify' " the fancy start screen
+
+" fuzzy finder fzf
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 
 "Plug 'trapd00r/vim-highlight-default-highlight-groups'
 

@@ -79,6 +79,45 @@ function agrep() {
     grep -Hni "${1}" ${@} | sed -e "s#:#¤#" -e "s#:#¤#" | column -t -s "¤" -o " | " -N file,line,content | grep -i "${1}"
 }
 
+fe() {
+    # $1 OPTIONAL dir
+    # $2 OPTIONAL start with query
+    local file
+    file=$(find -L ${1:-.} -type f -print 2> /dev/null | fzf +m -q "${2}") &&
+        nvim "${file}"
+}
+
+# fd - cd to selected directory
+fd() {
+    local dir
+    dir=$(find ${1:-.} -path '*/\.*' -prune \
+        -o -type d -print 2> /dev/null | fzf +m) &&
+        cd "$dir"
+}
+
+# cdf - cd into the directory of the selected file
+cdf() {
+    local file
+    local dir
+    file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+}
+
+# fda - including hidden directories
+fda() {
+    local dir
+    dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
+}
+
+# fh - repeat history
+fh() {
+    print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
+}
+
+# fhe - repeat history execute
+fhe() {
+    eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
+}
+
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias -g align='sed -e "s#¤#|#" -e "s#:#¤#" | column -t -s "¤" -o " | "'
@@ -177,7 +216,7 @@ function A() {
         # source config
         source ${_config}
         # check if vars are present
-        if [ -z ${pushover_userkey} ] || [ -z ${pushover_apitoken} ]; then
+        if (( ${+pushover_userkey} )) || (( ${+pushover_apitoken} )); then
             echo "  A(): pushover_userkey or pushover_apitoken is not set"
             return 2
         fi
@@ -251,7 +290,7 @@ function pushover() {
 }
 
 #
-if [[ -x $( which notify-send ) ]]; then
+if (( ${+commands[notify-send]} )); then
     notify-preexec-hook() {
         zsh_notifier_cmd="$1"
         zsh_notifier_time="$(date +%s)"
@@ -312,3 +351,4 @@ preexec_functions=( ${preexec_functions} notify-preexec-hook timestamp-preexec )
 [[ -z ${precmd_functions} ]] && precmd_functions=()
 precmd_functions=( ${precmd_functions} notify-precmd-hook )
 
+#  vim: set ts=4 sw=4 tw=0 et filetype=zsh :
