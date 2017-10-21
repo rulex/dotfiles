@@ -2,6 +2,10 @@
 # https://github.com/rulex/oh-my-zsh.git
 #
 
+# reload all open zsh .zshrc
+trap "source ~/.zshrc && rehash" USR1
+alias source_all="pkill -u $(whoami) -USR1 zsh"
+
 # timer
 integer t0=$(date '+%s')
 
