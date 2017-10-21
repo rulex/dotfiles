@@ -231,6 +231,13 @@ nnoremap å ]
 " fzf fuzzy finder
 nnoremap <C-t> <Esc>:Files<CR>
 nnoremap Ö <Esc>:Buffers<CR>
+nnoremap <leader>l <Esc>:echo join(["
+            \fuzzy finder fzf\n\n
+            \ll :Lines\n
+            \lb :BLines\n
+            \"], '')<CR>
+nnoremap <leader>ll <Esc>:Lines<CR>
+nnoremap <leader>lb <Esc>:BLines<CR>
 
 " clipboard/paste stuff
 nnoremap <F10> <Esc>:set paste!<CR>:set paste?<CR>
@@ -242,17 +249,11 @@ nnoremap <leader>y <Esc>:w !xclip<CR>
 nnoremap <leader>D <Esc>:r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
 
 " cursor over timestamp to %Y-%m-%d %H:%M:%S
-"map gD yiw:echo !date +"\%Y-\%m-\%d \%H:\%M:\%S" --date @"<C-R>""<CR>
-map gD yiw:!date +"\%Y-\%m-\%d \%H:\%M:\%S" --date @"<C-R>""<CR>
-vmap gD y:!date +"\%Y-\%m-\%d \%H:\%M:\%S" --date @"<C-R>""<CR>
-map gDD yiw:r!date +"\%Y-\%m-\%d \%H:\%M:\%S" --date @"<C-R>""<CR>
-vmap gDD y:r!date +"\%Y-\%m-\%d \%H:\%M:\%S" --date @"<C-R>""<CR>
-
-" cursor over date string to get timestamp
-map gDs yiW:!date +"\%s" --date="<C-R>""<CR>
-map gDS yiW:r!date +"\%s" --date="<C-R>""<CR>
-vmap gDs y:!date +"\%s" --date="<C-R>""<CR>
-vmap gDS y:r!date +"\%s" --date="<C-R>""<CR>
+" : date +"%Y-%m-%d %H:%M:%S" --date @$(date) 2>/dev/null || date +%s --date="2017-10-20 14:48:06"
+map gD "dyiw:!date +"\%Y-\%m-\%d \%H:\%M:\%S" --date @"<C-R>d" 2>/dev/null \|\| date +"\%s" --date="<C-R>d"<CR>
+vmap gD "dy:!date +"\%Y-\%m-\%d \%H:\%M:\%S" --date @"<C-R>d" 2>/dev/null \|\| date +"\%s" --date="<C-R>d"<CR>
+map gDD "dyiw:r!date +"\%Y-\%m-\%d \%H:\%M:\%S" --date @"<C-R>d" 2>/dev/null \|\| date +"\%s" --date="<C-R>d"<CR>
+vmap gDD "dy:r!date +"\%Y-\%m-\%d \%H:\%M:\%S" --date @"<C-R>d" 2>/dev/null \|\| date +"\%s" --date="<C-R>d"<CR>
 
 " timestamp: 1501828053
 " datestrin: 2017-08-04 09:29:09 | 2017-08-04T09:29:09
