@@ -257,7 +257,9 @@ function A() {
         # source config
         source ${_config}
         # check if vars are present
-        if (( ! ${+pushover_userkey} )) || (( ! ${+pushover_apitoken} )); then
+        #if (( ! ${+pushover_userkey} )) || (( ! ${+pushover_apitoken} )); then
+        if [[ -v pushover_userkey && -v pushover_apitoken ]]; then
+        else
             echo "  A(): pushover_userkey or pushover_apitoken is not set"
             return 2
         fi
