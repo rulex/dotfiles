@@ -26,7 +26,7 @@ set backupdir=~/.vim/backups/
 set directory=~/.vim/swap/
 set nu " line numbers
 set norelativenumber
-set autochdir " switch to current file dir
+"set autochdir " switch to current file dir
 nnoremap <C-n> <Esc>:tabn<CR>
 nnoremap <C-p> <Esc>:tabp<CR>
 map <Tab> <Esc>:tabn<CR>
@@ -238,6 +238,29 @@ nnoremap <leader>l <Esc>:echo join(["
             \"], '')<CR>
 nnoremap <leader>ll <Esc>:Lines<CR>
 nnoremap <leader>lb <Esc>:BLines<CR>
+
+" cd autochdir
+"nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
+command! CD :cd %:p:h
+
+function! InsertIfEmpty()
+    if @% == ""
+        " No filename for current buffer
+        "startinsert
+    elseif filereadable(@%) == 1
+        " File exists
+    elseif filereadable(@%) == 0
+        " File doesn't exist yet
+        "startinsert
+    elseif line('$') == 1 && col('$') == 1
+        " File is empty
+        "startinsert
+    endif
+endfunction
+
+" change dir to file
+"au VimEnter * call InsertIfEmpty()
+au VimEnter * cd %:p:h
 
 " clipboard/paste stuff
 nnoremap <F10> <Esc>:set paste!<CR>:set paste?<CR>
