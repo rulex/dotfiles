@@ -245,6 +245,7 @@ mode "resize" {
 #set $Locker i3lock && sleep 1
 # ; sleep 1
 set $Locker scrot /tmp/screen_locked.png && mogrify -scale 10% -scale 1000% /tmp/screen_locked.png && i3lock -i /tmp/screen_locked.png && i3-msg mode default
+set $Redshift redshift -l 60.20:24.75 -t 5700:3500 -g 0.8 -m randr
 
 mode "spacejam" {
     bindsym e exec "pcmanfm || thunar" ; mode "default"
@@ -257,7 +258,10 @@ mode "spacejam" {
     bindsym minus exec --no-startup-id "transset-df -a 0.5" ; mode "default"
     # lock screen
     bindsym l exec $Locker
-#
+    # redshift
+    bindsym r exec --no-startup-id $Redshift; mode "default"
+    bindsym shift+r exec pkill redshift; mode "default"
+    #
     bindsym Return exec "terminator --geometry=900x540 || xfce4-terminal" ; mode "default"
     bindsym BackSpace mode "default"
     bindsym Escape mode "default"
@@ -321,7 +325,7 @@ exec --no-startup-id sh ~/dotfiles/.xmodmap
 exec --no-startup-id sh ~/dotfiles/.mouse.sh
 exec --no-startup-id xrdb ~/.Xdefaults
 #exec --no-startup-id conky -c ~/dotfiles/.conkyrc
-exec --no-startup-id redshift -l 60.20:24.75 -t 5700:3500 -g 0.8 -m randr
+exec --no-startup-id $Redshift
 
 # screensaver
 #exec --no-startup-id xautolock -time 10 -locker "scrot /tmp/screen_locked.png; mogrify -scale 10% -scale 1000% /tmp/screen_locked.png; i3lock -i /tmp/screen_locked.png"
