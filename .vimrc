@@ -261,6 +261,7 @@ endfunction
 " change dir to file
 "au VimEnter * call InsertIfEmpty()
 au VimEnter * cd %:p:h
+au FileType diff,gitcommit set foldnestmax=0
 
 " clipboard/paste stuff
 nnoremap <F10> <Esc>:set paste!<CR>:set paste?<CR>

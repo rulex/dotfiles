@@ -29,7 +29,7 @@ hi DiffText    ctermbg=NONE      ctermfg=NONE     cterm=reverse
 hi Directory   ctermfg=DarkBlue  guifg=Blue
 hi ErrorMsg    ctermfg=White     ctermbg=DarkRed
 hi FoldColumn  ctermfg=DarkBlue  ctermbg=Grey
-hi Folded      ctermbg=Black     cterm=bold       ctermfg=Red
+hi Folded      ctermbg=NONE      cterm=bold       ctermfg=Red
 hi IncSearch   cterm=reverse     gui=reverse
 hi LineNr      ctermfg=Brown     guifg=Brown
 hi ModeMsg     cterm=NONE
@@ -49,7 +49,7 @@ hi CursorLineNR cterm=underline
 hi CursorLine   ctermfg=NONE         ctermbg=NONE
 hi SpecialKey   ctermfg=DarkGray     cterm=NONE
 hi NonText      ctermfg=DarkGray     cterm=NONE
-hi Title        ctermfg=DarkMagenta  ctermbg=Black  gui=bold     guifg=Magenta
+hi Title        ctermfg=DarkMagenta  ctermbg=NONE   gui=bold     guifg=Magenta
 hi VertSplit    cterm=reverse        gui=reverse
 hi Visual       ctermbg=NONE         cterm=reverse  gui=reverse  guifg=Grey guibg=fg
 hi VisualNOS    cterm=underline,bold gui=underline,bold

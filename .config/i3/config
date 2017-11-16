@@ -31,17 +31,27 @@ font pango:DejaVu Sans Mono 8
 floating_modifier Mod1
 popup_during_fullscreen smart
 
+show_marks yes
+
 # 1workspace for all screens
 #fake-outputs 3840x1200+0+0
+# For instance: Assume you are on workspace "1: www" and switch to "2: IM" using mod+2 because somebody sent you a message. You don’t need to remember where you came from now, you can just press $mod+2 again to switch back to "1: www".
+workspace_auto_back_and_forth yes
 
 #mouse_warping none
 
-new_window normal
+# border
+new_window normal 2
+#new_window pixel 1
+#new_window none
+
 #for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] title_format %title | %class | %instance
 for_window [title="^floatme$"] floating enable
 for_window [title="^sxiv"] floating enable
 for_window [window_role="pop-up"] floating enable
-for_window [class="urxvt*"] border pixel 1
+for_window [class="URxvt*"] border pixel 2
+for_window [class="Termite*"] border pixel 2
 for_window [title="^Sky$"] floating enable
 for_window [title="^xxx.*"] floating enable
 
@@ -73,16 +83,17 @@ set $darkred            #A54242
 set $green              #689D6A
 set $archblue           #33B5E5
 
-#class                  border      backgr.     text        split
-client.focused          $green      $green      $black      $green
-client.focused_inactive $grey       $lightgrey  $white      $grey
-client.unfocused        $grey       $grey       $lightgrey  $grey
-client.urgent           $red        $red        $black      $grey
-client.background $back
+#class                  border      backgr.     text        indicator  child_border
+client.focused          $green      $green      $black      $red       $green
+client.focused_inactive $grey       $lightgrey  $white      $grey      $grey
+client.unfocused        $grey       $grey       $white      $grey      $grey
+client.urgent           $red        $red        $black      $grey      $red
+client.background       $back
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec urxvtc
+#bindsym $mod+Return exec urxvtc
+bindsym $mod+Return exec termite
 bindsym $mod+Shift+Return exec urxvt
 
 # kill focused window
@@ -143,7 +154,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym Mod1+Mod4+Return floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+n focus mode_toggle
+#bindsym $mod+n focus mode_toggle
 bindsym Mod1+Tab focus mode_toggle
 
 # focus the parent container
@@ -258,6 +269,13 @@ mode "spacejam" {
     bindsym minus exec --no-startup-id "transset-df -a 0.5" ; mode "default"
     # lock screen
     bindsym l exec $Locker
+    # border
+    bindsym b [class="^.*"] border pixel 1; mode "default"
+    bindsym shift+b [class="^.*"] border normal 2; mode "default"
+
+    # toggle status bar
+    bindsym m bar mode toggle
+
     # redshift
     bindsym r exec --no-startup-id $Redshift; mode "default"
     bindsym shift+r exec pkill redshift; mode "default"
@@ -267,6 +285,9 @@ mode "spacejam" {
     bindsym Escape mode "default"
     bindsym q mode "default"
 }
+
+bindsym $mod+b border toggle
+#bindsym $mod+shift+b border 1px
 
 bindsym $mod+space mode "spacejam"
 bindsym $mod+r mode "resize"
@@ -310,11 +331,14 @@ mode "$mode_display" {
 # Declare here the shortcut to bring the display selection menu
 #bindsym $mod+x mode "$mode_display"
 
+# marks
+bindsym $mod+m exec i3-input -F 'mark %s' -P 'Mark name: '
+bindsym $mod+n exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
+
+
 # autolock screen
 #xautolock -time 10 -locker "i3lock -i 'background_image.png'" &
 
-# toggle status bar
-bindsym $mod+m bar mode toggle
 #exec --no-startup-id xfce4-panel --disable-wm-check
 exec --no-startup-id dunst -config ~/dotfiles/.config/dunst/dunstrc
 exec --no-startup-id pasystray
