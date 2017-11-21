@@ -1,62 +1,46 @@
 [global_config]
-  handle_size = 0
   custom_url_handler = /usr/bin/chromium
   enabled_plugins = CustomCommandsMenu, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
-  use_custom_url_handler = True
-  geometry_hinting = False
-  title_use_system_font = False
-  title_font = ProggyClean.pcf 12
-  tab_position = hidden
+  handle_size = 0
   inactive_color_offset = 0.68
+  tab_position = hidden
+  title_font = ProggyClean.pcf 12
+  title_use_system_font = False
+  use_custom_url_handler = True
 [keybindings]
-  cycle_prev = None
-  close_window = None
-  resize_left = None
   broadcast_all = None
-  rotate_ccw = None
-  go_right = None
-  line_up = <Shift>Up
-  resize_right = None
-  resize_down = None
-  cycle_next = None
-  broadcast_off = None
   broadcast_group = None
-  go_up = None
-  go_prev = None
+  broadcast_off = None
   close_term = None
-  new_terminator = None
-  go_left = None
-  line_down = <Shift>Down
-  rotate_cw = None
-  resize_up = None
-  next_tab = None
-  go_down = None
+  close_window = None
+  cycle_next = None
+  cycle_prev = None
   edit_window_title = None
+  go_down = None
+  go_left = None
   go_next = None
-[profiles]
-  [[default]]
-    scrollbar_position = hidden
-    palette = "#000000:#ff6565:#17B217:#FF8000:#163BDE:#D11BD1:#00DBDB:#F1F1F1:#686868:#E4287C:#54FF54:#FFFF54:#5454FF:#FF54FF:#54ffff:#ffffff"
-    font = ProggyCleanTT 14
-    mouse_autohide = False
-    urgent_bell = True
-    scrollback_lines = 5000
-    cursor_color = ""
-    cursor_blink = False
-    show_titlebar = False
-    use_system_font = False
-    copy_on_selection = True
-    allow_bold = False
-  [[asdf]]
+  go_prev = None
+  go_right = None
+  go_up = None
+  line_down = <Shift>Down
+  line_up = <Shift>Up
+  new_terminator = None
+  next_tab = None
+  resize_down = None
+  resize_left = None
+  resize_right = None
+  resize_up = None
+  rotate_ccw = None
+  rotate_cw = None
 [layouts]
   [[default]]
     [[[child1]]]
-      type = Terminal
       parent = window0
       profile = default
+      type = Terminal
     [[[window0]]]
-      type = Window
       parent = ""
+      type = Window
 [plugins]
   [[CustomCommandsMenu]]
     [[[testy]]]
@@ -64,3 +48,17 @@
       enabled = True
       name = testy
       position = 0
+[profiles]
+  [[default]]
+    copy_on_selection = True
+    cursor_blink = False
+    cursor_color = "#aaaaaa"
+    font = DejaVu Sans Mono 9
+    mouse_autohide = False
+    palette = "#000000:#ff6565:#17b217:#ff8000:#163bde:#d11bd1:#00dbdb:#f1f1f1:#686868:#e4287c:#54ff54:#ffff54:#5454ff:#ff54ff:#54ffff:#ffffff"
+    scrollback_lines = 5000
+    scrollbar_position = hidden
+    show_titlebar = False
+    urgent_bell = True
+    use_system_font = False
+  [[asdf]]
