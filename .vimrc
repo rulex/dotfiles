@@ -1,6 +1,6 @@
 ﻿
 if v:progname =~? "evim"
-	finish
+    finish
 endif
 
 " Use Vim settings, rather then Vi settings (much better!).
@@ -64,21 +64,29 @@ function! Neomake_statusline()
     return neomake_status_str
 endfunction
 
+function! Hide_statusl(str, width)
+    if winwidth(0) <= a:width
+        return ''
+    else
+        return a:str
+    endif
+endfunction
+
 let whoami=$USER
 
 " statusline
 set statusline=%F       " tail of the filename
+set statusline+=%r      " read only flag
 set statusline+=%m      " modified flag
 if whoami == 'root'
     set statusline+=\ \ \ %#ErrorMsg#%{whoami}%#StatusLine#  " whoami root
 endif
 set statusline+=%=      " left/right separator
-set statusline+=[U+%B]  " show ASCII value of char under cursor
+set statusline+=%{U+%B}  " show ASCII value of char under cursor
 "set statusline+=[%F]
 set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
 set statusline+=%{&ff}] " file format
 "set statusline+=%h      " help file flag
-set statusline+=%r      " read only flag
 set statusline+=%w      " Preview window flag
 set statusline+=%y\     " filetype
 set statusline+=%c,     " cursor column
@@ -92,6 +100,35 @@ set statusline+=%#StatusLine#%{Neomake_statusline()} " show pending neomake jobs
 set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
+function! StatusLineFunc()
+    let whoami=$USER
+    let sl = '%F'
+    let sl .= '%r'
+    let sl .= '%m'
+    if whoami == 'root'
+        let sl .= '  %#ErrorMsg#%{whoami}%#StatusLine#'
+    endif
+    let sl .= '%='
+    let sl .= Hide_statusl('[U+%B]', 70)
+    let sl .= Hide_statusl('[%{strlen(&fenc)?&fenc:"none"},', 70)
+    let sl .= Hide_statusl('%{&ff}]', 70)
+    let sl .= Hide_statusl('%w', 70)
+    let sl .= Hide_statusl('%y', 50)
+    let sl .= '%c,'
+    let sl .= '%l/%L'
+    let sl .= ' %P'
+
+    let sl .= '%#ErrorMsg#%{neomake#statusline#QflistStatus("|")}%#StatusLine#'
+    let sl .= '%#ErrorMsg#%{neomake#statusline#LoclistStatus("|")}%#StatusLine#'
+    let sl .= '%#StatusLine#%{Neomake_statusline()}'
+
+    let sl .= '%#warningmsg#'
+    let sl .= '%*'
+    return sl
+endfunction
+
+set statusline=%!StatusLineFunc()
 
 set synmaxcol=512       " Syntax coloring slows
 "set ttyfast
@@ -622,16 +659,16 @@ nnoremap <Leader>Ml :call AppendModeline()<CR>
 
 "FOLDING
 function! MyFoldText() " {{{
-	let line = getline(v:foldstart)
-	let nucolwidth = &fdc + &number * &numberwidth
-	let windowwidth = winwidth(0) - nucolwidth - 3
-	let foldedlinecount = v:foldend - v:foldstart
-	" expand tabs into spaces
-	let onetab = strpart('          ', 0, &tabstop)
-	let line = substitute(line, '\t', onetab, 'g')
-	let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-	let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-	return line . '?' . repeat(" ",fillcharcount) . foldedlinecount . '?' . ' '
+    let line = getline(v:foldstart)
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+    return line . '?' . repeat(" ",fillcharcount) . foldedlinecount . '?' . ' '
 endfunction " }}}
 "set foldtext=MyFoldText()
 set foldtext=CustomFoldText()
@@ -639,45 +676,45 @@ set foldtext=CustomFoldText()
 let g:badwolf_html_link_underline = 0
 
 if has("autocmd")
-	autocmd BufEnter *.ctp set syn=php
-	autocmd BufEnter *.phtml set syn=php
-	autocmd BufEnter h.txt set syn=htxt
+    autocmd BufEnter *.ctp set syn=php
+    autocmd BufEnter *.phtml set syn=php
+    autocmd BufEnter h.txt set syn=htxt
 endif
 
 " code blocks comment auto
 "au BufNewFile,BufRead *.c,*.cc,*.C,*.h imap } <Esc>:call CurlyBracket()<CR>a
 
 fu! CustomFoldText()
-	"get first non-blank line
-	let fs = v:foldstart
-	while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
-	endwhile
-	if fs > v:foldend
-		let line = getline(v:foldstart)
-	else
-		let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
-	endif
-	let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
-	let foldSize = 1 + v:foldend - v:foldstart
-	let foldSizeStr = " " . foldSize . " lines "
-	let foldLevelStr = repeat("+--", v:foldlevel)
-	let lineCount = line("$")
-	let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
-	let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
-	return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
+    "get first non-blank line
+    let fs = v:foldstart
+    while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
+    endwhile
+    if fs > v:foldend
+        let line = getline(v:foldstart)
+    else
+        let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
+    endif
+    let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
+    let foldSize = 1 + v:foldend - v:foldstart
+    let foldSizeStr = " " . foldSize . " lines "
+    let foldLevelStr = repeat("+--", v:foldlevel)
+    let lineCount = line("$")
+    let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
+    let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
+    return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
 endf
 
 function! CurlyBracket()
-	let l:my_linenum = line(".")
-	iunmap }
-	sil exe "normal i}"
-	imap } <Esc>:call CurlyBracket()<CR>
-	let l:result1 = searchpair('{', '', '}', 'bW')
-	if (result1 > 0)
-		let l:my_string = substitute(getline("."), '^\s*\(.*\){', '\1', "")
-		sil exe ":" . l:my_linenum
-		sil exe "normal a //" . l:my_string
-	endif
+    let l:my_linenum = line(".")
+    iunmap }
+    sil exe "normal i}"
+    imap } <Esc>:call CurlyBracket()<CR>
+    let l:result1 = searchpair('{', '', '}', 'bW')
+    if (result1 > 0)
+        let l:my_string = substitute(getline("."), '^\s*\(.*\){', '\1', "")
+        sil exe ":" . l:my_linenum
+        sil exe "normal a //" . l:my_string
+    endif
 endfunction
 
 "set clipboard+=unnamed " share X clipboard
@@ -686,9 +723,9 @@ endfunction
 set wildmode=full
 
 if has("vms")
-	set nobackup  " do not keep a backup file, use versions instead
+    set nobackup  " do not keep a backup file, use versions instead
 else
-	set backup  " keep a backup file
+    set backup  " keep a backup file
 endif
 set history=10000  " command line history
 set ruler  " show the cursor position all the time
@@ -712,55 +749,55 @@ endif
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
-	syntax on
-	set hlsearch
+    syntax on
+    set hlsearch
 endif
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
-	" Enable file type detection.
-	" Use the default filetype settings, so that mail gets 'tw' set to 72,
-	" 'cindent' is on in C files, etc.
-	" Also load indent files, to automatically do language-dependent indenting.
-	filetype plugin indent on
-	" Put these in an autocmd group, so that we can delete them easily.
-	augroup vimrcEx
-		au!
-		" For all text files set 'textwidth' to 78 characters.
-		autocmd FileType text setlocal textwidth=78
-		" When editing a file, always jump to the last known cursor position.
-		" Don't do it when the position is invalid or when inside an event handler
-		" (happens when dropping a file on gvim).
-		" Also don't do it when the mark is in the first line, that is the default
-		" position when opening a file.
-		autocmd BufReadPost *
-					\ if line("'\"") > 1 && line("'\"") <= line("$") |
-					\   exe "normal! g`\"" |
-					\ endif
-	augroup END
+    " Enable file type detection.
+    " Use the default filetype settings, so that mail gets 'tw' set to 72,
+    " 'cindent' is on in C files, etc.
+    " Also load indent files, to automatically do language-dependent indenting.
+    filetype plugin indent on
+    " Put these in an autocmd group, so that we can delete them easily.
+    augroup vimrcEx
+        au!
+        " For all text files set 'textwidth' to 78 characters.
+        autocmd FileType text setlocal textwidth=78
+        " When editing a file, always jump to the last known cursor position.
+        " Don't do it when the position is invalid or when inside an event handler
+        " (happens when dropping a file on gvim).
+        " Also don't do it when the mark is in the first line, that is the default
+        " position when opening a file.
+        autocmd BufReadPost *
+                    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+                    \   exe "normal! g`\"" |
+                    \ endif
+    augroup END
 else
-	set autoindent		" always set autoindenting on
+    set autoindent      " always set autoindenting on
 endif " has("autocmd")
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
 if !exists(":DiffOrig")
-	command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-				\ | wincmd p | diffthis
+    command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+                \ | wincmd p | diffthis
 endif
 
 if has('nvim')
-	tnoremap <c-a> <c-\><c-n>
-	"colorscheme Revolution
-	colorscheme delek
-	set ttimeout
-	set ttimeoutlen=0
+    tnoremap <c-a> <c-\><c-n>
+    "colorscheme Revolution
+    colorscheme delek
+    set ttimeout
+    set ttimeoutlen=0
 else
-	colorscheme delek
-	set timeout
-	set timeoutlen=450
-	set ttimeoutlen=250
+    colorscheme delek
+    set timeout
+    set timeoutlen=450
+    set ttimeoutlen=250
 endif
 
 call plug#begin('~/.vim/plugged')
@@ -769,6 +806,11 @@ Plug 'scrooloose/nerdtree' ", { 'on':  'NERDTreeToggle' }
 "Plug 'marcweber/vim-addon-mw-utils' " for snipmate
 "Plug 'tomtom/tlib_vim' " for snipmate
 "Plug 'garbas/vim-snipmate'
+
+" statusline
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+"Plug 'itchyny/lightline.vim'
 
 " auto complete
 Plug 'ervandew/supertab'
@@ -783,6 +825,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'simnalamburt/vim-mundo'
 Plug 'kshenoy/vim-signature' " vim marks
 Plug 'tpope/vim-surround' " change surrounding stuff: csXY
+Plug 'tpope/vim-fugitive' " git stuff
 
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 

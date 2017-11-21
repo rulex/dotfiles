@@ -87,6 +87,17 @@ function agrep() {
     grep -Hni "${1}" ${@} | sed -e "s#:#¤#" -e "s#:#¤#" | column -t -s "¤" -o " | " -N file,line,content | grep -i "${1}"
 }
 
+alias f='find'
+function fn() {
+    if [[ $# -eq 0 ]]; then
+        #find .
+    elif [[ $# -eq 1 ]]; then
+        find . -iname "*${1}*"
+    elif [[ $# -ge 1 ]]; then
+        find ${2} -iname "*${1}*"
+    fi
+}
+
 fe() {
     # $1 OPTIONAL dir
     # $2 OPTIONAL start with query
