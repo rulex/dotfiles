@@ -43,6 +43,49 @@ function dt() {
     fi
 }
 
+# keyboard LEDs as notification
+export LED_ID=3 # scroll lock
+export LED_REPEAT=1
+export LED_ON=0.5
+export LED_OFF=0.5
+
+led_on() {
+    xset led ${1:-${LED_ID}}
+}
+
+led_off() {
+    xset -led ${1:-${LED_ID}}
+}
+
+led_toggle() {
+    LED_ID=${1:-${LED_ID}}
+    if led_is_on; then
+        led_off
+    else
+        led_on
+    fi
+}
+
+function led_is_on() {
+    xset q | grep Scroll | cut -c70-72 | grep -q on
+}
+
+led_blink() {
+    local LED_REPEAT=${1:-${LED_REPEAT}}
+    local LED_ID=${2:-${LED_ID}}
+    local LED_ON=${3:-${LED_ON}}
+    local LED_OFF=${4:-${LED_OFF}}
+    for i in $(seq 1 ${LED_REPEAT});
+    do
+        if [ ${i} == 1 ]; then
+            LED_WAIT=0
+        else
+            LED_WAIT=$( echo "(${LED_ON}+${LED_OFF})*(${i}-1)" | bc )
+        fi
+        ( ( sleep ${LED_WAIT} ; led_on ; sleep ${LED_ON} ; led_off ; sleep ${LED_OFF} ) &)
+    done
+}
+
 function ds() {
     if [[ $# == 0 ]]; then
         du --time --time-style="+%Y-%m-%d %H:%M:%S" -shc * | sort -k 1 -h
@@ -165,6 +208,8 @@ function logstr() {
 }
 
 function A() {
+    # led notification
+    led_blink 1
     local PUSHOVER=0
     if [ $# -eq 0 ];then
         txt="Done"
