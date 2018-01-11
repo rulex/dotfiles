@@ -50,11 +50,11 @@ export LED_ON=0.5
 export LED_OFF=0.5
 
 led_on() {
-    xset led ${1:-${LED_ID}}
+    xset led ${1:-${LED_ID}} > /dev/null 2>&1
 }
 
 led_off() {
-    xset -led ${1:-${LED_ID}}
+    xset -led ${1:-${LED_ID}} > /dev/null 2>&1
 }
 
 led_toggle() {

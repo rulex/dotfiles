@@ -321,10 +321,13 @@ vmap gDD "dy:r!date +"\%Y-\%m-\%d \%H:\%M:\%S" --date @"<C-R>d" 2>/dev/null \|\|
 
 " yank full filepath
 nmap cp <Esc>:let @" = expand("%:p")<CR>
+" select pasted text
+nnoremap gp `[v`]
 
 " quick calc stuff
-map gbc yypkA =<Esc>jOscale=2<Esc>:.,+1!bc<CR>kJ
-"vmap gbc ypko=<Esc>jOscale=2<Esc>:.,+1!bc<CR>kJ
+"map gbc yypkA =<Esc>jOscale=2<Esc>:.,+1!bc<CR>kJ
+map gbc "cyyA =<Esc>p:silent! .s/\s//g<CR>:silent! .s/,/./g<CR>:noh<CR>Oscale=2<Esc>:.,+1!bc<CR>kJdl
+vmap gbc "cy`>a=<CR><Esc>"cP`]a<CR><Esc>k:silent! .s/[\s\n]//g<CR>:silent! .s/,/./g<CR>Oscale=2<Esc>:.,+1!bc<CR>kJdlJ:noh<CR>
 "vmap gs y'>p:'[,']-1s/$/+/\|'[,']+1j!<CR>'[0"wy$:.s§.*§\=w§<CR>'[yyP:.s/./=/g<CR>_j
 
 " comments
