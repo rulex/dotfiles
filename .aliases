@@ -43,6 +43,17 @@ function dt() {
     fi
 }
 
+# vim as PAGER
+function vman() {
+    if hash nvim 2>/dev/null; then
+        nvim -c "setf man" <(man ${*})
+    elif hash vim 2>/dev/null; then
+        vim -c "setf man" <(man ${*})
+    else
+        vi <(man ${*})
+    fi
+}
+
 # keyboard LEDs as notification
 export LED_ID=3 # scroll lock
 export LED_REPEAT=1

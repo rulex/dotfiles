@@ -264,6 +264,8 @@ nnoremap ö <Esc>:
 nnoremap ä <Esc>"
 nnoremap Å [
 nnoremap å ]
+vnoremap Å [
+vnoremap å ]
 
 " fzf fuzzy finder
 nnoremap <C-t> <Esc>:Files<CR>
@@ -297,14 +299,18 @@ endfunction
 
 " change dir to file
 "au VimEnter * call InsertIfEmpty()
-au VimEnter * cd %:p:h
+au VimEnter * silent! cd %:p:h
 au FileType diff,gitcommit set foldnestmax=0
 
 " clipboard/paste stuff
 nnoremap <F10> <Esc>:set paste!<CR>:set paste?<CR>
 nnoremap <leader>p <Esc>"*p
+nnoremap <leader>P <Esc>"*P
 vmap <leader>y "*y
 nnoremap <leader>y <Esc>:w !xclip<CR>
+
+" select inside fold
+vmap iz [zo]z
 
 " insert date time
 nnoremap <leader>D <Esc>:r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
@@ -323,6 +329,9 @@ vmap gDD "dy:r!date +"\%Y-\%m-\%d \%H:\%M:\%S" --date @"<C-R>d" 2>/dev/null \|\|
 nmap cp <Esc>:let @" = expand("%:p")<CR>
 " select pasted text
 nnoremap gp `[v`]
+" paste indentation
+"nnoremap p ]p
+"nnoremap P ]P
 
 " quick calc stuff
 "map gbc yypkA =<Esc>jOscale=2<Esc>:.,+1!bc<CR>kJ
@@ -681,6 +690,7 @@ let g:badwolf_html_link_underline = 0
 if has("autocmd")
     autocmd BufEnter *.ctp set syn=php
     autocmd BufEnter *.phtml set syn=php
+    autocmd BufEnter COMMIT_EDITMSG set foldnestmax=0
     autocmd BufEnter h.txt set syn=htxt
 endif
 

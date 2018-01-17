@@ -76,18 +76,20 @@ if hash nvim 2>/dev/null; then
     export GIT_EDITOR="nvim"
     export VISUAL="nvim"
     export SUDO_EDITOR="nvim"
+    export PAGER="nvim -c 'setf man' -"
 elif hash vim 2>/dev/null; then
     export EDITOR="vim"
     export GIT_EDITOR="vim"
     export VISUAL="vim"
     export SUDO_EDITOR="vim"
+    export PAGER="vim -c 'setf man' -"
 else
     export EDITOR="vi"
     export GIT_EDITOR="vi"
     export VISUAL="vi"
     export SUDO_EDITOR="vi"
 fi
-export PAGER="vimpager"
+#export PAGER="vimpager"
 
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"
