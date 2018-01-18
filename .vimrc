@@ -277,6 +277,13 @@ nnoremap <leader>l <Esc>:echo join(["
             \"], '')<CR>
 nnoremap <leader>ll <Esc>:Lines<CR>
 nnoremap <leader>lb <Esc>:BLines<CR>
+command! -bang -nargs=* Rg
+            \ call fzf#vim#grep(
+            \   'rg --column --line-number --no-heading --color=always '
+            \ . <q-args>, 1,
+            \   <bang>0 ? fzf#vim#with_preview('up:60%')
+            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \   <bang>0)
 
 " cd autochdir
 "nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
