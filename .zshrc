@@ -222,6 +222,43 @@ cdf() {
     file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
 }
 
+# glf - git commit browser (enter for show, ctrl-d for diff, ` toggles sort)
+glf() {
+    local out shas sha q k
+    while out=$(
+            #--format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+        git log --graph --color=always \
+            --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen[%ci (%cr)] %C(bold blue)<%an>%Creset' --abbrev-commit |
+            fzf --ansi --multi --no-sort --reverse --query="$q" --tiebreak=index \
+            --print-query --expect=ctrl-d --toggle-sort=\`); do
+        q=$(head -1 <<< "$out")
+        k=$(head -2 <<< "$out" | tail -1)
+        shas=$(sed '1,2d;s/^[^a-z0-9]*//;/^$/d' <<< "$out" | awk '{print $1}')
+        [ -z "$shas" ] && continue
+        if [ "$k" = 'ctrl-d' ]; then
+            git diff --color=always $shas | less -R
+        else
+            for sha in $shas; do
+                git show --color=always $sha | less -R
+            done
+        fi
+    done
+}
+
+# ch - browse chrome history
+ch() {
+    local cols sep
+    cols=$(( COLUMNS / 3 ))
+    sep='{::}'
+    cp -f ~/.config/chromium/Default/History /tmp/chrome-history
+    sqlite3 -separator $sep /tmp/chrome-history \
+        "select substr(title, 1, $cols), url
+    from urls order by last_visit_time desc" |
+        awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
+        fzf --ansi --multi --no-hscroll --tiebreak=begin |
+        sed 's#.*\(https*://\)#\1#' | xargs firefox
+}
+
 # fda - including hidden directories
 fda() {
     local dir
