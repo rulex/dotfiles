@@ -197,7 +197,7 @@ bindsym $mod+Shift+Down move workspace to output down
 bindsym Mod4+Mod1+h resize shrink width 3 px or 3 ppt
 bindsym Mod4+Mod1+j resize grow height 3 px or 3 ppt
 bindsym Mod4+Mod1+k resize shrink height 3 px or 3 ppt
-bindsym Mod4+Mod1+l resize grow width 7 px or 7 ppt
+bindsym Mod4+Mod1+l resize grow width 3 px or 3 ppt
 
 bindsym Mod4+Mod1+Left resize shrink width 10 px or 10 ppt
 bindsym Mod4+Mod1+Down resize grow height 10 px or 10 ppt
