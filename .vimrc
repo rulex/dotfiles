@@ -261,7 +261,8 @@ map <F9> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<
             \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 nnoremap ö <Esc>:
-nnoremap ä <Esc>"
+nnoremap ä "
+vnoremap ä "
 nnoremap Å [
 nnoremap å ]
 vnoremap Å [
@@ -539,6 +540,7 @@ nnoremap <leader><Up> :tabmove 0<CR>
 
 " highlight git merge stuff
 nnoremap <leader>/ <Esc>/^<<<<<<<\\|^=======\\|^>>>>>>><CR>
+nnoremap <leader>F <Esc>/\cXXX\\|FIXME\\|TODO\\|NOTE<CR>
 
 set list
 set listchars=tab:\»\ ,trail:·
