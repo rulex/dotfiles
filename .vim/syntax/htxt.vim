@@ -22,6 +22,7 @@ syn match hSymbols /\v\|/
 "syn match hSymbols /\v-/
 syn match hSymbols /\v\*/
 syn match hSymbols /\v\^/
+syn match hSymbols /\v#/
 syn match hSymbols /\v:/
 syn match hSymbols /\v\{/
 syn match hSymbols /\v\}/
