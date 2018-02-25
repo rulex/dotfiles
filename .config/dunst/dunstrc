@@ -1,6 +1,6 @@
 # <- this tricks vim into using syntax highlighting
 [global]
-    font = DejaVu Sans Mono 8
+    font = DejaVu Sans Mono 10
 
     # allow a small subset of html markup:
     # <b>bold</b>
@@ -60,7 +60,7 @@
     # right side of the screen.  Y is measured from the top and down respectevly.
     # The width can be negative. In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "300x5-60+50"
+    geometry = "400x5-60+50"
 
     # The transparency of the window. range: [0; 100]
     # This option will only work if a compositing windowmanager is present (e.g. xcompmgr, compiz, etc..)
@@ -142,7 +142,8 @@
 
     # redisplay last message(s)
     # On the US keyboard layout 'grave' is normally above TAB and left of '1'.
-    history = mod4+section
+    #history = mod4+section
+    history = mod4+grave
 
     # context menu
     context = ctrl+shift+period

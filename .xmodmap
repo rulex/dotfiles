@@ -1,5 +1,4 @@
 #!/bin/bash
-# NOPPOO CHOC MINI
 
 # xmodmap -pke # list current
 # xmodmap -e 'keycode [XX] = 1 2 3 4 5 6'
@@ -58,12 +57,13 @@ then
     fi
 
     # always remap these
-    xmodmap -e 'clear Lock' -e 'keycode 0x42 = Control_R' -e 'add control = Control_R' # remap caps to left control
     xmodmap -e 'keycode  45 = k K k K less dead_ogonek less'                           # altgr k to <
     xmodmap -e 'keycode  46 = l L l L greater dead_abovedot greater'                   # altgr l to >
     xmodmap -e 'keycode  61 = minus underscore minus underscore bar dead_abovedot bar' # altgr - to |
     xmodmap -e 'keycode  31 = i I i I braceleft idotless braceleft'                    # altgr i to {
     xmodmap -e 'keycode  32 = o O o O braceright OE braceright'                        # altgr o to }
+    #keycode  49 = section onehalf section onehalf paragraph threequarters paragraph threequarters section onehalf paragraph threequarters
+    xmodmap -e 'keycode  49 = grave onehalf section onehalf paragraph threequarters paragraph threequarters section onehalf paragraph threequarters' # § to `
 
 else
     echo 'setxkbmap us'
@@ -74,5 +74,7 @@ else
     xset r 116
     xset r rate 300 35
     xset -b
-    xmodmap -e 'clear Lock' -e 'keycode 0x42 = Control_R' -e 'add control = Control_R' # remap caps to left control
 fi
+
+# always remap caps lock
+xmodmap -e 'clear Lock' -e 'keycode 0x42 = Control_R' -e 'add control = Control_R' # remap caps to left control

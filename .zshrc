@@ -183,12 +183,12 @@ fd() {
 }
 
 __fsel() {
-    local cmd="${FZF_CTRL_T_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
+    local cmd="${FZF_CTRL_T_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.git' -o -path '*/\\.svn' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
         -o -type f -print \
         -o -type d -print \
         -o -type l -print 2> /dev/null | cut -b3-"}"
     setopt localoptions pipefail 2> /dev/null
-    eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@" | while read item; do
+    eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-35%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@" | while read item; do
     echo -n "${(q)item} "
     done
     local ret=$?
@@ -207,13 +207,19 @@ __fzf_use_tmux__() {
 
 fzf-file-widget() {
     LBUFFER="${LBUFFER}$(__fsel)"
+    local ret file key
     local ret=$?
     zle redisplay
     typeset -f zle-line-init >/dev/null && zle zle-line-init
-    return $ret
+    #[ "$key" = ctrl-o ] && return "$file" || e "$file"
+    #echo "ASDF ${key} ${ret}"
+    return ${ret}
 }
 zle     -N   fzf-file-widget
 bindkey '^T' fzf-file-widget
+
+#zle     -N   fzf-file-widget
+#bindkey '^I' fzf-file-completion
 
 # cdf - cd into the directory of the selected file
 cdf() {
@@ -229,17 +235,17 @@ glf() {
             #--format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
         git log --graph --color=always \
             --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen[%ci (%cr)] %C(bold blue)<%an>%Creset' --abbrev-commit |
-            fzf --ansi --multi --no-sort --reverse --query="$q" --tiebreak=index \
-            --print-query --expect=ctrl-d --toggle-sort=\`); do
-        q=$(head -1 <<< "$out")
-        k=$(head -2 <<< "$out" | tail -1)
-        shas=$(sed '1,2d;s/^[^a-z0-9]*//;/^$/d' <<< "$out" | awk '{print $1}')
-        [ -z "$shas" ] && continue
-        if [ "$k" = 'ctrl-d' ]; then
-            git diff --color=always $shas | less -R
+            fzf --ansi --multi --no-sort --reverse --query="${q}" --tiebreak=index \
+            --print-query --expect=ctrl-d,ctrl-o --toggle-sort=\`); do
+        q=$(head -1 <<< "${out}")
+        k=$(head -2 <<< "${out}" | tail -1)
+        shas=$(sed '1,2d;s/^[^a-z0-9]*//;/^$/d' <<< "${out}" | awk '{print $1}')
+        [ -z "${shas}" ] && continue
+        if [ "${k}" = 'ctrl-d' ] || [ "${k}" = 'ctrl-o' ]; then
+            git diff --color=always ${shas} | less -R
         else
-            for sha in $shas; do
-                git show --color=always $sha | less -R
+            for sha in ${shas}; do
+                git show --color=always ${sha} | less -R
             done
         fi
     done
@@ -252,8 +258,7 @@ ch() {
     sep='{::}'
     cp -f ~/.config/chromium/Default/History /tmp/chrome-history
     sqlite3 -separator $sep /tmp/chrome-history \
-        "select substr(title, 1, $cols), url
-    from urls order by last_visit_time desc" |
+        "select substr(title, 1, $cols), url from urls order by last_visit_time desc" |
         awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
         fzf --ansi --multi --no-hscroll --tiebreak=begin |
         sed 's#.*\(https*://\)#\1#' | xargs firefox

@@ -316,6 +316,8 @@ nnoremap <leader>p <Esc>"*p
 nnoremap <leader>P <Esc>"*P
 vmap <leader>y "*y
 nnoremap <leader>y <Esc>:w !xclip<CR>
+" clipboard full filepath
+nmap cP <Esc>:let @* = expand("%:p")<CR>
 
 " select inside fold
 vmap iz [zo]z
@@ -812,11 +814,11 @@ endif
 if has('nvim')
     tnoremap <c-a> <c-\><c-n>
     "colorscheme Revolution
-    colorscheme delek
+    colorscheme rulex
     set ttimeout
     set ttimeoutlen=0
 else
-    colorscheme delek
+    colorscheme rulex
     set timeout
     set timeoutlen=450
     set ttimeoutlen=250
@@ -875,6 +877,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'mfukar/robotframework-vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'plasticboy/vim-markdown'
+Plug 'Glench/Vim-Jinja2-Syntax'
 "Plug 'coala/coala-vim'
 "
 call plug#end()

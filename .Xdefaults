@@ -120,12 +120,17 @@ URxvt*color7:         #F1F1F1
 URxvt*color15:         #FFFFFF
 
 !Xft settings
-Xft.dpi: 82
+!Xft.dpi: 82
+Xft.dpi: 86
+!Xft.dpi: 144
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
-Xft.hintstyle: hintslight
+!Xft.hintstyle: hintslight
+! hintmedium
+!Xft.hintstyle: hintfull
+Xft.hintstyle: hintnone
 Xft.hinting: 1
 Xft.antialias: 1
-Xft.rgba: rgb
+Xft.rgba: vrgb
 
 Xcursor.theme: Adwaita

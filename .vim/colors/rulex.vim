@@ -3,7 +3,7 @@
 
 hi  clear
 
-let colors_name           =                    "delek"
+let colors_name = "rulex"
 
 " Normal should come first
 hi  Normal                cterm=NONE
@@ -62,7 +62,7 @@ hi  Constant              cterm=NONE           ctermfg=DarkGreen
 hi  Identifier            cterm=NONE           ctermfg=DarkCyan
 hi  PreProc               cterm=NONE           ctermfg=Magenta
 hi  Special               cterm=NONE           ctermfg=LightRed
-hi  Statement             cterm=NONE           ctermfg=Blue
+hi  Statement             cterm=NONE           ctermfg=Yellow
 hi  Type                  cterm=NONE           ctermfg=Blue
 
 hi  SpellBad              cterm=NONE           ctermfg=Blue     ctermbg=Blue  guibg=blue
@@ -105,7 +105,7 @@ hi  javaScriptBraces      ctermfg=Cyan         ctermbg=NONE     cterm=NONE
 hi  javaScriptParens      ctermfg=Yellow       ctermbg=NONE     cterm=NONE
 hi  javaScriptNumber      ctermfg=DarkGreen    ctermbg=NONE     cterm=NONE
 hi  javaScriptFunction    ctermfg=Yellow       ctermbg=NONE     cterm=NONE
-hi  javaScriptReserved    ctermfg=Yellow       ctermbg=NONE     cterm=NONE
+hi  javaScriptReserved    ctermfg=Yellow       ctermbg=NONE     cterm=bold
 hi  javaScriptOperator    ctermfg=Yellow       ctermbg=NONE     cterm=NONE
 hi  javaScriptConditional ctermfg=Blue         ctermbg=NONE     cterm=NONE
 hi  javaScriptGlobal      ctermfg=Magenta      ctermbg=NONE     cterm=NONE

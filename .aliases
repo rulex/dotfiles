@@ -113,6 +113,16 @@ function :e() {
     e ${*}
 }
 
+function es() {
+    if [ -f vimsession ]; then
+        e -S vimsession
+    elif [ -f package.json ]; then
+        e -S package.json
+    else
+        e
+    fi
+}
+
 alias new_uuid='cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 32 | head -n 1'
 random-string() {
     cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${1:-32} | head -n 1
@@ -166,7 +176,7 @@ alias s='sudo '
 alias w='w -f'
 alias fig='docker-compose'
 #alias px='ps auxf'
-alias pxg='px'
+#alias pxg='px'
 #alias t='TERM=screen-256color-bce tmux'
 alias t='tmux'
 alias tmuxeey='new -d -s "default" \
@@ -384,7 +394,7 @@ timestamp-preexec () {
 }
 
 [[ -z ${preexec_functions} ]] && preexec_functions=()
-preexec_functions=( ${preexec_functions} notify-preexec-hook timestamp-preexec )
+preexec_functions=( ${preexec_functions} notify-preexec-hook )
 
 [[ -z ${precmd_functions} ]] && precmd_functions=()
 precmd_functions=( ${precmd_functions} notify-precmd-hook )

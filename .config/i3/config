@@ -264,9 +264,7 @@ mode "resize" {
     bindsym q mode "default"
 }
 
-#set $Locker i3lock && sleep 1
-# ; sleep 1
-set $Locker "scrot /tmp/screen_locked.png && mogrify -scale 10% -scale 1000% /tmp/screen_locked.png && i3lock -i /tmp/screen_locked.png && i3-msg mode default"
+set $Locker "scrot /tmp/screen_locked.png && mogrify -scale 10% -scale 1000% /tmp/screen_locked.png ; i3lock -i /tmp/screen_locked.png && i3-msg mode default"
 set $Redshift redshift -l 60.20:24.75 -t 5700:3500 -g 0.8 -m randr
 
 mode "spacejam" {
@@ -310,14 +308,12 @@ bar {
     tray_output primary
 }
 
-# vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4 smarttab :
-
 # power management
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym s exec --no-startup-id $Locker, exec --no-startup-id systemctl suspend, mode "default"
     bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
@@ -343,8 +339,8 @@ mode "$mode_display" {
 #bindsym $mod+x mode "$mode_display"
 
 # marks
-bindsym $mod+m exec i3-input -F 'mark %s' -P 'Mark name: '
-bindsym $mod+n exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
+#bindsym $mod+m exec i3-input -F 'mark %s' -P 'Mark name: '
+#bindsym $mod+n exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
 
 
 # autolock screen
@@ -364,7 +360,7 @@ exec --no-startup-id $Redshift
 exec --no-startup-id sh ~/Sync/scripts/synergy.sh
 
 # screensaver
-#exec --no-startup-id xautolock -time 10 -locker "scrot /tmp/screen_locked.png; mogrify -scale 10% -scale 1000% /tmp/screen_locked.png; i3lock -i /tmp/screen_locked.png"
-exec --no-startup-id xautolock -time 10 -locker $Locker
-#xrdb ~/.Xdefaults
+exec --no-startup-id xautolock -time 10 -locker i3lock -i /tmp/screen_locked.png
+
+# vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4 smarttab :
 
