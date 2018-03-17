@@ -305,11 +305,6 @@ function! InsertIfEmpty()
     endif
 endfunction
 
-" change dir to file
-"au VimEnter * call InsertIfEmpty()
-au VimEnter * silent! cd %:p:h
-au FileType diff,gitcommit set foldnestmax=0
-
 " clipboard/paste stuff
 nnoremap <F10> <Esc>:set paste!<CR>:set paste?<CR>
 nnoremap <leader>p <Esc>"*p
@@ -558,6 +553,7 @@ vnoremap , za
 vnoremap qq <Esc>`>a'<Esc>`<i'<Esc>
 vnoremap qq' <Esc>`>a'<Esc>`<i'<Esc>
 vnoremap qq" <Esc>`>a"<Esc>`<i"<Esc>
+vnoremap qq` <Esc>`>a`<Esc>`<i`<Esc>
 vnoremap qq( <Esc>`>a)<Esc>`<i(<Esc>
 vnoremap qq[ <Esc>`>a]<Esc>`<i[<Esc>
 vnoremap qq{ <Esc>`>a}<Esc>`<i{<Esc>
@@ -699,10 +695,15 @@ set foldtext=CustomFoldText()
 let g:badwolf_html_link_underline = 0
 
 if has("autocmd")
+    " change dir to file
+    "au VimEnter * call InsertIfEmpty()
+    autocmd VimEnter * silent! cd %:p:h
+    autocmd FileType diff,gitcommit set foldnestmax=0
     autocmd BufEnter *.ctp set syn=php
     autocmd BufEnter *.phtml set syn=php
     autocmd BufEnter COMMIT_EDITMSG set foldnestmax=0
     autocmd BufEnter h.txt set syn=htxt
+    autocmd BufEnter *.json tabstop=2 softtabstop=2 shiftwidth=2
 endif
 
 " code blocks comment auto
