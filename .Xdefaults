@@ -95,40 +95,42 @@ URxvt*externalBorder: 0
 !*color15: #ebdbb2
 
 !!black
-URxvt*color0:         #000000
-URxvt*color8:         #686868
+URxvt*color0:  #000000
+URxvt*color8:  #686868
 !!!red
-URxvt*color1:         #ff6565
-URxvt*color9:         #E4287C
+URxvt*color1:  #ff6565
+URxvt*color9:  #E4287C
 !!green
-URxvt*color2:         #17B217
-URxvt*color10:         #54FF54
+URxvt*color2:  #17B217
+URxvt*color10: #54FF54
 !!yellow
-URxvt*color3:         #FF8000
-URxvt*color11:         #FFFF54
+URxvt*color3:  #FF8000
+URxvt*color11: #FFFF54
 !!!blue
-URxvt*color4:         #163BDE
-URxvt*color12:         #5454FF
+URxvt*color4:  #163BDE
+URxvt*color12: #5454FF
 !!!magenta
-URxvt*color5:         #D11BD1
-URxvt*color13:         #FF54FF
+URxvt*color5:  #D11BD1
+URxvt*color13: #FF54FF
 !!cyan
-URxvt*color6:         #00DBDB
-URxvt*color14:         #54FFFF
+URxvt*color6:  #00DBDB
+URxvt*color14: #54FFFF
 !!white
-URxvt*color7:         #F1F1F1
-URxvt*color15:         #FFFFFF
+URxvt*color7:  #F1F1F1
+URxvt*color15: #FFFFFF
 
 !Xft settings
-!Xft.dpi: 82
 Xft.dpi: 86
+!Xft.dpi: 92
+!Xft.dpi: 96
+!Xft.dpi: 96
 !Xft.dpi: 144
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
 !Xft.hintstyle: hintslight
 ! hintmedium
 !Xft.hintstyle: hintfull
-Xft.hintstyle: hintnone
+Xft.hintstyle: hintslight
 Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: vrgb

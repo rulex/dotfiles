@@ -266,6 +266,7 @@ mode "resize" {
 
 set $Locker "scrot /tmp/screen_locked.png && mogrify -scale 10% -scale 1000% /tmp/screen_locked.png ; i3lock -i /tmp/screen_locked.png && i3-msg mode default"
 set $Redshift redshift -l 60.20:24.75 -t 5700:3500 -g 0.8 -m randr
+set $Dunst dunst -config ~/dotfiles/.config/dunst/dunstrc
 
 mode "spacejam" {
     bindsym e exec "pcmanfm || thunar" ; mode "default"
@@ -281,6 +282,10 @@ mode "spacejam" {
     # border
     bindsym b [class="^.*"] border pixel 2; mode "default"
     bindsym shift+b [class="^.*"] border normal 2; mode "default"
+
+    # restart dunst
+    bindsym d exec --no-startup-id $Dunst; mode "default"
+    bindsym shift+d exec pkill dunst; mode "default"
 
     # toggle status bar
     bindsym m bar mode toggle
@@ -347,14 +352,15 @@ mode "$mode_display" {
 #xautolock -time 10 -locker "i3lock -i 'background_image.png'" &
 
 #exec --no-startup-id xfce4-panel --disable-wm-check
-exec --no-startup-id dunst -config ~/dotfiles/.config/dunst/dunstrc
 exec --no-startup-id pasystray
+exec --no-startup-id blueman-applet # bluetooth systray
 exec --no-startup-id clipit
 exec --no-startup-id urxvtd
 exec --no-startup-id nm-applet
 exec --no-startup-id sh ~/dotfiles/.xmodmap
 exec --no-startup-id sh ~/dotfiles/.mouse.sh
 exec --no-startup-id xrdb ~/.Xdefaults
+exec --no-startup-id $Dunst
 #exec --no-startup-id conky -c ~/dotfiles/.conkyrc
 exec --no-startup-id $Redshift
 exec --no-startup-id sh ~/Sync/scripts/synergy.sh

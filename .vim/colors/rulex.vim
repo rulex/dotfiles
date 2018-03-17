@@ -111,6 +111,8 @@ hi  javaScriptConditional ctermfg=Blue         ctermbg=NONE     cterm=NONE
 hi  javaScriptGlobal      ctermfg=Magenta      ctermbg=NONE     cterm=NONE
 hi  javaScriptStatement   ctermfg=Yellow       ctermbg=NONE     cterm=NONE
 
+hi  jsonBraces            ctermfg=Cyan         ctermbg=NONE     cterm=NONE
+
 hi  cssBraces             ctermfg=Cyan         ctermbg=NONE     cterm=NONE
 hi  cssClassName          ctermfg=Cyan         ctermbg=NONE     cterm=NONE
 hi  cssColor              ctermfg=Cyan         ctermbg=NONE     cterm=NONE
