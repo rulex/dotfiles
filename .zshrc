@@ -15,6 +15,10 @@ unset TMOUT
 #
 PATH="$PATH:$HOME/bin"
 
+if [ -d "${HOME}/Sync/bin" ]; then
+    PATH="$PATH:$HOME/Sync/bin"
+fi
+
 # ruby gems
 if [ -f /usr/bin/ruby ]; then
     PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"

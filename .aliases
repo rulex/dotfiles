@@ -279,8 +279,9 @@ function A() {
         ts=$(date +%s)
         txt="$(urlencode "${txt}")"
         post_data="token=${pushover_apitoken}&user=${pushover_userkey}&message=${txt}&timestamp=${ts}&html=1"
-        #echo ${post_data}
-        response=$(curl -s https://api.pushover.net/1/messages.json -d "${post_data}")
+        #echo "${txt}"
+        #echo "${post_data}"
+        local response=$(curl -s https://api.pushover.net/1/messages.json -d "${post_data}")
         # TODO parse json response?
         if [ $? -eq 0 ]; then
             return 0
