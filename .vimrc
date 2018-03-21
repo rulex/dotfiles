@@ -703,7 +703,7 @@ if has("autocmd")
     autocmd BufEnter *.phtml set syn=php
     autocmd BufEnter COMMIT_EDITMSG set foldnestmax=0
     autocmd BufEnter h.txt set syn=htxt
-    autocmd BufEnter *.json tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd FileType json set tabstop=2 softtabstop=2 shiftwidth=2
 endif
 
 " code blocks comment auto
@@ -816,6 +816,7 @@ if has('nvim')
     tnoremap <c-a> <c-\><c-n>
     "colorscheme Revolution
     colorscheme rulex
+    set termguicolors
     set ttimeout
     set ttimeoutlen=0
 else
