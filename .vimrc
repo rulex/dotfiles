@@ -387,6 +387,7 @@ nnoremap <leader>u <Esc>:echo join(["
             \u8 setl tab opts=8"], '')<CR>
 nnoremap <leader>uu <Esc>:set expandtab? tabstop? softtabstop? shiftwidth? smarttab?<CR>
 nnoremap <leader>ue <Esc>:setl expandtab!<CR>:set expandtab?<CR>
+nnoremap <leader>u1 <Esc>:setl tabstop=1 softtabstop=1 shiftwidth=1<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 nnoremap <leader>u2 <Esc>:setl tabstop=2 softtabstop=2 shiftwidth=2<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 nnoremap <leader>u4 <Esc>:setl tabstop=4 softtabstop=4 shiftwidth=4<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 nnoremap <leader>u8 <Esc>:setl tabstop=8 softtabstop=8 shiftwidth=8<CR>:set tabstop? softtabstop? shiftwidth?<CR>
@@ -703,7 +704,7 @@ if has("autocmd")
     autocmd BufEnter *.phtml set syn=php
     autocmd BufEnter COMMIT_EDITMSG set foldnestmax=0
     autocmd BufEnter h.txt set syn=htxt
-    autocmd FileType json set tabstop=2 softtabstop=2 shiftwidth=2
+    "autocmd BufEnter *.json set tabstop=2 softtabstop=2 shiftwidth=2
 endif
 
 " code blocks comment auto

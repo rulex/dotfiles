@@ -23,7 +23,7 @@ syn match hSymbols /\v\|/
 syn match hSymbols /\v\*/
 syn match hSymbols /\v\^/
 syn match hSymbols /\v#/
-syn match hSymbols /\v#[A-z]+/
+syn match hSymbols /\v#[A-z0-9]+/
 syn match hSymbols /\v:/
 syn match hSymbols /\v;/
 syn match hSymbols /\v\{/
@@ -37,17 +37,24 @@ syn match hSymbols /\v\>/
 syn match hSymbols /\v\$/
 syn match hSymbols /\v\€/
 syn match hSymbols /\v\@/
+syn match hSymbols /\v\@[A-z0-9]+/
 syn match hSymbols /\v\~/
 syn match hComment "#.*$" contained
 syn match hPath /\v[ ~]\/[A-z0-9.~\/-]*/
 syn match hDate /\v\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2}/ " 2017-09-19 14:03:18
+syn match hCmdArg /\v\-/ contained
+syn match hCmdArgVar /\v [\-]+[\-A-z]+ / contained
 
 syn region hIndented     start='^\s' end='\n'  contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork
 syn region hStringTick   start='`'   end='`'
-syn region hStringDouble start='"'   end='"'   contained
-syn region hStringSingle start="'"   end="'"   contained
-syn region hCmd          start=' : ' end='\n'  contains=hComment,hStringTick,hStringDouble,hStringSingle,hSymbols
+syn region hStringDouble start='"'   end='"'
+syn region hStringSingle start="'"   end="'"
+syn region hCmd          start=' : ' end='\n'  contains=hComment,hStringTick,hStringDouble,hStringSingle,hSymbols,hCmdArg,hCmdArgVar
 syn region hLongComment  start='"""' end='"""' contains=hCmd,hComment,hStringTick,hStringSingle,hSymbols
+syn region hParentes     start='('   end=')'
+syn region hBracketsSq   start='\['  end=']'
+syn region hBracketsCur  start='{'   end='}'
+syn region hBracketsLes  start='<'   end='>'
 
 
 hi link hAttention   Todo
@@ -55,16 +62,23 @@ hi link hTodo        Todo
 hi link hComment     Comment
 hi link hLongComment Comment
 
-hi hCmd          ctermfg=Green
-hi hStringTick   ctermfg=Magenta
-hi hSymbols      ctermfg=Magenta
-hi hStringDouble ctermfg=DarkGreen
-hi hStringSingle ctermfg=DarkGreen
-"hi hLongComment  ctermfg=DarkGreen
-hi hDate         ctermfg=White
-hi hIdentifier   ctermfg=Blue
-hi hWork         ctermfg=Yellow
-hi hPath         ctermfg=Magenta
+" TODO hi link
+"hi link hCmd          Constant
+hi hCmd          ctermfg=DarkGreen guifg=#10ff10
+hi link hPath         Directory
+hi hParentes     ctermfg=Yellow    guifg=#ff6565
+hi hBracketsSq   ctermfg=Yellow    guifg=#dd9015
+hi hBracketsCur  ctermfg=Yellow    guifg=#40a080
+hi hBracketsLes  ctermfg=Yellow    guifg=#8080d0
+hi hCmdArg       ctermfg=Yellow    guifg=Yellow
+hi hCmdArgVar    ctermfg=White     guifg=White        guibg=NONE
+hi hStringTick   ctermfg=Magenta   guifg=#d170d1
+hi hSymbols      ctermfg=Magenta   guifg=#d170d1
+hi hStringDouble ctermfg=DarkGreen guifg=#17B217
+hi hStringSingle ctermfg=DarkGreen guifg=#30f030
+hi hDate         ctermfg=White     guifg=White
+hi hIdentifier   ctermfg=Blue      guifg=DarkCyan
+hi hWork         ctermfg=Yellow    guifg=Yellow
 
 
 let b:current_syntax = "htxt"
