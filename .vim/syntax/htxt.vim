@@ -21,6 +21,8 @@ syn match hSymbols /\v\|/
 "syn match hSymbols /\v\+/
 "syn match hSymbols /\v-/
 syn match hSymbols /\v\*/
+syn match hSymbols /\v·/
+syn match hSymbols /\v-/
 syn match hSymbols /\v\^/
 syn match hSymbols /\v#/
 syn match hSymbols /\v#[A-z0-9]+/
@@ -28,6 +30,7 @@ syn match hSymbols /\v:/
 syn match hSymbols /\v;/
 syn match hSymbols /\v\{/
 syn match hSymbols /\v\}/
+syn match hSymbols /\v\=/
 syn match hSymbols /\v\[/
 syn match hSymbols /\v\]/
 syn match hSymbols /\v\(/
@@ -45,17 +48,22 @@ syn match hDate /\v\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2}/ " 2017-09-19 14:03:18
 syn match hCmdArg /\v\-/ contained
 syn match hCmdArgVar /\v [\-]+[\-A-z]+ / contained
 
-syn region hIndented     start='^\s' end='\n'  contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork
-syn region hStringTick   start='`'   end='`'
-syn region hStringDouble start='"'   end='"'
-syn region hStringSingle start="'"   end="'"
-syn region hCmd          start=' : ' end='\n'  contains=hComment,hStringTick,hStringDouble,hStringSingle,hSymbols,hCmdArg,hCmdArgVar
-syn region hLongComment  start='"""' end='"""' contains=hCmd,hComment,hStringTick,hStringSingle,hSymbols
-syn region hParentes     start='('   end=')'
-syn region hBracketsSq   start='\['  end=']'
-syn region hBracketsCur  start='{'   end='}'
-syn region hBracketsLes  start='<'   end='>'
+"syn match hList /\v[\*\-·]/ contained
 
+syn region hStringTick   start='`'     skip='\\`'    end='`'
+syn region hStringDouble start='"'     skip='\\"'    end='["\n]'
+syn region hStringSingle start="'"     skip="\\'"    end="['\n]"
+syn region hCmd          start=' : '   end='\n'      contains=hComment,hStringTick,hStringDouble,hStringSingle,hSymbols,hCmdArg,hCmdArgVar
+syn region hLongComment  start='"""'   end='"""'     contains=hCmd,hStringTick,hStringSingle,hSymbols
+syn region hParentes     start='('     skip='\\)'    end='[\)\n]'
+syn region hBracketsSq   start='\['    skip='\\]'    end='[\]\n]'
+syn region hBracketsCur  start='{'     skip='\\}'    end='[}\n]'
+syn region hBracketsLes  start='<'     skip='\\>'    end='[>\n]'
+syn region hIndented     start='^\s'   end='\n'      contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hParentes,hBracketsSq,hBracketsLes,hBracketsCur,hStringTick,hStringSingle,hStringDouble,hPath,hList
+syn region hList         start='\s\*'  end='\n'      contained    contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hStringTick,hStringSingle,hStringDouble,hPath
+syn region hList         start='\s\-'  end='\n'      contained    contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hStringTick,hStringSingle,hStringDouble,hPath
+syn region hList         start='\s·'   end='\n'      contained    contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hStringTick,hStringSingle,hStringDouble,hPath
+syn region hList         start='\s='   end='\n'      contained    contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hStringTick,hStringSingle,hStringDouble,hPath
 
 hi link hAttention   Todo
 hi link hTodo        Todo
@@ -79,6 +87,7 @@ hi hStringSingle ctermfg=DarkGreen guifg=#30f030
 hi hDate         ctermfg=White     guifg=White
 hi hIdentifier   ctermfg=Blue      guifg=DarkCyan
 hi hWork         ctermfg=Yellow    guifg=Yellow
+hi hList         ctermfg=NONE      guifg=DarkCyan    gui=bold
 
 
 let b:current_syntax = "htxt"

@@ -48,7 +48,7 @@ new_window normal 2
 #for_window [class="^.*"] border pixel 1
 for_window [class="^.*"] title_format %title | %class | %instance
 for_window [title="^floatme$"] floating enable
-for_window [title="^sxiv"] floating enable
+for_window [class="^Sxiv$"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [class="URxvt*"] border pixel 2
 for_window [class="Termite*"] border pixel 2
@@ -154,7 +154,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym Mod1+Mod4+Return floating toggle
 
 # change focus between tiling / floating windows
-#bindsym $mod+n focus mode_toggle
+bindsym $mod+n focus mode_toggle
 bindsym Mod1+Tab focus mode_toggle
 
 # focus the parent container

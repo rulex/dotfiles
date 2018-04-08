@@ -29,7 +29,7 @@ hi LineNr       cterm=NONE           ctermfg=Brown       ctermbg=NONE     gui=NO
 hi ModeMsg      cterm=NONE           ctermfg=NONE        ctermbg=NONE     gui=NONE           guifg=NONE        guibg=NONE
 hi MoreMsg      cterm=NONE           ctermfg=DarkGreen   ctermbg=NONE     gui=NONE           guifg=Green       guibg=NONE
 hi Conditional  cterm=bold           ctermfg=Blue        ctermbg=NONE     gui=NONE           guifg=#4d4dff     guibg=NONE
-hi Pmenu        cterm=NONE           ctermfg=Black       ctermbg=Magenta  gui=NONE           guifg=White       guibg=Black
+hi Pmenu        cterm=NONE           ctermfg=Black       ctermbg=Magenta  gui=NONE           guifg=White       guibg=Gray
 hi PmenuSel     cterm=NONE           ctermfg=White       ctermbg=DarkBlue gui=bold           guifg=White       guibg=#4d4dff
 hi Question     cterm=NONE           ctermfg=DarkGreen   ctermbg=NONE     gui=NONE           guifg=Green       guibg=NONE
 hi Search       cterm=NONE           ctermfg=grey        ctermbg=DarkBlue gui=NONE           guifg=White       guibg=#4d4dff
