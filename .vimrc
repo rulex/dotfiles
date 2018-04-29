@@ -148,9 +148,6 @@ nmap <M-7> :tabnext 7<CR>
 nmap <M-8> :tabnext 8<CR>
 nmap <M-9> :tablast<CR>
 
-nmap <F8> :TagbarToggle<CR>
-nmap <F7> :SyntasticToggleMode<CR>
-
 " fold
 set foldmethod=indent
 set foldnestmax=2
@@ -259,6 +256,10 @@ set splitright
 map <F9> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
             \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
             \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+nmap <F8> :TagbarToggle<CR>
+nnoremap <F7> <Esc>:set wrap!<CR>:set wrap?<CR>
+"nmap <F7> :SyntasticToggleMode<CR>
+
 
 nnoremap ö <Esc>:
 nnoremap ä "
