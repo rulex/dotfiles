@@ -15,9 +15,8 @@ if [ $# -eq 0 ]
 then
 
     setxkbmap se
-        xset r rate 300 35
-    xset -b
 
+    # if lsusb | grep -q iRiver; then
     keyb=$( lsusb | grep iRiver )
     if [ $? -eq 0 ]
     then
@@ -28,8 +27,6 @@ then
         xset r 77  # delete key
         xset r 113
         xset r 116
-        xset r rate 300 35
-        xset -b
         xmodmap -e 'keycode 77 = Delete' # numlock to delete
         xmodmap -e 'keycode 78 = Insert' # scroll lock to insert
         xmodmap -e 'keycode 119 = End'   # del to end
@@ -50,13 +47,12 @@ then
         xset r 77  # delete key
         xset r 113
         xset r 116
-        xset r rate 300 35
-        xset -b
         xmodmap -e 'keycode 127 = Insert' # pause to insert
 
     fi
 
     # always remap these
+    xset r rate 300 35
     xmodmap -e 'keycode  45 = k K k K less dead_ogonek less'                           # altgr k to <
     xmodmap -e 'keycode  46 = l L l L greater dead_abovedot greater'                   # altgr l to >
     xmodmap -e 'keycode  61 = minus underscore minus underscore bar dead_abovedot bar' # altgr - to |
@@ -66,7 +62,7 @@ then
     xmodmap -e 'keycode  49 = grave onehalf section onehalf paragraph threequarters paragraph threequarters section onehalf paragraph threequarters' # § to `
 
 else
-    echo 'setxkbmap us'
+    echo "setxkbmap ${1}"
     setxkbmap $1
     xset r 51 # ' key
     xset r 77 # delete key

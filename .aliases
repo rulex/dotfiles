@@ -16,6 +16,7 @@ alias la='ls -lA'
 alias lc='ls -lthrc'
 alias lca='ls -ltrca'
 alias sl=ls
+alias lt='tree'
 #alias dt='date +"%Y-%m-%dT%H:%M:%S"'
 function dt() {
     if [[ $# == 0 ]]; then
@@ -117,7 +118,7 @@ function es() {
     if [ -f vimsession ]; then
         e -S vimsession
     elif [ -f package.json ]; then
-        e -S package.json
+        e package.json
     else
         e
     fi
@@ -152,6 +153,7 @@ function agrep() {
 }
 
 alias f='find'
+compdef fn=find
 function fn() {
     if [[ $# -eq 0 ]]; then
         return 1
