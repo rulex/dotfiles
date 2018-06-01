@@ -93,7 +93,6 @@ else
     export VISUAL="vi"
     export SUDO_EDITOR="vi"
 fi
-#export PAGER="vimpager"
 
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"

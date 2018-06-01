@@ -42,6 +42,8 @@ set scrolljump=1        " lines to scroll when cursor leaves screen
 set scrolloff=3         " minimum lines to keep above and below cursor
 set laststatus=2        " show statusline allways
 
+set shellcmdflag=-ic
+
 " Get Neomake Jobs count for statusline
 function! Neomake_statusline()
     "let bufnr = bufnr('%')

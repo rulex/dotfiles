@@ -17,6 +17,7 @@ alias lc='ls -lthrc'
 alias lca='ls -ltrca'
 alias sl=ls
 alias lt='tree'
+
 #alias dt='date +"%Y-%m-%dT%H:%M:%S"'
 function dt() {
     if [[ $# == 0 ]]; then
@@ -27,35 +28,20 @@ function dt() {
             date +"%Y-%m-%d %H:%M:%S W%V"
         else
             # pretty print input unix ts
+            # TODO check if $1 is number aka it is unix timestamp OR...
             date +"%Y-%m-%d %H:%M:%S" --date @"$1"
         fi
     elif [[ $# == 2 ]] && [[ $1 == "p" ]]; then
-        # pretty print input diff seconds
-        local human total_seconds=$2
-        local days=$(( total_seconds / 60 / 60 / 24 ))
-        local hours=$(( total_seconds / 60 / 60 % 24 ))
-        local minutes=$(( total_seconds / 60 % 60 ))
-        local seconds=$(( total_seconds % 60 ))
-        (( days > 0 )) && human+="${days}d "
-        (( hours > 0 )) && human+="${hours}h "
-        (( minutes > 0 )) && human+="${minutes}m "
-        human+="${seconds}s"
-        echo "$human"
+        pretty_time ${2}
+    elif [[ $# == 2 ]]; then
+        # diff between two dates
+        d1=$(date -d "$1" +%s)
+        d2=$(date -d "$2" +%s)
+        pretty_time (($d2 - $d1))
     fi
 }
 
-# vim as PAGER
-function vman() {
-    if hash nvim 2>/dev/null; then
-        nvim -c "setf man" <(man ${*})
-    elif hash vim 2>/dev/null; then
-        vim -c "setf man" <(man ${*})
-    else
-        vi <(man ${*})
-    fi
-}
-
-# keyboard LEDs as notification
+# keyboard LEDs as notification default values
 export LED_ID=3 # scroll lock
 export LED_REPEAT=1
 export LED_ON=0.5
@@ -79,7 +65,16 @@ led_toggle() {
 }
 
 function led_is_on() {
-    xset q | grep Scroll | cut -c70-72 | grep -q on
+    # TODO support other LEDs than Scroll
+    if [ ${LED_ID} -eq 1 ]; then
+        #
+    elif [ ${LED_ID} -eq 2 ]; then
+        #
+    elif [ ${LED_ID} -eq 3 ]; then
+        xset q | grep Scroll | cut -c70-72 | grep -q on
+    else
+        echo "LED is on check for ${LED_ID} is not supported"
+    fi
 }
 
 led_blink() {
@@ -210,12 +205,12 @@ alias gcv='git commit --verbose'
 alias gd='git diff'
 alias gco='git checkout'
 alias gm='git merge'
-alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen[%ci (%cr)] %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen[%ci (%cr)] %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glga="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen[%ci (%cr)] %C(bold blue)<%an>%Creset' --abbrev-commit --all"
-alias gln='git log --pretty=format:"%C(red)%h%C(reset) - %s %C(green)[%ci (%cr)] %C(bold blue)<%an>%C(reset)" --name-only'
-alias gls='git show --pretty=format:"%C(red)%h%C(reset) - %s %C(green)[%ci (%cr)] %C(bold blue)<%an>%C(reset)"'
-alias glc='git shortlog --no-merges -nes'
+alias gl="git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen[%ci (%cr)] %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias glg="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen[%ci (%cr)] %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias glga="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen[%ci (%cr)] %C(bold blue)<%an>%Creset' --abbrev-commit --all"
+alias gln='git log --color --pretty=format:"%C(red)%h%C(reset) - %s %C(green)[%ci (%cr)] %C(bold blue)<%an>%C(reset)" --name-only'
+alias gls='git show --color --pretty=format:"%C(red)%h%C(reset) - %s %C(green)[%ci (%cr)] %C(bold blue)<%an>%C(reset)"'
+alias glc='git shortlog --color --no-merges -nes'
 alias grup='git remote update'
 alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
 
@@ -325,8 +320,10 @@ function pretty_time() {
 function pretty_size() {
     if [[ $# == 2 ]] && [[ $1 == "i" ]]; then
         echo $2 | numfmt --to=iec-i
-    else
+    elif [[ $# == 1 ]]; then
         echo $1 | numfmt --to=iec
+    elif [[ $# == 0 ]]; then
+        numfmt --to=iec
     fi
 }
 

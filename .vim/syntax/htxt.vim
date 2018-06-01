@@ -60,10 +60,10 @@ syn region hBracketsSq   start='\['    skip='\\]'    end='[\]\n]'
 syn region hBracketsCur  start='{'     skip='\\}'    end='[}\n]'
 syn region hBracketsLes  start='<'     skip='\\>'    end='[>\n]'
 syn region hIndented     start='^\s'   end='\n'      contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hParentes,hBracketsSq,hBracketsLes,hBracketsCur,hStringTick,hStringSingle,hStringDouble,hPath,hList
-syn region hList         start='^\s\*'  end='\n'      contained    contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hStringTick,hStringSingle,hStringDouble,hPath
-syn region hList         start='^\s\-'  end='\n'      contained    contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hStringTick,hStringSingle,hStringDouble,hPath
-syn region hList         start='^\s·'   end='\n'      contained    contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hStringTick,hStringSingle,hStringDouble,hPath
-syn region hList         start='^\s='   end='\n'      contained    contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hStringTick,hStringSingle,hStringDouble,hPath
+syn region hList         start='^\s\*' end='\n'      contained    contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hStringTick,hStringSingle,hStringDouble,hPath
+syn region hList         start='^\s\-' end='\n'      contained    contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hStringTick,hStringSingle,hStringDouble,hPath
+syn region hList         start='^\s·'  end='\n'      contained    contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hStringTick,hStringSingle,hStringDouble,hPath
+syn region hList         start='^\s='  end='\n'      contained    contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hStringTick,hStringSingle,hStringDouble,hPath
 
 hi link hAttention   Todo
 hi link hTodo        Todo
