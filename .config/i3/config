@@ -366,7 +366,7 @@ exec --no-startup-id $Redshift
 exec --no-startup-id sh ~/Sync/scripts/synergy.sh
 
 # screensaver
-exec --no-startup-id xautolock -time 10 -locker i3lock -i /tmp/screen_locked.png
+exec --no-startup-id xautolock -time 10 -locker "i3lock -i /tmp/screen_locked.png"
 
 # vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4 smarttab :
 
