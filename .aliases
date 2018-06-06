@@ -77,14 +77,13 @@ function led_is_on() {
     fi
 }
 
-led_blink() {
+function led_blink() {
     local LED_REPEAT=${1:-${LED_REPEAT}}
     local LED_ID=${2:-${LED_ID}}
     local LED_ON=${3:-${LED_ON}}
     local LED_OFF=${4:-${LED_OFF}}
-    for i in $(seq 1 ${LED_REPEAT});
-    do
-        if [ ${i} == 1 ]; then
+    for i in $(seq 1 ${LED_REPEAT}); do
+        if [ ${i} -eq 1 ]; then
             LED_WAIT=0
         else
             LED_WAIT=$( echo "(${LED_ON}+${LED_OFF})*(${i}-1)" | bc )
