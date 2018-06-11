@@ -200,13 +200,13 @@ let g:deoplete#enable_at_startup = 1
 "let g:deoplete#max_list
 "let g:deoplete#max_menu_width
 "let g:deoplete#auto_complete_delay
-"let g:deoplete#keyword_patterns = {} " TODO
+"let g:deoplete#keyword_patterns = {}
 
 "let g:deoplete#sources = {}
 "let g:deoplete#sources._ = ['buffer', 'file']
 "let g:deoplete#sources.cpp = ['buffer', 'tag']
 
-"let g:deoplete#member#prefix_patterns " Note: It is Python3 regexp.TODO
+"let g:deoplete#member#prefix_patterns
 "let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#buffer#require_same_filetype = 0
 let g:deoplete#keyword_patterns = {}
@@ -412,7 +412,7 @@ nnoremap <leader><CR> <Esc>:Neomake<CR>
 nnoremap <leader>m <Esc>:Neomake<CR>
 "nnoremap <leader>m <Esc>:echo printf("todo")
 " switch syntastic/Neomake standards
-" TODO echo current values
+
 nnoremap <leader>s <Esc>:echo "
             \sz   phpcs standard Zend\n
             \sp   phpcs standard PEAR\n
@@ -587,7 +587,7 @@ vnoremap > >gv
 " dont autoresize splits
 set noequalalways
 
-" resize terminal XXX https://github.com/neovim/neovim/issues/4997
+" resize terminal https://github.com/neovim/neovim/issues/4997
 "au TermOpen * au <buffer> BufEnter,WinEnter redraw!
 
 " Easy buffer navigation
@@ -626,8 +626,7 @@ let g:syntastic_php_phpcs_args = "--report=csv --exclude=Generic.Files.LineLengt
 let g:syntastic_javascript_checkers = ['jshint'] " jshint + jsxhint
 "let g:syntastic_javascript_jsxhint_exec = 'jsxhint'
 
-" XXX neomake
-" on write
+" neomake on write
 autocmd! BufReadPost,BufWritePost * Neomake
 "autocmd! BufWritePost,BufEnter * Neomake
 " on insert
