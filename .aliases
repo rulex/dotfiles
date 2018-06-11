@@ -6,8 +6,6 @@ alias -- -='cd -'
 alias please='sudo'
 alias rm='rm -I'
 
-#alias g='grep -in'
-
 alias ls='ls -F --color=auto --time-style="+%Y-%m-%d %H:%M:%S" '
 alias lsa='ls -lah'
 alias l='ls -lah'
@@ -41,6 +39,11 @@ function dt() {
     fi
 }
 
+#function say() {
+#    local IFS=+
+#    mpv --volume 60 "http://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&q=$*&tl=en"
+#}
+
 # keyboard LEDs as notification default values
 export LED_ID=3 # scroll lock
 export LED_REPEAT=1
@@ -65,11 +68,12 @@ led_toggle() {
 }
 
 function led_is_on() {
-    # TODO support other LEDs than Scroll
     if [ ${LED_ID} -eq 1 ]; then
-        #
+        # FIXME
+        echo "LED is on check for ${LED_ID} is not supported"
     elif [ ${LED_ID} -eq 2 ]; then
-        #
+        # FIXME
+        echo "LED is on check for ${LED_ID} is not supported"
     elif [ ${LED_ID} -eq 3 ]; then
         xset q | grep Scroll | cut -c70-72 | grep -q on
     else
@@ -162,8 +166,6 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias -g align='sed -e "s#¤#|#" -e "s#:#¤#" | column -t -s "¤" -o " | "'
 
-alias afind='ack-grep -il'
-
 alias xterm='xterm -bg black -fg white'
 
 alias p='pacman'
@@ -171,9 +173,6 @@ alias P='packer'
 alias s='sudo '
 alias w='w -f'
 alias fig='docker-compose'
-#alias px='ps auxf'
-#alias pxg='px'
-#alias t='TERM=screen-256color-bce tmux'
 alias t='tmux'
 alias tmuxeey='new -d -s "default" \
     new-window   \; \
@@ -192,7 +191,6 @@ alias tmuxmon='tmux \
     select-pane -L \; \
     split-window -v "journalctl -alf" \;'
 
-#alias ds='du --time --time-style="+%Y-%m-%d %H:%M:%S" -shc * | sort -k 1 -h'
 alias netlisteners='lsof -i -P | grep LISTEN'
 alias g='git'
 alias gs='git status'
@@ -205,10 +203,12 @@ alias gd='git diff'
 alias gco='git checkout'
 alias gm='git merge'
 alias gl="git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen[%ci (%cr)] %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias glh="gl|head"
+alias gls="git log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias glg="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen[%ci (%cr)] %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias glga="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen[%ci (%cr)] %C(bold blue)<%an>%Creset' --abbrev-commit --all"
 alias gln='git log --color --pretty=format:"%C(red)%h%C(reset) - %s %C(green)[%ci (%cr)] %C(bold blue)<%an>%C(reset)" --name-only'
-alias gls='git show --color --pretty=format:"%C(red)%h%C(reset) - %s %C(green)[%ci (%cr)] %C(bold blue)<%an>%C(reset)"'
+#alias gls='git show --color --pretty=format:"%C(red)%h%C(reset) - %s %C(green)[%ci (%cr)] %C(bold blue)<%an>%C(reset)"'
 alias glc='git shortlog --color --no-merges -nes'
 alias grup='git remote update'
 alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'

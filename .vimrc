@@ -42,7 +42,7 @@ set scrolljump=1        " lines to scroll when cursor leaves screen
 set scrolloff=3         " minimum lines to keep above and below cursor
 set laststatus=2        " show statusline allways
 
-set shellcmdflag=-ic
+"set shellcmdflag=-ic " FIXME https://github.com/robbyrussell/oh-my-zsh/issues/4174#issuecomment-125615443
 
 " Get Neomake Jobs count for statusline
 function! Neomake_statusline()
