@@ -74,7 +74,7 @@ for_window [title="^Steam Keyboard$"] floating enable
 #Colors
 set $back               #1d1F21
 set $black              #282A2E
-set $grey               #181818
+set $grey               #484848
 set $lightgrey          #707880
 set $white              #C5C8C6
 set $yellow             #F0C674

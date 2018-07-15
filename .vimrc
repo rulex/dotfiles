@@ -195,6 +195,8 @@ let g:yankring_history_dir = '~/.vim/'
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#disable_auto_complete = 0
 "let g:deoplete#enable_ignore_case = 1
 "let g:deoplete#auto_complete_start_length = 2 " default 2
 "let g:deoplete#max_list
@@ -707,6 +709,11 @@ if has("autocmd")
     autocmd BufEnter COMMIT_EDITMSG set foldnestmax=0
     autocmd BufEnter h.txt set syn=htxt
     "autocmd BufEnter *.json set tabstop=2 softtabstop=2 shiftwidth=2
+
+    autocmd FileType json let b:deoplete_disable_auto_complete=1
+    autocmd BufEnter *.log,*.LOG,*.gz let b:deoplete_disable_auto_complete=1
+    "autocmd BufWinEnter * if line2byte(line("$") + 1) > 1000000 | syntax clear | let b:deoplete_disable_auto_complete=1 | endif
+    autocmd BufWinEnter * if line("$") > 10000 | syntax clear | let b:deoplete_disable_auto_complete=1 | endif
 endif
 
 " code blocks comment auto

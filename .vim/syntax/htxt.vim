@@ -50,16 +50,16 @@ syn match hCmdArgVar /\v [\-]+[\-A-z]+ / contained
 
 "syn match hList /\v[\*\-·]/ contained
 
-syn region hStringTick   start='`'     skip='\\`'    end='`'
-syn region hStringDouble start='"'     skip='\\"'    end='["\n]'
-syn region hStringSingle start="'"     skip="\\'"    end="['\n]"
+syn region hStringTick   start=+`+     skip='\\`'    end=+`+           keepend
+syn region hStringDouble start=+ "+    skip=+\\"|+   end=+"+  end=+$+  keepend
+syn region hStringSingle start=+ '+    skip=+\\'+    end=+'+  end=+$+  keepend
+syn region hLongComment  start=+ """+  skip=+\\"+    end=+ """+        keepend  contains=hCmd,hStringTick,hStringSingle,hSymbols,hStringSingle
 syn region hCmd          start=' : '   end='\n'      contains=hComment,hStringTick,hStringDouble,hStringSingle,hSymbols,hCmdArg,hCmdArgVar
-syn region hLongComment  start='"""'   end='"""'     contains=hCmd,hStringTick,hStringSingle,hSymbols
 syn region hParentes     start='('     skip='\\)'    end='[\)\n]'
 syn region hBracketsSq   start='\['    skip='\\]'    end='[\]\n]'
 syn region hBracketsCur  start='{'     skip='\\}'    end='[}\n]'
 syn region hBracketsLes  start='<'     skip='\\>'    end='[>\n]'
-syn region hIndented     start='^\s'   end='\n'      contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hParentes,hBracketsSq,hBracketsLes,hBracketsCur,hStringTick,hStringSingle,hStringDouble,hPath,hList
+syn region hIndented     start='^\s'   end='\n'      contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hParentes,hBracketsSq,hBracketsLes,hBracketsCur,hStringTick,hStringSingle,hStringDouble,hPath,hList,hLongComment
 syn region hList         start='^\s\*' end='\n'      contained    contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hStringTick,hStringSingle,hStringDouble,hPath
 syn region hList         start='^\s\-' end='\n'      contained    contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hStringTick,hStringSingle,hStringDouble,hPath
 syn region hList         start='^\s·'  end='\n'      contained    contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hStringTick,hStringSingle,hStringDouble,hPath
