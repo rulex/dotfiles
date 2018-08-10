@@ -91,7 +91,7 @@ hi  htmlString            ctermfg=DarkGreen    ctermbg=NONE     cterm=NONE      
 hi  htmlComment           ctermfg=Red          ctermbg=NONE     cterm=NONE      gui=NONE guifg=Red          guibg=NONE
 hi  htmlCommentPart       ctermfg=DarkGrey     ctermbg=NONE     cterm=NONE      gui=NONE guifg=DarkGrey     guibg=NONE
 
-hi  phpMemberSelector     ctermfg=Red          ctermbg=NONE     cterm=NONE      gui=NONE guifg=Red          guibg=NONE
+hi  phpMemberSelector     ctermfg=White        ctermbg=NONE     cterm=NONE      gui=NONE guifg=White        guibg=NONE
 hi  phpComparison         ctermfg=Magenta      ctermbg=NONE     cterm=NONE      gui=NONE guifg=#d170d1      guibg=NONE
 hi  phpParent             ctermfg=Yellow       ctermbg=NONE     cterm=NONE      gui=NONE guifg=Yellow       guibg=NONE
 "hi  phpFunctions          ctermfg=Blue         ctermbg=NONE     cterm=NONE      gui=NONE guifg=#4d4dff      guibg=NONE

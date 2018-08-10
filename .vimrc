@@ -194,6 +194,10 @@ let NERDTreeShowHidden=1
 let g:yankring_history_dir = '~/.vim/'
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
+" https://github.com/Vimjas/vim-python-pep8-indent
+"let g:python_pep8_indent_multiline_string
+"let g:python_pep8_indent_hang_closing = 0
+
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#disable_auto_complete = 0
@@ -452,6 +456,9 @@ nnoremap <leader>sp2 <Esc>:let g:syntastic_php_phpcs_args = "--encoding=utf-8 --
             \:Neomake<CR>
             \:echo "phpcs standard PSR2"<CR>
 "\:SyntasticCheck<CR>
+
+" E302 expected 2 lines
+let g:neomake_python_flake8_args = '--ignore=E501'
 
 nnoremap <leader>spy2 <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python2"<CR>
             \:let g:neomake_python_python_exe = 'python2'<CR>
@@ -890,6 +897,7 @@ Plug 'mfukar/robotframework-vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'plasticboy/vim-markdown'
 Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'Vimjas/vim-python-pep8-indent'
 "Plug 'coala/coala-vim'
 "
 call plug#end()
