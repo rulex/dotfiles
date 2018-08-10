@@ -104,6 +104,10 @@ function ds() {
     fi
 }
 
+function json_escape() {
+    printf '%s' "${1}" | python -c 'import json,sys; print(json.dumps(sys.stdin.read()))'
+}
+
 function e() {
     nvim ${*} || vim ${*} || vi ${*}
 }
