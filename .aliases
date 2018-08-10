@@ -337,7 +337,7 @@ function pushover() {
 }
 
 #
-if (( ${+commands[notify-send]} )); then
+#if (( ${+commands[notify-send]} )); then
     notify-preexec-hook() {
         zsh_notifier_cmd="$1"
         zsh_notifier_time="$(date +%s)"
@@ -364,7 +364,7 @@ ${str}"
         fi
         zsh_notifier_cmd=
     }
-fi
+#fi
 
 strlen () {
     FOO=$1
