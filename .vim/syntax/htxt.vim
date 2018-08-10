@@ -46,13 +46,13 @@ syn match hComment "#.*$" contained
 syn match hPath /\v[ ~]\/[A-z0-9.~\/-]*/
 syn match hDate /\v\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2}/ " 2017-09-19 14:03:18
 syn match hCmdArg /\v\-/ contained
-syn match hCmdArgVar /\v [\-]+[\-A-z]+ / contained
+"syn match hCmdArgVar /\v [\-]+[\-A-z]+ / contained
 
 "syn match hList /\v[\*\-·]/ contained
 
 syn region hStringTick   start=+`+     skip='\\`'    end=+`+           keepend
 syn region hStringDouble start=+ "+    skip=+\\"|+   end=+"+  end=+$+  keepend
-syn region hStringSingle start=+ '+    skip=+\\'+    end=+'+  end=+$+  keepend
+syn region hStringSingle start=+ '+    skip=+\\'+    end=+' +  end=+$+  keepend
 syn region hLongComment  start=+ """+  skip=+\\"+    end=+ """+        keepend  contains=hCmd,hStringTick,hStringSingle,hSymbols,hStringSingle
 syn region hCmd          start=' : '   end='\n'      contains=hComment,hStringTick,hStringDouble,hStringSingle,hSymbols,hCmdArg,hCmdArgVar
 syn region hParentes     start='('     skip='\\)'    end='[\)\n]'
