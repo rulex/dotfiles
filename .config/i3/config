@@ -230,7 +230,7 @@ bindsym XF86AudioMute exec "amixer set Master toggle"
 #bindsym $mod+Home exec xte 'keydown Control_L' 'keydown Alt_L' 'keydown Super_L' 'keydown Shift_L' 'key Page_Up' 'keyup Control_L' 'keyup Alt_L' 'keyup Super_L' 'keyup Shift_L'
 # Client
 #bindsym $mod+End exec xte 'keydown Control_L' 'keydown Alt_L' 'keydown Super_L' 'keydown Shift_L' 'key End' 'keyup Control_L' 'keyup Alt_L' 'keyup Super_L' 'keyup Shift_L'
-bindsym $mod+End exec xte 'keydown Control_L' 'keydown Alt_L' 'keydown Super_L' 'keydown Super_R' 'keydown Shift_L' 'keyup Control_L' 'keyup Alt_L' 'keyup Super_L' 'keyup Super_R' 'keyup Shift_L'
+bindsym $mod+End exec xte 'keydown Control_L' 'keydown Alt_L' 'keydown Super_L' 'keydown Super_R' 'keydown Shift_L' 'keydown Shift_R' 'keyup Control_L' 'keydown Control_R' 'keyup Alt_L' 'keyup Super_L' 'keyup Super_R' 'keyup Shift_L' 'keyup Control_R' 'keyup Shift_R'
 # Next screen
 #bindsym $mod+Page_Up exec xte 'keydown Control_L' 'keydown Alt_L' 'keydown Super_L' 'keydown Shift_L' 'key Page_Up' 'keyup Control_L' 'keyup Alt_L' 'keyup Super_L' 'keyup Shift_L'
 # Previous screen
