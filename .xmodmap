@@ -27,10 +27,10 @@ then
         xset r 77  # delete key
         xset r 113
         xset r 116
-        xmodmap -e 'keycode 77 = Delete' # numlock to delete
-        xmodmap -e 'keycode 78 = Insert' # scroll lock to insert
-        xmodmap -e 'keycode 119 = End'   # del to end
-        xmodmap -e 'keycode 127 = Home'  # pause to home
+        xmodmap -e 'keycode 77 = Delete'  # numlock to delete
+        xmodmap -e 'keycode 78 = Insert'  # scroll lock to insert
+        xmodmap -e 'keycode 119 = End'    # del to end
+        xmodmap -e 'keycode 127 = Home'   # pause to home
         # 2016-04-20 13:04:58 test new stuff
         # xmodmap -e 'keycode 49 = grave asciitilde grave asciitilde paragraph threequarters paragraph threequarters section onehalf paragraph threequarters'                     # consolebtn to grave/tilde (us)
         # xmodmap -e 'keycode 34 = bracketleft braceleft NoSymbol NoSymbol dead_diaeresis dead_abovering dead_diaeresis dead_abovering aring Aring dead_diaeresis dead_abovering' # å to [
@@ -73,4 +73,8 @@ else
 fi
 
 # always remap caps lock
-xmodmap -e 'clear Lock' -e 'keycode 0x42 = Control_R' -e 'add control = Control_R' # remap caps to left control
+xmodmap -e 'clear Lock' -e 'clear control' -e 'keycode 66 = Control_L' -e 'add control = Control_R Control_L' # remap caps to left control
+xmodmap -e 'keycode 37 = Hyper_L' # Control_L to Hyper_L
+# Control_L = keycode 37
+# Caps      = keycode 66
+# Control_R = keycode 105
