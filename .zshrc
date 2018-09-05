@@ -72,7 +72,10 @@ export LC_CTYPE="sv_FI.UTF-8"
 export LC_MESSAGES="en_US.UTF-8"
 
 # set terminal for i3
-export TERMINAL="urxvtc"
+export TERMINAL="termite"
+
+#export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
+export FZF_DEFAULT_COMMAND='find .'
 
 # set editor
 if hash nvim 2>/dev/null; then
@@ -160,7 +163,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(cp systemd archlinux docker mosh nmap redis-cli rsync battery docker-compose mosh nmap pip urltools git)
+plugins=(cp systemd archlinux docker mosh nmap redis-cli rsync battery docker-compose mosh nmap urltools git)
 # NOTE custom plugin: bgnotify
 #plugins=()
 
