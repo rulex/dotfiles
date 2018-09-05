@@ -72,9 +72,24 @@ else
     xset -b
 fi
 
-# always remap caps lock
-xmodmap -e 'clear Lock' -e 'clear control' -e 'keycode 66 = Control_L' -e 'add control = Control_R Control_L' # remap caps to left control
+#set -x
+xmodmap -e 'clear control'
+xmodmap -e 'clear lock'
+#xmodmap -e 'clear mod1'
+xmodmap -e 'clear mod2'
+xmodmap -e 'clear mod3'
+xmodmap -e 'clear mod4'
+xmodmap -e 'clear mod5'
 xmodmap -e 'keycode 37 = Hyper_L' # Control_L to Hyper_L
+xmodmap -e 'keycode 66 = Control_L' # caps to Control_L
+
+xmodmap -e 'add control = Control_R Control_L'
+#xmodmap -e 'add mod1 = Alt_L Alt_R Meta_L'
+#xmodmap -e 'add mod2 = Num_Lock'
+xmodmap -e 'add mod3 = Hyper_L'
+xmodmap -e 'add mod4 = Super_L Super_R'
+xmodmap -e 'add mod5 = Mode_switch ISO_Level3_Shift'
 # Control_L = keycode 37
 # Caps      = keycode 66
 # Control_R = keycode 105
+
