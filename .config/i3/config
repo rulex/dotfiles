@@ -3,13 +3,14 @@
 #
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
-#
 
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+set $super Mod4
+set $hyper Mod3
+set $alt Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -28,7 +29,7 @@ font pango:DejaVu Sans Mono 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 #floating_modifier $mod
-floating_modifier Mod1
+floating_modifier $alt
 popup_during_fullscreen smart
 
 show_marks yes
@@ -45,13 +46,16 @@ new_window normal 2
 #new_window pixel 1
 #new_window none
 
-#for_window [class="^.*"] border pixel 1
 for_window [class="^.*"] title_format %title | %class | %instance
-for_window [title="^floatme$"] floating enable
-for_window [class="^Sxiv$"] floating enable
-for_window [window_role="pop-up"] floating enable
+#for_window [class="^.*"] border pixel 1
+
 for_window [class="URxvt*"] border pixel 2
 for_window [class="Termite*"] border pixel 2
+#for_window [class="Termite*"] title_format %title
+
+for_window [title="^floatme$"] floating enable
+#for_window [class="^Sxiv$"] floating enable
+for_window [window_role="pop-up"] floating enable
 for_window [title="^Sky$"] floating enable
 for_window [title="^xxx.*"] floating enable
 
@@ -91,174 +95,231 @@ client.urgent           $red        $red        $black      $grey      $red
 client.background       $back
 
 # start a terminal
-#bindsym $mod+Return exec i3-sensible-terminal
-#bindsym $mod+Return exec urxvtc
-bindsym $mod+Return exec termite
-bindsym $mod+Shift+Return exec urxvt
+#bindsym $super+Return exec i3-sensible-terminal
+#bindsym $super+Return exec urxvtc
+bindsym $super+Return exec termite
+bindsym $hyper+Return exec termite -t floatme
+bindsym $super+Shift+Return exec urxvt
 
 # kill focused window
-bindsym $mod+BackSpace kill
-bindsym $mod+Escape kill
+bindsym $super+BackSpace kill
+bindsym $super+Escape kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $super+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# bindsym $super+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+y focus left
-bindsym $mod+u focus down
-bindsym $mod+i focus up
-bindsym $mod+o focus right
+bindsym $super+y focus left
+bindsym $super+u focus down
+bindsym $super+i focus up
+bindsym $super+o focus right
 
-bindsym $mod+z focus left
-bindsym $mod+x focus right
+bindsym $super+z focus left
+bindsym $super+x focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $super+Left focus left
+bindsym $super+Down focus down
+bindsym $super+Up focus up
+bindsym $super+Right focus right
 
 # move focused window
-bindsym $mod+h move left
-bindsym $mod+j move down
-bindsym $mod+k move up
-bindsym $mod+l move right
+bindsym $super+h move left
+bindsym $super+j move down
+bindsym $super+k move up
+bindsym $super+l move right
 
 # alternatively, you can use the cursor keys:
-#bindsym $mod+Shift+Left move left
-#bindsym $mod+Shift+Down move down
-#bindsym $mod+Shift+Up move up
-#bindsym $mod+Shift+Right move right
+#bindsym $super+Shift+Left move left
+#bindsym $super+Shift+Down move down
+#bindsym $super+Shift+Up move up
+#bindsym $super+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+Shift+v split h
+bindsym $super+Shift+v split h
+bindsym $super+c split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $super+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
-
+bindsym $super+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+t layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $super+s layout stacking
+bindsym $super+t layout tabbed
+bindsym $super+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-bindsym Mod1+Mod4+Return floating toggle
+bindsym $super+Shift+space floating toggle
+bindsym $alt+Mod4+Return floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+n focus mode_toggle
-bindsym Mod1+Tab focus mode_toggle
+#bindsym $super+n focus mode_toggle
+bindsym $alt+Tab focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
-
-# switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
-
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
-
-# move workspace
-bindsym $mod+Shift+Left move workspace to output left
-bindsym $mod+Shift+Right move workspace to output right
-bindsym $mod+Shift+Up move workspace to output up
-bindsym $mod+Shift+Down move workspace to output down
-
-# resize win+alt [hjkl]
-bindsym Mod4+Mod1+h resize shrink width 3 px or 3 ppt
-bindsym Mod4+Mod1+j resize grow height 3 px or 3 ppt
-bindsym Mod4+Mod1+k resize shrink height 3 px or 3 ppt
-bindsym Mod4+Mod1+l resize grow width 3 px or 3 ppt
-
-bindsym Mod4+Mod1+Left resize shrink width 10 px or 10 ppt
-bindsym Mod4+Mod1+Down resize grow height 10 px or 10 ppt
-bindsym Mod4+Mod1+Up resize shrink height 10 px or 10 ppt
-bindsym Mod4+Mod1+Right resize grow width 10 px or 10 ppt
+bindsym $super+a focus parent
+bindsym $hyper+a focus child
 
 # next workspace
-bindsym Control+Mod1+x workspace next
-bindsym Control+Mod1+z workspace prev
+bindsym $hyper+$alt+x workspace next
+bindsym $hyper+$alt+z workspace prev
+
+bindsym $super+n focus output right
+bindsym $super+p focus output left
+
+# focus the child container
+#bindsym $super+d focus child
+
+# switch to workspace
+bindsym $super+1 workspace 1
+bindsym $super+2 workspace 2
+bindsym $super+3 workspace 3
+bindsym $super+4 workspace 4
+bindsym $super+5 workspace 5
+bindsym $super+6 workspace 6
+bindsym $super+7 workspace 7
+bindsym $super+8 workspace 8
+bindsym $super+9 workspace 9
+bindsym $super+0 workspace 10
+
+bindsym $hyper+1 workspace 11
+bindsym $hyper+2 workspace 12
+bindsym $hyper+3 workspace 13
+bindsym $hyper+4 workspace 14
+bindsym $hyper+5 workspace 15
+bindsym $hyper+6 workspace 16
+bindsym $hyper+7 workspace 17
+bindsym $hyper+8 workspace 18
+bindsym $hyper+9 workspace 19
+bindsym $hyper+0 workspace 20
+
+# move focused container to workspace
+bindsym $super+Shift+1 move container to workspace 1
+bindsym $super+Shift+2 move container to workspace 2
+bindsym $super+Shift+3 move container to workspace 3
+bindsym $super+Shift+4 move container to workspace 4
+bindsym $super+Shift+5 move container to workspace 5
+bindsym $super+Shift+6 move container to workspace 6
+bindsym $super+Shift+7 move container to workspace 7
+bindsym $super+Shift+8 move container to workspace 8
+bindsym $super+Shift+9 move container to workspace 9
+bindsym $super+Shift+0 move container to workspace 10
+bindsym $hyper+Shift+1 move container to workspace 11
+bindsym $hyper+Shift+2 move container to workspace 12
+bindsym $hyper+Shift+3 move container to workspace 13
+bindsym $hyper+Shift+4 move container to workspace 14
+bindsym $hyper+Shift+5 move container to workspace 15
+bindsym $hyper+Shift+6 move container to workspace 16
+bindsym $hyper+Shift+7 move container to workspace 17
+bindsym $hyper+Shift+8 move container to workspace 18
+bindsym $hyper+Shift+9 move container to workspace 19
+bindsym $hyper+Shift+0 move container to workspace 20
+
+bindsym $hyper+F1  workspace 1  ; append_layout ~/.config/i3/workspace1.json ;  workspace 1
+bindsym $hyper+F2  workspace 2  ; append_layout ~/.config/i3/workspace1.json ;  workspace 2
+bindsym $hyper+F3  workspace 3  ; append_layout ~/.config/i3/workspace1.json ;  workspace 3
+bindsym $hyper+F4  workspace 4  ; append_layout ~/.config/i3/workspace1.json ;  workspace 4
+bindsym $hyper+F5  workspace 5  ; append_layout ~/.config/i3/workspace1.json ;  workspace 5
+bindsym $hyper+F6  workspace 6  ; append_layout ~/.config/i3/workspace1.json ;  workspace 6
+bindsym $hyper+F7  workspace 7  ; append_layout ~/.config/i3/workspace1.json ;  workspace 7
+bindsym $hyper+F8  workspace 8  ; append_layout ~/.config/i3/workspace1.json ;  workspace 8
+bindsym $hyper+F9  workspace 9  ; append_layout ~/.config/i3/workspace1.json ;  workspace 9
+bindsym $hyper+F10 workspace 10 ; append_layout ~/.config/i3/workspace1.json ;  workspace 10
+
+bindsym $hyper+Shift+F1  exec "i3-save-tree --workspace 1  > ~/.config/i3/workspace1.json"
+bindsym $hyper+Shift+F2  exec "i3-save-tree --workspace 2  > ~/.config/i3/workspace2.json"
+bindsym $hyper+Shift+F3  exec "i3-save-tree --workspace 3  > ~/.config/i3/workspace3.json"
+bindsym $hyper+Shift+F4  exec "i3-save-tree --workspace 4  > ~/.config/i3/workspace4.json"
+bindsym $hyper+Shift+F5  exec "i3-save-tree --workspace 5  > ~/.config/i3/workspace5.json"
+bindsym $hyper+Shift+F6  exec "i3-save-tree --workspace 6  > ~/.config/i3/workspace6.json"
+bindsym $hyper+Shift+F7  exec "i3-save-tree --workspace 7  > ~/.config/i3/workspace7.json"
+bindsym $hyper+Shift+F8  exec "i3-save-tree --workspace 8  > ~/.config/i3/workspace8.json"
+bindsym $hyper+Shift+F9  exec "i3-save-tree --workspace 9  > ~/.config/i3/workspace9.json"
+bindsym $hyper+Shift+F10 exec "i3-save-tree --workspace 10 > ~/.config/i3/workspace10.json"
+
+# move workspace
+bindsym $super+Shift+Left move workspace to output left
+bindsym $super+Shift+Right move workspace to output right
+bindsym $super+Shift+Up move workspace to output up
+bindsym $super+Shift+Down move workspace to output down
+
+# resize win+alt [hjkl]
+bindsym Mod4+$alt+h resize shrink width 3 px or 3 ppt
+bindsym Mod4+$alt+j resize grow height 3 px or 3 ppt
+bindsym Mod4+$alt+k resize shrink height 3 px or 3 ppt
+bindsym Mod4+$alt+l resize grow width 3 px or 3 ppt
+
+bindsym Mod4+$alt+Left resize shrink width 10 px or 10 ppt
+bindsym Mod4+$alt+Down resize grow height 10 px or 10 ppt
+bindsym Mod4+$alt+Up resize shrink height 10 px or 10 ppt
+bindsym Mod4+$alt+Right resize grow width 10 px or 10 ppt
+
+bindsym $hyper+minus resize shrink width 20 px or 10 ppt ; resize shrink height 20 px or 10 ppt
+bindsym $hyper+plus resize grow width 20 px or 10 ppt ; resize grow height 20 px or 10 ppt
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $super+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $super+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $super+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-bindsym $mod+apostrophe exec "urxvtc -title floatme"
+bindsym $super+apostrophe exec "urxvtc -title floatme"
 
 # volume control
-#bindsym $mod+Home exec "amixer set Master 60% unmute"
-bindsym $mod+Prior exec "amixer set Master 5%+ unmute"
-bindsym $mod+Next exec "amixer set Master 5%- unmute"
+#bindsym $super+Home exec "amixer set Master 60% unmute"
+bindsym $super+Prior exec "amixer set Master 5%+ unmute"
+bindsym $super+Next exec "amixer set Master 5%- unmute"
 bindsym XF86AudioRaiseVolume exec "amixer set Master 1%+ unmute"
 bindsym XF86AudioLowerVolume exec "amixer set Master 1%- unmute"
 bindsym XF86AudioMute exec "amixer set Master toggle"
 
 # switching to synergy screen
 # Server
-#bindsym $mod+Home exec xte 'keydown Control_L' 'keydown Alt_L' 'keydown Super_L' 'keydown Shift_L' 'key Page_Up' 'keyup Control_L' 'keyup Alt_L' 'keyup Super_L' 'keyup Shift_L'
+#bindsym $super+Home exec xte 'keydown Control_L' 'keydown Alt_L' 'keydown Super_L' 'keydown Shift_L' 'key Page_Up' 'keyup Control_L' 'keyup Alt_L' 'keyup Super_L' 'keyup Shift_L'
 # Client
-#bindsym $mod+End exec xte 'keydown Control_L' 'keydown Alt_L' 'keydown Super_L' 'keydown Shift_L' 'key End' 'keyup Control_L' 'keyup Alt_L' 'keyup Super_L' 'keyup Shift_L'
-bindsym $mod+End exec xte 'keydown Control_L' 'keydown Alt_L' 'keydown Super_L' 'keydown Super_R' 'keydown Shift_L' 'keydown Shift_R' 'keyup Control_L' 'keydown Control_R' 'keyup Alt_L' 'keyup Super_L' 'keyup Super_R' 'keyup Shift_L' 'keyup Control_R' 'keyup Shift_R'
+#bindsym $super+End exec xte 'keydown Control_L' 'keydown Alt_L' 'keydown Super_L' 'keydown Shift_L' 'key End' 'keyup Control_L' 'keyup Alt_L' 'keyup Super_L' 'keyup Shift_L'
+bindsym $super+End exec xte 'key Control_L' 'key Alt_L' 'key Super_L' 'key Super_R' 'key Shift_L' 'key Shift_R' 'key Control_R' 'str ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖabcdefghijklmnopqrstuvwxyzåäö'
 # Next screen
-#bindsym $mod+Page_Up exec xte 'keydown Control_L' 'keydown Alt_L' 'keydown Super_L' 'keydown Shift_L' 'key Page_Up' 'keyup Control_L' 'keyup Alt_L' 'keyup Super_L' 'keyup Shift_L'
+#bindsym $super+Page_Up exec xte 'keydown Control_L' 'keydown Alt_L' 'keydown Super_L' 'keydown Shift_L' 'key Page_Up' 'keyup Control_L' 'keyup Alt_L' 'keyup Super_L' 'keyup Shift_L'
 # Previous screen
-#bindsym $mod+Page_Down exec xte 'keydown Control_L' 'keydown Alt_L' 'keydown Super_L' 'keydown Shift_L' 'key Page_Down' 'keyup Control_L' 'keyup Alt_L' 'keyup Super_L' 'keyup Shift_L'
+#bindsym $super+Page_Down exec xte 'keydown Control_L' 'keydown Alt_L' 'keydown Super_L' 'keydown Shift_L' 'key Page_Down' 'keyup Control_L' 'keyup Alt_L' 'keyup Super_L' 'keyup Shift_L'
 
 # transset-df
-bindsym $mod+minus exec --no-startup-id "transset-df -a 0.1 --dec"
-bindsym $mod+plus exec --no-startup-id "transset-df -a 0.1 --inc"
-#bindsym --release --whole-window $mod+button9 exec --no-startup-id "transset-df -a 0.1 --inc"
+bindsym $super+minus exec --no-startup-id "transset-df -a 0.1 --dec"
+bindsym $super+plus exec --no-startup-id "transset-df -a 0.1 --inc"
+#bindsym --release --whole-window $super+button9 exec --no-startup-id "transset-df -a 0.1 --inc"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
     # These bindings trigger as soon as you enter the resize mode
-
-    # Pressing left will shrink the window’s width.
-    # Pressing right will grow the window’s width.
-    # Pressing up will shrink the window’s height.
-    # Pressing down will grow the window’s height.
-    bindsym h resize shrink width 1 px or 1 ppt
-    bindsym j resize grow height 1 px or 1 ppt
-    bindsym k resize shrink height 1 px or 1 ppt
-    bindsym l resize grow width 1 px or 1 ppt
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
 
     # same bindings, but for the arrow keys
     bindsym Left resize shrink width 10 px or 10 ppt
     bindsym Right resize grow width 10 px or 10 ppt
     bindsym Down resize grow height 10 px or 10 ppt
     bindsym Up resize shrink height 10 px or 10 ppt
+
+    bindsym 1 resize set 150 px 150 px
+    bindsym 2 resize set 300 px 250 px
+    bindsym 3 resize set 400 px 300 px
+    bindsym 4 resize set 500 px 350 px
+    bindsym 5 resize set 600 px 400 px
+    bindsym 6 resize set 700 px 500 px
+
+    bindsym minus resize shrink width 20 px or 10 ppt ; resize shrink height 20 px or 10 ppt
+    bindsym plus resize grow width 20 px or 10 ppt ; resize grow height 20 px or 10 ppt
+
     bindsym Return mode "default"
     bindsym Escape mode "default"
     bindsym q mode "default"
@@ -271,12 +332,13 @@ set $Dunst dunst -config ~/dotfiles/.config/dunst/dunstrc
 mode "spacejam" {
     bindsym e exec "pcmanfm || thunar" ; mode "default"
     #bindsym r mode "resize"
-    bindsym v split v; mode "default"
-    bindsym h split h; mode "default"
+    #bindsym v split v; mode "default"
+    #bindsym h split h; mode "default"
     # composition
     bindsym j exec "compton -CGb" ; mode "default"
     bindsym k exec "pkill compton" ; mode "default"
     bindsym minus exec --no-startup-id "transset-df -a 0.5" ; mode "default"
+
     # lock screen
     bindsym l exec $Locker
     # border
@@ -293,18 +355,33 @@ mode "spacejam" {
     # redshift
     bindsym r exec --no-startup-id $Redshift; mode "default"
     bindsym shift+r exec pkill redshift; mode "default"
-    #
+
+    # stuff
+    bindsym h exec "xrandr --output DP-3 --auto --primary --panning 0x0+0+0 ; ~/dotfiles/.xmodmap ; xmodmap -e 'pointer = 1 2 3 4 5 6 7 8 9' ; i3-msg restart" ; mode "default"
+    bindsym shift+h exec "xrandr --output DP-3 --auto --primary --panning 0x0+0+0 ; sleep 0.5s ; xrandr --output DP-1 --primary --left-of DP-3 --mode 3840x2160 -r 60.00 ; pkill redshift ; ~/dotfiles/.xmodmap ; ~/dotfiles/.mouse.sh ; ~/Sync/scripts/synergy.sh ; i3-msg restart"; mode "default"
+    #xrandr --output DP-3 --panning 0x0+0+0 --output DP-6.1 --auto --primary --right-of DP-3 --output DP-6.2 --auto --right-of DP-6.1 # work 3monitorss_
+    bindsym w exec "xrandr --output DP-3 --panning 0x0+0+0 --output DP-6.1 --auto --primary --right-of DP-3 --output DP-6.2 --auto --right-of DP-6.1 ; ~/dotfiles/.xmodmap ; xmodmap -e 'pointer = 1 2 3 4 5 6 7 8 9' ; pkill synergy ; i3-msg restart"; mode "default"
+
     bindsym Return exec "terminator --geometry=900x540 || xfce4-terminal" ; mode "default"
     bindsym BackSpace mode "default"
     bindsym Escape mode "default"
     bindsym q mode "default"
 }
 
-bindsym $mod+b border toggle
-#bindsym $mod+shift+b border 1px
+mode "hyperjam" {
+    bindsym l exec $Locker
+    bindsym Return exec "terminator --geometry=900x540 || xfce4-terminal" ; mode "default"
+    bindsym BackSpace mode "default"
+    bindsym Escape mode "default"
+    bindsym q mode "default"
+}
 
-bindsym $mod+space mode "spacejam"
-bindsym $mod+r mode "resize"
+bindsym $super+b border toggle
+#bindsym $super+shift+b border 1px
+
+bindsym $super+space mode "spacejam"
+bindsym $hyper+space mode "hyperjam"
+bindsym $super+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -326,7 +403,7 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+F12 mode "$mode_system"
+bindsym $super+F12 mode "$mode_system"
 
 ## TODO Manual management of external displays
 # Set the shortcuts and what they do
@@ -341,12 +418,11 @@ mode "$mode_display" {
     bindsym Escape mode "default"
 }
 # Declare here the shortcut to bring the display selection menu
-#bindsym $mod+x mode "$mode_display"
+#bindsym $super+x mode "$mode_display"
 
 # marks
-#bindsym $mod+m exec i3-input -F 'mark %s' -P 'Mark name: '
-#bindsym $mod+n exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
-
+bindsym $super+m exec i3-input -F 'mark %s' -P 'mark: '
+bindsym $super+g exec i3-input -F '[con_mark=%s] focus' -P 'goto mark: '
 
 # autolock screen
 #xautolock -time 10 -locker "i3lock -i 'background_image.png'" &
