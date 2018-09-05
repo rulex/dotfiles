@@ -279,7 +279,9 @@ vnoremap å ]
 
 " fzf fuzzy finder
 nnoremap <C-t> <Esc>:Files<CR>
+let g:fzf_buffers_jump=1
 nnoremap Ö <Esc>:Buffers<CR>
+nnoremap Ä <Esc>:Windows<CR>
 nnoremap <leader>l <Esc>:echo join(["
             \fuzzy finder fzf\n\n
             \ll :Lines\n
@@ -714,7 +716,7 @@ if has("autocmd")
     autocmd BufEnter *.ctp set syn=php
     autocmd BufEnter *.phtml set syn=php
     autocmd BufEnter COMMIT_EDITMSG set foldnestmax=0
-    autocmd BufEnter h.txt set syn=htxt
+    autocmd BufEnter h.txt,todo.md set syn=htxt
     "autocmd BufEnter *.json set tabstop=2 softtabstop=2 shiftwidth=2
 
     autocmd FileType json let b:deoplete_disable_auto_complete=1
@@ -880,6 +882,8 @@ Plug 'scrooloose/nerdcommenter' " comments
 
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
+"Plug 'vim-scripts/MultipleSearch2.vim'
+Plug 'vim-scripts/MultipleSearch'
 
 " Plug 'mhinz/vim-startify' " the fancy start screen
 
@@ -888,6 +892,8 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
 "Plug 'trapd00r/vim-highlight-default-highlight-groups'
+
+Plug 'lambdalisue/suda.vim'
 
 " syntax
 Plug 'vim-scripts/httplog'
