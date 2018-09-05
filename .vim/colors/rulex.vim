@@ -75,8 +75,23 @@ hi DiffDelete     cterm=NONE      ctermfg=Red    ctermbg=NONE gui=NONE guifg=Red
 hi DiffText       cterm=reverse   ctermfg=NONE   ctermbg=NONE gui=NONE guifg=NONE    guibg=NONE
 
 " Neomake highlighting
-hi NeomakeError   cterm=underline ctermfg=NONE   ctermbg=NONE guibg=NONE
-hi NeomakeWarning cterm=underline ctermfg=NONE   ctermbg=NONE guibg=NONE
+"hi NeomakeError       cterm=underline ctermfg=NONE ctermbg=NONE guibg=NONE guifg=Red
+"hi NeomakeWarning     cterm=underline ctermfg=NONE ctermbg=NONE guibg=NONE guifg=Yellow
+hi NeomakeWarningSign cterm=underline ctermfg=NONE ctermbg=NONE guibg=NONE guifg=Yellow
+hi NeomakeInfoSign    cterm=underline ctermfg=NONE ctermbg=NONE guibg=NONE guifg=Green
+hi NeomakeErrorSign   cterm=underline ctermfg=NONE ctermbg=NONE guibg=NONE guifg=Red
+"hi NeomakeMessageSign
+
+"hi NeomakeErrorDefault
+"hi NeomakeErrorSignDefault
+"hi NeomakeInfo
+"hi NeomakeInfoDefault
+"hi NeomakeInfoSignDefault
+"hi NeomakeMessage
+"hi NeomakeMessageDefault
+"hi NeomakeMessageSignDefault
+"hi NeomakeWarningDefault
+"hi NeomakeWarningSignDefault
 
 " for gitgutter
 hi  clear                 SignColumn
