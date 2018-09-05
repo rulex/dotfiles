@@ -143,10 +143,11 @@ function pwatch() {
     local re='^[0-9]+$'
     echo "${1}"
     if ! [[ ${1} =~ $re ]] ; then
-        watch -g pgrep ${1}; A
+        watch -g pgrep ${1}
     else
-        watch -g ps -opid -p ${1}; A
+        watch -g ps -opid -p ${1}
     fi
+    #A "${1} is done"
 }
 
 function agrep() {
