@@ -27,13 +27,18 @@ set directory=~/.vim/swap/
 set nu " line numbers
 set norelativenumber
 "set autochdir " switch to current file dir
+
 nnoremap <C-n> <Esc>:tabn<CR>
 nnoremap <C-p> <Esc>:tabp<CR>
 map <Tab> <Esc>:tabn<CR>
 map <Right> <Esc>:tabn<CR>
 map <S-Tab> <Esc>:tabp<CR>
 map <Left> <Esc>:tabp<CR>
-map <BS> <Esc>:syntax sync fromstart<CR>:noh<CR>
+map <BS> <Esc>:noh<CR>
+map <leader><BS> <Esc>:syntax sync fromstart<CR>:noh<CR>
+map <Up> <Esc>:bn<CR>
+map <Down> <Esc>:bp<CR>
+
 set formatoptions=qj
 set ruler
 "set nocursorline
@@ -269,6 +274,9 @@ nnoremap <F7> <Esc>:set wrap!<CR>:set wrap?<CR>
 "nmap <F7> :SyntasticToggleMode<CR>
 
 
+"inoremap <C-å> <Esc>
+"inoremap <C-ö> <Esc>
+"inoremap <C-ä> <Esc>
 nnoremap ö <Esc>:
 nnoremap ä "
 vnoremap ä "
@@ -514,11 +522,26 @@ nnoremap <leader>" <Esc><C-w>s
 nnoremap <c-w>% <Esc><C-w>v<C-w>l
 nnoremap <c-w>" <Esc><C-w>s
 nnoremap <leader>n <Esc>:NERDTreeToggle<CR>
-nnoremap <leader>e <Esc>:e<CR>
+
+nnoremap <leader>e <Esc>:echo join(["
+            \Edit stuff\n\n
+            \et :terminal\n
+            \ee :e $CWD\n
+            \e. :e .\n
+            \em :e $MYVIMRC\n
+            \"], '')<CR>
 nnoremap <leader>et <Esc>:term<CR>
-nnoremap <leader>ee <Esc>:e!<CR>
+nnoremap <expr> <leader>ee ":e ".expand("%:h")."/"
 nnoremap <leader>e. <Esc>:e .<CR>
 nnoremap <leader>em <Esc>:e $MYVIMRC<CR>
+
+nnoremap <leader>t <Esc>:echo join(["
+            \Tabs\n\n
+            \tt :tabnew\n
+            \te :tabnew :term\n
+            \t. :tabnew .\n
+            \tf :tabnew %\n
+            \"], '')<CR>
 nnoremap <leader>tt <Esc>:tabnew<CR>
 nnoremap <leader>t. <Esc>:tabnew .<CR>
 nnoremap <leader>te <Esc>:tabnew<CR>:term<CR>
@@ -716,7 +739,7 @@ if has("autocmd")
     autocmd BufEnter *.ctp set syn=php
     autocmd BufEnter *.phtml set syn=php
     autocmd BufEnter COMMIT_EDITMSG set foldnestmax=0
-    autocmd BufEnter h.txt,todo.md set syn=htxt
+    autocmd BufEnter h.txt,todo.md set syn=htxt nowrap
     "autocmd BufEnter *.json set tabstop=2 softtabstop=2 shiftwidth=2
 
     autocmd FileType json let b:deoplete_disable_auto_complete=1

@@ -191,8 +191,8 @@ alias tmuxeey='new -d -s "default" \
     attach \;'
 alias tmuxmon='tmux \
     new-window   "htop" \; \
-    split-window -h "NMON=ld nmon" \; \
-    split-window -v "watch sensors" \; \
+    split-window -h -p 35 "NMON=ld nmon" \; \
+    split-window -v "watch -d sensors" \; \
     select-pane -L \; \
     split-window -v "journalctl -alf" \;'
 

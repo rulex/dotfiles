@@ -53,11 +53,12 @@ for_window [class="URxvt*"] border pixel 2
 for_window [class="Termite*"] border pixel 2
 #for_window [class="Termite*"] title_format %title
 
-for_window [title="^floatme$"] floating enable
+for_window [title="^floatme$"] floating enable border normal 2
 #for_window [class="^Sxiv$"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [title="^Sky$"] floating enable
 for_window [title="^xxx.*"] floating enable
+for_window [class="^Surf"] border normal 2
 
 # https://github.com/ValveSoftware/steam-for-linux/issues/1040
 for_window [class="^Steam$" title="^Friends$"] floating enable
@@ -316,6 +317,10 @@ mode "resize" {
     bindsym 4 resize set 500 px 350 px
     bindsym 5 resize set 600 px 400 px
     bindsym 6 resize set 700 px 500 px
+    bindsym 7 resize set 800 px 600 px
+    bindsym 8 resize set 900 px 700 px
+    bindsym 9 resize set 1024 px 800 px
+    bindsym 0 resize set 1200 px 1024 px
 
     bindsym minus resize shrink width 20 px or 10 ppt ; resize shrink height 20 px or 10 ppt
     bindsym plus resize grow width 20 px or 10 ppt ; resize grow height 20 px or 10 ppt

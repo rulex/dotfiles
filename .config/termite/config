@@ -7,7 +7,7 @@ mouse_autohide = false
 allow_bold = true
 dynamic_title = true
 urgent_on_bell = false
-clickable_url = true
+clickable_url = false
 #font = Monospace 10
 font = DejaVu Sans Mono 9
 scrollback_lines = 10000
@@ -23,7 +23,8 @@ cursor_shape = block
 
 # $BROWSER is used by default if set, with xdg-open as a fallback
 #browser = xdg-open
-browser = firefox
+#browser = firefox
+browser = /home/siaw/Sync/bin/cpurl
 
 # set size hints for the window
 #size_hints = false
