@@ -36,8 +36,8 @@ map <S-Tab> <Esc>:tabp<CR>
 map <Left> <Esc>:tabp<CR>
 map <BS> <Esc>:noh<CR>
 map <leader><BS> <Esc>:syntax sync fromstart<CR>:noh<CR>
-map <Up> <Esc>:bn<CR>
-map <Down> <Esc>:bp<CR>
+nnoremap <Up> <Esc>:bn<CR>
+nnoremap <Down> <Esc>:bp<CR>
 
 set formatoptions=qj
 set ruler

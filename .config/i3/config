@@ -330,7 +330,7 @@ mode "resize" {
     bindsym q mode "default"
 }
 
-set $Locker "scrot /tmp/screen_locked.png && mogrify -scale 10% -scale 1000% /tmp/screen_locked.png ; i3lock -i /tmp/screen_locked.png && i3-msg mode default"
+set $Locker "scrot /tmp/screen_locked.png ; mogrify -scale 10% -scale 1000% /tmp/screen_locked.png ; i3lock -E ~/Sync/scripts/wrongpass.sh -i /tmp/screen_locked.png ; i3-msg mode default"
 set $Redshift redshift -l 60.20:24.75 -t 5700:3500 -g 0.8 -m randr
 set $Dunst dunst -config ~/dotfiles/.config/dunst/dunstrc
 
@@ -447,7 +447,7 @@ exec --no-startup-id $Redshift
 exec --no-startup-id sh ~/Sync/scripts/synergy.sh
 
 # screensaver
-exec --no-startup-id xautolock -time 10 -locker "i3lock -i /tmp/screen_locked.png"
+exec --no-startup-id xautolock -time 10 -locker "i3lock -E ~/Sync/scripts/wrongpass.sh -i /tmp/screen_locked.png"
 
 # vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4 smarttab :
 
