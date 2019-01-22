@@ -39,6 +39,7 @@ show_marks yes
 # For instance: Assume you are on workspace "1: www" and switch to "2: IM" using mod+2 because somebody sent you a message. You don’t need to remember where you came from now, you can just press $mod+2 again to switch back to "1: www".
 workspace_auto_back_and_forth yes
 
+focus_follows_mouse yes
 #mouse_warping none
 
 # border
@@ -46,14 +47,14 @@ new_window normal 2
 #new_window pixel 1
 #new_window none
 
-for_window [class="^.*"] title_format %title | %class | %instance
+for_window [class="^.*"] title_format <b> %title</b> | <i>%class</i> | %instance
 #for_window [class="^.*"] border pixel 1
 
 for_window [class="URxvt*"] border pixel 2
-for_window [class="Termite*"] border pixel 2
+#for_window [class="Termite*"] border pixel 2
 #for_window [class="Termite*"] title_format %title
 
-for_window [title="^floatme$"] floating enable border normal 2
+for_window [class="^floatme*"] floating enable border normal 2
 #for_window [class="^Sxiv$"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [title="^Sky$"] floating enable
@@ -71,6 +72,8 @@ for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
 for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
 for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
 for_window [title="^Steam Keyboard$"] floating enable
+
+assign [class="Pidgin"] 1
 
 #gaps inner 5
 #gaps outer 15
@@ -98,8 +101,10 @@ client.background       $back
 # start a terminal
 #bindsym $super+Return exec i3-sensible-terminal
 #bindsym $super+Return exec urxvtc
-bindsym $super+Return exec termite
-bindsym $hyper+Return exec termite -t floatme
+
+bindsym $super+Return exec termite --class "Termite ($(date +\"%Y-%m-%d %H:%M:%S\"))"
+bindsym $hyper+Return exec termite --class "floatme ($(date +\"%Y-%m-%d %H:%M:%S\"))" ; \
+    exec sleep 0.5s && xdotool search --class floatme | xargs -n1 -d'\n' xdotool set_window --class floated
 bindsym $super+Shift+Return exec urxvt
 
 # kill focused window
@@ -271,8 +276,6 @@ bindsym $super+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $super+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-bindsym $super+apostrophe exec "urxvtc -title floatme"
-
 # volume control
 #bindsym $super+Home exec "amixer set Master 60% unmute"
 bindsym $super+Prior exec "amixer set Master 5%+ unmute"
@@ -343,9 +346,11 @@ mode "spacejam" {
     bindsym j exec "compton -CGb" ; mode "default"
     bindsym k exec "pkill compton" ; mode "default"
     bindsym minus exec --no-startup-id "transset-df -a 0.5" ; mode "default"
+    bindsym s sticky toggle ; mode "default"
 
     # lock screen
     bindsym l exec $Locker
+    bindsym shift+l exec $Locker ; exec ~/Sync/scripts/monitors.sh off
     # border
     bindsym b [class="^.*"] border pixel 2; mode "default"
     bindsym shift+b [class="^.*"] border normal 2; mode "default"
@@ -361,13 +366,12 @@ mode "spacejam" {
     bindsym r exec --no-startup-id $Redshift; mode "default"
     bindsym shift+r exec pkill redshift; mode "default"
 
-    # stuff
-    bindsym h exec "xrandr --output DP-3 --auto --primary --panning 0x0+0+0 ; ~/dotfiles/.xmodmap ; xmodmap -e 'pointer = 1 2 3 4 5 6 7 8 9' ; i3-msg restart" ; mode "default"
-    bindsym shift+h exec "xrandr --output DP-3 --auto --primary --panning 0x0+0+0 ; sleep 0.5s ; xrandr --output DP-1 --primary --left-of DP-3 --mode 3840x2160 -r 60.00 ; pkill redshift ; ~/dotfiles/.xmodmap ; ~/dotfiles/.mouse.sh ; ~/Sync/scripts/synergy.sh ; i3-msg restart"; mode "default"
-    #xrandr --output DP-3 --panning 0x0+0+0 --output DP-6.1 --auto --primary --right-of DP-3 --output DP-6.2 --auto --right-of DP-6.1 # work 3monitorss_
-    bindsym w exec "xrandr --output DP-3 --panning 0x0+0+0 --output DP-6.1 --auto --primary --right-of DP-3 --output DP-6.2 --auto --right-of DP-6.1 ; ~/dotfiles/.xmodmap ; xmodmap -e 'pointer = 1 2 3 4 5 6 7 8 9' ; pkill synergy ; i3-msg restart"; mode "default"
+    # monitor stuff
+    bindsym h exec ~/Sync/scripts/monitors.sh h
+    bindsym shift+h exec ~/Sync/scripts/monitors.sh H
+    bindsym w exec ~/Sync/scripts/monitors.sh w
 
-    bindsym Return exec "terminator --geometry=900x540 || xfce4-terminal" ; mode "default"
+    bindsym Return exec "termite || xfce4-terminal" ; mode "default"
     bindsym BackSpace mode "default"
     bindsym Escape mode "default"
     bindsym q mode "default"
@@ -390,9 +394,42 @@ bindsym $super+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+
 bar {
-    status_command i3status -c ~/.config/i3/i3status.conf
+    output DP-1
     tray_output primary
+    status_command i3status -c ~/.config/i3/i3status.conf
+    font pango:DejaVu Sans Mono 10
+}
+
+bar {
+    output DP-3
+    tray_output primary
+    status_command i3status -c ~/.config/i3/i3status.conf
+}
+
+bar {
+    output DP-4
+    tray_output primary
+    status_command i3status -c ~/.config/i3/i3status.conf
+}
+
+bar {
+    output DP-6
+    tray_output primary
+    status_command i3status -c ~/.config/i3/i3status.conf
+}
+
+bar {
+    output DP-6.1
+    tray_output primary
+    status_command i3status -c ~/.config/i3/i3status.conf
+}
+
+bar {
+    output DP-6.2
+    tray_output primary
+    status_command i3status -c ~/.config/i3/i3status.conf
 }
 
 # power management
@@ -400,7 +437,7 @@ set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) re
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker, exec --no-startup-id systemctl suspend, mode "default"
+    bindsym s exec --no-startup-id $Locker, exec --no-startup-id pkill steam, exec --no-startup-id pkill syncthing, exec --no-startup-id systemctl suspend, mode "default"
     bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
@@ -410,7 +447,6 @@ mode "$mode_system" {
 }
 bindsym $super+F12 mode "$mode_system"
 
-## TODO Manual management of external displays
 # Set the shortcuts and what they do
 set $mode_display Ext Screen (v) VGA ON, (h) HDMI ON, (x) VGA OFF, (y) HDMI OFF
 mode "$mode_display" {
@@ -427,7 +463,15 @@ mode "$mode_display" {
 
 # marks
 bindsym $super+m exec i3-input -F 'mark %s' -P 'mark: '
-bindsym $super+g exec i3-input -F '[con_mark=%s] focus' -P 'goto mark: '
+bindsym $super+g exec i3-input -F '[con_mark="%s"] focus' -P 'goto mark: '
+bindsym $super+apostrophe exec i3-input -F '[title="(?i)%s"] focus' -P 'goto title: '
+
+# å
+bindsym $super+aring exec i3-input -F '[con_mark="%s"] focus' -P 'å: '
+# ä
+bindsym $super+adiaeresis exec i3-input -F '[con_mark="%s"] focus' -P 'ä: '
+# ö
+bindsym $super+odiaeresis exec i3-input -F '[con_mark="%s"] focus' -P 'ö: '
 
 # autolock screen
 #xautolock -time 10 -locker "i3lock -i 'background_image.png'" &
