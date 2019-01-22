@@ -11,7 +11,7 @@ set background=dark
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
+"nmap ga <Plug>(EasyAlign)
 
 filetype plugin on
 "set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20
@@ -35,7 +35,7 @@ map <Right> <Esc>:tabn<CR>
 map <S-Tab> <Esc>:tabp<CR>
 map <Left> <Esc>:tabp<CR>
 map <BS> <Esc>:noh<CR>
-map <leader><BS> <Esc>:syntax sync fromstart<CR>:noh<CR>
+map <leader>' <Esc>:syntax sync fromstart<CR>
 nnoremap <Up> <Esc>:bn<CR>
 nnoremap <Down> <Esc>:bp<CR>
 
@@ -145,6 +145,8 @@ set lazyredraw " avoid scrolling problems
 ":command
 command! Sw w !sudo tee > /dev/null %
 "command! Sw :execute ':silent w !sudo tee % > /dev/null' | :edit!
+"command! Man r!man " FIXME
+
 nmap <M-1> :tabfirst<CR>
 nmap <M-2> :tabnext 2<CR>
 nmap <M-3> :tabnext 3<CR>
@@ -401,6 +403,7 @@ nnoremap <leader>u <Esc>:echo join(["
             \smarttab    = ", &smarttab, "\n
             \\n
             \ue setl expandtab!\n
+            \u1 setl tab opts=1\n
             \u2 setl tab opts=2\n
             \u4 setl tab opts=4\n
             \u8 setl tab opts=8"], '')<CR>
@@ -408,6 +411,7 @@ nnoremap <leader>uu <Esc>:set expandtab? tabstop? softtabstop? shiftwidth? smart
 nnoremap <leader>ue <Esc>:setl expandtab!<CR>:set expandtab?<CR>
 nnoremap <leader>u1 <Esc>:setl tabstop=1 softtabstop=1 shiftwidth=1<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 nnoremap <leader>u2 <Esc>:setl tabstop=2 softtabstop=2 shiftwidth=2<CR>:set tabstop? softtabstop? shiftwidth?<CR>
+nnoremap <leader>u3 <Esc>:setl tabstop=3 softtabstop=3 shiftwidth=3<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 nnoremap <leader>u4 <Esc>:setl tabstop=4 softtabstop=4 shiftwidth=4<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 nnoremap <leader>u8 <Esc>:setl tabstop=8 softtabstop=8 shiftwidth=8<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 
@@ -487,6 +491,8 @@ nnoremap <leader>spy <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python
             \:echo "syntastic python3"<CR>
 
 "let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_javascript_eslint_exe = system('PATH=$(npm bin):$PATH && which eslint')
+
 nnoremap <leader>sjm <Esc>:let g:neomake_javascript_enabled_makers = ['eslint']<CR>
             \:Neomake<CR>
             \:echo "let g:neomake_javascript_enabled_makers = ['eslint']"<CR>
@@ -595,11 +601,17 @@ vnoremap qq` <Esc>`>a`<Esc>`<i`<Esc>
 vnoremap qq( <Esc>`>a)<Esc>`<i(<Esc>
 vnoremap qq[ <Esc>`>a]<Esc>`<i[<Esc>
 vnoremap qq{ <Esc>`>a}<Esc>`<i{<Esc>
+vnoremap qq} <Esc>`>a}<Esc>`<i{<Esc>
+vnoremap qq< <Esc>`>a><Esc>`<i<<Esc>
+vnoremap qq> <Esc>`>a><Esc>`<i<<Esc>
 
 " pretty json
 nnoremap <leader>js <Esc>:%!python -m json.tool<CR>
 nnoremap gjs <Esc>:.!python -m json.tool<CR>
 vnoremap gjs !python -m json.tool<CR>
+
+nnoremap gxml <Esc>:.!xmllint --format -<CR>
+vnoremap gxml !xmllint --format -<CR>
 
 nnoremap j gj
 nnoremap k gk
@@ -740,6 +752,7 @@ if has("autocmd")
     autocmd BufEnter *.phtml set syn=php
     autocmd BufEnter COMMIT_EDITMSG set foldnestmax=0
     autocmd BufEnter h.txt,todo.md set syn=htxt nowrap
+    autocmd BufEnter startup_*.log* set syn=mzoamlog nowrap
     "autocmd BufEnter *.json set tabstop=2 softtabstop=2 shiftwidth=2
 
     autocmd FileType json let b:deoplete_disable_auto_complete=1
@@ -888,6 +901,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'davidhalter/jedi-vim' " python
 "Plug 'ternjs/tern_for_vim' " JS
 "Plug 'luochen1990/rainbow'
+Plug 'will133/vim-dirdiff'
 
 Plug 'junegunn/vim-easy-align'
 Plug 'simnalamburt/vim-mundo'

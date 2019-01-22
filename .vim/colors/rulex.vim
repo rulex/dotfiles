@@ -64,15 +64,16 @@ hi SpellCap     cterm=NONE           ctermfg=Blue        ctermbg=White    gui=NO
 "hi TabLine              ctermbg=DarkGrey ctermfg=Gray
 
 " filetype=diff
-hi DiffFile       cterm=NONE      ctermfg=Yellow ctermbg=NONE gui=NONE guifg=Yellow  guibg=NONE
+hi DiffFile       cterm=NONE      ctermfg=Yellow ctermbg=NONE gui=NONE guifg=black   guibg=Yellow
+hi DiffLine       cterm=NONE      ctermfg=Yellow ctermbg=NONE gui=NONE guifg=Yellow  guibg=NONE
 hi DiffAdded      cterm=NONE      ctermfg=Green  ctermbg=NONE gui=NONE guifg=#17b217 guibg=NONE
 hi DiffRemoved    cterm=NONE      ctermfg=Red    ctermbg=NONE gui=NONE guifg=Red     guibg=NONE
 
 " vimdiff
-hi DiffAdd        cterm=NONE      ctermfg=NONE   ctermbg=NONE gui=NONE guifg=NONE    guibg=NONE
-hi DiffChange     cterm=bold      ctermfg=NONE   ctermbg=NONE gui=bold guifg=NONE    guibg=NONE
-hi DiffDelete     cterm=NONE      ctermfg=Red    ctermbg=NONE gui=NONE guifg=Red     guibg=NONE
-hi DiffText       cterm=reverse   ctermfg=NONE   ctermbg=NONE gui=NONE guifg=NONE    guibg=NONE
+hi DiffAdd    cterm=NONE    ctermfg=NONE ctermbg=NONE gui=bold guifg=NONE   guibg=NONE
+hi DiffChange cterm=bold    ctermfg=NONE ctermbg=NONE gui=NONE guifg=NONE   guibg=NONE
+hi DiffDelete cterm=NONE    ctermfg=Red  ctermbg=NONE gui=NONE guifg=NONE   guibg=Red
+hi DiffText   cterm=reverse ctermfg=NONE ctermbg=NONE gui=reverse guifg=NONE   guibg=NONE
 
 " Neomake highlighting
 "hi NeomakeError       cterm=underline ctermfg=NONE ctermbg=NONE guibg=NONE guifg=Red
@@ -138,4 +139,10 @@ hi  jsonBraces            ctermfg=Cyan         ctermbg=NONE     cterm=NONE      
 hi  cssBraces             ctermfg=Cyan         ctermbg=NONE     cterm=NONE      gui=NONE guifg=Cyan         guibg=NONE
 hi  cssClassName          ctermfg=Cyan         ctermbg=NONE     cterm=NONE      gui=NONE guifg=Cyan         guibg=NONE
 hi  cssColor              ctermfg=Cyan         ctermbg=NONE     cterm=NONE      gui=NONE guifg=Cyan         guibg=NONE
+
+
+hi MultipleSearch0 ctermfg=15 ctermbg=9  guifg=white guibg=red
+hi MultipleSearch1 ctermfg=0  ctermbg=11 guifg=black guibg=yellow
+hi MultipleSearch2 ctermfg=15 ctermbg=12 guifg=white guibg=magenta
+hi MultipleSearch3 ctermfg=0  ctermbg=10 guifg=black guibg=green
 
