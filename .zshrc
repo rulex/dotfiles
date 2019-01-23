@@ -167,6 +167,7 @@ plugins=(cp systemd archlinux docker mosh nmap redis-cli rsync battery docker-co
 # NOTE custom plugin: bgnotify
 #plugins=()
 
+DISABLE_AUTO_UPDATE="true"
 source $ZSH/oh-my-zsh.sh
 
 # aliases
