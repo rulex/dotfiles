@@ -18,8 +18,7 @@ then
 
     # if lsusb | grep -q iRiver; then
     keyb=$( lsusb | grep iRiver )
-    if [ $? -eq 0 ]
-    then
+    if [ $? -eq 0 ]; then
         echo "noppoo choc mini!"
 
         # NOPPOO CHOC MINI
@@ -39,8 +38,7 @@ then
     fi
 
     keyb=$( lsusb | grep "Cypress Semiconductor" )
-    if [ $? -eq 0 ]
-    then
+    if [ $? -eq 0 ]; then
         echo "Keycool 84"
 
         # KEYCOOL 84
@@ -48,6 +46,18 @@ then
         xset r 113
         xset r 116
         xmodmap -e 'keycode 127 = Insert' # pause to insert
+
+        # F01 + Fn = XF86Explorer
+        # F02 + Fn = XF86HomePage
+        # F03 + Fn = XF86Calculator
+        # F04 + Fn = XF86Tools
+        # F05 + Fn = XF86AudioPrev
+        # F06 + Fn = XF86AudioNext
+        # F07 + Fn = XF86AudioPlay
+        # F08 + Fn = XF86AudioStop
+        # F09 + FN = XF86AudioMute
+        # F10 + FN = XF86AudioLowerVolume
+        # F11 + FN = XF86AudioRaiseVolume
 
     fi
 
@@ -82,6 +92,7 @@ xmodmap -e 'clear mod4'
 xmodmap -e 'clear mod5'
 xmodmap -e 'keycode 37 = Hyper_L' # Control_L to Hyper_L
 xmodmap -e 'keycode 66 = Control_L' # caps to Control_L
+xmodmap -e 'keycode 105 = Control_R' # right control to Control_R
 
 xmodmap -e 'add control = Control_R Control_L'
 #xmodmap -e 'add mod1 = Alt_L Alt_R Meta_L'

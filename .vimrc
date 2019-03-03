@@ -35,7 +35,6 @@ map <Right> <Esc>:tabn<CR>
 map <S-Tab> <Esc>:tabp<CR>
 map <Left> <Esc>:tabp<CR>
 map <BS> <Esc>:noh<CR>
-map <leader>' <Esc>:syntax sync fromstart<CR>
 nnoremap <Up> <Esc>:bn<CR>
 nnoremap <Down> <Esc>:bp<CR>
 
@@ -415,6 +414,8 @@ nnoremap <leader>u3 <Esc>:setl tabstop=3 softtabstop=3 shiftwidth=3<CR>:set tabs
 nnoremap <leader>u4 <Esc>:setl tabstop=4 softtabstop=4 shiftwidth=4<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 nnoremap <leader>u8 <Esc>:setl tabstop=8 softtabstop=8 shiftwidth=8<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 
+nnoremap <leader>' :syntax sync fromstart<CR>
+
 " buffers
 nnoremap <leader>b <Esc>:Buffers<CR>
 nnoremap <leader>1 <Esc>:b 1<CR>:echo "asdf"<CR>
@@ -471,8 +472,8 @@ nnoremap <leader>sp2 <Esc>:let g:syntastic_php_phpcs_args = "--encoding=utf-8 --
             \:echo "phpcs standard PSR2"<CR>
 "\:SyntasticCheck<CR>
 
-" E302 expected 2 lines
 let g:neomake_python_flake8_args = '--ignore=E501'
+let g:neomake_python_pycodestyle_args = '--max-line-length=200'
 
 nnoremap <leader>spy2 <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python2"<CR>
             \:let g:neomake_python_python_exe = 'python2'<CR>
@@ -609,6 +610,7 @@ vnoremap qq> <Esc>`>a><Esc>`<i<<Esc>
 nnoremap <leader>js <Esc>:%!python -m json.tool<CR>
 nnoremap gjs <Esc>:.!python -m json.tool<CR>
 vnoremap gjs !python -m json.tool<CR>
+vnoremap gJS "jy:new<CR>"jp:.!python -m json.tool<CR>:setf json<CR>:set foldnestmax=0<CR>z15<CR>
 
 nnoremap gxml <Esc>:.!xmllint --format -<CR>
 vnoremap gxml !xmllint --format -<CR>

@@ -52,65 +52,13 @@ function cheat() {
 }
 
 function fx() {
-    firefox --new-instance --profile $(mktemp -d)
+    firefox --new-instance --profile $(mktemp -d /tmp/fx.XXX)
 }
 
 #function say() {
 #    local IFS=+
 #    mpv --volume 60 "http://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&q=$*&tl=en"
 #}
-
-# keyboard LEDs as notification default values
-export LED_ID=3 # default scroll lock
-export LED_REPEAT=1 # default led_blink blinks
-export LED_ON=0.5 # default led_blink ON time in seconds
-export LED_OFF=0.5 # default led_blink OFF time in seconds
-
-function led_on() {
-    xset led ${1:-${LED_ID}} > /dev/null 2>&1
-}
-
-function led_off() {
-    xset -led ${1:-${LED_ID}} > /dev/null 2>&1
-}
-
-function led_toggle() {
-    LED_ID=${1:-${LED_ID}}
-    if led_is_on; then
-        led_off
-    else
-        led_on
-    fi
-}
-
-function led_is_on() {
-    if [ ${LED_ID} -eq 1 ]; then
-        # FIXME
-        echo "LED is on check for ${LED_ID} is not supported"
-    elif [ ${LED_ID} -eq 2 ]; then
-        # FIXME
-        echo "LED is on check for ${LED_ID} is not supported"
-    elif [ ${LED_ID} -eq 3 ]; then
-        xset q | grep Scroll | cut -c70-72 | grep -q on
-    else
-        echo "LED is on check for ${LED_ID} is not supported"
-    fi
-}
-
-function led_blink() {
-    local LED_REPEAT=${1:-${LED_REPEAT}}
-    local LED_ID=${2:-${LED_ID}}
-    local LED_ON=${3:-${LED_ON}}
-    local LED_OFF=${4:-${LED_OFF}}
-    for i in $(seq 1 ${LED_REPEAT}); do
-        if [ ${i} -eq 1 ]; then
-            LED_WAIT=0
-        else
-            LED_WAIT=$( echo "(${LED_ON}+${LED_OFF})*(${i}-1)" | bc )
-        fi
-        ( ( sleep ${LED_WAIT} ; led_on ; sleep ${LED_ON} ; led_off ; sleep ${LED_OFF} ) &)
-    done
-}
 
 function ds() {
     if [[ $# == 0 ]]; then
@@ -129,10 +77,12 @@ function e() {
 }
 
 function :e() { e ${*} }
-function e-() { e ${*} }
+function e-() { e - }
 
 function es() {
     if [ -f vimsession ]; then
+        #find . -name '*vimsession'
+        #read input_str
         e -S vimsession
     elif [ -f package.json ]; then
         e package.json
@@ -183,6 +133,7 @@ function fn() {
 }
 
 alias grep='grep --color=auto'
+alias rg='rg --no-ignore'
 alias egrep='egrep --color=auto'
 alias -g align='sed -e "s#¤#|#" -e "s#:#¤#" | column -t -s "¤" -o " | "'
 
@@ -241,9 +192,9 @@ function glh() {
         git log \
         --color \
         --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' \
-        --abbrev-commit $* \
+        --abbrev-commit ${1} \
         | sed "s|\(tag: [A-z0-9]\+\)\([, ]\+tag: [A-z0-9]\+,\)||g ; s|[, ]\+| |g" \
-        | head
+        | head ${2}
 }
 
 function logstr() {
@@ -255,8 +206,7 @@ function logstr() {
 }
 
 function A() {
-    # led notification
-    led_blink 1
+    ( led & ) # led notification
     local PUSHOVER=0
     if [ $# -eq 0 ];then
         txt="Done"
