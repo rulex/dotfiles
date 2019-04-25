@@ -61,11 +61,7 @@ function fx() {
 #}
 
 function ds() {
-    if [[ $# == 0 ]]; then
-        du --time --time-style="+%Y-%m-%d %H:%M:%S" -shc * | sort -k 1 -h
-    else
-        du --time --time-style="+%Y-%m-%d %H:%M:%S" -shc $* | sort -k 1 -h
-    fi
+    du --time --time-style="+%Y-%m-%d %H:%M:%S" -shc ${*:-*} | sort -k 1 -h
 }
 
 function json_escape() {
@@ -114,11 +110,6 @@ function pwatch() {
     fi
 }
 
-function agrep() {
-    # align grep
-    grep -Hni "${1}" ${@} | sed -e "s#:#¤#" -e "s#:#¤#" | column -t -s "¤" -o " | " -N file,line,content | grep -i "${1}"
-}
-
 alias f='find'
 compdef fn=find
 function fn() {
@@ -136,6 +127,11 @@ alias grep='grep --color=auto'
 alias rg='rg --no-ignore'
 alias egrep='egrep --color=auto'
 alias -g align='sed -e "s#¤#|#" -e "s#:#¤#" | column -t -s "¤" -o " | "'
+alias -g H='| head'
+alias -g T='| tail'
+alias -g G='| rg'
+alias -g X='| xargs -n1 -d"\n"'
+alias -g E='| nvim -'
 
 alias xterm='xterm -bg black -fg white'
 
@@ -284,11 +280,11 @@ function pretty_time() {
         echo 'Input required'
         return 1
     fi
-    local human total_seconds=$1
+    local human total_seconds=$(echo $1 | cut -d. -f1)
     local days=$(( total_seconds / 60 / 60 / 24 ))
     local hours=$(( total_seconds / 60 / 60 % 24 ))
     local minutes=$(( total_seconds / 60 % 60 ))
-    local seconds=$(( total_seconds % 60 ))
+    local seconds=$(printf "%.*f\n" 2 $(( $1 % 60 )) )
     (( days > 0 )) && human+="${days}d "
     (( hours > 0 )) && human+="${hours}h "
     (( minutes > 0 )) && human+="${minutes}m "
@@ -317,35 +313,32 @@ function pushover() {
     A p $*
 }
 
-#
-#if (( ${+commands[notify-send]} )); then
-    notify-preexec-hook() {
-        zsh_notifier_cmd="$1"
-        zsh_notifier_time="$(date +%s)"
-    }
-    notify-precmd-hook() {
-        local returncode=$(echo $?)
-        local time_taken
-        if [[ "${zsh_notifier_cmd}" != "" ]]; then
-            time_taken=$(( `date +%s` - ${zsh_notifier_time} ))
-            local str="cmd:   ${zsh_notifier_cmd}
+notify-preexec-hook() {
+    zsh_notifier_cmd="$1"
+    zsh_notifier_time="$(date +%s.%N)"
+}
+notify-precmd-hook() {
+    local returncode=$?
+    local time_taken
+    if [[ "${zsh_notifier_cmd}" != "" ]]; then
+        time_taken=$(( `date +%s.%N` - ${zsh_notifier_time} ))
+        local str="cmd:   ${zsh_notifier_cmd}
 code:  ${returncode}
 dir:   ${PWD}
 start: $(date -d @${zsh_notifier_time} +"%Y-%m-%d %H:%M:%S")
 time:  $( pretty_time ${time_taken} )
 end:   $( date +"%Y-%m-%d %H:%M:%S" )
 tty:   ${TTY}"
-            if (( ${time_taken} > ${REPORTTIME_AA} )); then
-                str="${USER}@${HOST}
+        if (( ${time_taken} > ${REPORTTIME_AA} )); then
+            str="${USER}@${HOST}
 ${str}"
-                A P ${str}
-            elif (( ${time_taken} > ${REPORTTIME_A} )); then
-                A ${str}
-            fi
+            A P ${str}
+        elif (( ${time_taken} > ${REPORTTIME_A} )); then
+            A ${str}
         fi
-        zsh_notifier_cmd=
-    }
-#fi
+    fi
+    zsh_notifier_cmd=
+}
 
 strlen () {
     FOO=$1

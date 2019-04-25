@@ -16,6 +16,8 @@ xmap ga <Plug>(EasyAlign)
 filetype plugin on
 "set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20
 set guicursor=n-v-c-sm:block,i-ci-ve:block,r-cr-o:block
+set guifont=Iosevka\ SS09\ Semibold:6
+set linespace=0
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -128,6 +130,7 @@ function! StatusLineFunc()
     let sl .= '%#ErrorMsg#%{neomake#statusline#QflistStatus("|")}%#StatusLine#'
     let sl .= '%#ErrorMsg#%{neomake#statusline#LoclistStatus("|")}%#StatusLine#'
     let sl .= '%#StatusLine#%{Neomake_statusline()}'
+    "let sl .= '%{coc#status()}'
 
     let sl .= '%#warningmsg#'
     let sl .= '%*'
@@ -329,6 +332,8 @@ endfunction
 nnoremap <F10> <Esc>:set paste!<CR>:set paste?<CR>
 nnoremap <leader>p <Esc>"*p
 nnoremap <leader>P <Esc>"*P
+nnoremap yp "0p
+nnoremap yP "0P
 vmap <leader>y "*y
 nnoremap <leader>y <Esc>:w !xclip<CR>
 " clipboard full filepath
@@ -352,6 +357,8 @@ vmap gDD "dy:r!date +"\%Y-\%m-\%d \%H:\%M:\%S" --date @"<C-R>d" 2>/dev/null \|\|
 
 " yank full filepath
 nmap cp <Esc>:let @" = expand("%:p")<CR>
+nmap <leader>cp <Esc>:let @* = expand("%:p")<CR>
+
 " select pasted text
 nnoremap gp `[v`]
 " paste indentation
@@ -571,6 +578,9 @@ nnoremap <leader>do <Esc>:diffoff<CR>
 nnoremap <leader>doo <Esc>:diffoff<CR><c-w><c-w>:diffoff<CR><c-w><c-w>
 nnoremap <leader>dn ]c
 nnoremap <leader>dN [c
+
+"nnoremap <leader>d "_d
+"xnoremap <leader>d "_d
 
 nnoremap <leader>q <Esc>:q<CR>
 "nnoremap <leader>qq <Esc>:qa<CR>
@@ -904,6 +914,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'ternjs/tern_for_vim' " JS
 "Plug 'luochen1990/rainbow'
 Plug 'will133/vim-dirdiff'
+"Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
 Plug 'junegunn/vim-easy-align'
 Plug 'simnalamburt/vim-mundo'
