@@ -499,7 +499,7 @@ nnoremap <leader>spy <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python
             \:echo "syntastic python3"<CR>
 
 "let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_javascript_eslint_exe = system('PATH=$(npm bin):$PATH && which eslint')
+let g:neomake_javascript_eslint_exe = system('PATH=$(npm bin):$PATH && which eslint | tr -d "\n"')
 
 nnoremap <leader>sjm <Esc>:let g:neomake_javascript_enabled_makers = ['eslint']<CR>
             \:Neomake<CR>
