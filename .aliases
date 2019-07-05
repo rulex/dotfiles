@@ -265,6 +265,29 @@ function A() {
     fi
 }
 
+function pushover-img() {
+    img_path="${1}"
+    txt=${*}
+    ts=$(date +%s)
+    txt="$(urlencode "${txt}")"
+    post_data="token=${pushover_apitoken}&user=${pushover_userkey}&message=${txt}&timestamp=${ts}&html=1"
+    local response=$(curl -s https://api.pushover.net/1/messages.json -d "${post_data}")
+    local response=$(curl -s \
+        --form-string "token=${pushover_apitoken}" \
+        --form-string "user=${pushover_userkey}" \
+        --form-string "message=${txt}" \
+        -F "attachment=@${img_path}" \
+        https://api.pushover.net/1/messages.json
+            )
+    # TODO parse json response?
+    if [ $? -eq 0 ]; then
+        return 0
+    else
+        echo "  A(): Failed to deliver message to pushover.net"
+        return 3
+    fi
+}
+
 function AA() {
     if [ $# -eq 0 ];then
         txt="Done"
