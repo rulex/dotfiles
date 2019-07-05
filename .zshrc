@@ -1,18 +1,23 @@
 # Path to your oh-my-zsh configuration.
 # https://github.com/rulex/oh-my-zsh.git
-#
+
+# timer
+t0=$(date '+%s.%N')
+
+function lazy_source() {
+    eval "$1 () { [ -f $2 ] && source $2 && $1 \$@ }"
+}
+
+NVM_SOURCE=$HOME/.nvm/nvm.sh
+lazy_source nvm $NVM_SOURCE
 
 # reload all open zsh .zshrc
 trap "source ~/.zshrc && rehash" USR1
 alias source_all="pkill -u $(whoami) -USR1 zsh"
 
-# timer
-integer t0=$(date '+%s')
-
 ZSH=$HOME/.oh-my-zsh
 unset TMOUT
 
-#
 PATH="$PATH:$HOME/bin"
 
 if [ -d "${HOME}/Sync/bin" ]; then
@@ -34,6 +39,11 @@ fi
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="rulex"
+
+# Uncomment the following line to automatically update without prompting.
+DISABLE_UPDATE_PROMPT="true"
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
 
 # Show history
 if [ "$HIST_STAMPS" = "mm/dd/yyyy" ]
@@ -163,7 +173,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(cp systemd archlinux docker mosh nmap redis-cli rsync battery docker-compose mosh nmap urltools git)
+plugins=(cp systemd archlinux docker mosh nmap redis-cli rsync battery docker-compose mosh nmap urltools git composer emoji npm nvm rust timer)
 # NOTE custom plugin: bgnotify
 #plugins=()
 
@@ -287,7 +297,6 @@ fhe() {
     eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
 }
 
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -297,7 +306,6 @@ fhe() {
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
-
 
 bindkey "^[[1;3C" forward-word # Konsole alt-right
 bindkey "^[[1;3D" backward-word # Konsole alt-left
@@ -312,25 +320,17 @@ bindkey "^[^[OD" backward-word # Urxvt mosh alt-left
 
 unset GREP_OPTIONS
 
-export REPORTTIME=3 # display time for cpu heavy cmds
-export REPORTTIME_A=5 # do a notify-send
+export REPORTTIME=3     # display time for cpu heavy cmds
+export REPORTTIME_A=5   # do a notify-send
 export REPORTTIME_AA=60 # do a notify-send and pushover
 
 export NMON="ld"
 
 export ZLE_REMOVE_SUFFIX_CHARS=""
 
-function {
-    local -i t1 startup
-    t1=$( date '+%s' )
-    startup=$(( t1 - t0 ))
-    [[ $startup -gt 1 ]] && print "Hmm, poor shell startup time: $startup"
-}
-unset t0
-
 # node nvm
 if [ -f /usr/share/nvm/init-nvm.sh ];then
-    source /usr/share/nvm/init-nvm.sh
+    source /usr/share/nvm/init-nvm.sh --no-use
 fi
 
 # grunt Zsh completion
@@ -338,8 +338,15 @@ fi
 #    eval "$(grunt --completion=zsh)"
 #fi
 
-#
 CDPATH=:..:~:~/sandbox
 
-
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+function {
+    local -i t1 startup
+    t1=$( date '+%s.%N' )
+    startup=$(( t1 - t0 ))
+    [[ $startup -gt 1.0 ]] && print "Hmm, poor shell startup time: ${startup}"
+}
+unset t0
+

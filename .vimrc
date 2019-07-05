@@ -6,7 +6,7 @@ endif
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 "set nocompatible
-set modeline
+set nomodeline
 set background=dark
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
@@ -37,8 +37,8 @@ map <Right> <Esc>:tabn<CR>
 map <S-Tab> <Esc>:tabp<CR>
 map <Left> <Esc>:tabp<CR>
 map <BS> <Esc>:noh<CR>
-nnoremap <Up> <Esc>:bn<CR>
-nnoremap <Down> <Esc>:bp<CR>
+nnoremap <S-Up> <Esc>:bn<CR>
+nnoremap <S-Down> <Esc>:bp<CR>
 
 set formatoptions=qj
 set ruler
@@ -764,7 +764,7 @@ if has("autocmd")
     autocmd BufEnter *.phtml set syn=php
     autocmd BufEnter COMMIT_EDITMSG set foldnestmax=0
     autocmd BufEnter h.txt,todo.md set syn=htxt nowrap
-    autocmd BufEnter startup_*.log* set syn=mzoamlog nowrap
+    autocmd BufEnter startup_*.log* set syn=mzoamlog nowrap foldnestmax=1
     "autocmd BufEnter *.json set tabstop=2 softtabstop=2 shiftwidth=2
 
     autocmd FileType json let b:deoplete_disable_auto_complete=1

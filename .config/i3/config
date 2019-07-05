@@ -333,6 +333,7 @@ mode "resize" {
     bindsym minus resize shrink width 20 px or 10 ppt ; resize shrink height 20 px or 10 ppt
     bindsym plus resize grow width 20 px or 10 ppt ; resize grow height 20 px or 10 ppt
 
+    bindsym BackSpace mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
     bindsym q mode "default"
@@ -370,6 +371,11 @@ mode "spacejam" {
     # redshift
     bindsym r exec --no-startup-id $Redshift; mode "default"
     bindsym shift+r exec pkill redshift; mode "default"
+
+    # screensaver
+    #exec --no-startup-id xautolock -time 10 -locker "i3lock -E ~/Sync/scripts/wrongpass.sh -i /tmp/screen_locked.png"
+    bindsym x exec --no-startup-id xautolock -time 10 -locker "i3lock -E ~/Sync/scripts/wrongpass.sh -i /tmp/screen_locked.png"; mode "default"
+    bindsym shift+x exec pkill xautolock; mode "default"
 
     # monitor stuff
     bindsym h exec ~/Sync/scripts/monitors.sh h

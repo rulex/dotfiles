@@ -119,7 +119,7 @@ function fn() {
     elif [[ $# -eq 1 ]]; then
         find . -iname "*${1}*"
     elif [[ $# -ge 1 ]]; then
-        find ${2} ${@:3} -iname "*${1}*"
+        find ${2} -iname "*${1}*" ${@:3}
     fi
 }
 
