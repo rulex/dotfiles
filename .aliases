@@ -225,7 +225,7 @@ function A() {
     #tmux display-message "A(): ${tmux_txt}"
     # if we want pushover
     if [ ${PUSHOVER} -eq 1 ];then
-        local _config=~/.pushoverrc
+        local _config=~/.pushover.sh
         # check if config exists
         if [ ! -f ${_config} ]; then
             echo "  A(): Config file ${_config} does not exist."
