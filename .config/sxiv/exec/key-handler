@@ -1,4 +1,5 @@
 #!/bin/sh
+
 while read file
 do
     case "$1" in
@@ -7,7 +8,11 @@ do
         #"C-r")
         #    convert -rotate 90 "$file" "$file" ;;
         "C-c")
-            echo -n "$file" | xclip -selection clipboard ;;
+            echo "$file" | xclip -selection clipboard ;;
+        "i")
+            # jpeg info
+            echo "$file:"
+            jhead "$file" ;;
         #"C-w")
         #    nitrogen --save --set-zoom-fill "$file" ;;
     esac
