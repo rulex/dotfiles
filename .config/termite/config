@@ -118,14 +118,15 @@ color7 = #F5F5F5
 color15 = #FFFFFF
 
 [hints]
-font = Monospace 12
-#foreground = #dcdccc
-#background = #3f3f3f
-#active_foreground = #e68080
-#active_background = #3f3f3f
+#font = Monospace 12
+font = Iosevka SS09 Semibold 10
+foreground = #00DBDB
+background = #3f3f3f
+active_foreground = #17B217
+active_background = #3f3f3f
 #padding = 2
-#border = #3f3f3f
+border = #00DBDB
 #border_width = 0.5
-#roundness = 2.0
+roundness = 1.0
 
 # vim: ft=dosini cms=#%s

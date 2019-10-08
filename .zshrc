@@ -206,7 +206,7 @@ __fsel() {
         -o -type l -print 2> /dev/null | cut -b3-"}"
     setopt localoptions pipefail 2> /dev/null
     eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-35%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@" | while read item; do
-    echo -n "${(q)item} "
+        echo -n "${(q)item} "
     done
     local ret=$?
     echo
@@ -234,9 +234,7 @@ fzf-file-widget() {
 }
 zle     -N   fzf-file-widget
 bindkey '^T' fzf-file-widget
-
-#zle     -N   fzf-file-widget
-#bindkey '^I' fzf-file-completion
+#bindkey '^F' fzf-file-widget
 
 # cdf - cd into the directory of the selected file
 cdf() {
@@ -317,6 +315,9 @@ bindkey "^[^[[D" backward-word # Urxvt alt-left
 
 bindkey "^[^[OC" forward-word # Urxvt mosh alt-right
 bindkey "^[^[OD" backward-word # Urxvt mosh alt-left
+
+bindkey "[1;2C" forward-word # termite shift-right
+bindkey "[1;2D" backward-word # termite shift-left
 
 unset GREP_OPTIONS
 

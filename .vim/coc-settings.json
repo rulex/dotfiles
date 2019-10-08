@@ -1,5 +1,12 @@
 {
+    "suggest.enablePreview": true,
     "diagnostic.enable": false,
+    "diagnostic.level": ["hint","information","warning","error"],
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.errorSign": "ẋ",
+    "diagnostic.warningSign": "ẇ",
+    "diagnostic.infoSign": "ï",
+    "diagnostic.hintSign": "ḣ",
     "languageserver": {
         "clangd": {
             "command": "clangd",
