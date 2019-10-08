@@ -19,6 +19,53 @@ set guicursor=n-v-c-sm:block,i-ci-ve:block,r-cr-o:block
 set guifont=Iosevka\ SS09\ Semibold:6
 set linespace=0
 
+" coc.vim stuff
+set pumheight=15
+set shortmess=filnxtToOFc
+set updatetime=300
+set cmdheight=1
+set hidden
+set signcolumn=yes
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
+endfunction
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
+endfunction
+
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 set iskeyword+=$
@@ -62,8 +109,9 @@ function! Neomake_statusline()
         endif
         let neomake_jobs_count = len(neomake#GetJobs())
         if neomake_jobs_count > 0
-            let neomake_status_str .= ';'
+            let neomake_status_str .= ';('
             let neomake_status_str .= neomake_jobs_count
+            let neomake_status_str .= ')'
         endif
         "let neomake_status_str .= '%('.StatuslineNeomakeStatus(bufnr('%'), '…', '✓')
         "            \ . (a:active ? '%#StatColorHi2#' : '%*')
@@ -203,6 +251,8 @@ let NERDTreeShowHidden=1
 let g:yankring_history_dir = '~/.vim/'
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
+let g:SignatureMarkTextHL = "Normal"
+
 " https://github.com/Vimjas/vim-python-pep8-indent
 "let g:python_pep8_indent_multiline_string
 "let g:python_pep8_indent_hang_closing = 0
@@ -291,9 +341,10 @@ vnoremap å ]
 
 " fzf fuzzy finder
 nnoremap <C-t> <Esc>:Files<CR>
-let g:fzf_buffers_jump=1
+"let g:fzf_buffers_jump = 1
 nnoremap Ö <Esc>:Buffers<CR>
-nnoremap Ä <Esc>:Windows<CR>
+nnoremap Ä <Esc>:Snippets<CR>
+" <Esc>:Windows<CR>
 nnoremap <leader>l <Esc>:echo join(["
             \fuzzy finder fzf\n\n
             \ll :Lines\n
@@ -308,10 +359,22 @@ command! -bang -nargs=* Rg
             \   <bang>0 ? fzf#vim#with_preview('up:60%')
             \           : fzf#vim#with_preview('right:50%:hidden', '?'),
             \   <bang>0)
+imap <c-f><c-l> <plug>(fzf-complete-line)
+imap <c-f><c-k> <plug>(fzf-complete-word)
+imap <c-f><c-g> <plug>(fzf-complete-path)
+imap <c-f><c-j> <plug>(fzf-complete-file-ag)
+
+" ultisnips
+let g:UltiSnipsExpandTrigger="<c-f><c-f>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 " cd autochdir
 "nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
-command! CD :cd %:p:h
+command! CD :lcd %:p:h
+nnoremap gC :lcd %:p:h<CR>:pwd<CR>
 
 function! InsertIfEmpty()
     if @% == ""
@@ -421,7 +484,7 @@ nnoremap <leader>u3 <Esc>:setl tabstop=3 softtabstop=3 shiftwidth=3<CR>:set tabs
 nnoremap <leader>u4 <Esc>:setl tabstop=4 softtabstop=4 shiftwidth=4<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 nnoremap <leader>u8 <Esc>:setl tabstop=8 softtabstop=8 shiftwidth=8<CR>:set tabstop? softtabstop? shiftwidth?<CR>
 
-nnoremap <leader>' :syntax sync fromstart<CR>
+nnoremap <leader>' :syntax sync fromstart<CR>:NeomakeClean<CR>
 
 " buffers
 nnoremap <leader>b <Esc>:Buffers<CR>
@@ -438,6 +501,10 @@ nnoremap <leader>0 <Esc>:b
 
 nnoremap <leader><CR> <Esc>:Neomake<CR>
 nnoremap <leader>m <Esc>:Neomake<CR>
+nnoremap <leader>mg <Esc>:Neomake gcc<CR>
+nnoremap <leader>mc <Esc>:Neomake clang<CR>
+nnoremap <leader>ml <Esc>:NeomakeListJobs<CR>
+nnoremap <leader>mm <Esc>:NeomakeCancelJobs<CR>
 "nnoremap <leader>m <Esc>:echo printf("todo")
 " switch syntastic/Neomake standards
 
@@ -500,6 +567,88 @@ nnoremap <leader>spy <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python
 
 "let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_javascript_eslint_exe = system('PATH=$(npm bin):$PATH && which eslint | tr -d "\n"')
+
+let g:cpp_args = [
+            \ '-fsyntax-only',
+            \ '-Wall',
+            \ '-Wextra',
+            \ '-std=c++1z',
+            \ '-I./',
+            \ '-I./include',
+            \ ]
+let g:neomake_cpp_gcc_args = g:cpp_args
+let g:neomake_cpp_clang_args = g:cpp_args
+
+"let g:neomake_cpp_clang_args = ['-fsyntax-only', '-Wall', '-Wextra', '-I./', '-std=c++1z', '-I./include', '-I./test_include']
+"let g:neomake_cpp_clang_args += ['-I./test_include']
+" test derp function
+function! Derp()
+
+    function! CustomExe(jobinfo) abort
+        let self.args = [self.exe] + self.args
+        let self.exe = 'clang++'
+        return self
+    endfunction
+    call neomake#config#set('ft.cpp.InitForJob', function('CustomExe'))
+
+    echo "done."
+
+    return
+endfunction
+command! Derp :call Derp()
+
+function! LoadCpp()
+    " load project specific cpp stuff for Neomake
+    "
+    " example cpp.vim:
+    " g:cpp_args = ['-fsyntax-only', '-Wall', '-Wextra']
+    " g:cpp_include_paths = ['./include', './src', '../lib/include']
+    if filereadable("./cpp.vim")
+        source ./cpp.vim
+        if exists("g:cpp_args")
+            for argx in g:cpp_args
+                if (index(g:neomake_cpp_clang_args, argx) >= 0)
+                else
+                    let g:neomake_cpp_clang_args += [argx]
+                endif
+            endfor
+        else
+            echo "g:cpp_args not defined"
+        endif
+        if exists("g:cpp_include_paths")
+            for incl in g:cpp_include_paths
+                if !isdirectory(incl)
+                    echo incl . " does not exist"
+                endif
+                let incl_arg = "-I" . incl
+                if (index(g:neomake_cpp_clang_args, incl_arg) >= 0)
+                    "echo incl_arg . " already exists"
+                else
+                    let g:neomake_cpp_clang_args += [incl_arg]
+                    "echo "adding: " . incl_arg
+                endif
+                " TODO check if paths exist?
+            endfor
+        else
+            echo "g:cpp_include_paths not defined"
+        endif
+        echo g:neomake_cpp_gcc_args
+    else
+        echo "cpp.vim not found in " . getcwd()
+    endif
+endfunction
+command! LoadCpp :call LoadCpp()
+
+" This can also be configured as setting: >
+function! CustomExe(jobinfo) abort
+    "let clangMaker = neomake#makers#ft#cpp#clang()
+    "let clangMaker.args += ['-I./test_include']
+    "let clangMaker.exe = 'clang++'
+    let self.args = ['-I./test_include']
+    let self.exe = 'clang++'
+    "let self.exe = 'some_custom_wrapper'
+endfunction
+"call neomake#config#set('ft.cpp.InitForJob', function('CustomExe'))
 
 nnoremap <leader>sjm <Esc>:let g:neomake_javascript_enabled_makers = ['eslint']<CR>
             \:Neomake<CR>
@@ -698,10 +847,22 @@ autocmd! BufReadPost,BufWritePost * Neomake
 let g:neomake_place_signs = 1
 let g:neomake_serialize = 1 " Setting this to 1 tells Neomake to run each enabled maker one after the other.
 let g:neomake_serialize_abort_on_error = 0
-"let g:neomake_error_sign = '✗'
-"let g:neomake_warning_sign = '⚠'
-"let g:neomake_info_sign = 'ĩ'
-"let g:neomake_message_sign = 'm'
+let g:neomake_error_sign = {
+            \ 'text': '✖',
+            \ 'texthl': 'NeomakeErrorSign',
+            \ }
+let g:neomake_warning_sign = {
+            \   'text': 'w',
+            \   'texthl': 'NeomakeWarningSign',
+            \ }
+let g:neomake_message_sign = {
+            \   'text': 'm',
+            \   'texthl': 'NeomakeMessageSign',
+            \ }
+let g:neomake_info_sign = {
+            \ 'text': 'i',
+            \ 'texthl': 'NeomakeInfoSign'
+            \ }
 let g:neomake_highlight_columns = 1
 let g:neomake_highlight_lines = 0
 
@@ -763,7 +924,7 @@ if has("autocmd")
     autocmd BufEnter *.ctp set syn=php
     autocmd BufEnter *.phtml set syn=php
     autocmd BufEnter COMMIT_EDITMSG set foldnestmax=0
-    autocmd BufEnter h.txt,todo.md set syn=htxt nowrap
+    autocmd BufEnter h.txt,todo.md set syn=htxt nowrap foldnestmax=1
     autocmd BufEnter startup_*.log* set syn=mzoamlog nowrap foldnestmax=1
     "autocmd BufEnter *.json set tabstop=2 softtabstop=2 shiftwidth=2
 
@@ -886,6 +1047,7 @@ if has('nvim')
     set termguicolors
     set ttimeout
     set ttimeoutlen=0
+    set pumblend=35
 else
     colorscheme rulex
     set timeout
@@ -906,15 +1068,16 @@ Plug 'scrooloose/nerdtree' ", { 'on':  'NERDTreeToggle' }
 "Plug 'itchyny/lightline.vim'
 
 " auto complete
-Plug 'ervandew/supertab'
-"Plug 'Shougo/deoplete.nvim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'ervandew/supertab'
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 "Plug 'davidhalter/jedi-vim' " python
 "Plug 'ternjs/tern_for_vim' " JS
 "Plug 'luochen1990/rainbow'
 Plug 'will133/vim-dirdiff'
-"Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 Plug 'junegunn/vim-easy-align'
 Plug 'simnalamburt/vim-mundo'
@@ -947,7 +1110,7 @@ Plug 'lambdalisue/suda.vim'
 
 " syntax
 Plug 'vim-scripts/httplog'
-Plug 'vim-scripts/css_color'
+Plug 'ap/vim-css-color'
 Plug 'leafgarland/typescript-vim'
 Plug 'mfukar/robotframework-vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -957,5 +1120,4 @@ Plug 'Vimjas/vim-python-pep8-indent'
 "Plug 'coala/coala-vim'
 "
 call plug#end()
-
 

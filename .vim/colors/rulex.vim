@@ -15,6 +15,7 @@ let colors_name = "rulex"
 
 hi clear        CursorLine
 hi Normal       cterm=NONE           ctermfg=NONE        ctermbg=NONE     gui=NONE           guifg=NONE        guibg=NONE
+hi NormalFloat  cterm=NONE           ctermfg=Blue        ctermbg=White    gui=NONE           guifg=#2e3440     guibg=#a3be8c
 hi Cursor       cterm=NONE           ctermfg=NONE        ctermbg=NONE     gui=NONE           guifg=NONE        guibg=NONE
 hi lCursor      cterm=NONE           ctermfg=NONE        ctermbg=NONE     gui=NONE           guifg=NONE        guibg=Cyan
 hi Include      cterm=NONE           ctermfg=Yellow      ctermbg=NONE     gui=NONE           guifg=Yellow      guibg=NONE
@@ -29,7 +30,9 @@ hi LineNr       cterm=NONE           ctermfg=Brown       ctermbg=NONE     gui=NO
 hi ModeMsg      cterm=NONE           ctermfg=NONE        ctermbg=NONE     gui=NONE           guifg=NONE        guibg=NONE
 hi MoreMsg      cterm=NONE           ctermfg=DarkGreen   ctermbg=NONE     gui=NONE           guifg=Green       guibg=NONE
 hi Conditional  cterm=bold           ctermfg=Blue        ctermbg=NONE     gui=NONE           guifg=#4d4dff     guibg=NONE
-hi Pmenu        cterm=NONE           ctermfg=Black       ctermbg=Magenta  gui=NONE           guifg=White       guibg=Gray
+hi Pmenu        cterm=NONE           ctermfg=Black       ctermbg=Magenta  gui=NONE           guifg=White       guibg=#505050
+hi PmenuThumb   cterm=NONE           ctermfg=Black       ctermbg=Magenta  gui=NONE           guifg=White       guibg=#909090
+hi PmenuSbar    cterm=NONE           ctermfg=Black       ctermbg=Magenta  gui=NONE           guifg=White       guibg=#101010
 hi PmenuSel     cterm=NONE           ctermfg=White       ctermbg=DarkBlue gui=bold           guifg=White       guibg=#4d4dff
 hi Question     cterm=NONE           ctermfg=DarkGreen   ctermbg=NONE     gui=NONE           guifg=Green       guibg=NONE
 hi Search       cterm=NONE           ctermfg=grey        ctermbg=DarkBlue gui=NONE           guifg=White       guibg=#4d4dff
