@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 alias ..='cd ..'
 alias ...='cd ../..'
 alias -- -='cd -'
@@ -38,21 +38,29 @@ function dt() {
             date +"%Y-%m-%d %H:%M:%S" --date @"$1"
         fi
     elif [[ $# == 2 ]] && [[ $1 == "p" ]]; then
-        pretty_time ${2}
+        pretty_time "${2}"
     elif [[ $# == 2 ]]; then
         # diff between two dates
-        d1=$(date -d "$1" +%s)
-        d2=$(date -d "$2" +%s)
-        pretty_time (($d2 - $d1))
+        date1=$(date -d "$1" +%s)
+        date2=$(date -d "$2" +%s)
+        pretty_time $((date2 - date1))
     fi
 }
 
 function cheat() {
-    curl cht.sh/${1}
+    curl "cht.sh/${1}"
 }
 
 function fx() {
-    firefox --new-instance --profile $(mktemp -d /tmp/fx.XXX)
+    firefox --new-instance --profile "$(mktemp -d /tmp/fx.XXX)"
+}
+
+function fxn() {
+    firefox-nightly --new-instance --profile "$(mktemp -d /tmp/fxn.XXX)"
+}
+
+function fxd() {
+    firefox-nightly --new-instance --profile "$(mktemp -d /tmp/fxd.XXX)"
 }
 
 #function say() {
@@ -72,8 +80,12 @@ function e() {
     nvim ${*} || vim ${*} || vi ${*}
 }
 
-function :e() { e ${*} }
-function e-() { e - }
+function :e() {
+    e ${*}
+}
+function e-() {
+    e -
+}
 
 function es() {
     if [ -f vimsession ]; then
@@ -96,7 +108,7 @@ function px() {
     if [[ $# == 0 ]]; then
         ps auxf
     elif [[ $# -ge 1 ]]; then
-        ps auxf | grep -i $*
+        ps auxf | grep -i "${*}"
     fi
 }
 
@@ -104,14 +116,13 @@ function pwatch() {
     local re='^[0-9]+$'
     echo "${1}"
     if ! [[ ${1} =~ $re ]] ; then
-        watch -g pgrep ${1}
+        watch -g pgrep "${1}"
     else
-        watch -g ps -opid -p ${1}
+        watch -g ps -opid -p "${1}"
     fi
 }
 
 alias f='find'
-compdef fn=find
 function fn() {
     if [[ $# -eq 0 ]]; then
         echo "fn <filename> [directory] [options]"
@@ -122,6 +133,12 @@ function fn() {
         find ${2} -iname "*${1}*" ${@:3}
     fi
 }
+
+# zsh completions https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org
+function _fn() {
+    _arguments -C "1:filename to find:((f\:\ filename\ to\ find fi))" "2:second arg:_files" $args '*-iname:name pattern to match (case insensitive)' '(-L -P)-H[only follow symlinks when resolving command-line arguments]' '(-H -P)-L[follow symlinks]' '*-atime:access time (days):->times' '*-ctime:inode change time (days):->times' '*-depth' '*-exec:program: _command_names -e:*\;::program arguments: _normal' '*-follow' '*-fstype:file system type:_file_systems' '*-group:group:_groups' '*-inum:inode number:' '*-links:number of links:' '*-ls' '*-mtime:modification time (days):->times' '*-name:name pattern' '*-newer:file to compare (modification time):_files' '*-nogroup' '*-nouser' '*-ok:program: _command_names -e:*\;::program arguments: _normal' '*-perm: :_file_modes' '*-print' '*-prune' '*-size:file size (blocks)' '*-type:file type:((b\:block\ special\ file c\:character\ special\ file d\:directory p\:named\ pipe f\:normal\ file l\:symbolic\ link s\:socket))' '*-user:user:_users' '*-xdev' '*-a' '*-o' '(-D -E -H -L -O -P -f -s -x --help --version)*:directory:_files -/'
+}
+compdef _fn fn
 
 alias grep='grep --color=auto'
 alias rg='rg --no-ignore'
@@ -236,6 +253,7 @@ function A() {
         # check if vars are present
         #if (( ! ${+pushover_userkey} )) || (( ! ${+pushover_apitoken} )); then
         if [[ -v pushover_userkey && -v pushover_apitoken ]]; then
+            true
         else
             echo "  A(): pushover_userkey or pushover_apitoken is not set"
             return 2
@@ -340,6 +358,7 @@ notify-preexec-hook() {
     zsh_notifier_cmd="$1"
     zsh_notifier_time="$(date +%s.%N)"
 }
+
 notify-precmd-hook() {
     local returncode=$?
     local time_taken
