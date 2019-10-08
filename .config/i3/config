@@ -47,14 +47,16 @@ new_window normal 2
 #new_window pixel 1
 #new_window none
 
-for_window [class="^.*"] title_format <b> %title</b> | <i>%class</i> | %instance
+for_window [class="^.*"] title_format <span foreground='cyan' background='black'>#</span><b> %title</b> | <i>%class</i> | %instance
 #for_window [class="^.*"] border pixel 1
 
 for_window [class="URxvt*"] border pixel 2
 #for_window [class="Termite*"] border pixel 2
 #for_window [class="Termite*"] title_format %title
 
-for_window [class="^floatme*"] floating enable border normal 2
+for_window [class=".*floatme.*"] floating enable border normal 2 # Termite floatme
+for_window [instance="termite"] title_format <b><span foreground='cyan' background='black'>$</span> %title</b> | <i>%class</i> | %instance
+for_window [class="firefox"] title_format <span foreground='cyan' background='black'>ff</span> %title
 #for_window [class="^Sxiv$"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [title="^Sky$"] floating enable
@@ -84,6 +86,7 @@ set $back               #1d1F21
 set $black              #282A2E
 set $grey               #484848
 set $lightgrey          #707880
+set $whitie             #B5B8B6
 set $white              #C5C8C6
 set $yellow             #F0C674
 set $red                #CC6666
@@ -91,20 +94,22 @@ set $darkred            #A54242
 set $green              #689D6A
 set $archblue           #33B5E5
 
-#class                  border      backgr.     text        indicator  child_border
-client.focused          $green      $green      $black      $red       $green
-client.focused_inactive $grey       $lightgrey  $white      $grey      $grey
-client.unfocused        $grey       $grey       $white      $grey      $grey
-client.urgent           $red        $red        $black      $grey      $red
-client.background       $back
+#                        <window titlebars                    ><window borders          >
+# class                   border       background   text        indicator   child_border
+client.focused            $yellow      $green       $back       $red        $green
+client.focused_inactive   $white       $grey        $whitie     $red        $grey
+client.unfocused          $lightgrey   $black       $whitie     $red        $grey
+client.urgent             $red         $red         $black      $white      $red
+#client.placeholder        #000000     #0c0c0c     #ffffff     #000000     #0c0c0c
+client.background         $back
 
 # start a terminal
 #bindsym $super+Return exec i3-sensible-terminal
 #bindsym $super+Return exec urxvtc
 
-bindsym $super+Return exec termite --class "Termite ($(date +\"%Y-%m-%d %H:%M:%S\"))"
+bindsym $super+Return exec termite --class "($(date +\"%Y-%m-%d %H:%M:%S\"))"
 bindsym $hyper+Return exec termite --class "floatme ($(date +\"%Y-%m-%d %H:%M:%S\"))" ; \
-    exec sleep 0.5s && xdotool search --class floatme | xargs -n1 -d'\n' xdotool set_window --class floated
+    exec sleep 0.5s && xdotool search --class "floatme" | xargs -n1 -d'\n' xdotool set_window --class "floated ($(date +\"%Y-%m-%d %H:%M:%S\"))"
 bindsym $super+Shift+Return exec urxvt
 
 # kill focused window
@@ -119,7 +124,7 @@ bindsym $super+d exec dmenu_run
 # bindsym $super+d exec --no-startup-id i3-dmenu-desktop
 
 # firefox
-#bindsym control+q nop
+bindsym control+q exec ~/Sync/scripts/ctrlq.sh
 
 # change focus
 bindsym $super+y focus left
@@ -165,10 +170,9 @@ bindsym $super+e layout toggle split
 
 # toggle tiling / floating
 bindsym $super+Shift+space floating toggle
-bindsym $alt+Mod4+Return floating toggle
+bindsym $alt+$super+Return floating toggle
 
 # change focus between tiling / floating windows
-#bindsym $super+n focus mode_toggle
 bindsym $alt+Tab focus mode_toggle
 
 # focus the parent container
@@ -183,6 +187,8 @@ bindsym $super+n focus output right
 bindsym $super+p focus output left
 bindsym $hyper+x focus output right
 bindsym $hyper+z focus output left
+bindsym $hyper+Right focus output right
+bindsym $hyper+Left focus output left
 
 # focus the child container
 #bindsym $super+d focus child
@@ -232,16 +238,16 @@ bindsym $hyper+Shift+8 move container to workspace 18
 bindsym $hyper+Shift+9 move container to workspace 19
 bindsym $hyper+Shift+0 move container to workspace 20
 
-bindsym $hyper+F1  workspace 1  ; append_layout ~/.config/i3/workspace1.json ;  workspace 1
-bindsym $hyper+F2  workspace 2  ; append_layout ~/.config/i3/workspace1.json ;  workspace 2
-bindsym $hyper+F3  workspace 3  ; append_layout ~/.config/i3/workspace1.json ;  workspace 3
-bindsym $hyper+F4  workspace 4  ; append_layout ~/.config/i3/workspace1.json ;  workspace 4
-bindsym $hyper+F5  workspace 5  ; append_layout ~/.config/i3/workspace1.json ;  workspace 5
-bindsym $hyper+F6  workspace 6  ; append_layout ~/.config/i3/workspace1.json ;  workspace 6
-bindsym $hyper+F7  workspace 7  ; append_layout ~/.config/i3/workspace1.json ;  workspace 7
-bindsym $hyper+F8  workspace 8  ; append_layout ~/.config/i3/workspace1.json ;  workspace 8
-bindsym $hyper+F9  workspace 9  ; append_layout ~/.config/i3/workspace1.json ;  workspace 9
-bindsym $hyper+F10 workspace 10 ; append_layout ~/.config/i3/workspace1.json ;  workspace 10
+bindsym $hyper+F1  workspace 1  ; append_layout ~/.config/i3/workspace1.json ; workspace 1
+bindsym $hyper+F2  workspace 2  ; append_layout ~/.config/i3/workspace1.json ; workspace 2
+bindsym $hyper+F3  workspace 3  ; append_layout ~/.config/i3/workspace1.json ; workspace 3
+bindsym $hyper+F4  workspace 4  ; append_layout ~/.config/i3/workspace1.json ; workspace 4
+bindsym $hyper+F5  workspace 5  ; append_layout ~/.config/i3/workspace1.json ; workspace 5
+bindsym $hyper+F6  workspace 6  ; append_layout ~/.config/i3/workspace1.json ; workspace 6
+bindsym $hyper+F7  workspace 7  ; append_layout ~/.config/i3/workspace1.json ; workspace 7
+bindsym $hyper+F8  workspace 8  ; append_layout ~/.config/i3/workspace1.json ; workspace 8
+bindsym $hyper+F9  workspace 9  ; append_layout ~/.config/i3/workspace1.json ; workspace 9
+bindsym $hyper+F10 workspace 10 ; append_layout ~/.config/i3/workspace1.json ; workspace 10
 
 bindsym $hyper+Shift+F1  exec "i3-save-tree --workspace 1  > ~/.config/i3/workspace1.json"
 bindsym $hyper+Shift+F2  exec "i3-save-tree --workspace 2  > ~/.config/i3/workspace2.json"
@@ -260,19 +266,23 @@ bindsym $super+Shift+Right move workspace to output right
 bindsym $super+Shift+Up move workspace to output up
 bindsym $super+Shift+Down move workspace to output down
 
-# resize win+alt [hjkl]
-bindsym Mod4+$alt+h resize shrink width 3 px or 3 ppt
-bindsym Mod4+$alt+j resize grow height 3 px or 3 ppt
-bindsym Mod4+$alt+k resize shrink height 3 px or 3 ppt
-bindsym Mod4+$alt+l resize grow width 3 px or 3 ppt
+# resize
+bindsym $super+$alt+h resize shrink width 10 px or 10 ppt
+bindsym $super+$alt+j resize grow height 10 px or 10 ppt
+bindsym $super+$alt+k resize shrink height 10 px or 10 ppt
+bindsym $super+$alt+l resize grow width 10 px or 10 ppt
 
-bindsym Mod4+$alt+Left resize shrink width 10 px or 10 ppt
-bindsym Mod4+$alt+Down resize grow height 10 px or 10 ppt
-bindsym Mod4+$alt+Up resize shrink height 10 px or 10 ppt
-bindsym Mod4+$alt+Right resize grow width 10 px or 10 ppt
+bindsym super+$alt+Left resize shrink width 20 px or 20 ppt
+bindsym super+$alt+Down resize grow height 20 px or 20 ppt
+bindsym super+$alt+Up resize shrink height 20 px or 20 ppt
+bindsym super+$alt+Right resize grow width 20 px or 20 ppt
 
-bindsym $hyper+minus resize shrink width 20 px or 10 ppt ; resize shrink height 20 px or 10 ppt
-bindsym $hyper+plus resize grow width 20 px or 10 ppt ; resize grow height 20 px or 10 ppt
+bindsym $super+minus resize shrink width 20 px or 10 ppt ; resize shrink height 20 px or 10 ppt
+bindsym $super+plus resize grow width 20 px or 10 ppt ; resize grow height 20 px or 10 ppt
+#bindsym $hyper+Left resize shrink width 10 px or 10 ppt
+#bindsym $hyper+Down resize grow height 10 px or 10 ppt
+#bindsym $hyper+Up resize shrink height 10 px or 10 ppt
+#bindsym $hyper+Right resize grow width 10 px or 10 ppt
 
 # reload the configuration file
 bindsym $super+Shift+c reload
@@ -289,6 +299,147 @@ bindsym XF86AudioRaiseVolume exec "amixer set Master 1%+ unmute"
 bindsym XF86AudioLowerVolume exec "amixer set Master 1%- unmute"
 bindsym XF86AudioMute exec "amixer set Master toggle"
 
+# keyboard lulz
+# arrows
+bindsym --release $hyper+control+h exec --no-startup-id xdotool key Left
+bindsym --release $hyper+control+j exec --no-startup-id xdotool key Down
+bindsym --release $hyper+control+k exec --no-startup-id xdotool key Up
+bindsym --release $hyper+control+l exec --no-startup-id xdotool key Right
+#
+bindsym $hyper+shift+h exec xvkbd -xsendevent -text '\{+Left}'
+bindsym $hyper+shift+j exec xvkbd -xsendevent -text '\{+Down}'
+bindsym $hyper+shift+k exec xvkbd -xsendevent -text '\{+Up}'
+bindsym $hyper+shift+l exec xvkbd -xsendevent -text '\{+Right}'
+
+# mouse
+mode "mouse" {
+
+    # movements
+    bindsym h exec xdotool mousemove_relative -- -10 0
+    bindsym j exec xdotool mousemove_relative -- 0 10
+    bindsym k exec xdotool mousemove_relative -- 0 -10
+    bindsym l exec xdotool mousemove_relative -- 10 0
+
+    bindsym $hyper+h exec xdotool mousemove_relative -- -50 0
+    bindsym $hyper+j exec xdotool mousemove_relative -- 0 50
+    bindsym $hyper+k exec xdotool mousemove_relative -- 0 -50
+    bindsym $hyper+l exec xdotool mousemove_relative -- 50 0
+
+    bindsym y exec xdotool mousemove_relative -- -50 0
+    bindsym u exec xdotool mousemove_relative -- 0 50
+    bindsym i exec xdotool mousemove_relative -- 0 -50
+    bindsym o exec xdotool mousemove_relative -- 50 0
+
+    bindsym s exec xdotool mousemove_relative -- -10 0
+    bindsym d exec xdotool mousemove_relative -- 0 10
+    bindsym e exec xdotool mousemove_relative -- 0 -10
+    bindsym f exec xdotool mousemove_relative -- 10 0
+
+    bindsym space exec ~/Sync/scripts/cm.sh
+    bindsym $hyper+space exec ~/Sync/scripts/cm.sh
+
+    # clicks
+    bindsym n exec xdotool click 1
+    bindsym m exec xdotool click 2
+    bindsym comma exec xdotool click 3
+
+    bindsym shift+n exec xdotool mousedown 1
+    bindsym control+n exec xdotool mouseup 1
+
+    bindsym shift+m exec xdotool mousedown 2
+    bindsym control+m exec xdotool mouseup 2
+
+    bindsym shift+comma exec xdotool mousedown 3
+    bindsym control+comma exec xdotool mouseup 3
+
+    # toggle mouse2x
+    bindsym odiaeresis mode "mouse2x"
+
+    # back to default
+    bindsym BackSpace mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym q mode "default"
+    bindsym adiaeresis mode "default"
+
+    bindsym $hyper+odiaeresis mode "default"
+    bindsym $super+odiaeresis mode "default"
+}
+mode "mouse2x" {
+
+    # movements
+    bindsym h exec --no-startup-id xdotool mousemove_relative -- -50 0
+    bindsym j exec --no-startup-id xdotool mousemove_relative -- 0 50
+    bindsym k exec --no-startup-id xdotool mousemove_relative -- 0 -50
+    bindsym l exec --no-startup-id xdotool mousemove_relative -- 50 0
+
+    bindsym $hyper+h exec --no-startup-id xdotool mousemove_relative -- -100 0
+    bindsym $hyper+j exec --no-startup-id xdotool mousemove_relative -- 0 100
+    bindsym $hyper+k exec --no-startup-id xdotool mousemove_relative -- 0 -100
+    bindsym $hyper+l exec --no-startup-id xdotool mousemove_relative -- 100 0
+
+    bindsym y exec --no-startup-id xdotool mousemove_relative -- -10 0
+    bindsym u exec --no-startup-id xdotool mousemove_relative -- 0 10
+    bindsym i exec --no-startup-id xdotool mousemove_relative -- 0 -10
+    bindsym o exec --no-startup-id xdotool mousemove_relative -- 10 0
+
+    bindsym s exec --no-startup-id xdotool mousemove_relative -- -10 0
+    bindsym d exec --no-startup-id xdotool mousemove_relative -- 0 10
+    bindsym e exec --no-startup-id xdotool mousemove_relative -- 0 -10
+    bindsym f exec --no-startup-id xdotool mousemove_relative -- 10 0
+
+    bindsym space exec ~/Sync/scripts/cm.sh
+    bindsym $hyper+space exec ~/Sync/scripts/cm.sh
+
+    # clicks
+    bindsym n exec xdotool mousedown 1
+    bindsym b exec xdotool mouseup 1
+    bindsym m exec xdotool mousedown 2
+    bindsym comma exec xdotool mousedown 3
+
+    bindsym $hyper+n exec xdotool mousedown 1
+    bindsym $super+n exec xdotool mouseup 1
+
+    bindsym $hyper+m exec xdotool mousedown 2
+    bindsym $super+m exec xdotool mouseup 2
+
+    bindsym $hyper+comma exec xdotool mousedown 3
+    bindsym $super+comma exec xdotool mouseup 3
+
+    # toggle mouse mode
+    bindsym odiaeresis mode "mouse"
+
+    # back to default
+    bindsym BackSpace mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym q mode "default"
+    bindsym adiaeresis mode "default"
+
+    bindsym $hyper+odiaeresis mode "default"
+}
+bindsym $hyper+odiaeresis mode "mouse"
+
+bindsym $hyper+h exec --no-startup-id xdotool mousemove_relative -- -10 0
+bindsym $hyper+j exec --no-startup-id xdotool mousemove_relative -- 0 10
+bindsym $hyper+k exec --no-startup-id xdotool mousemove_relative -- 0 -10
+bindsym $hyper+l exec --no-startup-id xdotool mousemove_relative -- 10 0
+
+bindsym $hyper+$super+h exec --no-startup-id xdotool mousemove_relative -- -50 0
+bindsym $hyper+$super+j exec --no-startup-id xdotool mousemove_relative -- 0 50
+bindsym $hyper+$super+k exec --no-startup-id xdotool mousemove_relative -- 0 -50
+bindsym $hyper+$super+l exec --no-startup-id xdotool mousemove_relative -- 50 0
+
+bindsym $hyper+n exec xdotool click 1
+bindsym $hyper+m exec xdotool click 2
+bindsym $hyper+comma exec xdotool click 3
+
+#
+bindsym --release $hyper+aring exec --no-startup-id xdotool key bracketleft
+bindsym --release $hyper+dead_diaeresis exec --no-startup-id xdotool key bracketright
+#bindsym --release $hyper+aring exec xvkbd -xsendevent -text '['
+#bindsym --release $hyper+dead_diaeresis exec xvkbd -xsendevent -text ']'
+
 # switching to synergy screen
 # Server
 #bindsym $super+Home exec xte 'keydown Control_L' 'keydown Alt_L' 'keydown Super_L' 'keydown Shift_L' 'key Page_Up' 'keyup Control_L' 'keyup Alt_L' 'keyup Super_L' 'keyup Shift_L'
@@ -301,8 +452,8 @@ bindsym $super+End exec xte 'key Control_L' 'key Alt_L' 'key Super_L' 'key Super
 #bindsym $super+Page_Down exec xte 'keydown Control_L' 'keydown Alt_L' 'keydown Super_L' 'keydown Shift_L' 'key Page_Down' 'keyup Control_L' 'keyup Alt_L' 'keyup Super_L' 'keyup Shift_L'
 
 # transset-df
-bindsym $super+minus exec --no-startup-id "transset-df -a 0.1 --dec"
-bindsym $super+plus exec --no-startup-id "transset-df -a 0.1 --inc"
+#bindsym $super+minus exec --no-startup-id "transset-df -a 0.1 --dec"
+#bindsym $super+plus exec --no-startup-id "transset-df -a 0.1 --inc"
 #bindsym --release --whole-window $super+button9 exec --no-startup-id "transset-df -a 0.1 --inc"
 
 # resize window (you can also use the mouse for that)
@@ -313,11 +464,27 @@ mode "resize" {
     bindsym k resize shrink height 10 px or 10 ppt
     bindsym l resize grow width 10 px or 10 ppt
 
+    # TODO
+    bindsym y resize shrink width 10 px or 10 ppt
+    bindsym u resize grow height 10 px or 10 ppt
+    bindsym i resize shrink height 10 px or 10 ppt
+    bindsym o resize grow width 10 px or 10 ppt
+
     # same bindings, but for the arrow keys
     bindsym Left resize shrink width 10 px or 10 ppt
     bindsym Right resize grow width 10 px or 10 ppt
     bindsym Down resize grow height 10 px or 10 ppt
     bindsym Up resize shrink height 10 px or 10 ppt
+
+    bindsym shift+h resize shrink width 50 px or 50 ppt
+    bindsym shift+j resize grow height 50 px or 50 ppt
+    bindsym shift+k resize shrink height 50 px or 50 ppt
+    bindsym shift+l resize grow width 50 px or 50 ppt
+
+    bindsym control+h resize shrink width 100 px or 100 ppt
+    bindsym control+j resize grow height 100 px or 100 ppt
+    bindsym control+k resize shrink height 100 px or 100 ppt
+    bindsym control+l resize grow width 100 px or 100 ppt
 
     bindsym 1 resize set 150 px 150 px
     bindsym 2 resize set 300 px 250 px
@@ -330,8 +497,11 @@ mode "resize" {
     bindsym 9 resize set 1024 px 800 px
     bindsym 0 resize set 1200 px 1024 px
 
-    bindsym minus resize shrink width 20 px or 10 ppt ; resize shrink height 20 px or 10 ppt
-    bindsym plus resize grow width 20 px or 10 ppt ; resize grow height 20 px or 10 ppt
+    bindsym minus resize shrink width 20 px or 20 ppt ; resize shrink height 20 px or 20 ppt
+    bindsym plus resize grow width 20 px or 20 ppt ; resize grow height 20 px or 20 ppt
+
+    bindsym shift+minus resize shrink width 50 px or 50 ppt ; resize shrink height 50 px or 50 ppt
+    bindsym shift+plus resize grow width 50 px or 50 ppt ; resize grow height 50 px or 50 ppt
 
     bindsym BackSpace mode "default"
     bindsym Return mode "default"
@@ -368,6 +538,9 @@ mode "spacejam" {
     # toggle status bar
     bindsym m bar mode toggle
 
+    # move mouse/cursor to active windows center
+    bindsym $super+space exec ~/Sync/scripts/cm.sh ; mode "default"
+
     # redshift
     bindsym r exec --no-startup-id $Redshift; mode "default"
     bindsym shift+r exec pkill redshift; mode "default"
@@ -391,6 +564,7 @@ mode "spacejam" {
 mode "hyperjam" {
     bindsym l exec $Locker
     bindsym Return exec "terminator --geometry=900x540 || xfce4-terminal" ; mode "default"
+    bindsym $hyper+space exec ~/Sync/scripts/cm.sh ; mode "default"
     bindsym BackSpace mode "default"
     bindsym Escape mode "default"
     bindsym q mode "default"
@@ -480,16 +654,15 @@ mode "$mode_display" {
 #bindsym $super+x mode "$mode_display"
 
 # marks
-bindsym $super+m exec i3-input -F 'mark %s' -P 'mark: '
+bindsym $super+m exec i3-input -F 'mark --toggle %s' -P 'mark: '
 bindsym $super+g exec i3-input -F '[con_mark="%s"] focus' -P 'goto mark: '
-bindsym $super+apostrophe exec i3-input -F '[title="(?i)%s"] focus' -P 'goto title: '
 
-# å
-bindsym $super+aring exec i3-input -F '[con_mark="%s"] focus' -P 'å: '
-# ä
-bindsym $super+adiaeresis exec i3-input -F '[con_mark="%s"] focus' -P 'ä: '
-# ö
-bindsym $super+odiaeresis exec i3-input -F '[con_mark="%s"] focus' -P 'ö: '
+bindsym $super+odiaeresis exec i3-input -F '[title="(?i)%s"] focus' -P 'goto title: ' # super+ö
+bindsym $super+apostrophe exec i3-input -F '[class="(?i)%s"] focus' -P 'goto class: '
+bindsym $super+adiaeresis exec i3-input -F 'nop' -P "nop: $(xdotool getactivewindow getwindowname) [$(xdotool getactivewindow getwindowgeometry | rg Geometry | cut -d' ' -f4)]" # super+ä
+
+bindsym $super+aring exec i3-input -F 'nop' -P 'å: '
+bindsym $super+dead_diaeresis exec i3-input -F 'nop' -P "dead_diaeresis" # super+dead_diaeresis # right of å
 
 # autolock screen
 #xautolock -time 10 -locker "i3lock -i 'background_image.png'" &
