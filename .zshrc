@@ -14,6 +14,7 @@ lazy_source nvm $NVM_SOURCE
 # reload all open zsh .zshrc
 trap "source ~/.zshrc && rehash" USR1
 alias source_all="pkill -u $(whoami) -USR1 zsh"
+alias __="source ~/.zshrc"
 
 ZSH=$HOME/.oh-my-zsh
 unset TMOUT

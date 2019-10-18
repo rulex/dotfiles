@@ -27,7 +27,7 @@ fi
 xrdb ~/.Xdefaults
 
 # MOUSE
-#sh ~/.mouse.sh &
+#sh ~/dotfiles/.mouse.sh &
 
 # KEYBOARD
 #( sleep 2 && sh ~/dotfiles/.xmodmap ) &

@@ -173,7 +173,7 @@ alias tmuxmon='tmux \
     split-window -h -p 35 "NMON=ld nmon" \; \
     split-window -v "watch -d sensors" \; \
     select-pane -L \; \
-    split-window -v "journalctl -alf" \;'
+    split-window -v "journalctl -alf | ccze -m ansi" \;'
 
 alias netlisteners='lsof -i -P | grep LISTEN'
 alias g='git'
