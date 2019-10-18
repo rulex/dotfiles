@@ -143,6 +143,12 @@ hi  cssBraces             ctermfg=Cyan         ctermbg=NONE     cterm=NONE      
 hi  cssClassName          ctermfg=Cyan         ctermbg=NONE     cterm=NONE      gui=NONE guifg=Cyan         guibg=NONE
 hi  cssColor              ctermfg=Cyan         ctermbg=NONE     cterm=NONE      gui=NONE guifg=Cyan         guibg=NONE
 
+hi cCustomScope        ctermfg=Yellow      ctermbg=NONE      cterm=NONE      gui=NONE      guifg=Cyan       guibg=NONE
+hi cCustomClass        ctermfg=Yellow      ctermbg=NONE      cterm=NONE      gui=NONE      guifg=#90f0f3    guibg=NONE
+hi ccCustomClassName   ctermfg=Yellow      ctermbg=NONE      cterm=NONE      gui=NONE      guifg=#90f0f3    guibg=NONE
+hi cppSTLnamespace     ctermfg=Yellow      ctermbg=NONE      cterm=NONE      gui=NONE      guifg=#fd8020    guibg=NONE
+hi cppSTLconstant      ctermfg=Yellow      ctermbg=NONE      cterm=NONE      gui=NONE      guifg=#ff9090    guibg=NONE
+hi cppSTLios           ctermfg=Yellow      ctermbg=NONE      cterm=NONE      gui=NONE      guifg=Cyan       guibg=NONE
 
 hi MultipleSearch0 ctermfg=15 ctermbg=9  guifg=white guibg=red
 hi MultipleSearch1 ctermfg=0  ctermbg=11 guifg=black guibg=yellow
