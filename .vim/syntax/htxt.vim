@@ -20,7 +20,7 @@ syn match hAttention /\v^!+/
 syn match hSymbols /\v\|/
 "syn match hSymbols /\v\+/
 "syn match hSymbols /\v-/
-syn match hSymbols /\v\*/
+"syn match hSymbols /\v\*/
 syn match hSymbols /\v·/
 syn match hSymbols /\v-/
 syn match hSymbols /\v\^/
@@ -45,6 +45,7 @@ syn match hSymbols /\v\~/
 syn match hComment " #.*$"      contained  extend
 syn match hPath /\v[ ~]\/[A-z0-9.~\/-]*/
 syn match hDate /\v\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2}/ " 2017-09-19 14:03:18
+syn match hUnderline /_[A-z0-9\ ]+_/
 "syn match hCmdArg /\v\-/ contained
 "syn match hCmdArgVar /\v [\-]+[\-A-z]+ / contained
 "syn match hList /\v[\*\-·]/ contained
@@ -56,21 +57,16 @@ syn region hStringSingle start=+ '+   skip=+\\'+    end=+' \|$\|\n+       keepen
 "syn region hLongComment  start=+ #+                 end=+ #+              extend    contained
 syn region hLongComment  start=+ """+ skip=+\\"+    end=+ """+            keepend   contains=hCmd,hStringTick,hStringSingle,hSymbols
 syn region hCmd          start=' : '                end='$\|#\|\n'        keepend   contains=hComment,hStringTick,hStringDouble,hStringSingle,hSymbols
+syn region hStar         start=' \*'                end='\*\|\n'
+"syn region hUnderline   start=' _'                 end='_ \|\n'
 syn region hParentes     start='('     skip='\\)'   end='[\)\n]'
 syn region hBracketsSq   start='\['    skip='\\]'   end='[\]\n]'
 syn region hBracketsCur  start='{'     skip='\\}'   end='[}\n]'
 syn region hBracketsLes  start='<'     skip='\\>'   end='[>\n]'
 "syn region hIndented     start='^\s'   end='\n'      contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hParentes,hBracketsSq,hBracketsLes,hBracketsCur,hStringTick,hStringSingle,hStringDouble,hPath,hList,hLongComment
-syn region hList         start='^\s\*' end='\n'      contained    contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hStringTick,hStringSingle,hStringDouble,hPath
-syn region hList         start='^\s\-' end='\n'      contained    contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hStringTick,hStringSingle,hStringDouble,hPath
-syn region hList         start='^\s·'  end='\n'      contained    contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hStringTick,hStringSingle,hStringDouble,hPath
-syn region hList         start='^\s='  end='\n'      contained    contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hStringTick,hStringSingle,hStringDouble,hPath
-
-hi link hAttention   Todo
-hi link hTodo        Todo
-hi link hComment     Comment
-hi link hLongComment Comment
-hi link hPath        Directory
+"syn region hList         start='^\s*\*'             end=':\|\n'
+"syn region hList         start='^\s*\-'             end=':\|\n'
+"syn region hList         start='^\s*·'              end=':\|\n'
 
 
 hi Hyperlink     ctermfg=DarkGreen guifg=#999999      gui=NONE
@@ -90,6 +86,14 @@ hi hDate         ctermfg=White     guifg=White
 hi hIdentifier   ctermfg=Blue      guifg=DarkCyan
 hi hWork         ctermfg=Yellow    guifg=Yellow
 hi hList         ctermfg=NONE      guifg=DarkCyan    gui=bold
+hi hUnderline    ctermfg=NONE      guifg=NONE        gui=underline
 
+
+hi link hAttention   Todo
+hi link hTodo        Todo
+hi link hComment     Comment
+hi link hLongComment Comment
+hi link hPath        Directory
+hi link hStar        hWork
 
 let b:current_syntax = "htxt"
