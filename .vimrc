@@ -1110,7 +1110,8 @@ Plug 'lambdalisue/suda.vim'
 
 " syntax
 Plug 'vim-scripts/httplog'
-Plug 'ap/vim-css-color'
+"Plug 'ap/vim-css-color'
+Plug 'norcalli/nvim-colorizer.lua'
 Plug 'leafgarland/typescript-vim'
 Plug 'mfukar/robotframework-vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -1118,6 +1119,6 @@ Plug 'plasticboy/vim-markdown'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'Vimjas/vim-python-pep8-indent'
 "Plug 'coala/coala-vim'
-"
+
 call plug#end()
 
