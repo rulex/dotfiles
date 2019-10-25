@@ -758,6 +758,7 @@ vnoremap qq <Esc>`>a'<Esc>`<i'<Esc>
 vnoremap qq' <Esc>`>a'<Esc>`<i'<Esc>
 vnoremap qq" <Esc>`>a"<Esc>`<i"<Esc>
 vnoremap qq` <Esc>`>a`<Esc>`<i`<Esc>
+vnoremap qq* <Esc>`>a*<Esc>`<i*<Esc>
 vnoremap qq( <Esc>`>a)<Esc>`<i(<Esc>
 vnoremap qq[ <Esc>`>a]<Esc>`<i[<Esc>
 vnoremap qq{ <Esc>`>a}<Esc>`<i{<Esc>
