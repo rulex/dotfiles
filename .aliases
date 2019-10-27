@@ -150,6 +150,7 @@ alias -g T='| tail'
 alias -g R='| rg'
 alias -g X='| xargs -n1 -d"\n"'
 alias -g E='| nvim -'
+alias -g CC='| ccze'
 
 alias xterm='xterm -bg black -fg white'
 
