@@ -99,6 +99,32 @@ function es() {
     fi
 }
 
+function wordcount() {
+    local minwordlength=0
+    local files=()
+    while (($#>0)); do
+        case $1 in
+        -l|--minlength)
+            shift
+            minwordlength=${1}
+            shift;;
+        *)
+            files+=(${1})
+            shift;;
+        esac
+    done
+    sed -e 's/[^[:alpha:]]/ /g' ${files[@]} \
+        | tr '\n' " " \
+        | tr -s " " \
+        | tr " " '\n'\
+        | tr 'A-Z' 'a-z' \
+        | while read line ; do test ${#line} -ge ${minwordlength} && echo "${line}"; done \
+        | sort \
+        | uniq -c \
+        | sort -nr \
+        | nl
+}
+
 alias new_uuid='cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 32 | head -n 1'
 random-string() {
     cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${1:-32} | head -n 1
