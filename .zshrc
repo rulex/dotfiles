@@ -249,10 +249,8 @@ glf() {
     local out shas sha q k
     while out=$(
             #--format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
-        git log --graph --color=always \
-            --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen[%ci (%cr)] %C(bold blue)<%an>%Creset' --abbrev-commit |
-            fzf --ansi --multi --no-sort --reverse --query="${q}" --tiebreak=index \
-            --print-query --expect=ctrl-d,ctrl-o --toggle-sort=\`); do
+        git log --graph --color=always --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen[%ci (%cr)] %C(bold blue)<%an>%Creset' --abbrev-commit |
+            fzf --ansi --multi --no-sort --reverse --query="${q}" --tiebreak=index --print-query --expect=ctrl-d,ctrl-o --toggle-sort=\`); do
         q=$(head -1 <<< "${out}")
         k=$(head -2 <<< "${out}" | tail -1)
         shas=$(sed '1,2d;s/^[^a-z0-9]*//;/^$/d' <<< "${out}" | awk '{print $1}')
@@ -263,6 +261,28 @@ glf() {
             for sha in ${shas}; do
                 git show --color=always ${sha} | less -R
             done
+        fi
+    done
+}
+
+# lizf - liz fzf browser (enter for show, ctrl-d for diff, ` toggles sort)
+# ctrl-f to play
+lizf() {
+    local out q k
+    [ -z "${1}" ] || q="${1}"
+    while out=$(liz --nocolor -t . | fzf -s --ansi --multi --reverse --query="${q}" --tiebreak=index --print-query --expect=ctrl-d,ctrl-o,ctrl-f --toggle-sort=\`); do
+        q=$(head -1 <<< "${out}")
+        k=$(head -2 <<< "${out}" | tail -1)
+        filename=$( tail -1 <<< "${out}" | cut -d'|' -f4 | xargs )
+        if [ "${k}" = 'ctrl-d' ] || [ "${k}" = 'ctrl-o' ] || [ "${k}" = 'ctrl-f' ]; then
+            if [ "${k}" = 'ctrl-f' ]; then
+                url=$( liz --nocolor -z "${filename}" | cut -d'|' -f7 )
+                mpv "${url}"
+            else
+                echo "\nout=${out} q=${q} k=${k} filename='${filename}'" | less -e
+            fi
+        else
+            liz --nocolor -A "${filename}" | tr '|' '\n' | less -e
         fi
     done
 }

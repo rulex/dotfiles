@@ -384,6 +384,7 @@ function pushover() {
 }
 
 notify-preexec-hook() {
+    zsh_notifier_last_time="${zsh_notifier_time}"
     zsh_notifier_cmd="$1"
     zsh_notifier_time="$(date +%s.%N)"
 }

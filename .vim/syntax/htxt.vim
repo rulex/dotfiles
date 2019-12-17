@@ -14,8 +14,9 @@ syntax case match
 
 syn keyword hTodo TODO FIXME XXX NOTE
 syn keyword hIdentifier done
-syn keyword hWork hinjarv anvia elisa nokia
+"syn keyword hWork hinjarv anvia elisa nokia
 
+syn match hWork /\chinjarv\|anvia\|elisa\|nokia/
 syn match hAttention /\v^!+/
 syn match hSymbols /\v\|/
 "syn match hSymbols /\v\+/
@@ -56,7 +57,7 @@ syn region hStringDouble start=+"+    skip=+\\"|+   end=+"\|$\|\n+        keepen
 syn region hStringSingle start=+ '+   skip=+\\'+    end=+' \|$\|\n+       keepend
 "syn region hLongComment  start=+ #+                 end=+ #+              extend    contained
 syn region hLongComment  start=+ """+ skip=+\\"+    end=+ """+            keepend   contains=hCmd,hStringTick,hStringSingle,hSymbols
-syn region hCmd          start=' : '                end='$\|#\|\n'        keepend   contains=hComment,hStringTick,hStringDouble,hStringSingle,hSymbols
+syn region hCmd          start=' : \|cmd: '                end='$\|#\|\n'        keepend   contains=hComment,hStringTick,hStringDouble,hStringSingle,hSymbols
 syn region hStar         start=' \*'                end='\*\|\n'
 "syn region hUnderline   start=' _'                 end='_ \|\n'
 syn region hParentes     start='('     skip='\\)'   end='[\)\n]'

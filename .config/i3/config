@@ -238,27 +238,27 @@ bindsym $hyper+Shift+8 move container to workspace 18
 bindsym $hyper+Shift+9 move container to workspace 19
 bindsym $hyper+Shift+0 move container to workspace 20
 
-bindsym $hyper+F1  workspace 1  ; append_layout ~/.config/i3/workspace1.json ; workspace 1
-bindsym $hyper+F2  workspace 2  ; append_layout ~/.config/i3/workspace1.json ; workspace 2
-bindsym $hyper+F3  workspace 3  ; append_layout ~/.config/i3/workspace1.json ; workspace 3
-bindsym $hyper+F4  workspace 4  ; append_layout ~/.config/i3/workspace1.json ; workspace 4
-bindsym $hyper+F5  workspace 5  ; append_layout ~/.config/i3/workspace1.json ; workspace 5
-bindsym $hyper+F6  workspace 6  ; append_layout ~/.config/i3/workspace1.json ; workspace 6
-bindsym $hyper+F7  workspace 7  ; append_layout ~/.config/i3/workspace1.json ; workspace 7
-bindsym $hyper+F8  workspace 8  ; append_layout ~/.config/i3/workspace1.json ; workspace 8
-bindsym $hyper+F9  workspace 9  ; append_layout ~/.config/i3/workspace1.json ; workspace 9
-bindsym $hyper+F10 workspace 10 ; append_layout ~/.config/i3/workspace1.json ; workspace 10
+#bindsym $super+F1  append_layout ~/.config/i3/workspace1.json
+#bindsym $super+F2  append_layout ~/.config/i3/workspace2.json
+#bindsym $super+F3  append_layout ~/.config/i3/workspace3.json
+#bindsym $super+F4  append_layout ~/.config/i3/workspace4.json
+#bindsym $super+F5  append_layout ~/.config/i3/workspace5.json
+#bindsym $super+F6  append_layout ~/.config/i3/workspace6.json
+#bindsym $super+F7  append_layout ~/.config/i3/workspace7.json
+#bindsym $super+F8  append_layout ~/.config/i3/workspace8.json
+#bindsym $super+F9  append_layout ~/.config/i3/workspace9.json
+#bindsym $super+F10 append_layout ~/.config/i3/workspace10.json
 
-bindsym $hyper+Shift+F1  exec "i3-save-tree --workspace 1  > ~/.config/i3/workspace1.json"
-bindsym $hyper+Shift+F2  exec "i3-save-tree --workspace 2  > ~/.config/i3/workspace2.json"
-bindsym $hyper+Shift+F3  exec "i3-save-tree --workspace 3  > ~/.config/i3/workspace3.json"
-bindsym $hyper+Shift+F4  exec "i3-save-tree --workspace 4  > ~/.config/i3/workspace4.json"
-bindsym $hyper+Shift+F5  exec "i3-save-tree --workspace 5  > ~/.config/i3/workspace5.json"
-bindsym $hyper+Shift+F6  exec "i3-save-tree --workspace 6  > ~/.config/i3/workspace6.json"
-bindsym $hyper+Shift+F7  exec "i3-save-tree --workspace 7  > ~/.config/i3/workspace7.json"
-bindsym $hyper+Shift+F8  exec "i3-save-tree --workspace 8  > ~/.config/i3/workspace8.json"
-bindsym $hyper+Shift+F9  exec "i3-save-tree --workspace 9  > ~/.config/i3/workspace9.json"
-bindsym $hyper+Shift+F10 exec "i3-save-tree --workspace 10 > ~/.config/i3/workspace10.json"
+#bindsym $super+Shift+F1  exec "i3-save-tree --workspace 1  > ~/.config/i3/workspace1.json"
+#bindsym $super+Shift+F2  exec "i3-save-tree --workspace 2  > ~/.config/i3/workspace2.json"
+#bindsym $super+Shift+F3  exec "i3-save-tree --workspace 3  > ~/.config/i3/workspace3.json"
+#bindsym $super+Shift+F4  exec "i3-save-tree --workspace 4  > ~/.config/i3/workspace4.json"
+#bindsym $super+Shift+F5  exec "i3-save-tree --workspace 5  > ~/.config/i3/workspace5.json"
+#bindsym $super+Shift+F6  exec "i3-save-tree --workspace 6  > ~/.config/i3/workspace6.json"
+#bindsym $super+Shift+F7  exec "i3-save-tree --workspace 7  > ~/.config/i3/workspace7.json"
+#bindsym $super+Shift+F8  exec "i3-save-tree --workspace 8  > ~/.config/i3/workspace8.json"
+#bindsym $super+Shift+F9  exec "i3-save-tree --workspace 9  > ~/.config/i3/workspace9.json"
+#bindsym $super+Shift+F10 exec "i3-save-tree --workspace 10 > ~/.config/i3/workspace10.json"
 
 # move workspace
 bindsym $super+Shift+Left move workspace to output left
@@ -335,8 +335,11 @@ mode "mouse" {
     bindsym e exec xdotool mousemove_relative -- 0 -10
     bindsym f exec xdotool mousemove_relative -- 10 0
 
-    bindsym space exec ~/Sync/scripts/cm.sh
-    bindsym $hyper+space exec ~/Sync/scripts/cm.sh
+    # goto position
+    bindsym space exec ~/Sync/scripts/m.sh center
+    bindsym $hyper+space exec ~/Sync/scripts/m.sh topleft
+    bindsym c exec ~/Sync/scripts/m.sh center
+    bindsym t exec ~/Sync/scripts/m.sh topleft
 
     # clicks
     bindsym n exec xdotool click 1
@@ -355,12 +358,38 @@ mode "mouse" {
     # toggle mouse2x
     bindsym odiaeresis mode "mouse2x"
 
+    # i3 mouse marks?
+    bindsym control+g exec ~/Sync/scripts/m.sh mark g
+    bindsym g exec ~/Sync/scripts/m.sh gotomark g
+
+    bindsym control+1 exec ~/Sync/scripts/m.sh mark 1
+    bindsym 1 exec ~/Sync/scripts/m.sh gotomark 1
+    bindsym control+2 exec ~/Sync/scripts/m.sh mark 2
+    bindsym 2 exec ~/Sync/scripts/m.sh gotomark 2
+    bindsym control+3 exec ~/Sync/scripts/m.sh mark 3
+    bindsym 3 exec ~/Sync/scripts/m.sh gotomark 3
+    bindsym control+4 exec ~/Sync/scripts/m.sh mark 4
+    bindsym 4 exec ~/Sync/scripts/m.sh gotomark 4
+    bindsym control+5 exec ~/Sync/scripts/m.sh mark 5
+    bindsym 5 exec ~/Sync/scripts/m.sh gotomark 5
+    bindsym control+6 exec ~/Sync/scripts/m.sh mark 6
+    bindsym 6 exec ~/Sync/scripts/m.sh gotomark 6
+    bindsym control+7 exec ~/Sync/scripts/m.sh mark 7
+    bindsym 7 exec ~/Sync/scripts/m.sh gotomark 7
+    bindsym control+8 exec ~/Sync/scripts/m.sh mark 8
+    bindsym 8 exec ~/Sync/scripts/m.sh gotomark 8
+    bindsym control+9 exec ~/Sync/scripts/m.sh mark 9
+    bindsym 9 exec ~/Sync/scripts/m.sh gotomark 9
+    bindsym control+10 exec ~/Sync/scripts/m.sh mark 10
+    bindsym 10 exec ~/Sync/scripts/m.sh gotomark 10
+
     # back to default
     bindsym BackSpace mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
     bindsym q mode "default"
     bindsym adiaeresis mode "default"
+    bindsym control+bracketleft mode "default"
 
     bindsym $hyper+odiaeresis mode "default"
     bindsym $super+odiaeresis mode "default"
@@ -388,8 +417,11 @@ mode "mouse2x" {
     bindsym e exec --no-startup-id xdotool mousemove_relative -- 0 -10
     bindsym f exec --no-startup-id xdotool mousemove_relative -- 10 0
 
-    bindsym space exec ~/Sync/scripts/cm.sh
-    bindsym $hyper+space exec ~/Sync/scripts/cm.sh
+    # goto position
+    bindsym space exec ~/Sync/scripts/m.sh center
+    bindsym $hyper+space exec ~/Sync/scripts/m.sh topleft
+    bindsym c exec ~/Sync/scripts/m.sh center
+    bindsym t exec ~/Sync/scripts/m.sh topleft
 
     # clicks
     bindsym n exec xdotool mousedown 1
@@ -409,12 +441,38 @@ mode "mouse2x" {
     # toggle mouse mode
     bindsym odiaeresis mode "mouse"
 
+    # i3 mouse marks?
+    bindsym control+g exec ~/Sync/scripts/m.sh mark g
+    bindsym g exec ~/Sync/scripts/m.sh gotomark g
+
+    bindsym control+1 exec ~/Sync/scripts/m.sh mark 1
+    bindsym 1 exec ~/Sync/scripts/m.sh gotomark 1
+    bindsym control+2 exec ~/Sync/scripts/m.sh mark 2
+    bindsym 2 exec ~/Sync/scripts/m.sh gotomark 2
+    bindsym control+3 exec ~/Sync/scripts/m.sh mark 3
+    bindsym 3 exec ~/Sync/scripts/m.sh gotomark 3
+    bindsym control+4 exec ~/Sync/scripts/m.sh mark 4
+    bindsym 4 exec ~/Sync/scripts/m.sh gotomark 4
+    bindsym control+5 exec ~/Sync/scripts/m.sh mark 5
+    bindsym 5 exec ~/Sync/scripts/m.sh gotomark 5
+    bindsym control+6 exec ~/Sync/scripts/m.sh mark 6
+    bindsym 6 exec ~/Sync/scripts/m.sh gotomark 6
+    bindsym control+7 exec ~/Sync/scripts/m.sh mark 7
+    bindsym 7 exec ~/Sync/scripts/m.sh gotomark 7
+    bindsym control+8 exec ~/Sync/scripts/m.sh mark 8
+    bindsym 8 exec ~/Sync/scripts/m.sh gotomark 8
+    bindsym control+9 exec ~/Sync/scripts/m.sh mark 9
+    bindsym 9 exec ~/Sync/scripts/m.sh gotomark 9
+    bindsym control+10 exec ~/Sync/scripts/m.sh mark 10
+    bindsym 10 exec ~/Sync/scripts/m.sh gotomark 10
+
     # back to default
     bindsym BackSpace mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
     bindsym q mode "default"
     bindsym adiaeresis mode "default"
+    bindsym control+bracketleft mode "default"
 
     bindsym $hyper+odiaeresis mode "default"
 }
@@ -433,6 +491,10 @@ bindsym $hyper+$super+l exec --no-startup-id xdotool mousemove_relative -- 50 0
 bindsym $hyper+n exec xdotool click 1
 bindsym $hyper+m exec xdotool click 2
 bindsym $hyper+comma exec xdotool click 3
+
+bindsym $hyper+$super+n exec xdotool click 1
+bindsym $hyper+$super+m exec xdotool click 2
+bindsym $hyper+$super+comma exec xdotool click 3
 
 #
 bindsym --release $hyper+aring exec --no-startup-id xdotool key bracketleft
@@ -507,17 +569,20 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
     bindsym q mode "default"
+    bindsym control+bracketleft mode "default"
 }
 
 set $Locker "maim /tmp/screen_locked.png ; mogrify -scale 10% -scale 1000% /tmp/screen_locked.png ; i3lock -E ~/Sync/scripts/wrongpass.sh -i /tmp/screen_locked.png ; i3-msg mode default"
 set $Redshift redshift -l 60.20:24.75 -t 5700:3500 -g 0.8 -m randr
 set $Dunst dunst -config ~/dotfiles/.config/dunst/dunstrc
+set $Xidlehook "xidlehook --not-when-fullscreen --timer 590 \\"xrandr | rg ' connected ' | cut -d' ' -f1 | xargs -n1 -d'\n' -i xrandr --output {} --brightness 0.5\\" \\"\\" --timer 10 \\"i3lock -E ~/Sync/scripts/wrongpass.sh -i /tmp/screen_locked.png\\" \\"\\" "
 
 mode "spacejam" {
     bindsym e exec "pcmanfm || thunar" ; mode "default"
     #bindsym r mode "resize"
     #bindsym v split v; mode "default"
     #bindsym h split h; mode "default"
+
     # composition
     bindsym j exec "compton -CGb" ; mode "default"
     bindsym k exec "pkill compton" ; mode "default"
@@ -539,7 +604,7 @@ mode "spacejam" {
     bindsym m bar mode toggle
 
     # move mouse/cursor to active windows center
-    bindsym $super+space exec ~/Sync/scripts/cm.sh ; mode "default"
+    bindsym $super+space exec ~/Sync/scripts/m.sh center ; mode "default"
 
     # redshift
     bindsym r exec --no-startup-id $Redshift; mode "default"
@@ -547,30 +612,42 @@ mode "spacejam" {
 
     # screensaver
     #exec --no-startup-id xautolock -time 10 -locker "i3lock -E ~/Sync/scripts/wrongpass.sh -i /tmp/screen_locked.png"
-    bindsym x exec --no-startup-id xautolock -time 10 -locker "i3lock -E ~/Sync/scripts/wrongpass.sh -i /tmp/screen_locked.png"; mode "default"
-    bindsym shift+x exec pkill xautolock; mode "default"
+    #bindsym x exec --no-startup-id xautolock -time 10 -locker "i3lock -E ~/Sync/scripts/wrongpass.sh -i /tmp/screen_locked.png"; mode "default"
+    #bindsym shift+x exec pkill xautolock; mode "default"
+    bindsym x exec --no-startup-id $Xidlehook ; mode "default"
+    bindsym shift+x exec pkill xidlehook ; mode "default"
 
     # monitor stuff
     bindsym h exec ~/Sync/scripts/monitors.sh h
     bindsym shift+h exec ~/Sync/scripts/monitors.sh H
     bindsym w exec ~/Sync/scripts/monitors.sh w
 
+    # mouse marks
+    bindsym control+g exec ~/Sync/scripts/m.sh g ; mode "default"
+    bindsym $super+g exec ~/Sync/scripts/m.sh g ; mode "default"
+    bindsym g exec ~/Sync/scripts/m.sh goto g ; mode "default"
+
     bindsym Return exec "termite || xfce4-terminal" ; mode "default"
     bindsym BackSpace mode "default"
     bindsym Escape mode "default"
     bindsym q mode "default"
+    bindsym control+bracketleft mode "default"
 }
 
 mode "hyperjam" {
     bindsym l exec $Locker
+
     bindsym Return exec "terminator --geometry=900x540 || xfce4-terminal" ; mode "default"
-    bindsym $hyper+space exec ~/Sync/scripts/cm.sh ; mode "default"
+
+    bindsym $hyper+space exec ~/Sync/scripts/m.sh topleft ; mode "default"
+
     bindsym BackSpace mode "default"
     bindsym Escape mode "default"
     bindsym q mode "default"
+    bindsym control+bracketleft mode "default"
 }
 
-bindsym $super+b border toggle
+#bindsym $super+b border toggle
 #bindsym $super+shift+b border 1px
 
 bindsym $super+space mode "spacejam"
@@ -636,6 +713,7 @@ mode "$mode_system" {
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym control+bracketleft mode "default"
 }
 bindsym $super+F12 mode "$mode_system"
 
@@ -649,6 +727,7 @@ mode "$mode_display" {
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym control+bracketleft mode "default"
 }
 # Declare here the shortcut to bring the display selection menu
 #bindsym $super+x mode "$mode_display"
@@ -660,12 +739,10 @@ bindsym $super+g exec i3-input -F '[con_mark="%s"] focus' -P 'goto mark: '
 bindsym $super+odiaeresis exec i3-input -F '[title="(?i)%s"] focus' -P 'goto title: ' # super+ö
 bindsym $super+apostrophe exec i3-input -F '[class="(?i)%s"] focus' -P 'goto class: '
 bindsym $super+adiaeresis exec i3-input -F 'nop' -P "nop: $(xdotool getactivewindow getwindowname) [$(xdotool getactivewindow getwindowgeometry | rg Geometry | cut -d' ' -f4)]" # super+ä
+#bindsym $super+adiaeresis exec i3-input -F '' -P 'mouse mark: '
 
 bindsym $super+aring exec i3-input -F 'nop' -P 'å: '
 bindsym $super+dead_diaeresis exec i3-input -F 'nop' -P "dead_diaeresis" # super+dead_diaeresis # right of å
-
-# autolock screen
-#xautolock -time 10 -locker "i3lock -i 'background_image.png'" &
 
 #exec --no-startup-id xfce4-panel --disable-wm-check
 exec --no-startup-id pasystray
@@ -682,7 +759,8 @@ exec --no-startup-id $Redshift
 exec --no-startup-id sh ~/Sync/scripts/synergy.sh
 
 # screensaver
-exec --no-startup-id xautolock -time 10 -locker "i3lock -E ~/Sync/scripts/wrongpass.sh -i /tmp/screen_locked.png"
+#exec --no-startup-id xautolock -time 10 -locker "i3lock -E ~/Sync/scripts/wrongpass.sh -i /tmp/screen_locked.png"
+exec --no-startup-id $Xidlehook
 
 # vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4 smarttab :
 

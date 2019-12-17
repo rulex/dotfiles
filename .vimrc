@@ -95,6 +95,17 @@ set scrolljump=1        " lines to scroll when cursor leaves screen
 set scrolloff=3         " minimum lines to keep above and below cursor
 set laststatus=2        " show statusline allways
 
+function! AltCommand(path, vim_command)
+    let l:alternate = system("alt " . a:path)
+    if empty(l:alternate)
+        echo "No alternate file for " . a:path . " exists!"
+    else
+        exec a:vim_command . " " . l:alternate
+    endif
+endfunction
+" Find the alternate file for the current path and open it
+nnoremap <leader>. :w<CR>:call AltCommand(expand('%'), ':e')<CR>
+
 "set shellcmdflag=-ic " FIXME https://github.com/robbyrussell/oh-my-zsh/issues/4174#issuecomment-125615443
 
 " Get Neomake Jobs count for statusline
@@ -349,20 +360,23 @@ nnoremap <leader>l <Esc>:echo join(["
             \fuzzy finder fzf\n\n
             \ll :Lines\n
             \lb :BLines\n
+            \lg :GFiles?\n
             \"], '')<CR>
 nnoremap <leader>ll <Esc>:Lines<CR>
 nnoremap <leader>lb <Esc>:BLines<CR>
+nnoremap <leader>lg <Esc>:GFiles?<CR>
 command! -bang -nargs=* Rg
             \ call fzf#vim#grep(
-            \   'rg --column --line-number --no-heading --color=always '
+            \   'rg --column --line-number --no-heading --color=always --smart-case '
             \ . <q-args>, 1,
             \   <bang>0 ? fzf#vim#with_preview('up:60%')
             \           : fzf#vim#with_preview('right:50%:hidden', '?'),
             \   <bang>0)
+nnoremap <leader>* "syiw:Rg <C-r>s<CR>
 imap <c-f><c-l> <plug>(fzf-complete-line)
 imap <c-f><c-k> <plug>(fzf-complete-word)
 imap <c-f><c-g> <plug>(fzf-complete-path)
-imap <c-f><c-j> <plug>(fzf-complete-file-ag)
+imap <c-f><c-j> <plug>(fzf-complete-file)
 
 " ultisnips
 let g:UltiSnipsExpandTrigger="<c-f><c-f>"
@@ -375,6 +389,10 @@ let g:UltiSnipsEditSplit="vertical"
 "nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
 command! CD :lcd %:p:h
 nnoremap gC :lcd %:p:h<CR>:pwd<CR>
+nnoremap g.u :cd ..<CR>:pwd<CR>
+nnoremap g.U :cd ~<CR>:pwd<CR>
+nnoremap g. :pwd<CR>
+nnoremap g.. :pwd<CR>
 
 function! InsertIfEmpty()
     if @% == ""
@@ -500,11 +518,17 @@ nnoremap <leader>9 <Esc>:b 9<CR>
 nnoremap <leader>0 <Esc>:b
 
 nnoremap <leader><CR> <Esc>:Neomake<CR>
-nnoremap <leader>m <Esc>:Neomake<CR>
+nnoremap <leader>m <Esc>:echo "
+            \mg gcc\n
+            \mc clang\n
+            \ml NeomakeListJobs\n
+            \mm NeomakeCancelJobs\n
+            \mM NeomakeToggle"<CR>
 nnoremap <leader>mg <Esc>:Neomake gcc<CR>
 nnoremap <leader>mc <Esc>:Neomake clang<CR>
 nnoremap <leader>ml <Esc>:NeomakeListJobs<CR>
 nnoremap <leader>mm <Esc>:NeomakeCancelJobs<CR>
+nnoremap <leader>mM <Esc>:NeomakeToggle<CR>
 "nnoremap <leader>m <Esc>:echo printf("todo")
 " switch syntastic/Neomake standards
 
@@ -869,6 +893,11 @@ let g:neomake_highlight_lines = 0
 
 let g:neomake_php_phpcs_args_standard = 'PSR1'
 
+let g:neomake_cpp_lint_maker = {
+            \ 'exe': 'python2',
+            \ 'args': ['../liboam/packages/cpplint/cpplint.py', '--filter=-build/header_guard,-legal/copyright'],
+            \ }
+
 "let g:neomake_javascript_enabled_makers = ['eslint']
 
 " neomake syntax highlights
@@ -918,14 +947,14 @@ set foldtext=CustomFoldText()
 let g:badwolf_html_link_underline = 0
 
 if has("autocmd")
-    " change dir to file
-    "au VimEnter * call InsertIfEmpty()
-    autocmd VimEnter * silent! cd %:p:h
+    "let ftToIgnore = ['htxt']
+    "autocmd BufWritePre * if index(ftToIgnore, &ft) < 0 | set ... | endif
+    autocmd VimEnter * silent! cd %:p:h " change dir to file
     autocmd FileType diff,gitcommit set foldnestmax=0
     autocmd BufEnter *.ctp set syn=php
     autocmd BufEnter *.phtml set syn=php
     autocmd BufEnter COMMIT_EDITMSG set foldnestmax=0
-    autocmd BufEnter h.txt,todo.md set syn=htxt nowrap foldnestmax=1
+    autocmd BufEnter h.txt,todo.md,.a.log set syn=htxt nowrap foldnestmax=1
     autocmd BufEnter startup_*.log* set syn=mzoamlog nowrap foldnestmax=1
     "autocmd BufEnter *.json set tabstop=2 softtabstop=2 shiftwidth=2
 
@@ -1097,7 +1126,7 @@ Plug 'scrooloose/nerdcommenter' " comments
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
 "Plug 'vim-scripts/MultipleSearch2.vim'
-Plug 'vim-scripts/MultipleSearch'
+"Plug 'vim-scripts/MultipleSearch'
 
 " Plug 'mhinz/vim-startify' " the fancy start screen
 
@@ -1116,7 +1145,7 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'leafgarland/typescript-vim'
 Plug 'mfukar/robotframework-vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'plasticboy/vim-markdown'
+"Plug 'plasticboy/vim-markdown'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'Vimjas/vim-python-pep8-indent'
 "Plug 'coala/coala-vim'
