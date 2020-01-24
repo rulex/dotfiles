@@ -14,7 +14,11 @@ lazy_source nvm $NVM_SOURCE
 # reload all open zsh .zshrc
 trap "source ~/.zshrc && rehash" USR1
 alias source_all="pkill -u $(whoami) -USR1 zsh"
-alias __="source ~/.zshrc"
+#alias __="source ~/.zshrc"
+__() {
+    echo "sourcing .zshrc"
+    source ~/.zshrc
+}
 
 ZSH=$HOME/.oh-my-zsh
 unset TMOUT
@@ -85,6 +89,8 @@ export LC_MESSAGES="en_US.UTF-8"
 # set terminal for i3
 export TERMINAL="termite"
 
+export BROWSER=/usr/bin/firefox
+
 #export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 export FZF_DEFAULT_COMMAND='find .'
 
@@ -107,6 +113,7 @@ else
     export VISUAL="vi"
     export SUDO_EDITOR="vi"
 fi
+export SYSTEMD_PAGER=''
 
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"
@@ -293,11 +300,23 @@ ch() {
     cols=$(( COLUMNS / 3 ))
     sep='{::}'
     cp -f ~/.config/chromium/Default/History /tmp/chrome-history
-    sqlite3 -separator $sep /tmp/chrome-history \
-        "select substr(title, 1, $cols), url from urls order by last_visit_time desc" |
-        awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
+    sqlite3 -separator ${sep} /tmp/chrome-history \
+        "select substr(title, 1, ${cols}), url from urls order by last_visit_time desc" |
+        awk -F ${sep} '{printf "%-'${cols}'s  \x1b[36m%s\x1b[m\n", $1, $2}' |
         fzf --ansi --multi --no-hscroll --tiebreak=begin |
-        sed 's#.*\(https*://\)#\1#' | xargs firefox
+        sed 's#.*\(https*://\)#\1#' | xargs ~/Sync/scripts/cpurl.sh
+}
+
+fxh() {
+    local cols sep
+    cols=$(( COLUMNS / 3 ))
+    sep='{::}'
+    cp -f ~/.mozilla/firefox/xdf9aq1o.dev-edition-default-1528026732811/places.sqlite /tmp/places.sqlite
+    sqlite3 -separator ${sep} /tmp/places.sqlite \
+        "select substr(title, 1, ${cols}), url from moz_places order by last_visit_date desc" |
+        awk -F ${sep} '{printf "%-'${cols}'s  \x1b[36m%s\x1b[m\n", $1, $2}' |
+        fzf --ansi --multi --no-hscroll --tiebreak=begin |
+        sed 's#.*\(https*://\)#\1#' | xargs ~/Sync/scripts/cpurl.sh
 }
 
 # fda - including hidden directories
