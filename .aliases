@@ -218,7 +218,7 @@ alias -g X='| xargs -n1 -d"\n"'
 alias -g E='| nvim -'
 alias -g CC='| ccze'
 alias -g TS='| while IFS= read -r line; do printf "[%s] %s\n" "$(date "+%Y-%m-%d %H:%M:%S.%N")" "$line"; done'
-alias -g TSC='| while IFS= read line; do printf "[%s] %s\n" "${C_YELLOW}$(date "+%Y-%m-%d %H:%M:%S.%N")${C_N}" "$line"; done'
+alias -g TSC='| while IFS= read line; do echo -e "[${C_YELLOW}$(date "+%Y-%m-%d %H:%M:%S.%N")${C_N}] ${line}" ; done'
 
 alias xterm='xterm -bg black -fg white'
 
