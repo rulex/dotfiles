@@ -16,7 +16,7 @@ syn keyword hTodo TODO FIXME XXX NOTE
 syn keyword hIdentifier done
 "syn keyword hWork hinjarv anvia elisa nokia
 
-syn match hWork /\chinjarv\|anvia\|elisa\|nokia/
+syn match hWork /\chinjarv\|hinjärv\|anvia\|elisa\|nokia/
 syn match hAttention /\v^!+/
 syn match hSymbols /\v\|/
 "syn match hSymbols /\v\+/
@@ -24,16 +24,17 @@ syn match hSymbols /\v\|/
 "syn match hSymbols /\v\*/
 syn match hSymbols /\v·/
 syn match hSymbols /\v-/
+syn match hSymbols /\v\+/
 syn match hSymbols /\v\^/
 syn match hSymbols /\v#/
-syn match hSymbols /\v#[A-z0-9]+/
+syn match hSymbols /\v#[A-ö0-9]+/
 syn match hSymbols /\v:/
 syn match hSymbols /\v;/
 syn match hSymbols /\v\{/
 syn match hSymbols /\v\}/
 syn match hSymbols /\v\=/
-syn match hSymbols /\v\[/
-syn match hSymbols /\v\]/
+"syn match hSymbols /\v\[/
+"syn match hSymbols /\v\]/
 syn match hSymbols /\v\(/
 syn match hSymbols /\v\)/
 syn match hSymbols /\v\</
@@ -41,12 +42,13 @@ syn match hSymbols /\v\>/
 syn match hSymbols /\v\$/
 syn match hSymbols /\v\€/
 syn match hSymbols /\v\@/
-syn match hSymbols /\v\@[A-z0-9]+/
+syn match hSymbols /\v\@[A-ö0-9]+/
 syn match hSymbols /\v\~/
 syn match hComment " #.*$"      contained  extend
-syn match hPath /\v[ ~]\/[A-z0-9.~\/-]*/
+syn match hPath /\v[ ~]\/[A-ö0-9.~\/-]*/
 syn match hDate /\v\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2}/ " 2017-09-19 14:03:18
-syn match hUnderline /_[A-z0-9\ ]+_/
+syn match hUnderline /_[A-ö0-9\ ]+_/
+"syn match hSymbols /v[·x\-v ]/
 "syn match hCmdArg /\v\-/ contained
 "syn match hCmdArgVar /\v [\-]+[\-A-z]+ / contained
 "syn match hList /\v[\*\-·]/ contained
@@ -61,7 +63,7 @@ syn region hCmd          start=' : \|cmd: '                end='$\|#\|\n'       
 syn region hStar         start=' \*'                end='\*\|\n'
 "syn region hUnderline   start=' _'                 end='_ \|\n'
 syn region hParentes     start='('     skip='\\)'   end='[\)\n]'
-syn region hBracketsSq   start='\['    skip='\\]'   end='[\]\n]'
+syn region hBracketsSq   start='\['    skip='\\]'   end='[\]\n]'          contains=hSymbols
 syn region hBracketsCur  start='{'     skip='\\}'   end='[}\n]'
 syn region hBracketsLes  start='<'     skip='\\>'   end='[>\n]'
 "syn region hIndented     start='^\s'   end='\n'      contains=hSymbols,hCmd,hStringTick,hTodo,hIdentifier,hWork,hParentes,hBracketsSq,hBracketsLes,hBracketsCur,hStringTick,hStringSingle,hStringDouble,hPath,hList,hLongComment

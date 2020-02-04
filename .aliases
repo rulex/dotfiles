@@ -31,6 +31,7 @@ function dt() {
             echo " dt p <d1>       pretty print d1 since"
             echo " dt <d1> <d2>    print d1 & d2 diff"
         elif [[ $1 == "w" ]]; then
+            # now + week
             date +"%Y-%m-%d %H:%M:%S W%V"
         else
             # pretty print input unix ts
@@ -51,16 +52,16 @@ function cheat() {
     curl "cht.sh/${1}"
 }
 
-function fx() {
-    firefox --new-instance --profile "$(mktemp -d /tmp/fx.XXX)"
-}
+#function fx() {
+    #firefox --new-instance --profile "$(mktemp -d /tmp/fx.XXX)"
+#}
 
 function fxn() {
     firefox-nightly --new-instance --profile "$(mktemp -d /tmp/fxn.XXX)"
 }
 
 function fxd() {
-    firefox-nightly --new-instance --profile "$(mktemp -d /tmp/fxd.XXX)"
+    firefox-developer-edition --new-instance --profile "$(mktemp -d /tmp/fxd.XXX)"
 }
 
 #function say() {
@@ -151,12 +152,51 @@ function pwatch() {
 alias f='find'
 function fn() {
     if [[ $# -eq 0 ]]; then
-        echo "fn <filename> [directory] [options]"
+        echo "fn <${C_YELLOW}Filename to search for${C_N}> [${C_DARKGRAY}limit search to Path${C_N}] [${C_DARKGRAY}find options${C_N}]"
+        echo "  example: 'fn asdf /home -type f' would be 'find /home -iname '*asdf*' -type f'"
         return 1
     elif [[ $# -eq 1 ]]; then
-        find . -iname "*${1}*"
-    elif [[ $# -ge 1 ]]; then
-        find ${2} -iname "*${1}*" ${@:3}
+        find ${2:-.} -iname "*${1}*"
+    elif [[ $# -ge 2 ]]; then
+        _file="${1}"
+        shift
+        _path="${1}"
+        shift
+        params=()
+        local FZF=""
+        local FZFW="up:50%"
+        # handle non 'find' params?
+        while (($#>0)); do
+            case $1 in
+                --F|--FZF)
+                    shift
+                    FZF="${1}"
+                    shift;;
+                --W|--FZFW)
+                    shift
+                    FZFW="${1}"
+                    shift;;
+                --f|--fzf)
+                    FZF="file {}"
+                    FZFW="down:1"
+                    shift;;
+                --h|--head)
+                    FZF="file {} ; head {}"
+                    shift;;
+                --t|--tail)
+                    FZF="tail {}"
+                    shift;;
+                *)
+                    params+=(${1})
+                    shift;;
+            esac
+        done
+        _CMD="find ${_path:-.} -iname '*${_file:-.}*' ${params}"
+        if [ "${FZF}" != "" ]; then
+            eval ${_CMD} | fzf --bind \?:toggle-preview --preview "${FZF}" --preview-window "${FZFW}"
+            return 0
+        fi
+        eval ${_CMD}
     fi
 }
 
@@ -169,7 +209,7 @@ compdef _fn fn
 alias grep='grep --color=auto'
 alias rg='rg --no-ignore'
 alias egrep='egrep --color=auto'
-alias -g align='sed -e "s#¤#|#" -e "s#:#¤#" | column -t -s "¤" -o " | "'
+#alias -g align='sed -e "s#¤#|#" -e "s#:#¤#" | column -t -s "¤" -o " | "'
 alias -g H='| head'
 alias -g T='| tail'
 #alias -g G='| rg'
@@ -177,6 +217,8 @@ alias -g R='| rg'
 alias -g X='| xargs -n1 -d"\n"'
 alias -g E='| nvim -'
 alias -g CC='| ccze'
+alias -g TS='| while IFS= read -r line; do printf "[%s] %s\n" "$(date "+%Y-%m-%d %H:%M:%S.%N")" "$line"; done'
+alias -g TSC='| while IFS= read line; do printf "[%s] %s\n" "${C_YELLOW}$(date "+%Y-%m-%d %H:%M:%S.%N")${C_N}" "$line"; done'
 
 alias xterm='xterm -bg black -fg white'
 
@@ -263,7 +305,7 @@ function A() {
     if dbus-send --session --dest=org.freedesktop.DBus --type=method_call --print-reply /org/freedesktop/DBus org.freedesktop.DBus.ListNames | grep -q org.freedesktop.Notifications;then
         notify-send -t 10000 -a A-Notice ${txt}
     else
-        echo "  A(): no org.freedesktop.DBus"
+        echo "  ${C_YELLOW}A(): ${C_RED}no org.freedesktop.DBus"
     fi
     # tmux display-message
     # TODO some tmux check if we are @localhost or remote
@@ -274,7 +316,7 @@ function A() {
         local _config=~/.pushover.sh
         # check if config exists
         if [ ! -f ${_config} ]; then
-            echo "  A(): Config file ${_config} does not exist."
+            echo "  ${C_YELLOW}A(): ${C_RED}Config file ${_config} does not exist."
             return 1
         fi
         # source config
@@ -284,14 +326,14 @@ function A() {
         if [[ -v pushover_userkey && -v pushover_apitoken ]]; then
             true
         else
-            echo "  A(): pushover_userkey or pushover_apitoken is not set"
+            echo "  ${C_YELLOW}A(): ${C_N}pushover_userkey or pushover_apitoken is not set"
             return 2
         fi
         if [[ "$1" == "P" ]];then
             local notify_timeout=10
             # clear the cmd
             zsh_notifier_cmd=
-            echo "  A(): Ctrl+C to cancel, Enter to continue or wait ${notify_timeout}s"
+            echo "  ${C_YELLOW}A(): ${C_RED}Ctrl+C${C_N} to cancel, Enter to continue or wait ${notify_timeout}s"
             read -t ${notify_timeout} input_str
         fi
         # make post data and post to pushover
@@ -306,10 +348,14 @@ function A() {
         if [ $? -eq 0 ]; then
             return 0
         else
-            echo "  A(): Failed to deliver message to pushover.net"
+            echo "  ${C_YELLOW}A(): ${C_RED}Failed to deliver message to pushover.net"
             return 3
         fi
     fi
+}
+
+function current_monitor() {
+    i3-msg -t get_workspaces | jq ".[] | .focused , .output" | paste - - | rg ^true | awk '{print $2}' | sed 's/"//g'
 }
 
 function pushover-img() {
@@ -335,6 +381,15 @@ function pushover-img() {
     fi
 }
 
+function ht() {
+    # TODO ...
+    match="${1:-TODO}"
+    lines="$(rg -N --colors "match:fg:cyan" "${match}" ~/Sync/h.txt)"
+    echo "${lines}" | rg --colors "match:fg:cyan" "${match}"
+    echo
+    echo "Total lines: $(echo ${lines} | wc -l)"
+}
+
 function AA() {
     if [ $# -eq 0 ];then
         txt="Done"
@@ -344,10 +399,9 @@ function AA() {
     A p ${txt}
 }
 
-# pretty-time function
 function pretty_time() {
     if (( $# == 0 )); then
-        echo 'Input required'
+        echo "${C_RED}pretty_time${C_N} <seconds>"
         return 1
     fi
     local human total_seconds=$(echo $1 | cut -d. -f1)
@@ -376,7 +430,7 @@ function pretty_size() {
 function calc() {
     str="$*"
     result=$( echo "${str}" | bc -l )
-    echo ${str} = ${result}
+    echo -e "${str} ${C_CYAN}= ${result}"
 }
 
 function pushover() {
@@ -443,5 +497,3 @@ preexec_functions=( ${preexec_functions} notify-preexec-hook )
 
 [[ -z ${precmd_functions} ]] && precmd_functions=()
 precmd_functions=( ${precmd_functions} notify-precmd-hook )
-
-#  vim: set ts=4 sw=4 tw=0 et filetype=zsh :

@@ -466,6 +466,9 @@ mode "mouse2x" {
     bindsym control+10 exec ~/Sync/scripts/m.sh mark 10
     bindsym 10 exec ~/Sync/scripts/m.sh gotomark 10
 
+    # mouse
+    bindsym ö mode "mouse"
+
     # back to default
     bindsym BackSpace mode "default"
     bindsym Return mode "default"
@@ -596,9 +599,13 @@ mode "spacejam" {
     bindsym b [class="^.*"] border pixel 2; mode "default"
     bindsym shift+b [class="^.*"] border normal 2; mode "default"
 
-    # restart dunst
+    # dunst
     bindsym d exec --no-startup-id $Dunst; mode "default"
     bindsym shift+d exec pkill dunst; mode "default"
+
+    # TODO copy date
+    bindsym $super+d exec xclip <(echo $(date -I)) ; mode "default"
+    bindsym $super+shift+d exec "xclip <(echo $(date -Iseconds))" ; mode "default"
 
     # toggle status bar
     bindsym m bar mode toggle
@@ -616,6 +623,9 @@ mode "spacejam" {
     #bindsym shift+x exec pkill xautolock; mode "default"
     bindsym x exec --no-startup-id $Xidlehook ; mode "default"
     bindsym shift+x exec pkill xidlehook ; mode "default"
+
+    # mouse
+    bindsym ö mode "mouse"
 
     # monitor stuff
     bindsym h exec ~/Sync/scripts/monitors.sh h

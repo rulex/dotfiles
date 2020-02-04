@@ -1,0 +1,45 @@
+background yes
+use_xft yes
+xftfont Bitstream Vera Sans Mono:size=9
+override_utf8_locale yes
+xftalpha 0.8
+update_interval 1
+total_run_times 0
+own_window yes
+own_window_class Conky
+own_window_type override
+own_window_transparent yes
+own_window_hints undecorate,below,sticky,skip_taskbar,skip_pager
+own_window_colour hotpink
+text_buffer_size 4096
+minimum_size 10 10
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders yes
+stippled_borders 0
+border_inner_margin 10
+border_width 1
+default_color white
+default_shade_color black
+default_outline_color black
+alignment top_left
+gap_x 3850
+#gap_x 20
+gap_y 5
+no_buffers yes
+uppercase no
+cpu_avg_samples 2
+net_avg_samples 2
+use_spacer none
+double_buffer yes
+
+hddtemp_host 127.0.0.1
+hddtemp_port 7634
+
+#${rss http://www.vasabladet.fi/RSS/RSS_VBL_Nyheter.aspx 15 item_titles 10}
+#${rss http://feeds.idg.se/idg/vzzs 15 item_titles 10}
+#${color grey}CPU:${color white}$cpu%${color grey}${freq}MHz  
+
+TEXT
+${color grey}[${color white}${time %Y-%m-%d %H:%M}${color grey}]   ${color cyan}CPU${color grey}[${color white}${cpu cpu1}${color grey}:${freq 1}][${color white}${cpu cpu2}${color grey}:${freq 2}][${color white}${cpu cpu3}${color grey}:${freq 3}][${color white}${cpu cpu4}${color grey}:${freq 4}]  ${color cyan}MEM${color grey}[${color white}$memperc%:${color grey}$mem/$memmax]  ${color cyan}GPU${color grey}[${color white}${execi 5 aticonfig --od-getclocks|grep GPU|cut -b32- }${color grey}:${execi 20 aticonfig --od-getclocks|grep Clocks|cut --bytes=32-34,45-|sed "s|\(.*\) \(.*\)|\1\/\2|"g }]  ${color cyan}NET${color grey}[${downspeed eth0}${color grey}/${upspeed eth0}${color grey}]  ${color cyan}TEMP${color grey}[c:${color white}${hwmon 0 temp 1}${color grey}][g:${color white}${execi 20 aticonfig --od-gettemperature | grep Temp | cut -d- -f2 | cut -d. -f1 | sed "s| ||" }${color grey}][m:${color white}${execi 20 sensors | grep "MB Temperature" | cut -c26-27}${color grey}][a:${color white}${hddtemp /dev/sda}${color grey}][b:${color white}${hddtemp /dev/sdb}${color grey}][c:${color white}${hddtemp /dev/sdc}${color grey}]${color grey} ${color cyan}HDD${color grey}[/:${color white}${fs_free /}${color grey}|/home:${color white}${fs_free /home}${color grey}|/var:${color white}${fs_free /var}${color grey}]   ${color cyan}VOL${color grey}[${color white}${execi 2 amixer get Master | grep "Mono:" | cut -d\[ -f2 | cut -d\] -f1 }${color grey}]

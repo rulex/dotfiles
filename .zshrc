@@ -11,12 +11,15 @@ function lazy_source() {
 NVM_SOURCE=$HOME/.nvm/nvm.sh
 lazy_source nvm $NVM_SOURCE
 
+# export some colors
+source ~/dotfiles/.colors.sh
+
 # reload all open zsh .zshrc
 trap "source ~/.zshrc && rehash" USR1
 alias source_all="pkill -u $(whoami) -USR1 zsh"
 #alias __="source ~/.zshrc"
 __() {
-    echo "sourcing .zshrc"
+    echo "${C_DARKGRAY}sourcing ${C_YELLOW}~/.zshrc${C_N}"
     source ~/.zshrc
 }
 
@@ -235,7 +238,7 @@ fzf-file-widget() {
     local ret file key
     local ret=$?
     zle redisplay
-    typeset -f zle-line-init >/dev/null && zle zle-line-init
+    typeset -f zle-line-init > /dev/null && zle zle-line-init
     #[ "$key" = ctrl-o ] && return "$file" || e "$file"
     #echo "ASDF ${key} ${ret}"
     return ${ret}
@@ -255,9 +258,9 @@ cdf() {
 glf() {
     local out shas sha q k
     while out=$(
-            #--format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
         git log --graph --color=always --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen[%ci (%cr)] %C(bold blue)<%an>%Creset' --abbrev-commit |
-            fzf --ansi --multi --no-sort --reverse --query="${q}" --tiebreak=index --print-query --expect=ctrl-d,ctrl-o --toggle-sort=\`); do
+            fzf --ansi --multi --no-sort --reverse --query="${q}" --tiebreak=index --print-query --expect=ctrl-d,ctrl-o --toggle-sort=\` \
+            --preview-window="right:100:hidden" --bind \?:toggle-preview --preview "git show {2} --name-only | bat --color=always -ppl gitlog --wrap character --terminal-width 100"); do
         q=$(head -1 <<< "${out}")
         k=$(head -2 <<< "${out}" | tail -1)
         shas=$(sed '1,2d;s/^[^a-z0-9]*//;/^$/d' <<< "${out}" | awk '{print $1}')
@@ -276,17 +279,26 @@ glf() {
 # ctrl-f to play
 lizf() {
     local out q k
-    [ -z "${1}" ] || q="${1}"
-    while out=$(liz --nocolor -t . | fzf -s --ansi --multi --reverse --query="${q}" --tiebreak=index --print-query --expect=ctrl-d,ctrl-o,ctrl-f --toggle-sort=\`); do
+    [ -z "${1}" ] || q="${*}"
+    while out=$(liz --nocolor . | fzf +s --tac --ansi --multi --query="${q}" --tiebreak=index \
+        --print-query --expect=ctrl-d,ctrl-o,ctrl-f --toggle-sort=\` \
+        --preview-window="up:7:hidden" --bind \?:toggle-preview --preview "liz -I -F {8..} | bat -p --paging=always --pager=bat --color=always" ); do
         q=$(head -1 <<< "${out}")
         k=$(head -2 <<< "${out}" | tail -1)
-        filename=$( tail -1 <<< "${out}" | cut -d'|' -f4 | xargs )
+        filename=$(tail -1 <<< "${out}" | cut -d'|' -f4 | xargs)
         if [ "${k}" = 'ctrl-d' ] || [ "${k}" = 'ctrl-o' ] || [ "${k}" = 'ctrl-f' ]; then
             if [ "${k}" = 'ctrl-f' ]; then
-                url=$( liz --nocolor -z "${filename}" | cut -d'|' -f7 )
+                url=$(grep "${filename}" ~/Sync/liz.* | cut -d'|' -f7)
                 mpv "${url}"
+                if [[ $? != 0 ]]; then
+                    {
+                        echo "FAILED URL: ${url}"
+                        echo "filename: ${filename}"
+                    } | less -r
+                fi
             else
-                echo "\nout=${out} q=${q} k=${k} filename='${filename}'" | less -e
+                details="$(liz -F -I --nocolor "${filename}")"
+                echo "${details}" | bat -p --paging=always --pager=bat --color=always
             fi
         else
             liz --nocolor -A "${filename}" | tr '|' '\n' | less -e
