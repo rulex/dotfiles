@@ -293,11 +293,11 @@ bindsym $super+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit short
 
 # volume control
 #bindsym $super+Home exec "amixer set Master 60% unmute"
-bindsym $super+Prior exec "amixer set Master 5%+ unmute"
-bindsym $super+Next exec "amixer set Master 5%- unmute"
-bindsym XF86AudioRaiseVolume exec "amixer set Master 1%+ unmute"
-bindsym XF86AudioLowerVolume exec "amixer set Master 1%- unmute"
-bindsym XF86AudioMute exec "amixer set Master toggle"
+bindsym $super+Prior exec "pactl list sinks short | awk '{print $2}' | grep -v reverse-stereo | xargs -i pactl set-sink-volume {} +5%"
+bindsym $super+Next exec "pactl list sinks short | awk '{print $2}' | grep -v reverse-stereo | xargs -i pactl set-sink-volume {} -5%"
+bindsym XF86AudioRaiseVolume exec "pactl list sinks short | awk '{print $2}' | grep -v reverse-stereo | xargs -i pactl set-sink-volume {} +1%"
+bindsym XF86AudioLowerVolume exec "pactl list sinks short | awk '{print $2}' | grep -v reverse-stereo | xargs -i pactl set-sink-volume {} -1%"
+bindsym XF86AudioMute exec "pactl list sinks short | awk '{print $2}' | grep -v reverse-stereo | xargs -i pactl set-sink-mute {} toggle"
 
 # keyboard lulz
 # arrows

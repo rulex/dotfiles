@@ -18,9 +18,29 @@ export C_LIGHTPURPLE='\033[1;35m'
 export C_LIGHTCYAN='\033[1;36m'
 export C_WHITE='\033[1;37m'
 
-export C_LIST=(
+export C_LIST_ALL=(
     "${C_N}"
     "${C_BLACK}"
+    "${C_RED}"
+    "${C_GREEN}"
+    "${C_BROWN}"
+    "${C_BLUE}"
+    "${C_PURPLE}"
+    "${C_CYAN}"
+    "${C_LIGHTGRAY}"
+    "${C_DARKGRAY}"
+    "${C_LIGHTRED}"
+    "${C_LIGHTGREEN}"
+    "${C_YELLOW}"
+    "${C_LIGHTBLUE}"
+    "${C_LIGHTPURPLE}"
+    "${C_LIGHTCYAN}"
+    "${C_WHITE}"
+)
+
+export C_LIST=(
+    #"${C_N}"
+    #"${C_BLACK}"
     "${C_RED}"
     "${C_GREEN}"
     "${C_BROWN}"

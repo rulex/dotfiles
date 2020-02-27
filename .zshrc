@@ -29,7 +29,7 @@ unset TMOUT
 PATH="$PATH:$HOME/bin"
 
 if [ -d "${HOME}/Sync/bin" ]; then
-    PATH="$PATH:$HOME/Sync/bin"
+    PATH="$HOME/Sync/bin:$PATH"
 fi
 
 # ruby gems
@@ -94,8 +94,16 @@ export TERMINAL="termite"
 
 export BROWSER=/usr/bin/firefox
 
-#export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
-export FZF_DEFAULT_COMMAND='find .'
+# fuzzy
+#export FZF_COMPLETION_TRIGGER='**'
+#export FZF_COMPLETION_OPTS='+c -x --hidden'
+export FZF_DEFAULT_COMMAND='rg --hidden -l "" 2> /dev/null'
+#export FZF_DEFAULT_COMMAND='find . 2> /dev/null'
+export FZF_PREVIEW_COMMAND='bat -n --color=always "{}" || cat {}'
+# TODO:
+# Press F1 to open the file with less without leaving fzf
+# Press CTRL-Y to copy the line to clipboard and aborts fzf (requires pbcopy)
+#fzf --bind 'f1:execute(less -f {}),ctrl-y:execute-silent(echo {} | pbcopy)+abort'
 
 # set editor
 if hash nvim 2>/dev/null; then
@@ -194,21 +202,21 @@ source $ZSH/oh-my-zsh.sh
 # aliases
 source ~/dotfiles/.aliases
 
-fe() {
-    # $1 OPTIONAL dir
-    # $2 OPTIONAL start with query
-    local file
-    file=$(find -L ${1:-.} -type f -print 2> /dev/null | fzf +m -q "${2}") &&
-        nvim "${file}"
-}
+# fe() {
+#     # $1 OPTIONAL dir
+#     # $2 OPTIONAL start with query
+#     local file
+#     file=$(find -L ${1:-.} -type f -print 2> /dev/null | fzf +m -q "${2}") &&
+#         nvim "${file}"
+# }
 
 # fd - cd to selected directory
-fd() {
-    local dir
-    dir=$(find ${1:-.} -path '*/\.*' -prune \
-        -o -type d -print 2> /dev/null | fzf +m) &&
-        cd "$dir"
-}
+# fd() {
+#     local dir
+#     dir=$(find ${1:-.} -path '*/\.*' -prune \
+#         -o -type d -print 2> /dev/null | fzf +m) &&
+#         cd "$dir"
+# }
 
 __fsel() {
     local cmd="${FZF_CTRL_T_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.git' -o -path '*/\\.svn' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
@@ -260,7 +268,7 @@ glf() {
     while out=$(
         git log --graph --color=always --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen[%ci (%cr)] %C(bold blue)<%an>%Creset' --abbrev-commit |
             fzf --ansi --multi --no-sort --reverse --query="${q}" --tiebreak=index --print-query --expect=ctrl-d,ctrl-o --toggle-sort=\` \
-            --preview-window="right:100:hidden" --bind \?:toggle-preview --preview "git show {2} --name-only | bat --color=always -ppl gitlog --wrap character --terminal-width 100"); do
+            --preview-window="right:100:hidden" --bind \?:toggle-preview --preview "git show {2} --name-only | bat --color=always -p -l gitlog"); do
         q=$(head -1 <<< "${out}")
         k=$(head -2 <<< "${out}" | tail -1)
         shas=$(sed '1,2d;s/^[^a-z0-9]*//;/^$/d' <<< "${out}" | awk '{print $1}')

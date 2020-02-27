@@ -351,7 +351,7 @@ vnoremap Å [
 vnoremap å ]
 
 " fzf fuzzy finder
-nnoremap <C-t> <Esc>:Files<CR>
+nnoremap <C-t> <Esc>:Files2<CR>
 "let g:fzf_buffers_jump = 1
 nnoremap Ö <Esc>:Buffers<CR>
 nnoremap Ä <Esc>:Snippets<CR>
@@ -365,12 +365,21 @@ nnoremap <leader>l <Esc>:echo join(["
 nnoremap <leader>ll <Esc>:Lines<CR>
 nnoremap <leader>lb <Esc>:BLines<CR>
 nnoremap <leader>lg <Esc>:GFiles?<CR>
+command! -bang -nargs=? -complete=dir Files2
+    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', '~/.vim/plugged/fzf.vim/bin/preview.sh {}']}, <bang>0)
+" command! -bang -nargs=* Files2
+"             \ call fzf#vim#grep(
+"             \    'find . -type f '
+"             \ . <q-args> 1,
+"             \   <bang>0 ? fzf#vim#with_preview('up:60%')
+"             \           : fzf#vim#with_preview('right:50%', '?'),
+"             \   <bang>0)
 command! -bang -nargs=* Rg
             \ call fzf#vim#grep(
-            \   'rg --column --line-number --no-heading --color=always --smart-case '
+            \   '2>/dev/null rg --column --line-number --no-ignore --hidden --no-heading --color=always '
             \ . <q-args>, 1,
             \   <bang>0 ? fzf#vim#with_preview('up:60%')
-            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \           : fzf#vim#with_preview('right:50%', '?'),
             \   <bang>0)
 nnoremap <leader>* "syiw:Rg <C-r>s<CR>
 imap <c-f><c-l> <plug>(fzf-complete-line)

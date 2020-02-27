@@ -15,6 +15,7 @@ alias lc='ls -lthrc'
 alias lca='ls -ltrca'
 alias sl=ls
 alias lt='tree'
+#alias bat='bat --pager less'
 
 #alias dt='date +"%Y-%m-%dT%H:%M:%S"'
 function dt() {
@@ -165,7 +166,7 @@ function fn() {
         params=()
         local FZF=""
         local FZFW="up:50%"
-        # handle non 'find' params?
+        # handle non 'find' params
         while (($#>0)); do
             case $1 in
                 --F|--FZF)
@@ -186,17 +187,26 @@ function fn() {
                 --t|--tail)
                     FZF="tail {}"
                     shift;;
+                --d|--debug)
+                    DEBUG=1
+                    shift;;
                 *)
                     params+=(${1})
                     shift;;
             esac
         done
-        _CMD="find ${_path:-.} -iname '*${_file:-.}*' ${params}"
+        if [[ -v DEBUG ]]; then
+            set -x
+            echo "path: ${_path:-.}"
+            echo "file: ${_file:-.}"
+            echo "para: ${params}"
+            echo "FZF: '${FZF}', FZFW: '${FZFW}'"
+        fi
         if [ "${FZF}" != "" ]; then
-            eval ${_CMD} | fzf --bind \?:toggle-preview --preview "${FZF}" --preview-window "${FZFW}"
+            find ${_path:-.} -iname '*${_file:-.}*' ${params} | fzf --bind \?:toggle-preview --preview "${FZF}" --preview-window "${FZFW}"
             return 0
         fi
-        eval ${_CMD}
+        find ${_path:-.} -iname "*${_file:-.}*" ${params}
     fi
 }
 
@@ -207,7 +217,7 @@ function _fn() {
 compdef _fn fn
 
 alias grep='grep --color=auto'
-alias rg='rg --no-ignore'
+alias rg='rg --no-ignore --hidden'
 alias egrep='egrep --color=auto'
 #alias -g align='sed -e "s#¤#|#" -e "s#:#¤#" | column -t -s "¤" -o " | "'
 alias -g H='| head'
@@ -219,6 +229,7 @@ alias -g E='| nvim -'
 alias -g CC='| ccze'
 alias -g TS='| while IFS= read -r line; do printf "[%s] %s\n" "$(date "+%Y-%m-%d %H:%M:%S.%N")" "$line"; done'
 alias -g TSC='| while IFS= read line; do echo -e "[${C_YELLOW}$(date "+%Y-%m-%d %H:%M:%S.%N")${C_N}] ${line}" ; done'
+alias -g _E='2>/dev/null'
 
 alias xterm='xterm -bg black -fg white'
 
@@ -333,7 +344,7 @@ function A() {
             local notify_timeout=10
             # clear the cmd
             zsh_notifier_cmd=
-            echo "  ${C_YELLOW}A(): ${C_RED}Ctrl+C${C_N} to cancel, Enter to continue or wait ${notify_timeout}s"
+            echo "  ${C_YELLOW}A(): ${C_RED}Ctrl+C${C_N} to cancel, ${C_GREEN}Enter${C_N} to continue or wait ${C_YELLOW}${notify_timeout}${C_N}s"
             read -t ${notify_timeout} input_str
         fi
         # make post data and post to pushover
@@ -430,7 +441,8 @@ function pretty_size() {
 function calc() {
     str="$*"
     result=$( echo "${str}" | bc -l )
-    echo -e "${str} ${C_CYAN}= ${result}"
+    random_color=${C_LIST[${RANDOM} % ${#C_LIST[@]}]}
+    echo -e "${str} ${random_color}= ${result}"
 }
 
 function pushover() {
