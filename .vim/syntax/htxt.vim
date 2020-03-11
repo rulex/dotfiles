@@ -7,10 +7,8 @@ if exists("b:current_syntax")
     finish
 endif
 
-
 syntax clear
 syntax case match
-
 
 syn keyword hTodo TODO FIXME XXX NOTE
 syn keyword hIdentifier done
@@ -45,6 +43,8 @@ syn match hSymbols /\v\@/
 syn match hSymbols /\v\@[A-ö0-9]+/
 syn match hSymbols /\v\~/
 syn match hComment " #.*$"      contained  extend
+syn match hPositive /\v \+[A-ö0-9.]+/
+syn match hNegative /\v -[A-ö0-9.]+/
 syn match hPath /\v[ ~]\/[A-ö0-9.~\/-]*/
 syn match hDate /\v\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2}/ " 2017-09-19 14:03:18
 syn match hUnderline /_[A-ö0-9\ ]+_/
@@ -85,6 +85,8 @@ hi hStringTick   ctermfg=Magenta   guifg=#d170d1
 hi hSymbols      ctermfg=Magenta   guifg=#d170d1
 hi hStringDouble ctermfg=DarkGreen guifg=#17B217
 hi hStringSingle ctermfg=DarkGreen guifg=#30f030
+hi hPositive     ctermfg=DarkGreen guifg=#30f030
+hi hNegative     ctermfg=Red       guifg=#f03030
 hi hDate         ctermfg=White     guifg=White
 hi hIdentifier   ctermfg=Blue      guifg=DarkCyan
 hi hWork         ctermfg=Yellow    guifg=Yellow
