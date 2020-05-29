@@ -1,6 +1,25 @@
 # Path to your oh-my-zsh configuration.
 # https://github.com/rulex/oh-my-zsh.git
 
+# Load Order    Interactive  Interactive  Script
+# Startup       Only login   Always
+# ------------- -----------  -----------  ------
+#  /etc/zshenv       1            1         1
+#    ~/.zshenv       2            2         2
+# /etc/zprofile      3
+#   ~/.zprofile      4
+# /etc/zshrc         5            3
+#   ~/.zshrc         6            4
+# /etc/zlogin        7
+#   ~/.zlogin        8
+#
+# Shutdown
+# ------------- -----------  -----------  ------
+#   ~/.zlogout       9
+# /etc/zlogout      10
+#
+# Note: ZSH seems to read ~/.profile as well, if ~/.zshrc is not present.
+
 # timer
 t0=$(date '+%s.%N')
 
@@ -30,6 +49,9 @@ PATH="$PATH:$HOME/bin"
 
 if [ -d "${HOME}/Sync/bin" ]; then
     PATH="$HOME/Sync/bin:$PATH"
+    export PASSWORD_STORE_DIR=~/Sync/.password-store
+    export PASSWORD_STORE_CLIP_TIME=10
+    #export PASSWORD_STORE_X_SELECTION=primary
 fi
 
 # ruby gems
@@ -52,6 +74,8 @@ ZSH_THEME="rulex"
 DISABLE_UPDATE_PROMPT="true"
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
+# Uncomment the following line if pasting URLs and other text is messed up.
+DISABLE_MAGIC_FUNCTIONS=true
 
 # Show history
 if [ "$HIST_STAMPS" = "mm/dd/yyyy" ]
@@ -192,7 +216,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(cp systemd archlinux docker mosh nmap redis-cli rsync battery docker-compose mosh nmap urltools git composer emoji npm nvm rust timer)
+plugins=(cp systemd archlinux docker mosh nmap redis-cli rsync battery docker-compose mosh nmap urltools git composer emoji npm nvm rust timer pass)
 # NOTE custom plugin: bgnotify
 #plugins=()
 

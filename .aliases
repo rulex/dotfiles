@@ -49,6 +49,12 @@ function dt() {
     fi
 }
 
+local CONFIGFILE="${HOME}/Sync/.ssh_config"
+if [ -f "${CONFIGFILE}" ]; then
+    alias ssh="ssh -F ${CONFIGFILE}"
+    alias scp="scp -F ${CONFIGFILE}"
+fi
+
 function cheat() {
     curl "cht.sh/${1}"
 }
@@ -210,11 +216,32 @@ function fn() {
     fi
 }
 
+function pw() {
+    {
+        pkill clipit ; echo "clipit ${C_RED}killed${C_N}"
+        #xvkbd -text "c:F12" 2>/dev/null ; echo "clipit ${C_RED}offline${C_N}"
+    }
+    pass -c "${1}"
+    echo "sleeping for ${PASSWORD_STORE_CLIP_TIME}"
+    {
+        read -t $(( PASSWORD_STORE_CLIP_TIME + 1 )) input_str && { (clipit &) ; echo "clipit ${C_GREEN}ON${C_N}" }
+        #xvkbd -text "c:F13" 2>/dev/null ; echo "clipit back ${C_GREEN}online${C_N}"
+    }
+}
+
 # zsh completions https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org
 function _fn() {
     _arguments -C "1:filename to find:((f\:\ filename\ to\ find fi))" "2:second arg:_files" $args '*-iname:name pattern to match (case insensitive)' '(-L -P)-H[only follow symlinks when resolving command-line arguments]' '(-H -P)-L[follow symlinks]' '*-atime:access time (days):->times' '*-ctime:inode change time (days):->times' '*-depth' '*-exec:program: _command_names -e:*\;::program arguments: _normal' '*-follow' '*-fstype:file system type:_file_systems' '*-group:group:_groups' '*-inum:inode number:' '*-links:number of links:' '*-ls' '*-mtime:modification time (days):->times' '*-name:name pattern' '*-newer:file to compare (modification time):_files' '*-nogroup' '*-nouser' '*-ok:program: _command_names -e:*\;::program arguments: _normal' '*-perm: :_file_modes' '*-print' '*-prune' '*-size:file size (blocks)' '*-type:file type:((b\:block\ special\ file c\:character\ special\ file d\:directory p\:named\ pipe f\:normal\ file l\:symbolic\ link s\:socket))' '*-user:user:_users' '*-xdev' '*-a' '*-o' '(-D -E -H -L -O -P -f -s -x --help --version)*:directory:_files -/'
 }
 compdef _fn fn
+
+alias -s txt=nvim
+alias -s {ape,avi,flv,m4a,mkv,mov,mp3,mp4,mpeg,mpg,ogg,ogm,wav,webm}=mpv
+# suffix aliases do not even have to refer to a real existing file. They are an alias. That's what I use to clone git repos I copypaste:
+alias -s git="git clone"
+# I also love them global aliases! To push them even further (like the xargs one), I have those aliases to allow me to do quick iterations in 'streaming' fashion:
+#alias -g FORI='| while read i ; do '
+#alias -g IROF='; done '
 
 alias grep='grep --color=auto'
 alias rg='rg --no-ignore --hidden'

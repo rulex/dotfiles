@@ -120,10 +120,9 @@ URxvt*color7:  #F1F1F1
 URxvt*color15: #FFFFFF
 
 !Xft settings
-Xft.dpi: 86
+!Xft.dpi: 86
 !Xft.dpi: 92
-!Xft.dpi: 96
-!Xft.dpi: 96
+Xft.dpi: 96
 !Xft.dpi: 144
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault

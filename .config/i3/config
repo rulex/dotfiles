@@ -726,6 +726,8 @@ mode "$mode_system" {
     bindsym control+bracketleft mode "default"
 }
 bindsym $super+F12 mode "$mode_system"
+bindsym $super+F10 exec maim "/tmp/ss.$(date -Iseconds).png"
+bindsym $super+shift+F10 exec maim -s "/tmp/ss.$(date -Iseconds).png"
 
 # Set the shortcuts and what they do
 set $mode_display Ext Screen (v) VGA ON, (h) HDMI ON, (x) VGA OFF, (y) HDMI OFF

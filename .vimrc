@@ -221,6 +221,7 @@ nmap <M-9> :tablast<CR>
 " fold
 set foldmethod=indent
 set foldnestmax=2
+set foldignore=
 nnoremap <Space> <NOP>
 
 let g:terminal_color_0="#000000" " #000000
@@ -402,21 +403,6 @@ nnoremap g.u :cd ..<CR>:pwd<CR>
 nnoremap g.U :cd ~<CR>:pwd<CR>
 nnoremap g. :pwd<CR>
 nnoremap g.. :pwd<CR>
-
-function! InsertIfEmpty()
-    if @% == ""
-        " No filename for current buffer
-        "startinsert
-    elseif filereadable(@%) == 1
-        " File exists
-    elseif filereadable(@%) == 0
-        " File doesn't exist yet
-        "startinsert
-    elseif line('$') == 1 && col('$') == 1
-        " File is empty
-        "startinsert
-    endif
-endfunction
 
 " clipboard/paste stuff
 nnoremap <F10> <Esc>:set paste!<CR>:set paste?<CR>
@@ -600,6 +586,9 @@ nnoremap <leader>spy <Esc>:let g:syntastic_python_python_exec = "/usr/bin/python
 
 "let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_javascript_eslint_exe = system('PATH=$(npm bin):$PATH && which eslint | tr -d "\n"')
+
+" https://github.com/bfrg/vim-cpp-modern Vim tends to a have issues with flagging braces inside brackets as invalid syntax, workaround:
+let c_no_curly_error = 1
 
 let g:cpp_args = [
             \ '-fsyntax-only',
@@ -1145,7 +1134,8 @@ Plug 'junegunn/fzf.vim'
 
 "Plug 'trapd00r/vim-highlight-default-highlight-groups'
 
-Plug 'lambdalisue/suda.vim'
+" syntax index ftplugin ctags...
+Plug 'sheerun/vim-polyglot'
 
 " syntax
 Plug 'vim-scripts/httplog'
@@ -1153,7 +1143,8 @@ Plug 'vim-scripts/httplog'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'leafgarland/typescript-vim'
 Plug 'mfukar/robotframework-vim'
-Plug 'octol/vim-cpp-enhanced-highlight'
+"Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'bfrg/vim-cpp-modern'
 "Plug 'plasticboy/vim-markdown'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'Vimjas/vim-python-pep8-indent'
